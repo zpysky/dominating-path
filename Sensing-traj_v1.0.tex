@@ -1,0 +1,893 @@
+%% LyX 2.0.1 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[10pt, conference, letterpaper]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+%\usepackage{babel}
+\usepackage{color}
+
+
+% *** ALGORITHM PACKAGES ***
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{balance}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{color}
+\usepackage[unicode=true,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,
+ breaklinks=false,pdfborder={0 0 0},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{pdftitle={Your Title},
+ pdfauthor={Your Name},
+ pdfpagelayout=OneColumn,pdfnewwindow=true,pdfstartview=XYZ,plainpages=false}
+
+\makeatletter
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+\newcommand{\AlgG} {{\textsc{Greedy-LE}}\xspace}
+\newcommand{\AlgT} {{\textsc{K-Largest}}\xspace}
+\newcommand{\AlgSA} {{\textsc{Simulated Annualing (SA)}}\xspace}
+\newcommand{\AlgR} {{\textsc{Random}}\xspace}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\theoremstyle{plain}
+\newtheorem{thm}{\protect\theoremname}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\protect\definitionname}
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{\protect\lemmaname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\@ifundefined{definecolor}{\usepackage{color}}{}
+\@ifundefined{definecolor}{\usepackage{color}}{}
+% for subfigures/subtables
+
+
+
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+
+
+\providecommand{\definitionname}{Definition}
+\providecommand{\examplename}{Example}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+\graphicspath{{pix/}}
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{floatrow}
+
+
+\providecommand{\definitionname}{Definition}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+% *** Page scaling Setup ***
+%\renewcommand{\baselinestretch}{0.91}
+\providecommand{\definitionname}{Definition}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+
+
+\makeatother
+
+\providecommand{\definitionname}{Definition}
+\providecommand{\lemmaname}{Lemma}
+\providecommand{\theoremname}{Theorem}
+
+
+% *** PAGE # ***
+\pagenumbering{arabic}
+\pagestyle{plain}
+
+% *** Theorem ***
+\newcounter{lemma}
+\newcounter{definition}
+\newcounter{problem}
+\newcounter{theorem}
+\newcounter{corollary}
+\newcounter{proposition}
+
+\newtheorem{pro}[proposition]{Proposition}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+\begin{document}
+
+\title{\global\long\def\lcm{\textrm{lcm}}
+ \global\long\def\gcd{\textrm{gcd}}
+Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
+
+% Modeling Online Social Homophily in Offline Geographical Communities
+
+%\author{Paper ID: 1570300720}
+\author{Anonymous}
+
+\maketitle
+
+%The marketing effect could be improved if the geographical community has strong \emph{online social homophily}---people have a strong desire of communicating with each other in the same community through online social networks (OSNs). However, it is difficult to determine whether a geographical community has strong online social homophily, since a user is free to choose to communicate with anyone inside or outside his community. This is similar to the social segregation problem in demography, where people choose which neighborhood to live based on many social factors (race, income, etc).
+
+
+%\begin{enumerate}
+%% change
+%  \item Is there a way of measuring the community stability by observing the online message diffusion among friendsy?
+%  \item How to derive the offline population distribution over a stable community division?
+%  \item Given a population distribution, how to project the floating population among the formed communities, upon a societal event?
+%\end{enumerate}
+
+
+\begin{abstract}
+Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
+% evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
+\end{abstract}
+
+
+% A category with the (minimum) three required fields
+%\category{H.4}{Information Systems Applications}{Miscellaneous}
+%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+% \category{C.2.2}{Computer-Communication Networks}{Network Protocols}
+
+%\terms{Theory, Performance}
+
+% \keywords{Cognitive radio, rendezvous, heterogeneous}
+
+
+\section{Introduction}~\label{sec:intro}
+
+%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi信号，AQI指数
+
+% The study of population distribution in fixed geographical regions (e.g., states, provinces) is of paramount importance for the government to enhance the public safety in certain palaces with a large floating population, or for the business to launch marketing campaigns in densely-populated areas~\cite{harris1970migration}.
+% The data relevant to people's trajectory is conventionally collected through offline sources. For instance, it is feasible to predict the floating population in the transportation systems by analyzing the origin-destination data of passengers~\cite{chi2010impacts}; Customers' bank notes can be used for modeling the human trajectories as a continuous-time random walk~\cite{gonzalez2008understanding}; The government (e.g., statistical bureau) collects the demographic data to investigate the correlation between human migration patterns and geographic labour demand and supply~\cite{sixcensus}. The challenges of conducting these studies are attributed to the high cost of the data collection methods (regarding time, manpower and money), and the restriction of accessing such datasets due to security and privacy concerns.
+Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photography, 3D wireless signal survey, air quality index (AQI) measurement.
+
+%
+%2. 但是，飞机并未普及，很多公司还死掉了，为什么？
+% 如果你真正用过玩过飞机，你就知道了（1）电池很短（2）大部分都很吵（3）无法负重因为会摇晃且电池更短
+
+% The wide use of online social network (OSN) apps over smartphones has accumulated a rich set of geographical data that describes anonymous user trajectories in the physical world~\cite{kido2005anonymous}, which holds the promise of providing a lightweight means to study the population distribution. For example, many OSN applications like Facebook, Weibo allow users to ``check-in'' and explicitly show their locations~\cite{nazir2008unveiling,guo2013unveiling}; some other applications has implicitly recorded users' geo-related information like GPS coordinates, IP address~\cite{zheng2010geolife,backstrom2010find}. Existing research has showed the feasibility of using the OSN data to predict users' offline locations as well their mobility patterns~\cite{Li2010Mining,cho2011friendship}. Moreover, the online relationship between friends can affect their social tie in the physical world~\cite{Zheng2012Tutorial}: the ``close'' friends in the OSN are also physically close to each other~\cite{cho2011friendship}.
+However, civilian drones are still not popular these days. Furthermore, a lot of drone companies were broken down. It could be a quite confusing problem if you have never come into attach with a drone. If you've actually tried using them, you could find that civilian drones do not really apply to daily life due to:
+\begin{itemize}
+  \item Low battery available time.
+  \item Great noise during flight.
+  \item Wing rock and more battery drain caused by poor carrying capacity.
+\end{itemize}
+
+% 自然就衍生出了一个问题，如何在短时间的电池使用时间内，采集更多的点？并且在三维空间内？
+
+% However, it is still unclear that which type of OSNs can assist determining the population distribution in given geographical regions. Intuitively, there are two observations: (1) it is easy to draw a population distribution over geographical regions that are \emph{stable}---most people in a region do not travel distantly; (2) acquaintances in the same geographical region have a strong desire to communicate with each other through the OSN~\cite{girvan2002community}. %, leading to a stable community.
+% Therefore, we seek to answer the following questions in this study.
+%\begin{enumerate}
+%% change
+%  \item Is there a way of measuring the stability of geographical regions by observing the online message diffusion among people in those regions?
+%  \item How to derive the offline population distribution over a stable division of regions?
+%  \item Given a population distribution, how to project the floating population across regions?
+%\end{enumerate}
+Therefore, in order to make more use of existing drones, we must consider the following problem: \textbf{How to complete measurement (or flight) in the shortest possible time? Furthermore, in the three-dimensional space?}
+
+% 这个和 传统传感器网络中的，移动 base station 等工作类似，因为都是移动的，采集数据
+% 但是，还是不同的，不同点包括：以前都是贪心的，我们这个问题不是
+
+% Our research findings indicate that a division of geographical regions is stable only if the OSN users in these divided regions show a strong geo-homophily---people in each region prefer communicating with others in the same region more than those in other regions; and the Dirichlet process (DP)~\cite{neal2000markov} provides a viable way of modeling the distribution of OSN users across offline regions. These inspire us to investigate the relationship between the online information diffusion, i.e., users' communication in OSN, and the population distribution over a fixed division of offline regions.
+Similar to traditional sensor networks and mobile base station, we consider data collection in mobile environment. So total time consumption consists of two parts: \textbf{flight time} and \textbf{measure time}. While we also have the following difference:
+\begin{itemize}
+  \item We consider optimal algorithm in two-dimensional space.
+  \item We use the routing algorithm based on graph theory apart from traditional greedy algorithms.
+\end{itemize}
+
+
+
+% 这篇文章的贡献？
+% problem formulation —— spanning tree/route problem?
+% 最优算法
+% 多个场景下的实验验证、仿真。
+%In this paper, we present a systematic approach that projects the offline population distribution in fixed geographical regions by modeling the geo-homophily of OSNs. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion
+%among friends in the OSN to the offline population distribution via a Dirichlet process, and then projects the floating population across geographical regions given the derived population distribution. The contributions of this work are summarized as follows.
+%\begin{enumerate}
+%\item \emph{Connecting online data to stability of geographical regions}: We establish the correlation between online message diffusion and the stability of geographical regions, by modeling the geo-homophily of an OSN with geographical attributes. We derive the condition for a division of geographical regions to have a non-decreasing stability. %can remain stable.
+%\item \emph{DP-based prediction models}: We formulate the population distribution problem from the perspective of Dirichlet process, and present a theoretical framework to project the population distribution over fixed geographical regions by casting online message diffusion into the established framework. Based on the derived population distribution, we propose a prediction model that utilizes the message diffusion graph in OSNs to infer the floating population across geographical regions.
+%\item \emph{Experiments using large real-world datasets}: By experiments over the real-world datasets, we validate the efficacy of the model in projecting the population distribution over fixed regions, and meanwhile show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the floating population changes across regions upon the occurrence of societal events (the mass human migration caused by the Chinese Spring Festival 2016).
+%\end{enumerate}
+%The rest of this paper is organized as follows. We introduce the related work and technical background on Dirichlet process in Section~\ref{sec:related}. We provide the system model and formulate the problem in Section~\ref{sec:problem}. In
+%Sections~\ref{sec:distribution} and \ref{sec:floating}, we show the approach of projecting the population distribution, and present the model of predicting the floating population. We validate the proposed model by experiments in Section~\ref{sec:experiment},
+%and conclude the paper in Section~\ref{sec:conclude}.
+In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs) and select critical observation locations (COLs) from OLs to cover measurement space, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
+\begin{enumerate}
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible. Then we could formulate this problem as a minimum dominating set problem in lattice, which has been studied for a long time.
+\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible. Then we could formulate problem as a minimum dominating path problem in lattice, which has not been solved before. In this paper, we solved this problem in grid and give an expand in three-dimensional space.
+\end{enumerate}
+Because of algorithms we use is based on graph theory, We could solve two problems above optimally in O(1)time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time in algorithm is less than ordinary approach. And even though we take less observe point than the ordinary approach, we could have a better result.
+
+
+\section{Related Work}~\label{sec:related}
+
+% 3D sensing
+
+
+\subsection{3D mobile sensing}
+
+Prior work on geographical aspects of OSNs has mostly focused on prediction and analytics of various properties in OSN by leveraging the location-related information.
+
+% The location of an OSN user is the link between the OSN and the physical world.
+\textbf{Predicting mobility patterns using OSN data.}
+% With the help of time and location, user's mobility can be predicted. It is usually occurred on the Location-based Services dataset.
+Users' locations can be predicted by mining their periodic behaviors in social network, given that the observed movement is associated with certain reference locations~\cite{Li2010Mining}. Cho et. al. show that human movement and mobility patterns have a high degree of freedom and variation, but they can still exhibit structural patterns due to geographical and social constraints~\cite{cho2011friendship}, on basis of two observations: (1) short-ranged travel is periodic both spatially and temporally and not effected by the social network structure, and (2) long-distance travel is more influenced by social network ties. Thus, the historic data can be used to predict where a user might travel.
+
+
+\textbf{Data dissemination in a geographical perspective.} Wang et. al. pose a three-layered architecture to model the data dissemination in OSNs, present a density function of general social relationship distribution, and derive the tight lower bounds on traffic load of data dissemination in the OSNs under the assumption that every source sustains a data generating rate of a constant order~\cite{wang2014modeling}.
+
+\textbf{Online and offline social behaviors.}
+Zheng et al. propose Location-Based Social Network (LBSN)~\cite{Zheng2012Tutorial}, which consists of the new social structure made up of individuals connected by the ``interdependency'' derived from their locations in the physical world as well as their location-tagged media content, such as photos, video, and texts.
+%Some prior work on homogeneous social circles both online and offline has been done.
+Hristova et al. experimentalized on a dataset with 74 college students as volunteers~\cite{Hristova2014Keep}, by observing evidence of homophily with regard to many factors within the online and offline social networks. They found that the social tie among students at the same educational institution was strongly affected by residential sector and year in college, but it exhibited diversity in other online aspects, leading to the affirmation saying diversity online is relative to diversity offline.
+
+
+%\textbf{Location privacy.} Security is also a big problem in social network. As sensing and tracking every user's location precisely may create significant privacy risks, data are always in anonymity. \cite{Gruteser2003Anonymous} investigates a complimentary approach that concentrates on the principle of minimal collection, using only de-personalized data. A system model and a quadtree-based algorithm were introduced to guarantee k-anonymous location information through reductions in location resolution.
+
+\textbf{Social tie inference.} Sociological phenomena can be also observed within OSNs. Although the OSN platform has facilitated people's communication, the volume of OSN communications between OSN friends (the strength of the social tie between them) is inversely proportional to the geographical distance, following a Power Law~\cite{goldenberg2009distance}.
+%they just well-perform for local social ties. The result shows that
+Considering the co-occurrence in time and space~\cite{crandall2010inferring}, Crandall et al. present a probabilistic model to prove that even a very small number of co-occurrences can result in a high empirical likelihood that the two people know each other---a social tie between them, which tells us a way to infer the social network structure only by capturing individual physical location over time.
+
+
+\subsection{Route planning in conventional wireless sensor networks}
+Dirichlet distribution is the conjugate prior of Multinomial distribution, which can be seen as a distribution over distribution. The probability density function is written as
+\[
+p=(P=\{p_i\}|\alpha_i) = \frac{\prod_i \Gamma(\alpha_i)}{\Gamma(\sum_i \alpha_i)} \prod_i p_i^{\alpha_i-1}.
+\]
+There are two parameters:
+
+\begin{itemize}
+  \item The scale $\alpha = \sum_i \alpha_i$: a small scale $\alpha$ favors extreme distributions, but this prior belief is very weak and is easily overwritten by data, while an extremely large $\alpha$ makes the samples be more consistent with the base measure.
+  \item The base measure $(\alpha_1',\alpha_2',\ldots)$,$\alpha_i'=\alpha_i/\alpha$: The base measure determines the mean distribution.
+\end{itemize}
+One popular application of Dirichlet distribution is Latent Dirichlet Allocation (LDA) on topic discovery in natural language processing. It is a generative statistical model aiming at describing sets of observations by connotative groups why some parts of the data are similar.
+
+Dirichlet Process (DP) is a class of Bayesian nonparametric models, and Dirichlet process generalizes Dirichlet distribution~\cite{neal2000markov}. DP is a distribution function in a space of infinite but countable number of elements, which also requires a scale parameter $\alpha$ and a base measure $G_0$, denoted as DP$(\alpha,G_0)$. DP is an important method in Bayesian inference to identify the prior distribution of random variables, and it is widely used for density estimation, semiparametric modeling and sidestepping model selection/averaging. One important implication is that DP helps find the number of active components which is much less than the number of samples. In this paper, we investigate how to use Dirichlet process to model the process that OSN users are distributed into geographical regions. % and we introduce a brief review of DP in this section.
+
+
+
+\section{System Model}~\label{sec:problem}
+% 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
+% 例如，3d 空间怎么分，怎么定义一些变量
+% 然后，problem formulation，得到一个problem，就是我们需要求解的目标
+
+In this section, we propose a three-layer framework that analyzes the message diffusions in the OSN to determine the stability of geographical regions. This problem is equivalent to the determination of whether the OSN has a strong geo-homophily---more specifically, whether the structure of the message diffusion graph is similar to that of the divided regions. We extend the concept of modularity~\cite{newman2004fast} to quantify the degree of the geo-homophily of an OSN, and meanwhile we specify the condition on the geo-homophily of an OSN for the stability of underlying geographical regions to remain non-decreasing.
+
+
+\subsection{A Three-layer Framework}
+
+\begin{figure}[htbp]
+ \centering \includegraphics[width=\linewidth]{pix/newpix/pptfig.pdf} %\vspace{-0.1in}
+\caption{A three-layer analytical framework that defines the geo-homophily of OSNs to map the OSN message diffusion (Layer~1) to the offline user distribution (Layer~2), and infers the floating population (Layer~3) based on the derived distribution (Layer~2). }
+\label{fig:Model}
+\end{figure}
+
+
+
+% When realizing that the homophily is at least reaching an expectation, we have reasons to believe we can find some population regulations, as the social network community structure is mirrored to the offline region while there are some knowledge that only physical world can display.
+In Figure~\ref{fig:Model}, we show a three-layer framework consisting of: Layer~1 that captures the message diffusion graph in an OSN; Layer~2 that seeks to derive the user population distribution from the geo-location of OSN users in Layer~1; and Layer~3 that predicts how the floating population will change given the distribution derived in Layer~2.
+
+From the top to the bottom layer, we first investigate how the messages diffuse among groups of people that have similar geo-locations. If people in the same geo region communicate frequently, it is highly likely that the structure of the message diffusion graph is similar to that of the underlying division of regions---the strong geo-homophily exists between the OSN and the offline regions. As a result, we can use the geo-location of messages among OSN users to derive the user distribution over the given regions. Then, the floating population across regions can be further inferred based on the derived distribution.
+
+% only when the mobility patterns of OSN users in regions are stable; there is no way to predict the dynamics of the floating population if the structure of a community division is not stable.
+
+
+\subsection{Geo-homophily of An OSN over Divided Regions}
+% People gather as communities in traditional online social network mainly because of interests. However, a new type of influence factor of constructing communities, i.e. acquaintance, emerges in messenger-based social network (MSN). Thus, the population presents somewhat spatially aggregated. As we can easily obtain the geographic position of users in MSN, it is achievable to calculate the homophily between those online and geographical communities.
+
+
+%\textbf{Two observations}.  As mentioned before, there are two observations given a stable community division:
+%\begin{enumerate}
+%  \item Most of people in a community will not travel outside the home community in most of time, and it is easier to project the population distribution in this case.
+%  \item Most of people in a community prefer communicating with others in the same community rather than those outside the community.
+%\end{enumerate}
+%In contrast, a community division is not stable if many people in a community travels excessively across communities, they do not have a home community, and they may communicate with others in many other regions outside the home community during their travels.
+
+% It is true that the stability of a community division can be independent of the message diffusion within communities. However, in this study, we seek the condition that determine whether a community division is stable using the message diffusion among OSN users within each community.
+
+% \textbf{Geo-homophily of an OSN }.
+
+We define the \emph{geo-homophily of an OSN} as the degree of similarity between the structure of the message diffusion graph in the OSN and that of a given division of regions.
+
+% The geo community division is stable if the geo-homophily of the OSN is high, which facilitates the projection of population distribution.
+We calculate \textit{modularity} to quantify the geo-homophily of an OSN. Given the message diffusion graph of an OSN $G=(V,R,E,T)$ where $V$ denotes the set of users, $R$ denotes the set (or division) of regions, and $E$ denotes the set of edges $e_{uv}$ with weights $\rho_{uvT}$ representing the number of views from node~$u$ to the content of node~$v$ during time period $T$. The $e_{uv}$ exists if the number of views from node~$u$ to the content of node~$v$ during time period $T$ is non-zero. Let $\Omega_T$ be $\sum_{u,v} \rho_{uvT}$. Each user $u \in V$ belongs to a specific region $r \in R$ given the division $R$, denoted as $r_u$.
+
+We can easily transform $E$ from a user-to-user perspective to a region-to-region one, recorded as $\mathcal{E}$, where $\forall \epsilon_{ij} \in \mathcal{E}$ has value
+\[
+\omega_{ijT} = \sum_{u \in V,r_u=i}\sum_{v \in V,r_v = j} \rho_{uvT},
+\]
+which represents the the number of views from nodes in region~$i$ to the content of nodes in region~$j$ during time period $T$.
+
+Let $p_{ijT}$ be the proportion of messages from $i$ to $j$ during $T$, namely $\omega_{ijT}/\sum_{i',j'}\omega_{i'j'T}$. To quantify the geo-homophily of an OSN $G=(V,R,E,T)$, we define the modularity on $R$ during $T$, $Q_{RT}$, as
+\[
+Q_{RT} = \sum_{i\in R} (p_{iiT} - \sum_{j\in R}p_{ijT}\sum_{j\in R}p_{jiT}).
+\]
+Apparently, $Q_{RT}$ ranges in $[-1,1]$. The greater $Q_{RT}$ is, the higher geo-homophily the OSN has.
+
+If an OSN shows a strong geo-homophily over the divided regions, most OSN users have more preference of communicating with others in the same region rather than with those in other regions, which implies each user is more attached/attracted by his current region instead of other regions, thereby leading to a high stability of each region. Next, we will show how to determine the change of the stability of a division $R$ by imposing a condition over $Q_{RT}$.
+% for the division to remain stable.
+% This value gives us evidence to what extent the MSN has geo-homophily.
+
+\subsection{Stability of A Division of Regions}~\label{sec:stability} %XXX~Here is a new label~YYY
+The modularity quantifies the geo-homophily between an OSN and the underlying geographical regions. However, it is infeasible to foresee whether the regions will remain stable since the structure of the message diffusion graph is dynamically changing. For instance, a breaking news may reform the structure of the message diffusion graph, and push people to move across regions. Next, we will deduce: under what condition, the stability of a division of regions will remain non-decreasing.
+
+Formally, given two time periods $T = [t_0,t_1]$ and $T'=[t_0,t_2]$ where $t_2 > t_1$, we need to find the distribution of messages in period $[t_1,t_2]$ that leads to an equal or higher modularity in at the end of $T'$, i.e., $Q_{RT} \le Q_{RT'}$.
+
+We define the social-entropy of message diffusion inside and outside regions in the message diffusion graph $G$ as:
+\begin{equation}
+	H(G) = -\sum_{i \in R} \sum_{j \in R} p_{ijT} \times \log p_{ijT}.
+\end{equation}
+As the redistribution of message diffusion inside each region do not significantly affect the modularity, we will only focus on those message diffusions (edges) across regions.
+
+Hence, we combine all edges within a region into a new set. Let $I_{T} = \bigcup_{i \in R} \epsilon_{iiT}$, and $\omega_{I_T} = \sum_{i \in R} \omega_{iiT}$, $p_{I_T} = \omega_{I_T}/\Omega_T$. $H(G)$ can be rewritten as:
+\begin{equation}\label{equ:entropy}
+	H(G) =  -p_{I_T} \times \log p_{I_T} -\sum_{i \in R} \sum_{j \in R, i \ne j} p_{ijT} \times  \log p_{ijT}.
+\end{equation}
+
+New message diffusions in time period $[t_1,t_2]$ will create new edges and construct a new message diffusion graph $G'$ (that can be extended from $G$). Let $l_{ij}$ be the number of new edges from region~$i$ to $j$ in $G'$, which are not included in $G$. Note that $\forall i,j \in [1,|R|],l_{ij} \ge 0$.
+
+Let $\overline{\textbf{L}}_{|R|\times |R|}$ be the matrix of $l_{ij}$, and $\mathcal{L} = \sum_{i,j} l_{ij}$ where $\mathcal{L} \ll \Omega_T$).
+Let $l_I = \sum_{i \in R} l_{ii}$ be the number of new edges inside regions.
+% XXX~The new message diffusion would add new edges across communities as well.~YYY
+
+To measure the impact and the change to $G$ caused by new message diffusion $\overline{\textbf{L}}$, we define \emph{Information Increment}, $\mathcal{G}(G, \overline{\textbf{L}})$, as follows
+\begin{equation}
+\mathcal{G}(G, \overline{\textbf{L}}) = \frac{(\omega_{I_T}+l_I)^{(\omega_{I_T}+l_I)}\prod_{i,j \in R, i \ne j}(\omega_{ijT}+l_{ij})^{(\omega_{ijT}+l_{ij})}}{\omega_{I_T}^{\omega_{I_T}}\prod_{i,j \in R, i \ne j} {\omega_{ijT}}^{\omega_{ijT}}}.
+\end{equation}
+
+According to~(\ref{equ:entropy}), the social-entropy becomes:
+\begin{equation}
+\begin{aligned}
+H&(G') = -\frac{\omega_{I_T}+l_I}{\mathcal{L} + \Omega_T}\log{\frac{\omega_{I_T}+l_I}{\mathcal{L} + \Omega_T}} \\
+ & -\sum_{i \in R} \sum_{j \in R, i \ne j} \frac{\omega_{ijT}+l_{ij}}{\mathcal{L} + \Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\mathcal{L} + \Omega_T}}.
+\end{aligned}
+\end{equation}
+
+
+The following proposition prescribes the condition for the stability of divided regions to remain non-decreasing, based on the analysis of the OSN message diffusion graph.
+\begin{pro}\label{pro:entropy}
+Given a message diffusion graph $G$ over a division of regions, the geo-homophily will not decrease, if $\mathcal{G}(G,\overline{\mathbf{L}})$ is no smaller than $\Omega_T^\mathcal{L}$, where $\mathcal{L} \ll \Omega_T$.
+\end{pro}
+\begin{proof}
+The degree of the geo-homophily of an OSN will not decrease, if the social entropy never had a tendency to increase---i.e., $\Delta H$ is non-positive, where
+\begin{equation*}
+\begin{aligned}
+\Delta H &= H(G')-H(G)\\
+         &= -\frac{\omega_{I_T}}{\Omega_T}\log{\frac{\omega_{I_T}+l_I}{\omega_{I_T}}}-\sum_{i,j \in R, i \ne j}\frac{\omega_{ijT}}{\Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\omega_{ijT}}}\\
+         &\ \ -\frac{l_I}{\Omega_T}\log{\frac{\omega_{I_T}+l_I}{\Omega_T}}-\sum_{i,j \in R, i \ne j}\frac{l_{ij}}{\Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\Omega_T}}\\
+\end{aligned}
+\end{equation*}
+That is:
+\begin{equation}\label{equ:delta_entropy}
+\Delta H =\frac{1}{\Omega_T}(\log{\Omega_T^\mathcal{L}}-\log{\mathcal{G}(G,\overline{\mathbf{L}})}).
+\end{equation}
+Then we can substitute $\mathcal{G}(G,\overline{\mathbf{L}}) \geq \Omega_T^\mathcal{L}$ into~(\ref{equ:delta_entropy}) and we could conclude with this proposition.
+\end{proof}
+
+
+
+\section{Population Distribution Projection}~\label{sec:distribution}
+Given a division of regions, the geo-homophily is an indicator of the similarity between the structure of the OSN message diffusion graph and that of the division. The stronger geo-homophily an OSN has, more in-region communications occur between friends in the same region rather than across-region communications. Whenever a new user joins the OSN, he/she is highly likely to be distributed to the region where most of his/her friends reside. This is similar to the Chinese Restaurant Process (one representation of Dirichlet process), which describes how guests are assigned to different tables in the restaurant according to the existing guest distribution.
+
+In this section, we present a Bayesian nonparametric model based on the Dirichlet process, which predicts how users in a OSN with strong geo-homophily are distributed over a given division of regions. In contrast, the weak geo-homophily in the OSN over given regions fails to establish the link between OSN message diffusion and the user distribution, which leads to a low prediction accuracy.
+
+
+% XXX~ why DP is perfect for modeling this
+% this problem is also a non-parametric distribution prediction problem?
+% what is the difference? how can we address that?
+% ~YYY
+
+\subsection{User Distribution Model}
+We propose a User Distribution Model (UDM) on basis of the Dirichlet Process Mixture (DPM) model for learning the hyper-parameters of the gathering mode, which is defined as a distribution of a random probability measure $\mathcal{U}$. A UDM has two parameters: base distribution $\mathcal{U}_0$ which is considered as the mean of DP, and the scale parameter $\alpha$ which is like an inverse-variance of the DP. Then we have:
+\[
+\mathcal{U} \sim \text{UDM}(\alpha,\mathcal{U}_0)
+\]
+representing a draw of a random probability measure $\mathcal{U}$ over a given parameter space $\mathbb{U}$ from the corresponding Dirichlet process. For every user $u \in V$, we can draw a relevant $\theta_u$ from $\mathcal{U}$. Here, $\alpha$ affects the probability that $\theta_u = \theta_v,u \ne v$. Thus, sampling from UDM is executed by the following generative process:
+\[
+\begin{aligned}
+& \mathcal{U} \sim \text{UDM}(\alpha,\mathcal{U}_0) \\
+& \theta_u \sim \mathcal{U} \\
+& r_u \sim F(\theta_u)
+\end{aligned}
+\]
+where $F$ is the likelihood function determining which region user~$u$ belongs to. Due to the cluster property, the number of distinct $\theta$'s would be exactly $|R|$, far less than $|V|$. Let $\widetilde{\theta}_r, r\in R$ be the non-redundant hyper-parameters.
+
+We have $\mathcal{U}$ in $|R|$ dimensions where $\sum_{r\in R} \alpha_r = \alpha$, i.e.
+\[
+\mathcal{U} \sim \text{Dir}(\{\alpha_r\}_{r\in R}).
+\]
+
+%XXX~ Longo--I cannot find that representation in papers in prestigious conference, so I describe it in words, is it OK? ~YYY ~
+
+Define $n_r$ be the amount of $r_u$ that equals to $r$ for every user $u$, and we can deduce the posterior distribution as:
+\[
+\begin{aligned}
+& P(\{\widetilde{\theta_r}\}_{r \in R}|\{n_r\}_{r \in R}) \\
+& \propto \text{Mult}(\{n_r\}_{r \in R}|\{\widetilde{\theta_r}\}_{r \in R}) \text{Dir} (\{\widetilde{\theta_r}\}_{r \in R}|\{\alpha_r\}_{r \in R}) \\
+& \propto \prod_{r \in R} \widetilde{\theta_r}^{\alpha_r - 1} \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \prod_{r \in R} \widetilde{\theta_r}^{n_r} \\
+& \propto \prod_{r \in R} \widetilde{\theta_r}^{\alpha_r - 1} \prod_{r \in R} \widetilde{\theta_r}^{n_r} = \prod_{r \in R} \widetilde{\theta_r}^{n_r+\alpha_r - 1} \\
+& = \text{Dir} (\{\widetilde{\theta_r}\}_{r \in R}|\{\alpha_r + n_r\}_{r \in R}).
+\end{aligned}
+\]
+
+Thus, the marginal probability would be
+\[
+\begin{aligned}
+& P(\{n_r\}_{r \in R}) \\
+& = \int_{\{\widetilde{\theta_r}\}_{r \in R}} P(\{\widetilde{\theta_r}\}_{r \in R}|\{n_r\}_{r \in R}) \\
+& =  \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \int_{\{\widetilde{\theta_r}\}_{r \in R}} \prod_{r \in R} \widetilde{\theta_r}^{n_r+\alpha_r - 1} \\
+& =  \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \frac{ \prod_{r\in R} \Gamma(\alpha_r+n_r) }{ \Gamma(|V|+\sum_{r \in R} \alpha_r) }.
+\end{aligned}
+\]
+
+According to the Bayesian Theory, for user~$u \notin V$, the predictive distribution becomes
+\[
+\begin{aligned}
+& P(r_u = r|\{r_v\}_{v \in V}) \\
+& = \frac{P(r_u = r,\{r_v\}_{v \in V})}{P(\{r_v\}_{v \in V})} \\
+& = \frac{P(\{n_r+1\}\cup\{n_{r'}\}_{{r'} \in R, r'\ne r})}{P(\{n_{r'}\}_{{r'} \in R})} \\
+& = \frac{ \Gamma(|V|+\sum_{r \in R} \alpha_r) }{ \Gamma(|V|+1+\sum_{r \in R} \alpha_r) }\frac{ \Gamma(\alpha_r+n_r+1) }{ \Gamma(\alpha_r+n_r) }\\
+& = \frac{n_r+\alpha_r}{|V|+\sum_{r \in R} \alpha_r}.
+\end{aligned}
+\]
+
+\subsection{A Special Case of Chinese Restaurant Process}
+The process of distributing users over multiple regions is a special case of Chinese Restaurant Process~\cite{aldous1985exchangeability}, given that $|R|$ is finite. Whenever a new user joins the OSN, he/she needs to choose a region to stay, by considering the distribution of his/her friends in the given regions.
+\begin{itemize}
+  \item When the OSN has a strong geo-homophily over the regions, people prefer to communicate and stay with their friends in the same region.
+  \item When the OSN owns a weak geo-homophily, users may communicate with online friends in a region but stay with offline acquaintances in another different region. % but not contact choose a relevant community of interests regardless of physical region.
+\end{itemize}
+
+\textbf{Parameters in the view of stick-breaking representation}. Although $n_r$'s are statistic variables that can be obtained directly, the scale parameters are not easy to compute. To avoid manual assignment of $\alpha_r$, we change our view of the problem to be an equivalent one, i.e, the stick-breaking representation.
+
+The posterior distribution of $\mathcal{U}$ over $\widetilde{\theta}$ is deduced as:
+\[
+\begin{aligned}
+& P(\mathcal{U}|\{\widetilde{\theta_r}\}_{r \in R}) \\
+& \propto P(\{\widetilde{\theta_r}\}_{r \in R}|\mathcal{U})P(\mathcal{U}) \\
+& = \mathcal{U}P(\mathcal{U}).
+\end{aligned}
+\]
+So we have
+\[
+\mathcal{U}|\{\widetilde{\theta_r}\}_{r \in R} \sim \text{UPM}(\alpha+1,\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta}}}{\alpha+1})
+\]
+where $\delta_{\widetilde{\theta}}$ is a probability measure concentrated at $\widetilde{\theta}$.
+
+Consider a partition $(\theta',\mathbb{U}\backslash \theta')$, we have
+\[
+\begin{aligned}
+& (\mathcal{U}(\theta'),\mathcal{U}(\mathbb{U}\backslash \theta')) \\
+& \sim \text{Dir}((\alpha+1)\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta'}}}{\alpha+1}(\theta'),(\alpha+1)\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta'}}}{\alpha+1}(\mathbb{U}\backslash \theta')) \\
+& = \text{Beta}(1,\alpha).
+\end{aligned}
+\]
+Serialize each region from 1 to $|R|$, and the stick-breaking procedure is then deduced by
+\[
+\begin{aligned}
+\mathcal{U} & \sim \text{UPM}(\alpha,\mathcal{U}_0) \\
+            & = \beta_1 \delta_{\widetilde{\theta_1}} + (1-\beta_1) \mathcal{U}_1 \\
+            & = \ldots \\
+            & = \sum_{i=1}^{|R|} \pi_i \delta_{\widetilde{\theta_i}}
+\end{aligned}
+\]
+where $\beta_i \sim \text{Beta}(1,\alpha)$ for $i \ne |R|$ and $\beta_{|R|} = 1$, while
+\[
+\pi_i = (1-\sum_{j=1}^{i-1} \pi_j) \beta_i.
+\]
+
+The posterior distribution of $\beta_i$ satisfies
+\[
+p(\beta_r|\{n_{r'}\}_{r'\in R},\alpha) \propto p(n_r,|V|\big|\beta_r)p(\beta_r\big|\alpha).
+\]
+
+% As we can record the entering sequence of each user, it is sufficient to do Gibbs Sampling.
+
+
+\section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
+%assume that there will not any devastating news that seriously break the current homophily, and describe a Bayesian nonparametric models to predict future users and infer the human mobility.
+
+% If the OSN does have strong geo-homophily with the underlying community division (a great Modularity value), there are much more connotation to be excavated.
+
+In the physical world, people may move across regions periodically or temporally, thereby greatly influencing the geo-homophily of the OSN they use. In general, there are two important regions for every person, that is, the \emph{home} region denoted as $\mathcal{H}$, and the \emph{remote} region denoted as $\mathcal{W}$ (e.g., the work place). According to the previous study~\cite{cho2011friendship}, most of the message diffusions usually occur in or between these two regions (e.g., an OSN user in the remote region contacts his families at home region, or his colleagues at the same remote region). %, while the proportion of communications with other regions are quite random.
+With these observations, we leverage the geo-attributes of message diffusions between the sender and receiver to infer the distribution of floating population.
+
+
+\subsection{Distribution of Message Diffusions}
+
+We use a tetrad $\mathbb{S}=(\mathbb{C},\mathbb{Q},\lambda,\chi)$ to represent the state of the message diffusion graph. Consider a state when the population distribution is captured as $\mathbb{C} = \{c_i\}_{i\in R}$, where $c_i$ represents the proportion of the population of region $i$.
+
+Denote the real population distribution as $\mathbb{Q} = \{q_{ij}\}_{i,j\in R}$, where $q_{ij}$ means the proportion of people whose remote region is region~$j$ while their home region is region~$i$. We have $c_i = \sum_{j\in R} q_{ji}.$ Let $\sigma_{ij}$ be the proportion of users in $j$ with home region~$i$, i.e. $\sigma_{ij} = \frac{q_{ij}}{c_{j}}$. Similar to UDM, $\sigma_{ij}$'s in a specific region can also be generated from a Dirichlet Process.
+
+%To simplify the model, we treat $\lambda$ and $\chi$ equally for all users. XXX~Besides, as there may be some temporal communications with strangers, we might as well assume that every two people have equal probability to communicate.~ such assumptions will make the paper fail~YYY
+
+Given a sender region, the amount of region-to-region communication is proportional to the population of the receiver region. Then for every receiver region $r$, we have
+\[
+\begin{aligned}
+&P(r|r_{\mathcal{H}},r_{\mathcal{W}})\\
+&=\left\{
+\begin{array}{rcl}
+\lambda+(1-\lambda-\chi)c_r       &      & {r = r_{\mathcal{H}}, r_{\mathcal{H}} \ne r_{\mathcal{W}}}\\
+\chi+(1-\lambda-\chi)c_r     &      & {r = r_{\mathcal{W}}, r_{\mathcal{H}} \ne r_{\mathcal{W}}}\\
+\lambda+\chi+(1-\lambda-\chi)c_r     &      & {r = r_{\mathcal{H}}= r_{\mathcal{W}}}\\
+(1-\lambda-\chi)c_r       &      & otherwise
+\end{array} \right.
+\end{aligned}
+\]
+where $\lambda$ is the proportion of communications with the home region, and $\chi$ is the proportion of communications with the remote region.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+% this is region-to-region view, so we do not need to explicitly say \lambda and \chi are same for every user. Such a strong assumption will raise criticism.
+
+\textbf{State difference}. Define a baseline state $\mathbb{S}'=(\mathbb{C}',\mathbb{Q}',\lambda,\chi)$, $\mathbb{C}' = \{c'_i\}_{i\in R}$, where all people stay at their home regions, i.e. $\forall i,j \in R, i\ne j$, the corresponding $\sigma'_{ij}=0$. Consider the difference between an arbitrary state $\mathbb{S}$ and the baseline state, named as \textit{State Difference} $\Delta \mathbb{S}$.
+
+% XXX~~Longo--``superposition'' seems to be more accurate. The mixture of two distributions means that the data is drawn either from the first distribution or the second distribution, while the superposition means a new distribution combining two distributions.~~~YYY
+
+\begin{pro}
+The State Difference follows a superposition of a uniform distribution and a Dirichlet distribution.
+\end{pro}
+\begin{proof}
+The proportion of messages from $r_{\mathcal{O}}$ to $r_{\mathcal{T}}$ should be
+\[
+\begin{aligned}
+&P_{\mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
+&= \sum_{r_{\mathcal{H}} \in R} P(j|r_{\mathcal{H}},r_{\mathcal{W}}=i) \sigma_{r_{\mathcal{H}}i}\\
+& = (1-\lambda-\chi)c_j+\lambda \sigma_{ji}+[j=i]\chi \sigma_{ii}.
+\end{aligned}
+\]
+
+Therefore, we can deduce that
+\begin{equation} \label{equ:difference}
+\begin{aligned}
+& P_{\Delta \mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
+& = P_{\mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) - P_{\mathbb{S}'}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
+& = \left\{\begin{array}{rcl}
+(1-\lambda-\chi)(c_j-c_{j'}) + \lambda \sigma_{ji}       &      & i \ne j\\
+(1-\lambda-\chi)(c_j-c'_j)+(\lambda+\chi)(\sigma_{ii}-1)       &      & i = j
+\end{array} \right.
+\end{aligned}
+\end{equation}
+which is a constant plus a variable generated from Dirichlet process. It indicates that the State Difference follows a superposition of a uniform distribution and a Dirichlet distribution.
+
+\end{proof}
+This proposition enlightens us to infer floating population by methods of divide and conquer. The State Difference reduces the weight of the uniform distribution component.
+
+\subsection{Export Message Pattern (EMP)}
+
+Similar to UDM, we can extract the distribution of messages diffused to remote regions, and we use a Hierarchy Dirichlet Process to find the distribution, which is named as the Export Message Pattern (EMP). For every region $i$, denote $\mathbf{\sigma_i}$ as $\{\sigma_{ji}\}_{i \ne j}$, following
+\[
+\begin{aligned}
+& \mathbb{B}_0 \sim \text{DP}(\tau',\mathbb{B}')\\
+& \mathbb{B}_i \sim \text{DP}(\tau_i,\mathbb{B}_0)\\
+& \eta_i \sim \mathbb{B}_i\\
+& \mathbf{\sigma_i} \sim F(\eta_i)
+\end{aligned}
+\]
+where $\eta_i$ is the hyper-parameters, $\tau_i$ and $\tau'$ is the corresponding scale parameter and $\mathbb{B}'$ is the base distribution. Consider the differential export message
+\[
+\mathbf{d_i} = \{d_{ij}=P_{\Delta\mathbb{S}}(j | i) - (1-\lambda-\chi)(c_j-c'_j)\}_{i \ne j},
+\]
+which satisfies that
+\[
+\mathbf{d_i}/\lambda \sim F(\eta_i).
+\]
+Given $\mathbf{d_i}$, Gibbs Sampling can be used to decide what $\mathbf{\sigma_i}$ should be.
+
+\subsection{Self Message Pattern (SMP)}
+
+The Dirichlet Process Mixture can also explain the distribution of messages diffused inside each region, which is named as Self Message Pattern (SMP). According to (\ref{equ:difference}), it is not wise to gather $\sigma_{ii}$ $\forall i \in R$. Instead, we should concern $\{\sigma_{0i}=1-\sigma_{ii}\}_{i \in R}$ and denote it as $\mathbf{\sigma_0}$. We are able to find a scale parameter $\tau_0$ and base distribution $\mathbb{I}_0$ such that
+\[
+\begin{aligned}
+& \mathbb{I} \sim \text{DP}(\tau_0,\mathbb{I}_0)\\
+& \eta_0 \sim \mathbb{I}\\
+& \mathbf{\sigma_0} \sim F(\eta_0).
+\end{aligned}
+\]
+
+Since we have access to
+\[
+\mathbf{d_0} = \{d_{0i}=(1-\lambda-\chi)(c_i-c'_i) - P_{\Delta\mathbb{S}}(i | i)\},
+\]
+following $\mathbf{d_0}/(\lambda+\chi) \sim F(\eta_0)$, the model can be solved by Gibbs Sampling according to the posterior distribution and the restriction holding $\sum_j \sigma_{ji} = 1$. %, which provide an approximate result.
+
+% XXX~ Longo--The posterior distribution is similar to that in UDM. It's really space-consuming, shall I put it here? ~~~YYY
+
+\subsection{Floating Population Inference Model}
+
+%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXX which one is used for infer floatin population? UDM, EMP?
+Finally, we combine UDM, EMP and SMP as a Floating Population Inference Model (FPIM). The UDM provides the population distribution across regions, while EMP and SMP compute the specific allocation inside each region. The model structure is shown in Figure~\ref{fig:ModelStructure}.
+
+\begin{figure}[htbp]
+ \centering \includegraphics[width=2.4in]{pix/newpix/modelstructure.pdf} %\vspace{-0.1in}
+\caption{The Floating Population Inference model has three parts, namely UDM, EMP, SMP from left to right. }
+\label{fig:ModelStructure}
+\end{figure}
+
+
+
+\section{Evaluation}\label{sec:experiment}
+% 仿真
+% 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
+% 真实的放飞实验，看看电池能飞多久。
+
+In this section, we validate the geo-homophily over two real-world OSN datasets that have geo attributes of users, and evaluate the performance of proposed UDM and FPIM models.
+
+\subsection{Datasets}
+We use datasets of two OSNs: Gowalla dataset and WeChat Moment dataset. The former one covers most of western countries, while the latter covers the China mainland (where Internet censorship is enforced and people have restricted access to popular OSN sites/apps like Facebook).
+
+``Gowalla''~\cite{cho2011friendship} is a typical location-based social network (LBSN) where users share their locations by ``checking-in''. The information regarding friend relationship was collected using their public API, which consists of 196,591 nodes and 950,327 edges. The edges can be seen as undirected. This Gowalla dataset collects a total of 6,442,890 check-in's of these users over the time period from Feb. 2009 to Oct. 2010.
+
+%%%%%%%%%%%%%%%%%%%% users in wechat set is much less than China population, then how can it show the distribution?
+
+``WeChat Moments (WM)''~\cite{schiavenza2013wechat} is the social network of a mobile messaging app (Wechat) popular in China, where the contents shared over WM are HTML5 pages. This WM dataset contains 137,509,889 users with 1,671,692,424 retweeting/forwarding records of 329,465 pages from Jan. 14 2016 to Feb. 27 2016, telling us when, where, from whom a page is re-tweeted; how many pages a user reads; and whether one has re-tweeted a page. WeChat Moments can only be used on mobile devices, and the user location can be inferred from the IP address. The period of data covers Spring Festival, a traditional festival in China when most of Chinese people migrate back to their home province from the work place.
+
+% stay at home around those days but work normally before and after. Thus, some connotations are accessible. % , which are able to be transformed to location.
+
+Note that: although the number users of each dataset is much less than the population of a country, it is sufficiently large to derive the proportion of OSN user distribution, as well as the population distribution over geographical regions, which helps us determine how a new OSN user is distributed or how floating population varies across regions .
+
+% 因为线上用户其实是线下真实用户的子集，所以大体分布趋势相似。由于人员总数不同，所以只能看比例分布
+% 好的，那我就在 evaluation 解释一下，我们看的是趋势 分布
+% 也就是 每当一个新的 用户 使用OSN的时候，那么他去哪里的概率，是符合我们的预测的，无论我们线上数据集的 人数 是否比线下小很多
+
+
+
+\subsection{Geo-homophily of OSNs}\label{sec:EffectDivision}
+
+As mentioned in Section~\ref{sec:problem}, we can divide users of an OSN into a division of regions, according to users' geo attributes.
+%
+%\begin{figure*}
+%\centering
+% \begin{subfigure}[b]{0.3\textwidth}
+%    \includegraphics[height=2.4in]{pix/newpix/wechat03.png}
+%    \caption{Before Spring Festival.}
+%    \label{fig:beforecj}
+%\end{subfigure}
+% \hfill
+% \begin{subfigure}[b]{0.3\textwidth}
+%    \includegraphics[height=2.4in]{pix/newpix/wechat5.png}
+%    \caption{On the Spring Festival day.}
+%    \label{fig:duringcj}
+%\end{subfigure}
+%  \hfill
+% \begin{subfigure}[b]{0.3\textwidth}
+%    \includegraphics[height=2.4in]{pix/newpix/wechatrand.png}
+%    \caption{Baseline network.}
+%    \label{fig:randomstructure}
+%\end{subfigure}
+%\caption{Graph representations of message diffusion inside and across provinces in Wechat Moments dataset. }
+%\label{fig:graphstructure}
+%\end{figure*}
+
+
+\begin{figure}[htbp]
+\centering
+ \begin{subfigure}{3in}
+\centering
+    \includegraphics[height=2.4in]{pix/newpix/wechat03.png}
+    \caption{Before Spring Festival.}
+    \label{fig:beforecj}
+\end{subfigure}
+ \hfill
+ \begin{subfigure}{3in}
+ \centering
+    \includegraphics[height=2.4in]{pix/newpix/wechat5.png}
+    \caption{On the Spring Festival day.}
+    \label{fig:duringcj}
+\end{subfigure}
+  \hfill
+ \begin{subfigure}{3in}
+ \centering
+    \includegraphics[height=1in]{pix/newpix/wechatrand.png}
+    \caption{Baseline network.}
+    \label{fig:randomstructure}
+\end{subfigure}
+\caption{Graph representations of message diffusion inside and across provinces in Wechat Moments dataset. }
+\label{fig:graphstructure}
+\end{figure}
+
+\subsubsection{Geo-homophily of WeChat}
+~
+
+
+\textbf{Message diffusion in China.} The WM dataset records the page re-tweeting in 34 provinces in China, and we use these provinces as the geographical regions in this experiment. Every user in WM should have viewed a collection of pages, and each page view's IP address corresponds to a province, among which the most frequently recorded one is set as the province where the user is located. We analyze the message diffusion process in two time periods: (1) Before Spring Festival, we monitor the message diffusion from Jan. 14 to Jan. 31, 2016, which are pre-holiday working and weekend days; (2) on the Spring Festival day, most people stay at home, and hence the structure of the message diffusion graph would be different.
+
+% to another province. Those propagations that are occurred abroad will be waived.
+
+\textbf{Results for pre-holidays}. The modularity in the pre-holidays is approximately 0.49. Figure~\ref{fig:beforecj} shows the volume of message diffusion inside each province and that between every pair of provinces of China, where the amount of message diffusion inside a province is proportional to the size of the corresponding circle, and the amount between provinces are represented by the length of arcs: (1) the larger size an orange circle has, more friend relationships between two people exist inside the province labeled in the circle; (2) the shorter a blue arc is, more friend relationships exist between people in two different provinces whose corresponding circles are connected by the arc; (3) for a province whose corresponding circle have no arc connected, only a very small number of friend relationships exist between this province and another different one, and the resulting arc could be very long in proportion to the length of other arcs, and thus we skip plotting such very-long arcs in the figure.
+
+The results indicate that most of the diffusions occur inside provinces, so the arcs are relatively sparse. In particular, there lies no arc between some pairs of circles in this figure, which does not mean that there is no message diffusion between the corresponding two provinces, but implies that the message diffusion between them is much weaker than that between those pairs of circles having arcs. For example, there were only hundreds of message diffusions between Tibet and Taiwan in the dataset; in contrast, several millions of message diffusions occur between Beijing and Guangdong. This can be explained by the fact that those provinces are at distant locations, or they have little communication with most provinces in China mainland. % core region in real life also tend to be isolated online.
+
+\textbf{Results on holiday}. On the Spring Festival holiday, most people stay with their families in their home province. The graph structure changes, as most of the messages are sent for appointments and greetings, and these diffusions mainly took place between friends in the same vicinity. Thus, the proportion of the diffusion inside regions increases, leading to a modularity of 0.53. The graph structure is illustrated in Figure~\ref{fig:duringcj}, where some inter-province arcs disappear.
+
+\textbf{Results for the baseline graph}. However, results become quite different if we use the baseline graph where edges of diffusion graph during pre-holidays were placed at random \cite{newman2004fast}.
+% XXX~Longo--This could be an concise and comprehensive expression.~YYY
+Then we obtain a chaotic segregation with the modularity of -0.05, which can hardly be said to have any geo-homophily. The amount of message diffusions inside and across these regions are shown in Figure~\ref{fig:randomstructure}. Compared to Figure~\ref{fig:beforecj}, under the same scale of plotting, the distribution of circles representing regions are very dense; and most of circles' sizes are similarly small.
+
+%Location-based social networks are special cases of OSH network, as we can use geographical information directly.
+
+\subsubsection{Geo-homophily of Gowalla}
+The Gowalla dataset provides latitudes and longitudes of check-ins, involving the users as well as the friend relationship among them. Over 80\% of the users are Americans or Europeans. Here, we use 50 states and a federal district of United States as the geographical communities. Since we find that the distribution of check-ins within US
+%, as shown in Figure~\ref{fig:USAdistribution},
+is approximately proportional to each state's population\footnote{http://www.census.gov/popest/data/datasets.html}, we conclude that there lies a certain degree of geo-homophily in Gowalla dataset, and the corresponding modularity is 0.34.
+
+
+% This community division violates OSH.
+% Nodes with extremely short diameter or enormous difference between the longest and shortest arcs under reasonable visualizing strategy are other characteristics of anti-OSH.
+
+%\begin{figure}
+%\centering
+% \begin{subfigure}[b]{0.45\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/newpix/American_echarts.png}
+%    \caption{The check-in distribution in US.}
+%    \label{fig:USAdistribution:a}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.45\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/newpix/American_population.png}
+%    \caption{The population distribution in US.}
+%    \label{fig:USAdistribution:b}
+%\end{subfigure}
+%\caption{The distributions of check-in's and population in US.}
+%\label{fig:USAdistribution}
+%\end{figure}
+
+%
+%\begin{figure}[htbp]
+% \centering \includegraphics[width=2.6in]{pix/newpix/WeChatRandom.png}
+%\caption{Unacceptable appointed.}
+%\label{fig:WeChatRandom}
+%\end{figure}
+
+
+
+\subsection{Stability of Divided Regions}\label{IndividualExperiment}
+
+When considering the diffusion of a single page, we find that it will be reposted many times in the home region of the sender, while it may be sent to only a few non-home regions---those diffusions across regions only take up a small part. For example, we illustrate the distribution of views to a popular page with approximately one million
+%XXX~ Longo--957126 ~YYY
+views in Figure~\ref{fig:ChinaMap}, where the page is originally sent from the region of Beijing.
+
+Recall that we propose Information Increment to measure the change of geo-homophily between two time points in section~\ref{sec:stability}. To test its impact, we simulate eight instances of message diffusions and add them sequentially to the message diffusion graph at the end of Jan. 31 of the WM dataset.
+For each simulated message diffusion, first we construct a Dirichlet distribution according to the previously formed message distribution by randomly selecting a province among 34 provinces as the sender region, from which we can obtain a Multi-nomial distribution. One million retransmissions are then sampled through the Multi-nomial distribution.
+% with fine-tuning to promise Information Increment to be a specific value.
+%%%%%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXXXXx what is the specific value?
+The experimental results are shown in Figure~\ref{fig:stability}, where the geo-homophily will not decrease when $\mathcal{G}(G,\overline{\mathbf{L}}) \geq \Omega_T^\mathcal{L}$, and vice versa. This implies that the stability will not decrease when the previously mentioned condition is satisfied, which is consistent with Proposition~\ref{pro:entropy}.
+
+
+
+\subsection{Performance of UDM}
+
+\begin{figure*}[htbp]
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/newpix/China.jpg}
+\caption{The viewing distribution of a hot message originated from Beijing.}
+\label{fig:ChinaMap}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/newpix/stability.pdf}
+\caption{The change of modularity towards Information Increment.}
+\label{fig:stability}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/newpix/UDM.pdf}
+\caption{Performance of UDM on WM and Gowalla datasets.}
+\label{fig:UDM}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}
+\centering
+ \begin{subfigure}[b]{0.23\linewidth}
+    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-b.pdf}
+    \caption{Based on Message Diffusion.\\~}
+    \label{fig:FPIM:a}
+\end{subfigure}
+ \begin{subfigure}[b]{0.23\linewidth}
+    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-p.pdf}
+    \caption{Based on $P_\mathbb{S}$.\\~}
+    \label{fig:FPIM:b}
+\end{subfigure}
+ \begin{subfigure}[b]{0.23\linewidth}
+    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-d.pdf}
+    \caption{Based on $P_{\Delta\mathbb{S}}$.\\~}
+    \label{fig:FPIM:c}
+\end{subfigure}
+ \begin{subfigure}[b]{0.23\linewidth}
+    \includegraphics[width=1.0\linewidth]{pix/newpix/bar.pdf}
+    \caption{Proportion of correct predictions.}
+    \label{fig:FPIM:d}
+\end{subfigure}
+\caption{Results of inferring the floating population (FP) that has excluded those whose home and remote regions are the same.}
+\label{fig:FPIM}
+\end{figure*}
+
+Given the order of users' joining the OSN and their home regions, we are able to train the UDM. We evaluate the performance of UDM on WM and Gowalla datasets respectively.
+
+On WM dataset, we monitor the order of 30 million users' joining the OSN and then predict the distribution of the next 10 million users, which are tested by 10 experiment runs (each run contains one million users).
+
+As for Gowalla, we choose the group of first 100 thousand users that have mostly checked in USA to be the training set, and use a group of 28 thousand users as the testing set, which are tested by 10 experiment runs as well.
+
+Since we know the exact proportion of each region in the dataset, we use histogram intersection (HI) to measure the prediction accuracy, which ranges between 0 and 1.
+%For example, consider two proportion set $\mathbb{P}_1 = (\xi_{1,1},\ldots,\xi_{1,|R|})$ and $\mathbb{P}_2 = (\xi_{2,1},\ldots,\xi_{2,|R|})$, the HI value is calculated as
+%\[
+%\text{HI}(\mathbb{P}_1,\mathbb{P}_2) = \sum_{i=1}^{|R|} \min(\xi_{1,i},\xi_{2,i}).
+%\]
+Besides, we compare UDM to the baseline method (that naively predicts the future population of each region as proportional to the previously-observed population of each region). The result is shown in Figure~\ref{fig:UDM}, which clearly indicates that UDM has better performance both on WM and Gowalla than the baseline method. We also observe that UDM provides a greater HI on the dataset with a stronger geo-homophily (i.e. WM dataset).
+
+
+\subsection{Performance of FPIM}
+
+In this subsection, we evaluate the performance of FPIM on WMeChat dataset, and compare it against the results of the latest national population census in China \footnote{http://www.stats.gov.cn/tjsj/pcsj/rkpc/6rp/indexch.htm}, which provides us the statistics of floating population in China. Here, the floating population (FP) in our experiments has excluded those whose home and remote regions are the same (e.g., those who rarely move out of the home region, as the work place and the home belong to the same region).
+
+\textbf{Correlation}. As mentioned above, people tend to stay at the home region during Spring Festival in China. Therefore, the state of the message diffusion graph during Spring Festival can be seen as the baseline state $\mathbb{S}'$. We collect the statistics on Feb.~8, the Spring Festival day.
+
+Intuitively, one may think that the proportion of floating population would have certain correlation with the proportion of message diffusion in each region, and this leads to a naive prediction method that directly uses the latter to infer the former. We plot the correlation coefficient between the predicted FP distribution and the real FP distribution in Figure~\ref{fig:FPIM:a}, which is as low as 0.2, indicating a poor direct correlation between FP and message diffusion. Indeed, this is a special case which ignores the uniform part of $P_{\mathbb{S}}$.
+Since $P_{\mathbb{S}}$ holds the same superposition with $P_{\Delta\mathbb{S}}$, we then evaluate the performance of FPIM based on $P_{\mathbb{S}}$, as shown in Figure~\ref{fig:FPIM:b}. The correlation coefficient is about 0.40, which is due to the uniform part of $P_{\mathbb{S}}$, leading to a biased sampling on DP.
+
+In contrast to this, FPIM based on State Difference works better, illustrated in Figure~\ref{fig:FPIM:c}, where the correlation coefficient reaches 0.8, indicating that the population prediction approximates the distribution derived from the national population census.
+%has little impact small parameters only describes a little of~YYY
+Here, we notice in the WM dataset that the mean of distribution difference $\Delta\mathbb{C} = \mathbb{C} - \mathbb{C}'$ is approximately 0, while the variance is about $1.4\times10^{-4}$.
+In other words, FPIM has significantly reduced the impact of the uniform part on $P_{\Delta\mathbb{S}}$.
+
+By comparing the ticks over the x-axis and y-axis of Figure~\ref{fig:FPIM:c}, we observe that FPIM predicts a floating population (ticks over the x-axis) lower than that obtained in the national census (ticks over the y-axis). This can be attributed to the fact that a non-negligible proportion of floating population do not view the WM pages or may not even use Wechat Moments. As mentioned earlier, although there exist people not covered by the WM dataset, the number of users in the dataset is sufficiently large to derive the distributions using the proposed models.
+
+% proportion of OSN user distribution, as well as the population distribution over geographical regions
+
+
+%, and XXX~the proportion of the non-Wechat users in indigene is evidently less than that in floating population~YYY.
+% Therefore, the inferred proportion is likely to be lower than the value given by the government census.
+
+\textbf{Prediction correctness}. Apart from correlation, we always have a concern on the densely-populated region which has the most of a large floating population that may cause changes to the online and offline social networks. We use the sets of regions who have the most proportion of floating populations to measure the prediction correctness of FPIM.
+
+For every province $r$, FPIM calculates the proportion of floating population, by two sets, i.e. the set of emigrants whose currently-located region is the remote region but the home region is $r$, and the set of immigrants whose currently-located region is their remote region $r$ but the home region is different.
+
+Then, we rank the provinces by the number of immigrants and emigrants, and obtain a ranking of provinces on immigrants, and a ranking of provinces on emigrants, respectively. Meanwhile, the floating population data of the national population census can also produce two rankings of provinces on immigrants and emigrants.
+
+We compare the corresponding rankings obtained from FPIM and the national census, and calculate the \emph{overlapping rate} between two rankings on immigrants or emigrants (which is defined as the number of regions that appear in both rankings divided by the total number of regions in a ranking)
+%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXX Longo-- the definition of overlappint rate is given in parenthesis to save space, is this ok?
+over the top-$y$ provinces according to their normalized proportion values. We vary $y$ from 1 to 10 and plot the histogram in Figure~\ref{fig:FPIM:d}, telling that FPIM works satisfactorily with a match between our prediction results and the data of the national census. The two types of rankings have a high consistency on $\Delta \mathbb{S}$. Besides, the correctness on $\Delta \mathbb{S}$ is higher than that calculated on basis of $\mathbb{S}$; the performance of FPIM on predicting the set of top provinces on emigrants is better than that on predicting the set of top provinces on immigrants, which is a result of the fact that FPIM uses $\sigma_{ij}$'s which pay more attention on the emigrant proportion.
+%which is a result of the fact that FPIM pays more attention on the emigrant proportion.
+%%%%%%%%%%%%%%%%%%%%%%%%%% XXXXXXXXXXXX FPIM 更重视 emigrant 这个 可以具体一些么？
+
+
+
+\section{Conclusions}\label{sec:conclude}
+In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
+
+
+%\section{Acknowledgements}
+%
+%This work was partially supported by National Natural Science Foundation
+%of China under grant number 61201245, Specialized Research Fund for the Doctoral Program of Higher Education (SRFDP) under grant 20120001120128, and by the National Science Foundation through grants CNS-1314598 and IIP-1265886.
+
+\bibliographystyle{abbrv}
+\small
+\bibliography{Sensing-traj}
+
+\end{document}
