@@ -128,72 +128,32 @@ Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
 
 \maketitle
 
-%The marketing effect could be improved if the geographical community has strong \emph{online social homophily}---people have a strong desire of communicating with each other in the same community through online social networks (OSNs). However, it is difficult to determine whether a geographical community has strong online social homophily, since a user is free to choose to communicate with anyone inside or outside his community. This is similar to the social segregation problem in demography, where people choose which neighborhood to live based on many social factors (race, income, etc).
-
-
-%\begin{enumerate}
-%% change
-%  \item Is there a way of measuring the community stability by observing the online message diffusion among friendsy?
-%  \item How to derive the offline population distribution over a stable community division?
-%  \item Given a population distribution, how to project the floating population among the formed communities, upon a societal event?
-%\end{enumerate}
-
-
 \begin{abstract}
 Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
 % evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
 \end{abstract}
 
-
-% A category with the (minimum) three required fields
-%\category{H.4}{Information Systems Applications}{Miscellaneous}
-%A category including the fourth, optional field follows...
-%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
-
-% \category{C.2.2}{Computer-Communication Networks}{Network Protocols}
-
-%\terms{Theory, Performance}
-
-% \keywords{Cognitive radio, rendezvous, heterogeneous}
-
-
 \section{Introduction}~\label{sec:intro}
 
-%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi信号，AQI指数
-
-% The study of population distribution in fixed geographical regions (e.g., states, provinces) is of paramount importance for the government to enhance the public safety in certain palaces with a large floating population, or for the business to launch marketing campaigns in densely-populated areas~\cite{harris1970migration}.
-% The data relevant to people's trajectory is conventionally collected through offline sources. For instance, it is feasible to predict the floating population in the transportation systems by analyzing the origin-destination data of passengers~\cite{chi2010impacts}; Customers' bank notes can be used for modeling the human trajectories as a continuous-time random walk~\cite{gonzalez2008understanding}; The government (e.g., statistical bureau) collects the demographic data to investigate the correlation between human migration patterns and geographic labour demand and supply~\cite{sixcensus}. The challenges of conducting these studies are attributed to the high cost of the data collection methods (regarding time, manpower and money), and the restriction of accessing such datasets due to security and privacy concerns.
+%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi信号，AQI 指数
 Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photography, 3D wireless signal survey, air quality index (AQI) measurement.
 
 %
 %2. 但是，飞机并未普及，很多公司还死掉了，为什么？
 % 如果你真正用过玩过飞机，你就知道了（1）电池很短（2）大部分都很吵（3）无法负重因为会摇晃且电池更短
-
-% The wide use of online social network (OSN) apps over smartphones has accumulated a rich set of geographical data that describes anonymous user trajectories in the physical world~\cite{kido2005anonymous}, which holds the promise of providing a lightweight means to study the population distribution. For example, many OSN applications like Facebook, Weibo allow users to ``check-in'' and explicitly show their locations~\cite{nazir2008unveiling,guo2013unveiling}; some other applications has implicitly recorded users' geo-related information like GPS coordinates, IP address~\cite{zheng2010geolife,backstrom2010find}. Existing research has showed the feasibility of using the OSN data to predict users' offline locations as well their mobility patterns~\cite{Li2010Mining,cho2011friendship}. Moreover, the online relationship between friends can affect their social tie in the physical world~\cite{Zheng2012Tutorial}: the ``close'' friends in the OSN are also physically close to each other~\cite{cho2011friendship}.
-However, drones are still not popular these days. Furthermore, a lot of drone companies were broken down. Why? If you've actually tried using a drone, you could find that civilian drones do not really apply to daily life due to:
+However, civilian drones are still not popular these days. Furthermore, a lot of drone companies were broken down. It could be a quite confusing problem if you have never come into attach with a drone. If you've actually tried using them, you could find that civilian drones do not really apply to daily life due to:
 \begin{itemize}
   \item Low battery available time.
-  \item Great noise during the flight.
+  \item Great noise during flight.
   \item Wing rock and more battery drain caused by poor carrying capacity.
 \end{itemize}
 
 % 自然就衍生出了一个问题，如何在短时间的电池使用时间内，采集更多的点？并且在三维空间内？
-
-% However, it is still unclear that which type of OSNs can assist determining the population distribution in given geographical regions. Intuitively, there are two observations: (1) it is easy to draw a population distribution over geographical regions that are \emph{stable}---most people in a region do not travel distantly; (2) acquaintances in the same geographical region have a strong desire to communicate with each other through the OSN~\cite{girvan2002community}. %, leading to a stable community.
-% Therefore, we seek to answer the following questions in this study.
-%\begin{enumerate}
-%% change
-%  \item Is there a way of measuring the stability of geographical regions by observing the online message diffusion among people in those regions?
-%  \item How to derive the offline population distribution over a stable division of regions?
-%  \item Given a population distribution, how to project the floating population across regions?
-%\end{enumerate}
-Therefore, in order to make more use of existing drones, we consider the following problem: how to complete measurement (or flight) in three-dimensional space in the shortest possible time.
+Therefore, in order to make more use of existing drones, we must consider the following problem: \textbf{How to complete measurement (or flight) in the shortest possible time? Furthermore, in the three-dimensional space?}
 
 % 这个和 传统传感器网络中的，移动 base station 等工作类似，因为都是移动的，采集数据
 % 但是，还是不同的，不同点包括：以前都是贪心的，我们这个问题不是
-
-% Our research findings indicate that a division of geographical regions is stable only if the OSN users in these divided regions show a strong geo-homophily---people in each region prefer communicating with others in the same region more than those in other regions; and the Dirichlet process (DP)~\cite{neal2000markov} provides a viable way of modeling the distribution of OSN users across offline regions. These inspire us to investigate the relationship between the online information diffusion, i.e., users' communication in OSN, and the population distribution over a fixed division of offline regions.
-Similar to traditional sensor networks and mobile base station, we collect data in mobile environment. However, we have the following difference:
+Similar to traditional sensor networks and mobile base station, we consider data collection in mobile environment. So total time consumption consists of two parts: \textbf{flight time} and \textbf{measure time}. While we also have the following difference:
 \begin{itemize}
   \item We consider optimal algorithm in two-dimensional space.
   \item We use the routing algorithm based on graph theory apart from traditional greedy algorithms.
@@ -205,68 +165,19 @@ Similar to traditional sensor networks and mobile base station, we collect data 
 % problem formulation —— spanning tree/route problem?
 % 最优算法
 % 多个场景下的实验验证、仿真。
-%In this paper, we present a systematic approach that projects the offline population distribution in fixed geographical regions by modeling the geo-homophily of OSNs. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion
-%among friends in the OSN to the offline population distribution via a Dirichlet process, and then projects the floating population across geographical regions given the derived population distribution. The contributions of this work are summarized as follows.
-%\begin{enumerate}
-%\item \emph{Connecting online data to stability of geographical regions}: We establish the correlation between online message diffusion and the stability of geographical regions, by modeling the geo-homophily of an OSN with geographical attributes. We derive the condition for a division of geographical regions to have a non-decreasing stability. %can remain stable.
-%\item \emph{DP-based prediction models}: We formulate the population distribution problem from the perspective of Dirichlet process, and present a theoretical framework to project the population distribution over fixed geographical regions by casting online message diffusion into the established framework. Based on the derived population distribution, we propose a prediction model that utilizes the message diffusion graph in OSNs to infer the floating population across geographical regions.
-%\item \emph{Experiments using large real-world datasets}: By experiments over the real-world datasets, we validate the efficacy of the model in projecting the population distribution over fixed regions, and meanwhile show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the floating population changes across regions upon the occurrence of societal events (the mass human migration caused by the Chinese Spring Festival 2016).
-%\end{enumerate}
-%The rest of this paper is organized as follows. We introduce the related work and technical background on Dirichlet process in Section~\ref{sec:related}. We provide the system model and formulate the problem in Section~\ref{sec:problem}. In
-%Sections~\ref{sec:distribution} and \ref{sec:floating}, we show the approach of projecting the population distribution, and present the model of predicting the floating population. We validate the proposed model by experiments in Section~\ref{sec:experiment},
-%and conclude the paper in Section~\ref{sec:conclude}.
-In this paper, we mainly consider two extreme cases.
+In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs) and select critical observation locations (COLs) from OLs to cover measurement space, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
 \begin{enumerate}
-\item \emph{Consider flight time only}: We formulate problem as a minimum dominating set problem in lattice, which is a traditional problem in graph theory.
-\item \emph{Consider measurement time only}: We formulate problem as a minimum dominating path problem in lattice, which has not been solved before.
+\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set problem in lattice, which has been studied for a long time.
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network. Therefore, we could formulate problem as a minimum dominating path problem in lattice, which has not been solved before. In this paper, we solved this problem in grid and give an expand in three-dimensional space.
 \end{enumerate}
-We use optimal and O(1) construction method to solve two problems above. And we use drones to verify our simulation in multiple scenarios. We find out that the flight time in algorithm is less than ordinary approach. And even though we take less observe point than the ordinary approach, we could have a better result.
+Because of algorithms we use is based on graph theory, We could solve two problems above optimally in O(1)time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time we use is less than ordinary approach.
 
 
 \section{Related Work}~\label{sec:related}
 
-% 3D sensing
-
-
 \subsection{3D mobile sensing}
 
-Prior work on geographical aspects of OSNs has mostly focused on prediction and analytics of various properties in OSN by leveraging the location-related information.
-
-% The location of an OSN user is the link between the OSN and the physical world.
-\textbf{Predicting mobility patterns using OSN data.}
-% With the help of time and location, user's mobility can be predicted. It is usually occurred on the Location-based Services dataset.
-Users' locations can be predicted by mining their periodic behaviors in social network, given that the observed movement is associated with certain reference locations~\cite{Li2010Mining}. Cho et. al. show that human movement and mobility patterns have a high degree of freedom and variation, but they can still exhibit structural patterns due to geographical and social constraints~\cite{cho2011friendship}, on basis of two observations: (1) short-ranged travel is periodic both spatially and temporally and not effected by the social network structure, and (2) long-distance travel is more influenced by social network ties. Thus, the historic data can be used to predict where a user might travel.
-
-
-\textbf{Data dissemination in a geographical perspective.} Wang et. al. pose a three-layered architecture to model the data dissemination in OSNs, present a density function of general social relationship distribution, and derive the tight lower bounds on traffic load of data dissemination in the OSNs under the assumption that every source sustains a data generating rate of a constant order~\cite{wang2014modeling}.
-
-\textbf{Online and offline social behaviors.}
-Zheng et al. propose Location-Based Social Network (LBSN)~\cite{Zheng2012Tutorial}, which consists of the new social structure made up of individuals connected by the ``interdependency'' derived from their locations in the physical world as well as their location-tagged media content, such as photos, video, and texts.
-%Some prior work on homogeneous social circles both online and offline has been done.
-Hristova et al. experimentalized on a dataset with 74 college students as volunteers~\cite{Hristova2014Keep}, by observing evidence of homophily with regard to many factors within the online and offline social networks. They found that the social tie among students at the same educational institution was strongly affected by residential sector and year in college, but it exhibited diversity in other online aspects, leading to the affirmation saying diversity online is relative to diversity offline.
-
-
-%\textbf{Location privacy.} Security is also a big problem in social network. As sensing and tracking every user's location precisely may create significant privacy risks, data are always in anonymity. \cite{Gruteser2003Anonymous} investigates a complimentary approach that concentrates on the principle of minimal collection, using only de-personalized data. A system model and a quadtree-based algorithm were introduced to guarantee k-anonymous location information through reductions in location resolution.
-
-\textbf{Social tie inference.} Sociological phenomena can be also observed within OSNs. Although the OSN platform has facilitated people's communication, the volume of OSN communications between OSN friends (the strength of the social tie between them) is inversely proportional to the geographical distance, following a Power Law~\cite{goldenberg2009distance}.
-%they just well-perform for local social ties. The result shows that
-Considering the co-occurrence in time and space~\cite{crandall2010inferring}, Crandall et al. present a probabilistic model to prove that even a very small number of co-occurrences can result in a high empirical likelihood that the two people know each other---a social tie between them, which tells us a way to infer the social network structure only by capturing individual physical location over time.
-
-
 \subsection{Route planning in conventional wireless sensor networks}
-Dirichlet distribution is the conjugate prior of Multinomial distribution, which can be seen as a distribution over distribution. The probability density function is written as
-\[
-p=(P=\{p_i\}|\alpha_i) = \frac{\prod_i \Gamma(\alpha_i)}{\Gamma(\sum_i \alpha_i)} \prod_i p_i^{\alpha_i-1}.
-\]
-There are two parameters:
-
-\begin{itemize}
-  \item The scale $\alpha = \sum_i \alpha_i$: a small scale $\alpha$ favors extreme distributions, but this prior belief is very weak and is easily overwritten by data, while an extremely large $\alpha$ makes the samples be more consistent with the base measure.
-  \item The base measure $(\alpha_1',\alpha_2',\ldots)$,$\alpha_i'=\alpha_i/\alpha$: The base measure determines the mean distribution.
-\end{itemize}
-One popular application of Dirichlet distribution is Latent Dirichlet Allocation (LDA) on topic discovery in natural language processing. It is a generative statistical model aiming at describing sets of observations by connotative groups why some parts of the data are similar.
-
-Dirichlet Process (DP) is a class of Bayesian nonparametric models, and Dirichlet process generalizes Dirichlet distribution~\cite{neal2000markov}. DP is a distribution function in a space of infinite but countable number of elements, which also requires a scale parameter $\alpha$ and a base measure $G_0$, denoted as DP$(\alpha,G_0)$. DP is an important method in Bayesian inference to identify the prior distribution of random variables, and it is widely used for density estimation, semiparametric modeling and sidestepping model selection/averaging. One important implication is that DP helps find the number of active components which is much less than the number of samples. In this paper, we investigate how to use Dirichlet process to model the process that OSN users are distributed into geographical regions. % and we introduce a brief review of DP in this section.
 
 
 
@@ -274,119 +185,22 @@ Dirichlet Process (DP) is a class of Bayesian nonparametric models, and Dirichle
 % 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
 % 例如，3d 空间怎么分，怎么定义一些变量
 % 然后，problem formulation，得到一个problem，就是我们需要求解的目标
-
-In this section, we propose a three-layer framework that analyzes the message diffusions in the OSN to determine the stability of geographical regions. This problem is equivalent to the determination of whether the OSN has a strong geo-homophily---more specifically, whether the structure of the message diffusion graph is similar to that of the divided regions. We extend the concept of modularity~\cite{newman2004fast} to quantify the degree of the geo-homophily of an OSN, and meanwhile we specify the condition on the geo-homophily of an OSN for the stability of underlying geographical regions to remain non-decreasing.
-
-
-\subsection{A Three-layer Framework}
-
-\begin{figure}[htbp]
- \centering \includegraphics[width=\linewidth]{pix/newpix/pptfig.pdf} %\vspace{-0.1in}
-\caption{A three-layer analytical framework that defines the geo-homophily of OSNs to map the OSN message diffusion (Layer~1) to the offline user distribution (Layer~2), and infers the floating population (Layer~3) based on the derived distribution (Layer~2). }
-\label{fig:Model}
-\end{figure}
+In this section, we establish a three-dimensional network model that characterizes the ordinary mobile sensing scene for drone. Then, we formulate the KOL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively. In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem. In the second scene, we only consider flight time which transform problem into the minimum dominating path problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
 
-
-% When realizing that the homophily is at least reaching an expectation, we have reasons to believe we can find some population regulations, as the social network community structure is mirrored to the offline region while there are some knowledge that only physical world can display.
-In Figure~\ref{fig:Model}, we show a three-layer framework consisting of: Layer~1 that captures the message diffusion graph in an OSN; Layer~2 that seeks to derive the user population distribution from the geo-location of OSN users in Layer~1; and Layer~3 that predicts how the floating population will change given the distribution derived in Layer~2.
-
-From the top to the bottom layer, we first investigate how the messages diffuse among groups of people that have similar geo-locations. If people in the same geo region communicate frequently, it is highly likely that the structure of the message diffusion graph is similar to that of the underlying division of regions---the strong geo-homophily exists between the OSN and the offline regions. As a result, we can use the geo-location of messages among OSN users to derive the user distribution over the given regions. Then, the floating population across regions can be further inferred based on the derived distribution.
-
-% only when the mobility patterns of OSN users in regions are stable; there is no way to predict the dynamics of the floating population if the structure of a community division is not stable.
-
-
-\subsection{Geo-homophily of An OSN over Divided Regions}
-% People gather as communities in traditional online social network mainly because of interests. However, a new type of influence factor of constructing communities, i.e. acquaintance, emerges in messenger-based social network (MSN). Thus, the population presents somewhat spatially aggregated. As we can easily obtain the geographic position of users in MSN, it is achievable to calculate the homophily between those online and geographical communities.
-
-
-%\textbf{Two observations}.  As mentioned before, there are two observations given a stable community division:
-%\begin{enumerate}
-%  \item Most of people in a community will not travel outside the home community in most of time, and it is easier to project the population distribution in this case.
-%  \item Most of people in a community prefer communicating with others in the same community rather than those outside the community.
-%\end{enumerate}
-%In contrast, a community division is not stable if many people in a community travels excessively across communities, they do not have a home community, and they may communicate with others in many other regions outside the home community during their travels.
-
-% It is true that the stability of a community division can be independent of the message diffusion within communities. However, in this study, we seek the condition that determine whether a community division is stable using the message diffusion among OSN users within each community.
-
-% \textbf{Geo-homophily of an OSN }.
-
-We define the \emph{geo-homophily of an OSN} as the degree of similarity between the structure of the message diffusion graph in the OSN and that of a given division of regions.
-
-% The geo community division is stable if the geo-homophily of the OSN is high, which facilitates the projection of population distribution.
-We calculate \textit{modularity} to quantify the geo-homophily of an OSN. Given the message diffusion graph of an OSN $G=(V,R,E,T)$ where $V$ denotes the set of users, $R$ denotes the set (or division) of regions, and $E$ denotes the set of edges $e_{uv}$ with weights $\rho_{uvT}$ representing the number of views from node~$u$ to the content of node~$v$ during time period $T$. The $e_{uv}$ exists if the number of views from node~$u$ to the content of node~$v$ during time period $T$ is non-zero. Let $\Omega_T$ be $\sum_{u,v} \rho_{uvT}$. Each user $u \in V$ belongs to a specific region $r \in R$ given the division $R$, denoted as $r_u$.
-
-We can easily transform $E$ from a user-to-user perspective to a region-to-region one, recorded as $\mathcal{E}$, where $\forall \epsilon_{ij} \in \mathcal{E}$ has value
+\subsection{Network establishment}
+\textbf{Dividing a 3D space into cubes}: We divide a 3D space into cuboid with a meters long, b meters wide and h meters high. We define the center point of cuboid i as its observe location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
 \[
-\omega_{ijT} = \sum_{u \in V,r_u=i}\sum_{v \in V,r_v = j} \rho_{uvT},
+OL_i=(x_i, y_i, z_i),
 \]
-which represents the the number of views from nodes in region~$i$ to the content of nodes in region~$j$ during time period $T$.
+where $x_i, y_i, z_i$ are 3D coordinates of $OL_i$.
+\textbf{3D network of OLs}: The divided cuboid of a 3D space and the corresponding OLs can form a 3D network graph $G = (V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cubes $i$ and $j$ are adjacent in the 3D space.
+\textbf{Levels of OLs}: As a result, a 3D space is divided into levels of cuboid with different heights. We call the ground level as level 1 at height of $\frac{h}{2}$ m, one level above as level 2 at height of $\frac{3l}{2}$ m.
 
-Let $p_{ijT}$ be the proportion of messages from $i$ to $j$ during $T$, namely $\omega_{ijT}/\sum_{i',j'}\omega_{i'j'T}$. To quantify the geo-homophily of an OSN $G=(V,R,E,T)$, we define the modularity on $R$ during $T$, $Q_{RT}$, as
-\[
-Q_{RT} = \sum_{i\in R} (p_{iiT} - \sum_{j\in R}p_{ijT}\sum_{j\in R}p_{jiT}).
-\]
-Apparently, $Q_{RT}$ ranges in $[-1,1]$. The greater $Q_{RT}$ is, the higher geo-homophily the OSN has.
-
-If an OSN shows a strong geo-homophily over the divided regions, most OSN users have more preference of communicating with others in the same region rather than with those in other regions, which implies each user is more attached/attracted by his current region instead of other regions, thereby leading to a high stability of each region. Next, we will show how to determine the change of the stability of a division $R$ by imposing a condition over $Q_{RT}$.
-% for the division to remain stable.
-% This value gives us evidence to what extent the MSN has geo-homophily.
-
-\subsection{Stability of A Division of Regions}~\label{sec:stability} %XXX~Here is a new label~YYY
-The modularity quantifies the geo-homophily between an OSN and the underlying geographical regions. However, it is infeasible to foresee whether the regions will remain stable since the structure of the message diffusion graph is dynamically changing. For instance, a breaking news may reform the structure of the message diffusion graph, and push people to move across regions. Next, we will deduce: under what condition, the stability of a division of regions will remain non-decreasing.
-
-Formally, given two time periods $T = [t_0,t_1]$ and $T'=[t_0,t_2]$ where $t_2 > t_1$, we need to find the distribution of messages in period $[t_1,t_2]$ that leads to an equal or higher modularity in at the end of $T'$, i.e., $Q_{RT} \le Q_{RT'}$.
-
-We define the social-entropy of message diffusion inside and outside regions in the message diffusion graph $G$ as:
-\begin{equation}
-	H(G) = -\sum_{i \in R} \sum_{j \in R} p_{ijT} \times \log p_{ijT}.
-\end{equation}
-As the redistribution of message diffusion inside each region do not significantly affect the modularity, we will only focus on those message diffusions (edges) across regions.
-
-Hence, we combine all edges within a region into a new set. Let $I_{T} = \bigcup_{i \in R} \epsilon_{iiT}$, and $\omega_{I_T} = \sum_{i \in R} \omega_{iiT}$, $p_{I_T} = \omega_{I_T}/\Omega_T$. $H(G)$ can be rewritten as:
-\begin{equation}\label{equ:entropy}
-	H(G) =  -p_{I_T} \times \log p_{I_T} -\sum_{i \in R} \sum_{j \in R, i \ne j} p_{ijT} \times  \log p_{ijT}.
-\end{equation}
-
-New message diffusions in time period $[t_1,t_2]$ will create new edges and construct a new message diffusion graph $G'$ (that can be extended from $G$). Let $l_{ij}$ be the number of new edges from region~$i$ to $j$ in $G'$, which are not included in $G$. Note that $\forall i,j \in [1,|R|],l_{ij} \ge 0$.
-
-Let $\overline{\textbf{L}}_{|R|\times |R|}$ be the matrix of $l_{ij}$, and $\mathcal{L} = \sum_{i,j} l_{ij}$ where $\mathcal{L} \ll \Omega_T$).
-Let $l_I = \sum_{i \in R} l_{ii}$ be the number of new edges inside regions.
-% XXX~The new message diffusion would add new edges across communities as well.~YYY
-
-To measure the impact and the change to $G$ caused by new message diffusion $\overline{\textbf{L}}$, we define \emph{Information Increment}, $\mathcal{G}(G, \overline{\textbf{L}})$, as follows
-\begin{equation}
-\mathcal{G}(G, \overline{\textbf{L}}) = \frac{(\omega_{I_T}+l_I)^{(\omega_{I_T}+l_I)}\prod_{i,j \in R, i \ne j}(\omega_{ijT}+l_{ij})^{(\omega_{ijT}+l_{ij})}}{\omega_{I_T}^{\omega_{I_T}}\prod_{i,j \in R, i \ne j} {\omega_{ijT}}^{\omega_{ijT}}}.
-\end{equation}
-
-According to~(\ref{equ:entropy}), the social-entropy becomes:
-\begin{equation}
-\begin{aligned}
-H&(G') = -\frac{\omega_{I_T}+l_I}{\mathcal{L} + \Omega_T}\log{\frac{\omega_{I_T}+l_I}{\mathcal{L} + \Omega_T}} \\
- & -\sum_{i \in R} \sum_{j \in R, i \ne j} \frac{\omega_{ijT}+l_{ij}}{\mathcal{L} + \Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\mathcal{L} + \Omega_T}}.
-\end{aligned}
-\end{equation}
+\subsection{Correlation between OLs}
 
 
-The following proposition prescribes the condition for the stability of divided regions to remain non-decreasing, based on the analysis of the OSN message diffusion graph.
-\begin{pro}\label{pro:entropy}
-Given a message diffusion graph $G$ over a division of regions, the geo-homophily will not decrease, if $\mathcal{G}(G,\overline{\mathbf{L}})$ is no smaller than $\Omega_T^\mathcal{L}$, where $\mathcal{L} \ll \Omega_T$.
-\end{pro}
-\begin{proof}
-The degree of the geo-homophily of an OSN will not decrease, if the social entropy never had a tendency to increase---i.e., $\Delta H$ is non-positive, where
-\begin{equation*}
-\begin{aligned}
-\Delta H &= H(G')-H(G)\\
-         &= -\frac{\omega_{I_T}}{\Omega_T}\log{\frac{\omega_{I_T}+l_I}{\omega_{I_T}}}-\sum_{i,j \in R, i \ne j}\frac{\omega_{ijT}}{\Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\omega_{ijT}}}\\
-         &\ \ -\frac{l_I}{\Omega_T}\log{\frac{\omega_{I_T}+l_I}{\Omega_T}}-\sum_{i,j \in R, i \ne j}\frac{l_{ij}}{\Omega_T}\log{\frac{\omega_{ijT}+l_{ij}}{\Omega_T}}\\
-\end{aligned}
-\end{equation*}
-That is:
-\begin{equation}\label{equ:delta_entropy}
-\Delta H =\frac{1}{\Omega_T}(\log{\Omega_T^\mathcal{L}}-\log{\mathcal{G}(G,\overline{\mathbf{L}})}).
-\end{equation}
-Then we can substitute $\mathcal{G}(G,\overline{\mathbf{L}}) \geq \Omega_T^\mathcal{L}$ into~(\ref{equ:delta_entropy}) and we could conclude with this proposition.
-\end{proof}
+\subsection{Stability of A Division of Regions}
 
 
 
@@ -513,7 +327,8 @@ p(\beta_r|\{n_{r'}\}_{r'\in R},\alpha) \propto p(n_r,|V|\big|\beta_r)p(\beta_r\b
 
 % If the OSN does have strong geo-homophily with the underlying community division (a great Modularity value), there are much more connotation to be excavated.
 
-In the physical world, people may move across regions periodically or temporally, thereby greatly influencing the geo-homophily of the OSN they use. In general, there are two important regions for every person, that is, the \emph{home} region denoted as $\mathcal{H}$, and the \emph{remote} region denoted as $\mathcal{W}$ (e.g., the work place). According to the previous study~\cite{cho2011friendship}, most of the message diffusions usually occur in or between these two regions (e.g., an OSN user in the remote region contacts his families at home region, or his colleagues at the same remote region). %, while the proportion of communications with other regions are quite random.
+In the physical world, people may move across regions periodically or temporally, thereby greatly influencing the geo-homophily of the OSN they use. In general, there are two
+ important regions for every person, that is, the \emph{home} region denoted as $\mathcal{H}$, and the \emph{remote} region denoted as $\mathcal{W}$ (e.g., the work place). According to the previous study~\cite{cho2011friendship}, most of the message diffusions usually occur in or between these two regions (e.g., an OSN user in the remote region contacts his families at home region, or his colleagues at the same remote region). %, while the proportion of communications with other regions are quite random.
 With these observations, we leverage the geo-attributes of message diffusions between the sender and receiver to infer the distribution of floating population.
 
 
@@ -650,7 +465,7 @@ Note that: although the number users of each dataset is much less than the popul
 
 % 因为线上用户其实是线下真实用户的子集，所以大体分布趋势相似。由于人员总数不同，所以只能看比例分布
 % 好的，那我就在 evaluation 解释一下，我们看的是趋势 分布
-% 也就是 每当一个新的 用户 使用OSN的时候，那么他去哪里的概率，是符合我们的预测的，无论我们线上数据集的 人数 是否比线下小很多
+% 也就是 每当一个新的 用户 使用OSN 的时候，那么他去哪里的概率，是符合我们的预测的，无论我们线上数据集的 人数 是否比线下小很多
 
 
 
