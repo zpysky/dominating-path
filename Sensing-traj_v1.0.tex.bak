@@ -135,7 +135,7 @@ Projecting the population distribution in geographical regions is important for 
 
 \section{Introduction}~\label{sec:intro}
 
-%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi信号，AQI 指数
+%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi 信号，AQI 指数
 Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photography, 3D wireless signal survey, air quality index (AQI) measurement.
 
 %
@@ -167,9 +167,11 @@ Similar to traditional sensor networks and mobile base station, we consider data
 % 多个场景下的实验验证、仿真。
 In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs) and select critical observation locations (COLs) from OLs to cover measurement space, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
 \begin{enumerate}
-\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set problem in lattice, which has been studied for a long time.
-\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network. Therefore, we could formulate problem as a minimum dominating path problem in lattice, which has not been solved before. In this paper, we solved this problem in grid and give an expand in three-dimensional space.
+\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set (A dominating set in a graph $G$ is a subset of vertices S such that
+    every vertex in $V(G)\S$ is a neighbor of some vertex of $S$.) problem in lattice, which has been studied for a long time.
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last) are distinct. Briefly, it is a dominating set as well as a path.) problem in lattice, which has not been solved before. In this paper, we solved this problem in grid and give an expand in three-dimensional space.
 \end{enumerate}
+
 Because of algorithms we use is based on graph theory, We could solve two problems above optimally in O(1)time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time we use is less than ordinary approach.
 
 
@@ -185,262 +187,114 @@ Because of algorithms we use is based on graph theory, We could solve two proble
 % 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
 % 例如，3d 空间怎么分，怎么定义一些变量
 % 然后，problem formulation，得到一个problem，就是我们需要求解的目标
-In this section, we establish a three-dimensional network model that characterizes the ordinary mobile sensing scene for drone. Then, we formulate the KOL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively. In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem. In the second scene, we only consider flight time which transform problem into the minimum dominating path problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
+In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate the COL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively. In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem. In the second scene, we only consider flight time which transform problem into the minimum dominating path problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
-
+% 形成3D OL网络，并且定义OL的Level
 \subsection{Network establishment}
-\textbf{Dividing a 3D space into cubes}: We divide a 3D space into cuboid with a meters long, b meters wide and h meters high. We define the center point of cuboid i as its observe location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
+\textbf{Dividing a 3D space into cuboids}: We assume sensing object is largely same in fixed area for every position in 3D space. So we divide a 3D space into cuboids with a meters long, b meters wide and h meters high. We define the center point of cuboid $i$ as its observation location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
 \[
 OL_i=(x_i, y_i, z_i),
 \]
 where $x_i, y_i, z_i$ are 3D coordinates of $OL_i$.
-\textbf{3D network of OLs}: The divided cuboid of a 3D space and the corresponding OLs can form a 3D network graph $G = (V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cubes $i$ and $j$ are adjacent in the 3D space.
-\textbf{Levels of OLs}: As a result, a 3D space is divided into levels of cuboid with different heights. We call the ground level as level 1 at height of $\frac{h}{2}$ m, one level above as level 2 at height of $\frac{3l}{2}$ m.
 
+\textbf{3D network of OLs}: The divided cuboids of a 3D space and the corresponding OLs can form a 3D network graph $G = (V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cuboid $i$ is the same as cuboid $j$ in two coordinates and adjacent to cuboid $j$ on the third dimension. Therefore, the 3D network of OLs forms a three-dimensional lattice which has fine topology structure.
+
+\textbf{Levels of OLs}: Obviously, cuboids in lattice could be classified by height level. We call the ground level as level 1 at height of $\frac{h}{2}$ m, one level above as level 2 at height of $\frac{3l}{2}$ m.
+
+\subsection{Time consuming}
+For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs selected from OLs.
+% TODO: 公式
+\textbf{Measurement time}: Measurement time is total time spend on mobile sensing. Since we formulate 3D space into lattice, measurement time is proportion to the number of COLs we select. The function is written as:
+
+\textbf{Flight time}: Flight time is total time spend on UAV's flight. Since we formulate 3D space into lattice, we use Hamiltonian distance to characterize distance between OLs. So the flight time is proportion to the length of trajectory. The function is written as:
+
+Therefore total time consuming function can be written as:
+
+% OL之间的关系，定义OL的相邻性
 \subsection{Correlation between OLs}
+To characterize the general mobile sensing process, we assume adjacent OLs have correlation. To characterize different adjacency, we consider following two typical scenarios in mobile sensing.
 
+% TODO: 公式, 增加example
+\textbf{Star adjacency}: In this scenery, we assume OL's neighbors are star adjacent so the sum of three coordinates difference is at most 1 and the coverage set of an OL is the union of its vertex adjacent neighbors and itself. Specifically, an OL has two neighbors in every dimension and the total size of coverage set is 7.
 
-\subsection{Stability of A Division of Regions}
+\textbf{Cubic adjacency}: In this scenery, we assume OL's neighbors are cubic adjacent so the max of three coordinates difference is at most 1 and the coverage set of an OL is OLs in a cube whose center is the target. Specifically, an OL has eight neighbors in each plane and the total size of coverage set is 27.
 
+% 将3D变为2D格, 分别考虑2种特殊情况，并论述其合理性，之后将问题定义为图论中的相应问题
+\subsection{Problem formulation}
+Given a 3D space, we first establish a 3D OL network $G = (V;E)$ which forms a 3D lattice. Each OL in lattice has a coverage set (that contains correlated OLs with predictable sensing object). Due to drones' limited battery life, we should complete flight and measurement in the shortest time. Hence, we select some OLs as COL to minimize time consuming while cover whole OL network and formulate the problem as a set coverage problem in 3D lattice.
 
+\textbf{Simplification from adjacency}:
+We have discussed about different adjacencies in the last subsection and in this subsection we can simplify the problem in these scenarios.
 
-\section{Population Distribution Projection}~\label{sec:distribution}
-Given a division of regions, the geo-homophily is an indicator of the similarity between the structure of the OSN message diffusion graph and that of the division. The stronger geo-homophily an OSN has, more in-region communications occur between friends in the same region rather than across-region communications. Whenever a new user joins the OSN, he/she is highly likely to be distributed to the region where most of his/her friends reside. This is similar to the Chinese Restaurant Process (one representation of Dirichlet process), which describes how guests are assigned to different tables in the restaurant according to the existing guest distribution.
+% TODO: examples
+\begin{enumerate}
+  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different levels. Then, we could divide 3D lattice graph into multiple 2D grids and consider set cover problem in each grid.
+  \item \emph{Cubic adjacency}: In this scenery, if an UAV flight over a plane, then whole coverage set include the plane and its adjacent planes. Then, we could also simplify 3D lattice graph into multiple 2D grids and take advantage of its periodic structure.
+\end{enumerate}
+Therefore, instead of 3D lattice, we formulate the problem into constraint set coverage problem in grid.
 
-In this section, we present a Bayesian nonparametric model based on the Dirichlet process, which predicts how users in a OSN with strong geo-homophily are distributed over a given division of regions. In contrast, the weak geo-homophily in the OSN over given regions fails to establish the link between OSN message diffusion and the user distribution, which leads to a low prediction accuracy.
+\textbf{Two special cases of time consuming}:
+% TODO: 公式
+In section , we have discuss the components of total time consuming. But in actual scene, we usually consider only one part of it. Therefore, in this paper we will consider following two scenarios.
 
+% TODO: add section below and 符号表示及公式
+\begin{enumerate}
+  \item \emph{Consider measurement time only}: In this scenery, we assume flight time negligible and consider measurement time only. As we show in , measurement time is proportion to the number of COLs. So we should select least OLs as COLs to cover OL-network. We could formulate this problem as a minimum dominating set problem in grid.
+  \item \emph{Consider flight time only}: In this scenery, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to the length of UAV's trajectory. So we should find the shortest OL-path in grid and select OLs in path as COLs to cover OL-network. We could formulate this problem as a minimum dominating path problem in grid.
+\end{enumerate}
 
-% XXX~ why DP is perfect for modeling this
-% this problem is also a non-parametric distribution prediction problem?
-% what is the difference? how can we address that?
-% ~YYY
+Therefore, we will discuss these two problems above in the next section and give corresponding certifications.
 
-\subsection{User Distribution Model}
-We propose a User Distribution Model (UDM) on basis of the Dirichlet Process Mixture (DPM) model for learning the hyper-parameters of the gathering mode, which is defined as a distribution of a random probability measure $\mathcal{U}$. A UDM has two parameters: base distribution $\mathcal{U}_0$ which is considered as the mean of DP, and the scale parameter $\alpha$ which is like an inverse-variance of the DP. Then we have:
-\[
-\mathcal{U} \sim \text{UDM}(\alpha,\mathcal{U}_0)
-\]
-representing a draw of a random probability measure $\mathcal{U}$ over a given parameter space $\mathbb{U}$ from the corresponding Dirichlet process. For every user $u \in V$, we can draw a relevant $\theta_u$ from $\mathcal{U}$. Here, $\alpha$ affects the probability that $\theta_u = \theta_v,u \ne v$. Thus, sampling from UDM is executed by the following generative process:
-\[
-\begin{aligned}
-& \mathcal{U} \sim \text{UDM}(\alpha,\mathcal{U}_0) \\
-& \theta_u \sim \mathcal{U} \\
-& r_u \sim F(\theta_u)
-\end{aligned}
-\]
-where $F$ is the likelihood function determining which region user~$u$ belongs to. Due to the cluster property, the number of distinct $\theta$'s would be exactly $|R|$, far less than $|V|$. Let $\widetilde{\theta}_r, r\in R$ be the non-redundant hyper-parameters.
+% 定义相关变量。包括图G，格Lm,n，Gn, G3，连接顶点等等
+\subsection{Variable definitions}
+For the convenience of proof in next section, we define some variables following.
 
-We have $\mathcal{U}$ in $|R|$ dimensions where $\sum_{r\in R} \alpha_r = \alpha$, i.e.
-\[
-\mathcal{U} \sim \text{Dir}(\{\alpha_r\}_{r\in R}).
-\]
+$G = (V, E)$ denotes 3D OL network graph. $L_{m,n}$ denotes grid graph with m rows and n columns. For graph $G$, $V(G)$ denotes set of vertexes in $G$.  For any vertex $v, y\in V$, $N[y]=\{v\in V: yv\in E\} \cup \{y\}$ is the closed neighborhood of $y$ (i.e., the set of neighbors of $y$ and $y$ itself). And for $S \subset V$, $N[S]= \bigcup_{v \in S} N[v]$. $G_3$ denotes rightmost three columns in $L_{m,n}$ and $G_{n}$ denotes leftmost n columns in $L_{m,n+3}$. $\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a dominating set of $G$. $\gamma_l(G)$ denotes the minimum size of a dominating path of $G$. For convenience, we assure dominating path $L$ as a special case of connected dominating set which could be represented as a vertex set.
 
-%XXX~ Longo--I cannot find that representation in papers in prestigious conference, so I describe it in words, is it OK? ~YYY ~
+% 相关证明
+\section{Proof}
 
-Define $n_r$ be the amount of $r_u$ that equals to $r$ for every user $u$, and we can deduce the posterior distribution as:
-\[
-\begin{aligned}
-& P(\{\widetilde{\theta_r}\}_{r \in R}|\{n_r\}_{r \in R}) \\
-& \propto \text{Mult}(\{n_r\}_{r \in R}|\{\widetilde{\theta_r}\}_{r \in R}) \text{Dir} (\{\widetilde{\theta_r}\}_{r \in R}|\{\alpha_r\}_{r \in R}) \\
-& \propto \prod_{r \in R} \widetilde{\theta_r}^{\alpha_r - 1} \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \prod_{r \in R} \widetilde{\theta_r}^{n_r} \\
-& \propto \prod_{r \in R} \widetilde{\theta_r}^{\alpha_r - 1} \prod_{r \in R} \widetilde{\theta_r}^{n_r} = \prod_{r \in R} \widetilde{\theta_r}^{n_r+\alpha_r - 1} \\
-& = \text{Dir} (\{\widetilde{\theta_r}\}_{r \in R}|\{\alpha_r + n_r\}_{r \in R}).
-\end{aligned}
-\]
+% 引用前人论文
+\subsection{Minimum dominating set}
 
-Thus, the marginal probability would be
-\[
-\begin{aligned}
-& P(\{n_r\}_{r \in R}) \\
-& = \int_{\{\widetilde{\theta_r}\}_{r \in R}} P(\{\widetilde{\theta_r}\}_{r \in R}|\{n_r\}_{r \in R}) \\
-& =  \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \int_{\{\widetilde{\theta_r}\}_{r \in R}} \prod_{r \in R} \widetilde{\theta_r}^{n_r+\alpha_r - 1} \\
-& =  \frac{ \Gamma(\sum_{r \in R} \alpha_r) }{ \prod_{r\in R} \Gamma(\alpha_r) } \frac{ \prod_{r\in R} \Gamma(\alpha_r+n_r) }{ \Gamma(|V|+\sum_{r \in R} \alpha_r) }.
-\end{aligned}
-\]
+% 证明现有结果
+\subsection{Minimum dominating path}
 
-According to the Bayesian Theory, for user~$u \notin V$, the predictive distribution becomes
-\[
-\begin{aligned}
-& P(r_u = r|\{r_v\}_{v \in V}) \\
-& = \frac{P(r_u = r,\{r_v\}_{v \in V})}{P(\{r_v\}_{v \in V})} \\
-& = \frac{P(\{n_r+1\}\cup\{n_{r'}\}_{{r'} \in R, r'\ne r})}{P(\{n_{r'}\}_{{r'} \in R})} \\
-& = \frac{ \Gamma(|V|+\sum_{r \in R} \alpha_r) }{ \Gamma(|V|+1+\sum_{r \in R} \alpha_r) }\frac{ \Gamma(\alpha_r+n_r+1) }{ \Gamma(\alpha_r+n_r) }\\
-& = \frac{n_r+\alpha_r}{|V|+\sum_{r \in R} \alpha_r}.
-\end{aligned}
-\]
+\begin{lem}
+Let $n > 3$, $m > 0$ be integers, and $L$ is a dominating path in $G = L_{m,n}$. Then $|L \bigcap V(G_3)| \geq m$. Further, if $3 \nmid m$, then $|L \bigcap V(G_3)| \geq m+1$.
+\end{lem}
 
-\subsection{A Special Case of Chinese Restaurant Process}
-The process of distributing users over multiple regions is a special case of Chinese Restaurant Process~\cite{aldous1985exchangeability}, given that $|R|$ is finite. Whenever a new user joins the OSN, he/she needs to choose a region to stay, by considering the distribution of his/her friends in the given regions.
-\begin{itemize}
-  \item When the OSN has a strong geo-homophily over the regions, people prefer to communicate and stay with their friends in the same region.
-  \item When the OSN owns a weak geo-homophily, users may communicate with online friends in a region but stay with offline acquaintances in another different region. % but not contact choose a relevant community of interests regardless of physical region.
-\end{itemize}
+\begin{proof}
+We follow proof. Since is for connected dominating set and dominating path is a special dominating set, the conclusion as well as the analyzing method of this paper is also applicable to dominating set.
+\end{proof}
 
-\textbf{Parameters in the view of stick-breaking representation}. Although $n_r$'s are statistic variables that can be obtained directly, the scale parameters are not easy to compute. To avoid manual assignment of $\alpha_r$, we change our view of the problem to be an equivalent one, i.e, the stick-breaking representation.
+In lemma , we know that every dominating path $L$ in $L_{m,n}$ has at least m vertexes in the three rightmost columns. Therefore, we will consider the three periodicity of dominating path. Specifically, we could construct dominating path in three columns or three rows.
 
-The posterior distribution of $\mathcal{U}$ over $\widetilde{\theta}$ is deduced as:
-\[
-\begin{aligned}
-& P(\mathcal{U}|\{\widetilde{\theta_r}\}_{r \in R}) \\
-& \propto P(\{\widetilde{\theta_r}\}_{r \in R}|\mathcal{U})P(\mathcal{U}) \\
-& = \mathcal{U}P(\mathcal{U}).
-\end{aligned}
-\]
-So we have
-\[
-\mathcal{U}|\{\widetilde{\theta_r}\}_{r \in R} \sim \text{UPM}(\alpha+1,\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta}}}{\alpha+1})
-\]
-where $\delta_{\widetilde{\theta}}$ is a probability measure concentrated at $\widetilde{\theta}$.
+\textbf{Connecting vertex and dominating vertex}:
+Since dominating path L has both connectivity and dominance, there is thus some vertex v which $N[v] \cap N[L-v] = N[v]$. In other word, the dominating set of v is contained in the dominating set of other vertexes and v is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G_n$ and $G_3$, We denote $D_n$ and $D_3$ as dominating vertexes in $G_n$ and $G_3$ respectively. And we also denote $C_n$ and $C_3$ as connecting vertexes in $G_n$ and $G_3$ respectively and denote $C_{n,3}$ as connecting vertexes between $G_n$ and $G_3$. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph G.
 
-Consider a partition $(\theta',\mathbb{U}\backslash \theta')$, we have
-\[
-\begin{aligned}
-& (\mathcal{U}(\theta'),\mathcal{U}(\mathbb{U}\backslash \theta')) \\
-& \sim \text{Dir}((\alpha+1)\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta'}}}{\alpha+1}(\theta'),(\alpha+1)\frac{\alpha \mathcal{U}_0 + \delta_{\widetilde{\theta'}}}{\alpha+1}(\mathbb{U}\backslash \theta')) \\
-& = \text{Beta}(1,\alpha).
-\end{aligned}
-\]
-Serialize each region from 1 to $|R|$, and the stick-breaking procedure is then deduced by
-\[
-\begin{aligned}
-\mathcal{U} & \sim \text{UPM}(\alpha,\mathcal{U}_0) \\
-            & = \beta_1 \delta_{\widetilde{\theta_1}} + (1-\beta_1) \mathcal{U}_1 \\
-            & = \ldots \\
-            & = \sum_{i=1}^{|R|} \pi_i \delta_{\widetilde{\theta_i}}
-\end{aligned}
-\]
-where $\beta_i \sim \text{Beta}(1,\alpha)$ for $i \ne |R|$ and $\beta_{|R|} = 1$, while
-\[
-\pi_i = (1-\sum_{j=1}^{i-1} \pi_j) \beta_i.
-\]
+Therefore, we could split L into several parts: $L = D_n \cup D_3 \cup C_n \cup C_3 \cup C_{n,3}$.
 
-The posterior distribution of $\beta_i$ satisfies
-\[
-p(\beta_r|\{n_{r'}\}_{r'\in R},\alpha) \propto p(n_r,|V|\big|\beta_r)p(\beta_r\big|\alpha).
-\]
+\begin{lem}
+Let $n \geq 2$ is integer and L is dominating path of $G = L_{m,n+3}$. Then there is at least one condition that $|D_n| \geq |D(L_{m,n})|$. In other words, none of vertexes in $G_n$ have private neighbor in $D_3$.
+\end{lem}
 
-% As we can record the entering sequence of each user, it is sufficient to do Gibbs Sampling.
+\begin{proof}
+\textbf{$n=2$}: if there is a vertex $v$ in $G_2$ that not be covered by $D_2$ and the row $r$ that v belongs to is not in L. Since $v$ must lie in the second column of $G_2$ and its left vertex should be covered by other vertex, the vertex to the up (or down) left of v must belong to L and be one of starting points.
+Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $r$ to the second column. As shown in . So $|L^*| = |L|$ and $|D_n| \geq |D(L_{m,n})|$.
+\textbf{$n \geq 3$}: if there are k continuous vertexes in 
+\end{proof}
 
-
+% 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
-%assume that there will not any devastating news that seriously break the current homophily, and describe a Bayesian nonparametric models to predict future users and infer the human mobility.
-
-% If the OSN does have strong geo-homophily with the underlying community division (a great Modularity value), there are much more connotation to be excavated.
-
-In the physical world, people may move across regions periodically or temporally, thereby greatly influencing the geo-homophily of the OSN they use. In general, there are two
- important regions for every person, that is, the \emph{home} region denoted as $\mathcal{H}$, and the \emph{remote} region denoted as $\mathcal{W}$ (e.g., the work place). According to the previous study~\cite{cho2011friendship}, most of the message diffusions usually occur in or between these two regions (e.g., an OSN user in the remote region contacts his families at home region, or his colleagues at the same remote region). %, while the proportion of communications with other regions are quite random.
-With these observations, we leverage the geo-attributes of message diffusions between the sender and receiver to infer the distribution of floating population.
-
 
 \subsection{Distribution of Message Diffusions}
 
-We use a tetrad $\mathbb{S}=(\mathbb{C},\mathbb{Q},\lambda,\chi)$ to represent the state of the message diffusion graph. Consider a state when the population distribution is captured as $\mathbb{C} = \{c_i\}_{i\in R}$, where $c_i$ represents the proportion of the population of region $i$.
-
-Denote the real population distribution as $\mathbb{Q} = \{q_{ij}\}_{i,j\in R}$, where $q_{ij}$ means the proportion of people whose remote region is region~$j$ while their home region is region~$i$. We have $c_i = \sum_{j\in R} q_{ji}.$ Let $\sigma_{ij}$ be the proportion of users in $j$ with home region~$i$, i.e. $\sigma_{ij} = \frac{q_{ij}}{c_{j}}$. Similar to UDM, $\sigma_{ij}$'s in a specific region can also be generated from a Dirichlet Process.
-
-%To simplify the model, we treat $\lambda$ and $\chi$ equally for all users. XXX~Besides, as there may be some temporal communications with strangers, we might as well assume that every two people have equal probability to communicate.~ such assumptions will make the paper fail~YYY
-
-Given a sender region, the amount of region-to-region communication is proportional to the population of the receiver region. Then for every receiver region $r$, we have
-\[
-\begin{aligned}
-&P(r|r_{\mathcal{H}},r_{\mathcal{W}})\\
-&=\left\{
-\begin{array}{rcl}
-\lambda+(1-\lambda-\chi)c_r       &      & {r = r_{\mathcal{H}}, r_{\mathcal{H}} \ne r_{\mathcal{W}}}\\
-\chi+(1-\lambda-\chi)c_r     &      & {r = r_{\mathcal{W}}, r_{\mathcal{H}} \ne r_{\mathcal{W}}}\\
-\lambda+\chi+(1-\lambda-\chi)c_r     &      & {r = r_{\mathcal{H}}= r_{\mathcal{W}}}\\
-(1-\lambda-\chi)c_r       &      & otherwise
-\end{array} \right.
-\end{aligned}
-\]
-where $\lambda$ is the proportion of communications with the home region, and $\chi$ is the proportion of communications with the remote region.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-% this is region-to-region view, so we do not need to explicitly say \lambda and \chi are same for every user. Such a strong assumption will raise criticism.
-
-\textbf{State difference}. Define a baseline state $\mathbb{S}'=(\mathbb{C}',\mathbb{Q}',\lambda,\chi)$, $\mathbb{C}' = \{c'_i\}_{i\in R}$, where all people stay at their home regions, i.e. $\forall i,j \in R, i\ne j$, the corresponding $\sigma'_{ij}=0$. Consider the difference between an arbitrary state $\mathbb{S}$ and the baseline state, named as \textit{State Difference} $\Delta \mathbb{S}$.
-
-% XXX~~Longo--``superposition'' seems to be more accurate. The mixture of two distributions means that the data is drawn either from the first distribution or the second distribution, while the superposition means a new distribution combining two distributions.~~~YYY
-
-\begin{pro}
-The State Difference follows a superposition of a uniform distribution and a Dirichlet distribution.
-\end{pro}
-\begin{proof}
-The proportion of messages from $r_{\mathcal{O}}$ to $r_{\mathcal{T}}$ should be
-\[
-\begin{aligned}
-&P_{\mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
-&= \sum_{r_{\mathcal{H}} \in R} P(j|r_{\mathcal{H}},r_{\mathcal{W}}=i) \sigma_{r_{\mathcal{H}}i}\\
-& = (1-\lambda-\chi)c_j+\lambda \sigma_{ji}+[j=i]\chi \sigma_{ii}.
-\end{aligned}
-\]
-
-Therefore, we can deduce that
-\begin{equation} \label{equ:difference}
-\begin{aligned}
-& P_{\Delta \mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
-& = P_{\mathbb{S}}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) - P_{\mathbb{S}'}(r_{\mathcal{T}} = j | r_{\mathcal{O}} = i) \\
-& = \left\{\begin{array}{rcl}
-(1-\lambda-\chi)(c_j-c_{j'}) + \lambda \sigma_{ji}       &      & i \ne j\\
-(1-\lambda-\chi)(c_j-c'_j)+(\lambda+\chi)(\sigma_{ii}-1)       &      & i = j
-\end{array} \right.
-\end{aligned}
-\end{equation}
-which is a constant plus a variable generated from Dirichlet process. It indicates that the State Difference follows a superposition of a uniform distribution and a Dirichlet distribution.
-
-\end{proof}
-This proposition enlightens us to infer floating population by methods of divide and conquer. The State Difference reduces the weight of the uniform distribution component.
-
 \subsection{Export Message Pattern (EMP)}
-
-Similar to UDM, we can extract the distribution of messages diffused to remote regions, and we use a Hierarchy Dirichlet Process to find the distribution, which is named as the Export Message Pattern (EMP). For every region $i$, denote $\mathbf{\sigma_i}$ as $\{\sigma_{ji}\}_{i \ne j}$, following
-\[
-\begin{aligned}
-& \mathbb{B}_0 \sim \text{DP}(\tau',\mathbb{B}')\\
-& \mathbb{B}_i \sim \text{DP}(\tau_i,\mathbb{B}_0)\\
-& \eta_i \sim \mathbb{B}_i\\
-& \mathbf{\sigma_i} \sim F(\eta_i)
-\end{aligned}
-\]
-where $\eta_i$ is the hyper-parameters, $\tau_i$ and $\tau'$ is the corresponding scale parameter and $\mathbb{B}'$ is the base distribution. Consider the differential export message
-\[
-\mathbf{d_i} = \{d_{ij}=P_{\Delta\mathbb{S}}(j | i) - (1-\lambda-\chi)(c_j-c'_j)\}_{i \ne j},
-\]
-which satisfies that
-\[
-\mathbf{d_i}/\lambda \sim F(\eta_i).
-\]
-Given $\mathbf{d_i}$, Gibbs Sampling can be used to decide what $\mathbf{\sigma_i}$ should be.
 
 \subsection{Self Message Pattern (SMP)}
 
-The Dirichlet Process Mixture can also explain the distribution of messages diffused inside each region, which is named as Self Message Pattern (SMP). According to (\ref{equ:difference}), it is not wise to gather $\sigma_{ii}$ $\forall i \in R$. Instead, we should concern $\{\sigma_{0i}=1-\sigma_{ii}\}_{i \in R}$ and denote it as $\mathbf{\sigma_0}$. We are able to find a scale parameter $\tau_0$ and base distribution $\mathbb{I}_0$ such that
-\[
-\begin{aligned}
-& \mathbb{I} \sim \text{DP}(\tau_0,\mathbb{I}_0)\\
-& \eta_0 \sim \mathbb{I}\\
-& \mathbf{\sigma_0} \sim F(\eta_0).
-\end{aligned}
-\]
-
-Since we have access to
-\[
-\mathbf{d_0} = \{d_{0i}=(1-\lambda-\chi)(c_i-c'_i) - P_{\Delta\mathbb{S}}(i | i)\},
-\]
-following $\mathbf{d_0}/(\lambda+\chi) \sim F(\eta_0)$, the model can be solved by Gibbs Sampling according to the posterior distribution and the restriction holding $\sum_j \sigma_{ji} = 1$. %, which provide an approximate result.
-
-% XXX~ Longo--The posterior distribution is similar to that in UDM. It's really space-consuming, shall I put it here? ~~~YYY
-
 \subsection{Floating Population Inference Model}
-
-%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXX which one is used for infer floatin population? UDM, EMP?
-Finally, we combine UDM, EMP and SMP as a Floating Population Inference Model (FPIM). The UDM provides the population distribution across regions, while EMP and SMP compute the specific allocation inside each region. The model structure is shown in Figure~\ref{fig:ModelStructure}.
-
-\begin{figure}[htbp]
- \centering \includegraphics[width=2.4in]{pix/newpix/modelstructure.pdf} %\vspace{-0.1in}
-\caption{The Floating Population Inference model has three parts, namely UDM, EMP, SMP from left to right. }
-\label{fig:ModelStructure}
-\end{figure}
-
 
 
 \section{Evaluation}\label{sec:experiment}
@@ -448,247 +302,21 @@ Finally, we combine UDM, EMP and SMP as a Floating Population Inference Model (F
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
 
-In this section, we validate the geo-homophily over two real-world OSN datasets that have geo attributes of users, and evaluate the performance of proposed UDM and FPIM models.
-
 \subsection{Datasets}
-We use datasets of two OSNs: Gowalla dataset and WeChat Moment dataset. The former one covers most of western countries, while the latter covers the China mainland (where Internet censorship is enforced and people have restricted access to popular OSN sites/apps like Facebook).
-
-``Gowalla''~\cite{cho2011friendship} is a typical location-based social network (LBSN) where users share their locations by ``checking-in''. The information regarding friend relationship was collected using their public API, which consists of 196,591 nodes and 950,327 edges. The edges can be seen as undirected. This Gowalla dataset collects a total of 6,442,890 check-in's of these users over the time period from Feb. 2009 to Oct. 2010.
-
-%%%%%%%%%%%%%%%%%%%% users in wechat set is much less than China population, then how can it show the distribution?
-
-``WeChat Moments (WM)''~\cite{schiavenza2013wechat} is the social network of a mobile messaging app (Wechat) popular in China, where the contents shared over WM are HTML5 pages. This WM dataset contains 137,509,889 users with 1,671,692,424 retweeting/forwarding records of 329,465 pages from Jan. 14 2016 to Feb. 27 2016, telling us when, where, from whom a page is re-tweeted; how many pages a user reads; and whether one has re-tweeted a page. WeChat Moments can only be used on mobile devices, and the user location can be inferred from the IP address. The period of data covers Spring Festival, a traditional festival in China when most of Chinese people migrate back to their home province from the work place.
-
-% stay at home around those days but work normally before and after. Thus, some connotations are accessible. % , which are able to be transformed to location.
-
-Note that: although the number users of each dataset is much less than the population of a country, it is sufficiently large to derive the proportion of OSN user distribution, as well as the population distribution over geographical regions, which helps us determine how a new OSN user is distributed or how floating population varies across regions .
-
-% 因为线上用户其实是线下真实用户的子集，所以大体分布趋势相似。由于人员总数不同，所以只能看比例分布
-% 好的，那我就在 evaluation 解释一下，我们看的是趋势 分布
-% 也就是 每当一个新的 用户 使用OSN 的时候，那么他去哪里的概率，是符合我们的预测的，无论我们线上数据集的 人数 是否比线下小很多
-
 
 
 \subsection{Geo-homophily of OSNs}\label{sec:EffectDivision}
 
-As mentioned in Section~\ref{sec:problem}, we can divide users of an OSN into a division of regions, according to users' geo attributes.
-%
-%\begin{figure*}
-%\centering
-% \begin{subfigure}[b]{0.3\textwidth}
-%    \includegraphics[height=2.4in]{pix/newpix/wechat03.png}
-%    \caption{Before Spring Festival.}
-%    \label{fig:beforecj}
-%\end{subfigure}
-% \hfill
-% \begin{subfigure}[b]{0.3\textwidth}
-%    \includegraphics[height=2.4in]{pix/newpix/wechat5.png}
-%    \caption{On the Spring Festival day.}
-%    \label{fig:duringcj}
-%\end{subfigure}
-%  \hfill
-% \begin{subfigure}[b]{0.3\textwidth}
-%    \includegraphics[height=2.4in]{pix/newpix/wechatrand.png}
-%    \caption{Baseline network.}
-%    \label{fig:randomstructure}
-%\end{subfigure}
-%\caption{Graph representations of message diffusion inside and across provinces in Wechat Moments dataset. }
-%\label{fig:graphstructure}
-%\end{figure*}
-
-
-\begin{figure}[htbp]
-\centering
- \begin{subfigure}{3in}
-\centering
-    \includegraphics[height=2.4in]{pix/newpix/wechat03.png}
-    \caption{Before Spring Festival.}
-    \label{fig:beforecj}
-\end{subfigure}
- \hfill
- \begin{subfigure}{3in}
- \centering
-    \includegraphics[height=2.4in]{pix/newpix/wechat5.png}
-    \caption{On the Spring Festival day.}
-    \label{fig:duringcj}
-\end{subfigure}
-  \hfill
- \begin{subfigure}{3in}
- \centering
-    \includegraphics[height=1in]{pix/newpix/wechatrand.png}
-    \caption{Baseline network.}
-    \label{fig:randomstructure}
-\end{subfigure}
-\caption{Graph representations of message diffusion inside and across provinces in Wechat Moments dataset. }
-\label{fig:graphstructure}
-\end{figure}
-
 \subsubsection{Geo-homophily of WeChat}
-~
-
-
-\textbf{Message diffusion in China.} The WM dataset records the page re-tweeting in 34 provinces in China, and we use these provinces as the geographical regions in this experiment. Every user in WM should have viewed a collection of pages, and each page view's IP address corresponds to a province, among which the most frequently recorded one is set as the province where the user is located. We analyze the message diffusion process in two time periods: (1) Before Spring Festival, we monitor the message diffusion from Jan. 14 to Jan. 31, 2016, which are pre-holiday working and weekend days; (2) on the Spring Festival day, most people stay at home, and hence the structure of the message diffusion graph would be different.
-
-% to another province. Those propagations that are occurred abroad will be waived.
-
-\textbf{Results for pre-holidays}. The modularity in the pre-holidays is approximately 0.49. Figure~\ref{fig:beforecj} shows the volume of message diffusion inside each province and that between every pair of provinces of China, where the amount of message diffusion inside a province is proportional to the size of the corresponding circle, and the amount between provinces are represented by the length of arcs: (1) the larger size an orange circle has, more friend relationships between two people exist inside the province labeled in the circle; (2) the shorter a blue arc is, more friend relationships exist between people in two different provinces whose corresponding circles are connected by the arc; (3) for a province whose corresponding circle have no arc connected, only a very small number of friend relationships exist between this province and another different one, and the resulting arc could be very long in proportion to the length of other arcs, and thus we skip plotting such very-long arcs in the figure.
-
-The results indicate that most of the diffusions occur inside provinces, so the arcs are relatively sparse. In particular, there lies no arc between some pairs of circles in this figure, which does not mean that there is no message diffusion between the corresponding two provinces, but implies that the message diffusion between them is much weaker than that between those pairs of circles having arcs. For example, there were only hundreds of message diffusions between Tibet and Taiwan in the dataset; in contrast, several millions of message diffusions occur between Beijing and Guangdong. This can be explained by the fact that those provinces are at distant locations, or they have little communication with most provinces in China mainland. % core region in real life also tend to be isolated online.
-
-\textbf{Results on holiday}. On the Spring Festival holiday, most people stay with their families in their home province. The graph structure changes, as most of the messages are sent for appointments and greetings, and these diffusions mainly took place between friends in the same vicinity. Thus, the proportion of the diffusion inside regions increases, leading to a modularity of 0.53. The graph structure is illustrated in Figure~\ref{fig:duringcj}, where some inter-province arcs disappear.
-
-\textbf{Results for the baseline graph}. However, results become quite different if we use the baseline graph where edges of diffusion graph during pre-holidays were placed at random \cite{newman2004fast}.
-% XXX~Longo--This could be an concise and comprehensive expression.~YYY
-Then we obtain a chaotic segregation with the modularity of -0.05, which can hardly be said to have any geo-homophily. The amount of message diffusions inside and across these regions are shown in Figure~\ref{fig:randomstructure}. Compared to Figure~\ref{fig:beforecj}, under the same scale of plotting, the distribution of circles representing regions are very dense; and most of circles' sizes are similarly small.
-
-%Location-based social networks are special cases of OSH network, as we can use geographical information directly.
 
 \subsubsection{Geo-homophily of Gowalla}
-The Gowalla dataset provides latitudes and longitudes of check-ins, involving the users as well as the friend relationship among them. Over 80\% of the users are Americans or Europeans. Here, we use 50 states and a federal district of United States as the geographical communities. Since we find that the distribution of check-ins within US
-%, as shown in Figure~\ref{fig:USAdistribution},
-is approximately proportional to each state's population\footnote{http://www.census.gov/popest/data/datasets.html}, we conclude that there lies a certain degree of geo-homophily in Gowalla dataset, and the corresponding modularity is 0.34.
-
-
-% This community division violates OSH.
-% Nodes with extremely short diameter or enormous difference between the longest and shortest arcs under reasonable visualizing strategy are other characteristics of anti-OSH.
-
-%\begin{figure}
-%\centering
-% \begin{subfigure}[b]{0.45\linewidth}
-%    \includegraphics[width=1.0\linewidth]{pix/newpix/American_echarts.png}
-%    \caption{The check-in distribution in US.}
-%    \label{fig:USAdistribution:a}
-%\end{subfigure}
-% \begin{subfigure}[b]{0.45\linewidth}
-%    \includegraphics[width=1.0\linewidth]{pix/newpix/American_population.png}
-%    \caption{The population distribution in US.}
-%    \label{fig:USAdistribution:b}
-%\end{subfigure}
-%\caption{The distributions of check-in's and population in US.}
-%\label{fig:USAdistribution}
-%\end{figure}
-
-%
-%\begin{figure}[htbp]
-% \centering \includegraphics[width=2.6in]{pix/newpix/WeChatRandom.png}
-%\caption{Unacceptable appointed.}
-%\label{fig:WeChatRandom}
-%\end{figure}
-
-
 
 \subsection{Stability of Divided Regions}\label{IndividualExperiment}
 
-When considering the diffusion of a single page, we find that it will be reposted many times in the home region of the sender, while it may be sent to only a few non-home regions---those diffusions across regions only take up a small part. For example, we illustrate the distribution of views to a popular page with approximately one million
-%XXX~ Longo--957126 ~YYY
-views in Figure~\ref{fig:ChinaMap}, where the page is originally sent from the region of Beijing.
-
-Recall that we propose Information Increment to measure the change of geo-homophily between two time points in section~\ref{sec:stability}. To test its impact, we simulate eight instances of message diffusions and add them sequentially to the message diffusion graph at the end of Jan. 31 of the WM dataset.
-For each simulated message diffusion, first we construct a Dirichlet distribution according to the previously formed message distribution by randomly selecting a province among 34 provinces as the sender region, from which we can obtain a Multi-nomial distribution. One million retransmissions are then sampled through the Multi-nomial distribution.
-% with fine-tuning to promise Information Increment to be a specific value.
-%%%%%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXXXXx what is the specific value?
-The experimental results are shown in Figure~\ref{fig:stability}, where the geo-homophily will not decrease when $\mathcal{G}(G,\overline{\mathbf{L}}) \geq \Omega_T^\mathcal{L}$, and vice versa. This implies that the stability will not decrease when the previously mentioned condition is satisfied, which is consistent with Proposition~\ref{pro:entropy}.
-
-
-
 \subsection{Performance of UDM}
-
-\begin{figure*}[htbp]
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\includegraphics[width=0.8\linewidth]{pix/newpix/China.jpg}
-\caption{The viewing distribution of a hot message originated from Beijing.}
-\label{fig:ChinaMap}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\includegraphics[width=0.8\linewidth]{pix/newpix/stability.pdf}
-\caption{The change of modularity towards Information Increment.}
-\label{fig:stability}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\includegraphics[width=0.8\linewidth]{pix/newpix/UDM.pdf}
-\caption{Performance of UDM on WM and Gowalla datasets.}
-\label{fig:UDM}
-\end{minipage}
-\end{figure*}
-
-\begin{figure*}
-\centering
- \begin{subfigure}[b]{0.23\linewidth}
-    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-b.pdf}
-    \caption{Based on Message Diffusion.\\~}
-    \label{fig:FPIM:a}
-\end{subfigure}
- \begin{subfigure}[b]{0.23\linewidth}
-    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-p.pdf}
-    \caption{Based on $P_\mathbb{S}$.\\~}
-    \label{fig:FPIM:b}
-\end{subfigure}
- \begin{subfigure}[b]{0.23\linewidth}
-    \includegraphics[width=1.0\linewidth]{pix/newpix/fpim-d.pdf}
-    \caption{Based on $P_{\Delta\mathbb{S}}$.\\~}
-    \label{fig:FPIM:c}
-\end{subfigure}
- \begin{subfigure}[b]{0.23\linewidth}
-    \includegraphics[width=1.0\linewidth]{pix/newpix/bar.pdf}
-    \caption{Proportion of correct predictions.}
-    \label{fig:FPIM:d}
-\end{subfigure}
-\caption{Results of inferring the floating population (FP) that has excluded those whose home and remote regions are the same.}
-\label{fig:FPIM}
-\end{figure*}
-
-Given the order of users' joining the OSN and their home regions, we are able to train the UDM. We evaluate the performance of UDM on WM and Gowalla datasets respectively.
-
-On WM dataset, we monitor the order of 30 million users' joining the OSN and then predict the distribution of the next 10 million users, which are tested by 10 experiment runs (each run contains one million users).
-
-As for Gowalla, we choose the group of first 100 thousand users that have mostly checked in USA to be the training set, and use a group of 28 thousand users as the testing set, which are tested by 10 experiment runs as well.
-
-Since we know the exact proportion of each region in the dataset, we use histogram intersection (HI) to measure the prediction accuracy, which ranges between 0 and 1.
-%For example, consider two proportion set $\mathbb{P}_1 = (\xi_{1,1},\ldots,\xi_{1,|R|})$ and $\mathbb{P}_2 = (\xi_{2,1},\ldots,\xi_{2,|R|})$, the HI value is calculated as
-%\[
-%\text{HI}(\mathbb{P}_1,\mathbb{P}_2) = \sum_{i=1}^{|R|} \min(\xi_{1,i},\xi_{2,i}).
-%\]
-Besides, we compare UDM to the baseline method (that naively predicts the future population of each region as proportional to the previously-observed population of each region). The result is shown in Figure~\ref{fig:UDM}, which clearly indicates that UDM has better performance both on WM and Gowalla than the baseline method. We also observe that UDM provides a greater HI on the dataset with a stronger geo-homophily (i.e. WM dataset).
-
 
 \subsection{Performance of FPIM}
 
-In this subsection, we evaluate the performance of FPIM on WMeChat dataset, and compare it against the results of the latest national population census in China \footnote{http://www.stats.gov.cn/tjsj/pcsj/rkpc/6rp/indexch.htm}, which provides us the statistics of floating population in China. Here, the floating population (FP) in our experiments has excluded those whose home and remote regions are the same (e.g., those who rarely move out of the home region, as the work place and the home belong to the same region).
-
-\textbf{Correlation}. As mentioned above, people tend to stay at the home region during Spring Festival in China. Therefore, the state of the message diffusion graph during Spring Festival can be seen as the baseline state $\mathbb{S}'$. We collect the statistics on Feb.~8, the Spring Festival day.
-
-Intuitively, one may think that the proportion of floating population would have certain correlation with the proportion of message diffusion in each region, and this leads to a naive prediction method that directly uses the latter to infer the former. We plot the correlation coefficient between the predicted FP distribution and the real FP distribution in Figure~\ref{fig:FPIM:a}, which is as low as 0.2, indicating a poor direct correlation between FP and message diffusion. Indeed, this is a special case which ignores the uniform part of $P_{\mathbb{S}}$.
-Since $P_{\mathbb{S}}$ holds the same superposition with $P_{\Delta\mathbb{S}}$, we then evaluate the performance of FPIM based on $P_{\mathbb{S}}$, as shown in Figure~\ref{fig:FPIM:b}. The correlation coefficient is about 0.40, which is due to the uniform part of $P_{\mathbb{S}}$, leading to a biased sampling on DP.
-
-In contrast to this, FPIM based on State Difference works better, illustrated in Figure~\ref{fig:FPIM:c}, where the correlation coefficient reaches 0.8, indicating that the population prediction approximates the distribution derived from the national population census.
-%has little impact small parameters only describes a little of~YYY
-Here, we notice in the WM dataset that the mean of distribution difference $\Delta\mathbb{C} = \mathbb{C} - \mathbb{C}'$ is approximately 0, while the variance is about $1.4\times10^{-4}$.
-In other words, FPIM has significantly reduced the impact of the uniform part on $P_{\Delta\mathbb{S}}$.
-
-By comparing the ticks over the x-axis and y-axis of Figure~\ref{fig:FPIM:c}, we observe that FPIM predicts a floating population (ticks over the x-axis) lower than that obtained in the national census (ticks over the y-axis). This can be attributed to the fact that a non-negligible proportion of floating population do not view the WM pages or may not even use Wechat Moments. As mentioned earlier, although there exist people not covered by the WM dataset, the number of users in the dataset is sufficiently large to derive the distributions using the proposed models.
-
-% proportion of OSN user distribution, as well as the population distribution over geographical regions
-
-
-%, and XXX~the proportion of the non-Wechat users in indigene is evidently less than that in floating population~YYY.
-% Therefore, the inferred proportion is likely to be lower than the value given by the government census.
-
-\textbf{Prediction correctness}. Apart from correlation, we always have a concern on the densely-populated region which has the most of a large floating population that may cause changes to the online and offline social networks. We use the sets of regions who have the most proportion of floating populations to measure the prediction correctness of FPIM.
-
-For every province $r$, FPIM calculates the proportion of floating population, by two sets, i.e. the set of emigrants whose currently-located region is the remote region but the home region is $r$, and the set of immigrants whose currently-located region is their remote region $r$ but the home region is different.
-
-Then, we rank the provinces by the number of immigrants and emigrants, and obtain a ranking of provinces on immigrants, and a ranking of provinces on emigrants, respectively. Meanwhile, the floating population data of the national population census can also produce two rankings of provinces on immigrants and emigrants.
-
-We compare the corresponding rankings obtained from FPIM and the national census, and calculate the \emph{overlapping rate} between two rankings on immigrants or emigrants (which is defined as the number of regions that appear in both rankings divided by the total number of regions in a ranking)
-%%%%%%%%%%%%%%%%%%%XXXXXXXXXXXXXXXXXXXXX Longo-- the definition of overlappint rate is given in parenthesis to save space, is this ok?
-over the top-$y$ provinces according to their normalized proportion values. We vary $y$ from 1 to 10 and plot the histogram in Figure~\ref{fig:FPIM:d}, telling that FPIM works satisfactorily with a match between our prediction results and the data of the national census. The two types of rankings have a high consistency on $\Delta \mathbb{S}$. Besides, the correctness on $\Delta \mathbb{S}$ is higher than that calculated on basis of $\mathbb{S}$; the performance of FPIM on predicting the set of top provinces on emigrants is better than that on predicting the set of top provinces on immigrants, which is a result of the fact that FPIM uses $\sigma_{ij}$'s which pay more attention on the emigrant proportion.
-%which is a result of the fact that FPIM pays more attention on the emigrant proportion.
-%%%%%%%%%%%%%%%%%%%%%%%%%% XXXXXXXXXXXX FPIM 更重视 emigrant 这个 可以具体一些么？
 
 
 
