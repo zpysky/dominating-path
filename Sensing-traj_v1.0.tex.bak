@@ -228,7 +228,7 @@ We have discussed about different adjacencies in the last subsection and in this
 
 % TODO: examples
 \begin{enumerate}
-  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different levels. Then, we could divide 3D lattice graph into multiple 2D grids and consider set cover problem in each grid.
+  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different levels. Then, we could divide 3D lattice graph into multiple 2D grids and consider set coverage problem in each grid.
   \item \emph{Cubic adjacency}: In this scenery, if an UAV flight over a plane, then whole coverage set include the plane and its adjacent planes. Then, we could also simplify 3D lattice graph into multiple 2D grids and take advantage of its periodic structure.
 \end{enumerate}
 Therefore, instead of 3D lattice, we formulate the problem into constraint set coverage problem in grid.
@@ -249,7 +249,7 @@ Therefore, we will discuss these two problems above in the next section and give
 \subsection{Variable definitions}
 For the convenience of proof in next section, we define some variables following.
 
-$G = (V, E)$ denotes 3D OL network graph. $L_{m,n}$ denotes grid graph with m rows and n columns. For graph $G$, $V(G)$ denotes set of vertexes in $G$.  For any vertex $v, y\in V$, $N[y]=\{v\in V: yv\in E\} \cup \{y\}$ is the closed neighborhood of $y$ (i.e., the set of neighbors of $y$ and $y$ itself). And for $S \subset V$, $N[S]= \bigcup_{v \in S} N[v]$. $G_3$ denotes rightmost three columns in $L_{m,n}$ and $G_{n}$ denotes leftmost n columns in $L_{m,n+3}$. $\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a dominating set of $G$. $\gamma_l(G)$ denotes the minimum size of a dominating path of $G$. For convenience, we assure dominating path $L$ as a special case of connected dominating set which could be represented as a vertex set.
+$G = (V, E)$ denotes 3D OL network graph. $L_{m,n}$ denotes grid graph with m rows and n columns. $c_i$ and $r_i$ the leftmost $i-th$ column and topmost $i-th$ row. For graph $G$, $V(G)$ denotes set of vertexes in $G$. And $v_{i,j}$ denotes the vertex in row $i$ and column $j$ in $L_{m,n}$. For any vertex $v, y\in V$, $N[y]=\{v\in V: yv\in E\} \cup \{y\}$ is the closed neighborhood of $y$ (i.e., the set of neighbors of $y$ and $y$ itself). And for $S \subset V$, $N[S]= \bigcup_{v \in S} N[v]$. $G_3$ denotes rightmost three columns in $L_{m,n}$ and $G_{n}$ denotes leftmost n columns in $L_{m,n+3}$. $\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a dominating set of $G$. $\gamma_c(G)$ denotes the minimum size of a connected dominating set of $G$. $\gamma_l(G)$ denotes the minimum size of a dominating path of $G$. For convenience, we assure dominating path $L$ as a special case of connected dominating set which could be represented as a vertex set. We also denote $L_3$ and $L_n$ as L in $G_3$ and $G_n$ respectively.
 
 % 相关证明
 \section{Proof}
@@ -280,10 +280,57 @@ Let $n \geq 2$ is integer and L is dominating path of $G = L_{m,n+3}$. Then ther
 \end{lem}
 
 \begin{proof}
-\textbf{$n=2$}: if there is a vertex $v$ in $G_2$ that not be covered by $D_2$ and the row $r$ that v belongs to is not in L. Since $v$ must lie in the second column of $G_2$ and its left vertex should be covered by other vertex, the vertex to the up (or down) left of v must belong to L and be one of starting points.
-Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $r$ to the second column. As shown in . So $|L^*| = |L|$ and $|D_n| \geq |D(L_{m,n})|$.
-\textbf{$n \geq 3$}: if there are k continuous vertexes in 
+Since $D(L_{m,n})$ is dominating vertexes in minimum dominating path in $L_{m,n}$ which is also $G_n$ for $L_{m,n+3}$, we have $|D_n| \geq |D(L_{m,n})|$ if all vertexes in $G_n$ is dominated by $D_n$. Therefore, if $|D_n| < |D(L_{m,n})|$, some vertexes in $G_n$ must be dominated by $D_3$ and do not have neighbors in $D_n$ (as well as $C_n$, but this could make that vertex belongs to $D_n$ instead of $C_n$). Furthermore, these vertexes must belong to $c_n$ since vertexes in other columns do not have neighbors in $G_3$.
+
+\textbf{$n=2$}: if there is a vertex $v$ in $G_2$ that not be covered by $D_2$ and the row $r$ that v belongs to is not in L. Since $v$ must lie in the second column of $G_2$ and its left vertex should be dominated by other vertex, the vertex to the up (or down) left of v must belong to L and be one of starting points.
+
+Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $c_2$. As shown in . So $|L^*| = |L|$ and $|D_n| \geq |D(L_{m,n})|$.
+
+\textbf{$n \geq 3$}: Consider there are k continuous vertexes $v_k$ in $c_n$ dominated by $D_3$. Since these k vertexes are not dominated by $D_n$, the corresponding k vertexes $v_{k'}$ which are in the same row with $v_k$ in $c_{n-1}$ can not belong to $D_n$. Therefore, k vertexes $v_{k''}$ in $c_{n-2}$ should belong to $D_n$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to L which makes L irregular. So we could use the corresponding vertexes in $c_{n-2}$ to replace them so as to shorten L. Then, we could use $v_{k''}$ to construct. As shown in .
+
+Since $L_3$ may have multiple connected components, $L$ may step into $G_3$ and then move out from $G_3$ or just step into $G_3$ and move to the end.
+
+In the first case, Because $L$ may move out from $G_3$, we could construct as Fig and add connecting vertex to corresponding position.
+
+In the second case, when vertexes in $c_{n+1}$ come from $c_{n+2}$, we have the following three cases. When $|v_k| > 3$, $L$ would need more vertexes in $c_{n+3}$ to dominate vertexes in $c_{n+2}$. And we could use similar construct like the first case. When $|v_k| < 3$, $L$ will need more connecting vertexes which could also use the same construct. When $|v_k| = 3$ and vertex in $v_k$ do not reach $r_m$, then vertex below $v_{k'}$ must belong to L. So vertexes in Fig is a dominating path for $L_{6,n+3}$ partial but can not reach the minimum so that L could not be the minimum dominating path because the form of minimum dominating path for has same start pointing as L.
+
+When vertexes in $c_{n+1}$ do not come from $c_{n+2}$, in other words, $L$ step into $G_3$ in the first row, move down to $v_{m-1, n+1}$ and use vertexes in $c_{n+3}$ to dominate remain vertexes. Since $v_{1, n+1} \in L$, $v_k$ starts from $r_3$. Therefore, we could use similar construct before in Fig to replace $L$ to another dominating path $L^*$ where $|L^*| = |L|$
+
 \end{proof}
+
+
+\begin{lem}
+Given $L$ as the minimum dominating path of $G = L_{m,n+3}$, then $|D_3 + C_{n,3}| \geq m$. Further, if $3 \nmid m$, then $|D_3 + C_{n,3}| \geq m+1$.
+\end{lem}
+
+\begin{proof}
+Since $r_{n+1}$ might be dominated by $D_n$, we consider the coverage problem of two rightmost columns $G_2$ only.
+
+Before formal proof, we will prove that expect for one single case, $G_2$ is dominated by rows. Specifically, every row is dominated by only one connected component in $L_3$.
+
+If $r_i$ in $G_3$ is dominated by two connected component in $L_3$, then we assume $v_{i, n+2}$ is dominated by a component above and $v_{i, n+3}$ is dominated by the other component beneath.
+
+Therefore, there are two different scenarios. Under the first scenery, $r_i$ is dominated by two end vertexes like Fig which can be transformed by extending one vertex to dominate all vertexes dominated by two components. Under the second scenery, $r_i$ is dominated by one end vertex and one intermediate vertex. This is the unique case that could not be replaced. But we could take them as one part since the union of two components follows the result.
+
+Then, we prove the lemma by induction. When $m = 1$, $|D_3 + C_{n,3}| \geq 2$. When $m = 2$, $|D_3 + C_{n,3}| \geq 3$. When $m = 3, |D_3 + C_{n,3}| \geq 3$. As shown in .
+
+Now assume the result holds for $m = k$. When $m = k+1$, if there is only one connecting component in $L_3$, $|\gamma_c(G_2)| \geq m$. Adding 1 connecting vertex in $r_{n+1}$, $|D_3 + C_{n,3}| \geq m+1$. If there are multiple connecting components in $L_3$, we assume $G_2$ is dominated by rows by proof above. If $a$ rows and $b$ rows are dominated by two connected components $L_a$ and $L_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $(D_3 + C_{n,3}) \cap (L_a \cup L_b) \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $(D_3 + C_{n,3}) \cap (L_a \cup L_b) \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
+
+\end{proof}
+
+\begin{thm}
+Let $m > 0$ and $n \geq 2$ as integers. We assume $G = L_{m,n+3}$, $G^' = L_{m,n}$. Then, $\gamma_l(G)$ \geq $\gamma_l(G^')$+m$. Further, when $3 \nmid m$, $\gamma_l(G)$ \geq $\gamma_l(G^')$+m+1$
+\end{thm}
+
+\begin{proof}
+In lemma  and lemma, we know that for $G = L_{m,n+3}$, $|D_3| + |C_{n,3}| + |D_n|$ could fulfill additive part in result. Therefore, if the result if false, $|C_3| + |C_n|$ in $G$ must be less than $C(G^')$. 
+
+Because connectivity depends on structure of $r_n$ only and there are only two start vertexes in $L$, we have structures in $r_n$ like Fig.
+
+For components in the middle of path, there are two connecting vertexes in each component if if the size of component in $c_n$ is at least 4.connecting vertexes. Therefore, to reduce the size of $C_n$, we may reduce one of
+\end{proof}
+
+
 
 % 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
