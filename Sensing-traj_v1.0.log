@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  12 JUL 2017 17:20
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  13 JUL 2017 23:59
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
@@ -546,11 +546,10 @@ Underfull \hbox (badness 1983) in paragraph at lines 168--170
 [3]
 ** ATTENTION: \proof is deprecated (line 309). Use \IEEEproof instead.
 ** ATTENTION: \proof is deprecated (line 328). Use \IEEEproof instead.
-
-Underfull \vbox (badness 1895) has occurred while \output is active []
-
- [4]
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl
+[4]
+** ATTENTION: \proof is deprecated (line 360). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 388). Use \IEEEproof instead.
+[5] (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
 
@@ -573,14 +572,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 369.
-[5
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 441.
+[6
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 369.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 441.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 369.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 369.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 441.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 441.
 
 
 Package rerunfilecheck Warning: File `Sensing-traj_v1.0.out' has changed.
@@ -592,13 +591,13 @@ Package rerunfilecheck Info: Checksums for `Sensing-traj_v1.0.out':
 (rerunfilecheck)             After:  CDA34ABB51181B14D6BFD8FD29A45923;2975.
  ) 
 Here is how much of TeX's memory you used:
- 9272 strings out of 495354
- 132818 string characters out of 3183858
- 235982 words of memory out of 3000000
+ 9276 strings out of 495354
+ 132849 string characters out of 3183858
+ 234982 words of memory out of 3000000
  12301 multiletter control sequences out of 15000+200000
- 106545 words of font info for 111 fonts, out of 3000000 for 9000
+ 107641 words of font info for 112 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 36i,9n,38p,1359b,330s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,9n,38p,1605b,330s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTe
@@ -609,9 +608,9 @@ ype1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/s
 ymbols/msbm10.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiK
 TeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utm
 r8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Sensing-traj_v1.0.pdf (5 pages, 178250 bytes).
+Output written on Sensing-traj_v1.0.pdf (6 pages, 190359 bytes).
 PDF statistics:
- 165 PDF objects out of 1000 (max. 8388607)
- 33 named destinations out of 1000 (max. 500000)
+ 171 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  137 words of extra memory for PDF output out of 10000 (max. 10000000)
 

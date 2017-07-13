@@ -286,9 +286,7 @@ Since $D(L_{m,n})$ is dominating vertexes in minimum dominating path in $L_{m,n}
 
 Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $c_2$. As shown in . So $|L^*| = |L|$ and $|D_n| \geq |D(L_{m,n})|$.
 
-\textbf{$n \geq 3$}: Consider there are k continuous vertexes $v_k$ in $c_n$ dominated by $D_3$. 
-
-If k=1, then the vertex must lay in boundary otherwise it will need extra vertexes to connect vertex between $r_{n+1}$ and $r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes then the following condition. If $v_{2,n-1} \in L$, we will have $L$ like Fig (like $L_{4,11}$).
+\textbf{$n \geq 3$}: Consider there are k continuous vertexes $v_k$ in $c_n$ dominated by $D_3$.
 
 If $k \geq 2$, since these k vertexes are not dominated by $D_n$, the corresponding k vertexes $v_{k'}$ which are in the same row with $v_k$ in $c_{n-1}$ can not belong to $D_n$. Therefore, k vertexes $v_{k''}$ in $c_{n-2}$ should belong to $D_n$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to L which makes L irregular. So we could use the corresponding vertexes in $c_{n-2}$ to replace them so as to shorten L. Then, we could use $v_{k''}$ to construct. As shown in .
 
@@ -300,8 +298,9 @@ In the second case, when vertexes in $c_{n+1}$ come from $c_{n+2}$, we have the 
 
 When vertexes in $c_{n+1}$ do not come from $c_{n+2}$, in other words, $L$ step into $G_3$ in the first row, move down to $v_{m-1, n+1}$ and use vertexes in $c_{n+3}$ to dominate remain vertexes. Since $v_{1, n+1} \in L$, $v_k$ starts from $r_3$. Therefore, we could use similar construct before in Fig to replace $L$ to another dominating path $L^*$ where $|L^*| = |L|$
 
-\end{proof}
+If $k = 1$, then the vertex must lay in boundary otherwise it will need extra vertexes to connect vertex between $r_{n+1}$ and $r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes then the following condition. If $v_{2,n-1} \in L$, we will have $L$ like Fig (like $L_{4,11}$). This case could only exist once. We transform $L_{m,n+3}$ symmetrical. Then, $|D_n| \geq |D(L_{m,n})|$ since none of vertexes in $G_n$ have private neighbor in $D_3$.
 
+\end{proof}
 
 \begin{lem}
 Given $L$ as the minimum dominating path of $G = L_{m,n+3}$, then $|D_3 + C_{n,3}| \geq m$. Further, if $3 \nmid m$, then $|D_3 + C_{n,3}| \geq m+1$.
@@ -329,53 +328,36 @@ Let $m > 0$ and $n \geq 2$ as integers. We assume $G = L_{m,n+3}$, $G^* = L_{m,n
 \begin{proof}
 In lemma  and lemma, we know that for $G = L_{m,n+3}$, $|D_3| + |C_{n,3}| + |D_n|$ could fulfill additive part in result. Therefore, if the result if false, $|C_3| + |C_n|$ in $G$ must be less than $C(G^*)$.
 
+\textbf{Connectivity on the boundary}:
 Because connectivity depends on structure of $r_n$ of $G^*$ only and there are only two start vertexes in $L$, we have structures in $r_n$ like Fig. We will consider different structures of $L$ in $r_n$.
 
 If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, like Fig , we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C_{n,3}$ which decreases $|C_3 + C_n|$, but $|C_{n,3} + D_3| = 5$ which still use 4 vertexes addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$. In this case, $|C_3 + C_n| = |C(G^*)|$ which also can not decrease $|C_3 + C_n|$.
 
 If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C_3 + C_n| = |C(G^*)|$
-. In the second case, $|C_3 + C_n|$ decreases 2, $|C_{n,3}|$ add 2 and $|D_3|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small. For $n=1$, it is true but out of range. For $n=2$ or $n=3$, the minimum dominating path do not have the same structure as $G^*$. If $n \neq 1$, to reach that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components. Therefore, there is at least 1 extend for rows that is not 3 period. Even if $n=1$, this structure could exist only once since the benefit from this structure is less than 3 period.
+. In the second case, $|C_3 + C_n|$ decreases 2, $|C_{n,3}|$ add 2 and $|D_3|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components and this destroy the 3 period structure which will add more vertexes in dominating path. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. We assume the structure first appear when $n=b$. Since $|L_3| = m$, $L$ in $n=b-3$ must hold the same structure which drop $m+1$ vertexes in origin $L$. And this structure will hold till $n \leq 3$. Except for $n=1$ which is out of range, $n=2$ or $n=3$ do not have the same structure which makes contradictions. In the second possibility, $m \equiv 1 \pmod 3$. However, we could simplify this case, since when $n \equiv 0 \pmod 3$ or $n \equiv 2 \pmod 3$, we could change $m$ and $n$. Therefore, we consider $m \equiv 1 \pmod 3$ and $n \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m,n}$ to $L_{m,1}$ with the same approach like the first possibility which is also out of range.
 
-  
+\textbf{Connectivity in the middle}:
+In this case, we split $L_n$ on middle and connect two connected components in $L_3$. We assume the origin endpoints in $L_{m,n}$ lay in $r_n$, otherwise we need more connecting vertexes in $L_n$ to connect $L_3$. If $|C_3| + |C_n|$ could be less than $|C(G^*)|$, we consider the leftmost 3 columns $L_{3}^*$. In lemma, $|L_{3}^*| \geq m$ and if $3 \nmid m$, $|L_{3}^*| \geq m+1$. Then, $L$ vertex in rightmost n columns is less than $L_{m,n}$. And when $L_{m,n-3}$ extend to left, connecting vertexes could not decrease since there are no vertex in $r_4$. Therefore, we could reconstruct $L$ in $L_{m,n}$ which has less vertex than before. It is contradict to definition.
 
+Therefore, since $|C_3 + C_n|$ is no less than $C(G^*)$, we could prove the result.
 \end{proof}
 
+
+We denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could reduce $G_3$ while holding minimality of $L$.
+
+Now, we consider the use of standard extend row in $G_3$ when $n \geq 4$. We will discuss some cases which $\gamma_l(G) = \gamma_l(G^*)+m$ or $\gamma_l(G) = \gamma_l(G^*)+m+1$ in theorem .
+
+First, we consider $\gamma_l(G) = \gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3}) = 2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G_3$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, if $\gamma_l(G) = \gamma_l(G^*)+m$, we should divide each three rows into one group and select vertexes in the middle row   
 
 
 % 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
-
-\subsection{Distribution of Message Diffusions}
-
-\subsection{Export Message Pattern (EMP)}
-
-\subsection{Self Message Pattern (SMP)}
-
-\subsection{Floating Population Inference Model}
 
 
 \section{Evaluation}\label{sec:experiment}
 % 仿真
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
-
-\subsection{Datasets}
-
-
-\subsection{Geo-homophily of OSNs}\label{sec:EffectDivision}
-
-\subsubsection{Geo-homophily of WeChat}
-
-\subsubsection{Geo-homophily of Gowalla}
-
-\subsection{Stability of Divided Regions}\label{IndividualExperiment}
-
-\subsection{Performance of UDM}
-
-\subsection{Performance of FPIM}
-
-
-
 
 \section{Conclusions}\label{sec:conclude}
 In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
