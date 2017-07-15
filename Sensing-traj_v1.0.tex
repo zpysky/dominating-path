@@ -392,7 +392,7 @@ When $n=1$, $\gamma_l{L_{m,1}} = m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ 
 
 Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m = 11$. Therefore due to Theorem they could achieve optimal solutions.
 
-Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, 
+Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$,
 \begin{equation*}
 \begin{aligned}
 \gamma_l(L_{m,n}) &= a(3b+1) + 2(a-1) \\
@@ -400,7 +400,7 @@ Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$,
 \end{aligned}
 \end{equation*}
 
-When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $m \leq 2$, 
+When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $m \leq 2$,
 \begin{equation*}
 \begin{aligned}
 \gamma_l(L_{m,n}) &= (a+1)(3b+1) + 2(a-1) + 1 \\
@@ -408,12 +408,52 @@ When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $m \leq 2$,
 \end{aligned}
 \end{equation*}
 
-if $m > 2$, 
+if $m > 2$,
 \begin{equation*}
-\gamma_l(L_{m,n}) = 3ab+3a+3b-1 
+\gamma_l(L_{m,n}) = 3ab+3a+3b-1
 \end{equation*}
 
 \end{proof}
+
+\begin{pro}
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have 
+$\gamma_l(L_{m,n}) = \min (3ab+2a-2, 3ab+2b-2)$.
+When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&\gamma_l(L_{m,n})\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+4a-2, 3ab+3ab+2b-1)       &      & {a \leq 2}\\
+min (3ab+4a-2, 3ab+3ab+2b-2)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&\gamma_l(L_{m,n})\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+4a+3b+1, 3ab+4b+3a+1)       &      & {a \leq 2, b \leq 2}\\
+min (3ab+4a+3b, 3ab+4b+3a+1)       &      & {a > 2, b \leq 2}\\
+min (3ab+4a+3b+1, 3ab+4b+3a)       &      & {a \leq 2, b > 2}\\
+min (3ab+4a+3b+1, 3ab+4b+3a+1)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+\end{pro}
+
+\begin{proof}
+\end{proof}
+
+%$$f(x)=
+%  \begin{array}{ll}
+%    min (3ab+4a+3b+1, 3ab+4b+3a+1), & \hbox{a \leq 2;} \\
+%    min (3ab+4a+3b, 3ab+4b+3a+1), & \hbox{a > 2;} \\
+%    min (3ab+4a+3b+1, 3ab+4b+3a), & \hbox{a \leq 2;} \\
+%    min (3ab+4a+3b, 3ab+4b+3a) , & \hbox{a > 2.}
+%  \end{array} $$
 
 
 % Ïà¹ØËã·¨
