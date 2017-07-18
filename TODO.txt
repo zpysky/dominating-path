@@ -1,0 +1,9 @@
+0. 注册
+1. 修改 domianting path 数学证明
+2. 增加 dominating path 算法描述和问题描述
+3. 增加 dominating path 数学证明的描述
+4. 简化 dominating set ，并增加 flight time + measurement time 的混合情况
+5. 增加 related work 
+4. 增加 图片
+5. 增加 实际飞行场景
+6. 增加 simulation

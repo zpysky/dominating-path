@@ -281,15 +281,15 @@ Let $n>3$, $m>0$ be integers, and $L$ is a dominating path in $G=L_{m,n}$. Then 
 
 \begin{proof}
 We follow proof. Since is for connected dominating set and dominating path is a special dominating set, the conclusion as well as the analyzing method of this paper is also applicable to dominating set.
-\end{proof}
 
+\end{proof}
 
 In lemma , we know that every dominating path $L$ in $L_{m,n}$ has at least $m$ vertexes in the three rightmost columns. Therefore, we will consider the three periodicity of dominating path. Specifically, we could construct dominating path in three columns or three rows.
 
 \textbf{Connecting vertex and dominating vertex}:
-Since dominating path $L$ has both connectivity and dominance, there is thus some vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other word, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^ccon_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
+Since dominating path $L$ has both connectivity and dominance, there is thus some vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other word, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
 
-Therefore, since we want to prove three periodicity of minimum dominating path in grid, we split dominating path $L$ in $L_{m,n+3}$ into several parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^ccon_{n}(L)$.
+Therefore, since we want to prove three periodicity of minimum dominating path in grid, we split dominating path $L$ in $L_{m,n+3}$ into several parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
 \begin{lem}
 Let $n \geq 2$ is integer and $L$ is minimum dominating path of $G=L_{m,n+3}$. We denote $G^*=L_{m,n}$. Then there is at least one condition that $|D^c_{1,n}(L)| \geq |D(G^*)|$. In other words, none of vertexes in $G^c_{1,n}$ has private neighbor in $D^c_{n+1,n+3}(L)$.
@@ -304,7 +304,7 @@ Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace ver
 
 \textbf{$n\geq3$}: Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1,n+3}(L)$.
 
-If $k \geq 2$, since these $k$ vertexes are not dominated by $D_{1,n}^c(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct. As shown in .
+If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct. As shown in .
 
 Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and then move out from $G^c_{n+1,n+3}$ or just step into $G^c_{n+1,n+3}$ and move to the end.
 
@@ -319,7 +319,7 @@ If $k=1$, then the vertex must lay in boundary otherwise it will need extra vert
 \end{proof}
 
 \begin{lem}
-Given $L$ as the minimum dominating path of $G=L_{m,n+3}$, then $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq m+1$.
+Given $L$ as the minimum dominating path of $G=L_{m,n+3}$, then $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq m+1$.
 \end{lem}
 
 \begin{proof}
@@ -331,7 +331,7 @@ If $G^r_i$ in $G^c_{n+2,n+3}$ is dominated by two connected components in $L^c_{
 
 Therefore, there are two different scenarios. Under the first scenery, $G^r_i$ is dominated by two end vertexes like Fig which can be transformed by extending one vertex to dominate all vertexes dominated by two components. Under the second scenery, $G^r_i$ is dominated by one end vertex and one intermediate vertex. This is the unique case that could not be replaced. But we could take them as one part since the union of two components follows the result.
 
-Then, we prove the lemma by induction. When $m=1$, $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq 2$. When $m=2$, $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq 3$. When $m=3, |D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq 3$. As shown in .
+Then, we prove the lemma by induction. When $m=1$, $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 2$. When $m=2$, $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 3$. When $m=3, |D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 3$. As shown in .
 
 Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connecting component in $L^c_{n+1,n+3}$, $|\gamma_c(G^c_{n+2,n+3})| \geq m$. Adding 1 connecting vertex in $G^c_{n+1}$, $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq m+1$. If there are multiple connecting components in $L^c_{n+1,n+3}$, we assume $G^c_{n+2,n+3}$ is dominated by rows by proof above. If $a$ rows and $b$ rows are dominated by two connected components $L_a$ and $L_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) + C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) + C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
 
@@ -349,40 +349,40 @@ Because connectivity depends on structure of $G^r_n$ and there are only two star
 
 If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, like Fig , we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^ccon_{n}$ which decreases $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$, but $|C^ccon_{n}(L) + D^c_{n+1,n+3}(L)| = 5$ which still use 4 vertexes addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$ where $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$.
 
-If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$. In the second case, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^conn_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two 3-period extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}| = m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
+If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$. In the second case, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two 3-period extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}| = m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
 
 \textbf{Connectivity in the middle}:
-In this case, consider a minimum dominating path $L^*$ in $G^*$ which is the base of $L$. we split $L^*c_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^*c_n$, otherwise we need more connecting vertexes between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertexes from $C^c_{1,3}$ to $C^c_{4,n}$ without add more vertexes since there are no start point in $G^*r_4$. Then, we could construct a minimum dominating path from $|L^c_{4,n+3}|$ less than $\gamma_l(G^*)$. And when $L_{m,n-3}$ extend to left, connecting vertexes could not decrease since there are no vertex in $G^r_4$. Therefore, we could reconstruct $L$ in $L_{m,n}$ which has less vertex than before. It is contradict to definition.
+In this case, consider a minimum dominating path $L^*$ in $G^*$ which is the base of $L$. we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertexes between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertexes from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertexes since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
 
-Therefore, since $|C_3 + C_n|$ is no less than $C(G^*)$, we could prove the result.
+Therefore, since $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$, we could prove the result.
+
 \end{proof}
 
+Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.
 
-We denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could reduce $G_3$ while holding minimality of $L$.
+Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$ when $n \geq 4$. We will discuss some cases which $\gamma_l(G)=\gamma_l(G^*)+m$ or $\gamma_l(G)=\gamma_l(G^*)+m+1$ in theorem .
 
-Now, we consider the use of standard extend row in $G_3$ when $n \geq 4$. We will discuss some cases which $\gamma_l(G) = \gamma_l(G^*)+m$ or $\gamma_l(G) = \gamma_l(G^*)+m+1$ in theorem .
+First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
 
-First, we consider $\gamma_l(G) = \gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3}) = 2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G_3$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G) = \gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L_n$ as shown in Fig .
-
-Then, we consider $\gamma_l(G) = \gamma_l(G^*)+m+1$. When $3 \mid m+1$, we can also use standard extend row to fulfill the additive part in theorem .
+Then, we consider $\gamma_l(G)=\gamma_l(G^*)+m+1$. When $3 \mid m+1$, we can also use standard extend row to fulfill the additive part in theorem .
 
 Therefore, when $3 \mid m$ or $3 \mid m+1$, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
 
 \begin{thm}
-We denote \textbf{s 3-period extend} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}| - |L_{m,n}| = s$. Assume $G = L_{m,n}$, except for standard extend rows, when $n \to \infty$, there are no $s$ 3 period extend on average which $s < m+2$. Specifically, there are only finite 3 period extend where vertexes is less than $m+2$ for fixed $m$.
+We denote \textbf{$s 3-period extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, except for standard extend rows, when $n \to \infty$, there are no $s 3 period extend$ on average which $s < m+2$. Specifically, there are only finite 3 period extend where vertexes is less than $m+2$ for fixed $m$.
 \end{thm}
 
 \begin{proof}
-We assume that there are infinite 3 period extends where vertexes is less than $m+2$ for fixed $m$. As we discuss above, there are only $m+1$ 3-period extend which is less than $m+2$.
+We assume that there are infinite 3-period extends where vertexes is less than $m+2$ for fixed $m$. As we discuss above, there are only $m+1 3-period extend$ which is less than $m+2$.
 
-As theorem ,we know that without standard extend row, $|C_{n,3} + D_3|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point.
+As theorem ,we know that without standard extend row, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point.
 
 \textbf{Extend from start point}:
-So we will consider 4 different cases of $m+1$ 3-period extend which is from start point in $L_3$. As shown in Fig .
+So we will consider 4 different cases of $m+1 3-period extend$ which is from start point in $L^c_{n+1,n+3}$. As shown in Fig .
 
 For case (a), we need $v_{1,n}$ or $v_{m,n}$ to connect $L$ and case (b) is similar with (a). For case (c), we need corresponding vertexes in $G^r_n$ to dominate uncovered vertexes in $G^r_{n+1}$ and case (d) is the same.
 
-However, case (b) and case (d) can not guarantee connectivity of $L$ for further extends. Under case (b), $L$ do not reach $G^r_{n+3}$ which is still a $m+2$ 3-period extend. Under case (d), except for standard extend row, to extend 3 columns further, $L$ will need two more extra vertexes to connect. Therefore, these 2 cases can only exist in the last 3-period.
+However, case (b) and case (d) can not guarantee connectivity of $L$ for further extends. Under case (b), $L$ do not reach $G^r_{n+3}$ which is still a $m+2 3-period extend$. Under case (d), except for standard extend row, to extend 3 columns further, $L$ will need two more extra vertexes to connect. Therefore, these 2 cases can only exist in the last 3-period.
 
 Under case (a), since $v_{m-1,n+3} \in L$, to extend 3 rows on right, $L$ will add $v_{m,n+3}$ to reach condition for case (b) which is a $m+1 3-period extend$. But it will make case (a) as a $m+2 3-period extend$. Otherwise, holding the $m+1 3-period extend$ for this period, we will have following 2 cases. To reach $v_{m, n+6}$, we must reach $v_{m,n+5}$ or $v_{m-1,n+3}$ which will add extra vertexes to take a 'detour'. Then, we will need at least $m+3$ vertexes to dominate this period.
 
@@ -391,9 +391,13 @@ Under case (c), we will have similar result. Consider previous period of $L$. Si
 Therefore, we have at most one case (c) and at most one case (b) or (d).
 
 \textbf{Extend from middle}:
-Except for standard extend row, there are only one $s 3-period extend$ case where $s < m+2$ which is in theorem. When $n > 1$, it could bring $m 3-period extend$. But this can only occur once.
+Except for standard extend row, there are only one $s 3-period extend$ case where $s<m+2$ which is in Theorem. When $n>1$, it could bring $m 3-period extend$. But this can only occur once.
+
+\textbf{Rotate direction}:
+Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $m+1 3-period extend$. But similarly, this trick could only exist once for the same $m$.
 
 Therefore, there are only finite $m+1 3-period extend$ in $L$.
+
 \end{proof}
 
 According to Theorem above, we could find out that there are only several cases for $m 3-period extend$ and $m+1 3-period extend$, we will show them below.
@@ -408,7 +412,7 @@ In general, We have at most one case (c) and at most one case (b) or (d). We cou
 We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
 
 \begin{pro}
-When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n}) = 3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -426,21 +430,21 @@ When $m \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, standard extend row could rea
 
 When $n=1$, $\gamma_l{L_{m,1}} = m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ dominating vertexes and $m-2-\lceil \frac{m}{3} \rceil$ connecting vertexes which can be used to connect standard extend rows. As shown in . Further, when $m>2$, the structure in could bring a $m 3-period extend$ when $m \equiv 2 \pmod 3$.
 
-Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m = 11$. And for discuss above, when $a > 2$ and $n=1$, there is a $m 3-period extend$ for $L_{m,n}$. Therefore due to Theorem they could achieve optimal solutions.
+Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m=11$. And for discuss above, when $a>2$ and $n=1$, there is a $m 3-period extend$ for $L_{m,n}$. Therefore due to Theorem they could achieve optimal solutions.
 
 Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$,
 \begin{equation*}
 \begin{aligned}
-\gamma_l(L_{m,n}) &= a(3b+1) + 2(a-1) \\
-&= 3ab + 3a - 2
+\gamma_l(L_{m,n}) &= a(3b+1)+2(a-1) \\
+&= 3ab+3a-2
 \end{aligned}
 \end{equation*}
 
 When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $a \leq 2$,
 \begin{equation*}
 \begin{aligned}
-\gamma_l(L_{m,n}) &= (a+1)(3b+1) + 2(a-1) + 1 \\
-&= 3ab + 3a + 3b
+\gamma_l(L_{m,n}) &= (a+1)(3b+1)+2(a-1)+1 \\
+&= 3ab+3a+3b
 \end{aligned}
 \end{equation*}
 
@@ -453,7 +457,7 @@ if $a > 2$,
 
 \begin{pro}
 When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
-$\gamma_l(L_{m,n}) = \min (3ab+2a-2, 3ab+2b-2)$.
+$\gamma_l(L_{m,n})=\min (3ab+2a-2, 3ab+2b-2)$.
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
 \begin{aligned}
@@ -472,8 +476,8 @@ When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 &=\left\{
 \begin{array}{rcl}
 min (3ab+4a+3b+1, 3ab+4b+3a+1)       &      & {a \leq 2, b \leq 2}\\
-min (3ab+4a+3b, 3ab+4b+3a+1)       &      & {a > 2, b \leq 2}\\
-min (3ab+4a+3b+1, 3ab+4b+3a)       &      & {a \leq 2, b > 2}\\
+min (3ab+4a+3b, 3ab+4b+3a+1)       &      & {a>2, b \leq 2}\\
+min (3ab+4a+3b+1, 3ab+4b+3a)       &      & {a \leq 2, b>2}\\
 min (3ab+4a+3b+1, 3ab+4b+3a+1)       &      & {otherwise}\\
 \end{array} \right.
 \end{aligned}
@@ -486,16 +490,16 @@ Since we use similar proof methods for 3 cases, we only prove $m \equiv 0 \pmod 
 
 When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig ... Since $n \equiv 2 \pmod 3$, we could use $m+1 3-period extend$ when $n \geq 11$.
 
-Assume we have prove the case when $a \leq k$, we consider the case when $a=k+1$. Since we could extend three rows from $a = k$, we could consider the structure of $L$ in $L_{m,n}$. There are also two structures in $L_{m,n}$. We consider critical point between $3ab+4a-2$ and $3ab+3a+2b-1$ or $3ab+3a+2b-2$.
+Assume we have prove the case when $a \leq k$, we consider the case when $a=k+1$. Since we could extend three rows from $a=k$, we could consider the structure of $L$ in $L_{m,n}$. There are also two structures in $L_{m,n}$. We consider critical point between $3ab+4a-2$ and $3ab+3a+2b-1$ or $3ab+3a+2b-2$.
 
-When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 3-period extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+4a-2$, and we could only have a $n+2 3-period extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5 = 3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m 3-period extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
+When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 3-period extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+4a-2$, and we could only have a $n+2 3-period extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5 = 3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m 3-period extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
 
 We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we could use $m+2 3-period extend$ on $L_{3k, 3k-3}$ to get the optimal result on $L_{3k,3k}$. Similarly, we could use similar approach when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.
 
 \end{proof}
 
 \begin{pro}
-When $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, $a \geq 1$ and $b \geq 1$, we have
+When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -511,11 +515,12 @@ When $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, $a \geq 1$ and $b \geq 1$, we h
 \begin{proof}
 Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $m+1 3-period extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Tail now, $L_{4,10}$ is a $m 3-period extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem. When $b \geq 4$, we could also get $m 3-period extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1}) = 6b$.
 
-When $a=2$ and $b=2$, we could use a $m +1 3-period extend$ on $L_{4,7}$ and get $\gamma_l(L_{7, 7}) = 21$
+When $a=2$ and $b=2$, we could use a $m+1 3-period extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7}) = 21$
 
-When $a \geq 2$, we know that case (b), case (d) and structure ..could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1, 3b+1}) = 3ab+3a+3b-3$ which is $a-1$ times $m+2 3-period extend$ from $L_{4,3b+1}$.
+When $a \geq 2$, we know that case (b), case (d) and structure ..could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1,3b+1})=3ab+3a+3b-3$ which is $a-1$ times $m+2 3-period extend$ from $L_{4,3b+1}$.
 
 Therefore, when $a+b \leq 4$, we could use a $m+1 3-period extend$ for each add one on $a$ or $b$ on the basis of $L_{4,4}$.
+
 \end{proof}
 
 % œ‡πÿÀ„∑®
