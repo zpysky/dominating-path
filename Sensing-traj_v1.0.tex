@@ -358,24 +358,20 @@ Therefore, since $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$,
 
 \end{proof}
 
-Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.
-
-Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$ when $n \geq 4$. We will discuss some cases which $\gamma_l(G)=\gamma_l(G^*)+m$ or $\gamma_l(G)=\gamma_l(G^*)+m+1$ in theorem .
+Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$. 
 
 First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
 
 Then, we consider $\gamma_l(G)=\gamma_l(G^*)+m+1$. When $3 \mid m+1$, we can also use standard extend row to fulfill the additive part in theorem .
 
-Therefore, when $3 \mid m$ or $3 \mid m+1$, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
+Therefore, $standard extend row$ is the only structure which could fulfill  $\gamma_l(G)=\gamma_l(G^*)+m$. So, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
 
 \begin{thm}
-We denote \textbf{$s \; 3-period \; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, except for standard extend rows, when $n \to \infty$, there are no $s 3 period extend$ on average which $s < m+2$. Specifically, there are only finite 3 period extend where vertexes is less than $m+2$ for fixed $m$.
+We denote \textbf{$s \; 3-period \; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, there are only finite structure for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$.
 \end{thm}
 
 \begin{proof}
-We assume that there are infinite \; 3-period \; extends where vertexes is less than $m+2$ for fixed $m$. As we discuss above, there are only $m+1 \; 3-period \; extend$ which is less than $m+2$.
-
-As theorem ,we know that without standard extend row, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point.
+As discuss above, we know that $standard extend row$ could achieve substructure that makes additive vertexes equal with dominated rows. Therefore, we should consider the structure without $standard extend row$. Since without $standard extend row$, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point or from middle of path.
 
 \textbf{Extend from start point}:
 So we will consider 4 different cases of $m+1 \; 3-period \; extend$ which is from start point in $L^c_{n+1,n+3}$. As shown in Fig .
@@ -388,25 +384,28 @@ Under case (a), since $v_{m-1,n+3} \in L$, to extend 3 rows on right, $L$ will a
 
 Under case (c), we will have similar result. Consider previous period of $L$. Since $G^r_{n+1}$ should be dominated by corresponding vertexes in $G^r_n$ and due to $3-period$, $v_{1,n-1}$ should be dominated by $G^r_{n-2}$. Therefore, there are $2m$ vertexes in previous period. So there are at most one case (c) in $L$.
 
-Therefore, we have at most one case (c) and at most one case (b) or (d).
+Therefore, we have at most one case (c) and at most one case (b) or (d). We could also combine $standard extend row$ with these structures to reach $m+1 \; 3-period \; extend$.
 
 \textbf{Extend from middle}:
-Except for standard extend row, there are only one $s \; 3-period \; extend$ case where $s<m+2$ which is in Theorem. When $n>1$, it could bring $m \; 3-period \; extend$. But this can only occur once.
+Obviously, we could use pure $standard extend row$ extend from middle or combine with structure above.
+
+Except for pure $standard extend row$, there is still one structure in Theorem. When $n>1$ and $m \equiv 1 \pmod 3$, it could bring $m \; 3-period \; extend$ with $standard extend row$. And when $m \equiv 2 \pmod 3$, it could bring $m+1 \; 3-period \; extend$ with $standard extend row$.But these two cases can only occur once.
 
 \textbf{Rotate direction}:
 Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $m+1 \; 3-period \; extend$. But similarly, this trick could only exist once for the same $m$.
 
-Therefore, there are only finite $m+1 \; 3-period \; extend$ in $L$.
-
-\end{proof}
-
-According to Theorem above, we could find out that there are only several cases for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$, we will show them below.
+Therefore, there are only several cases for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$. And we will show them below.
 
 \textbf{m \; 3-period \; extend}:
 There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $standard extend row$ could be a $m \; 3-period \; extend$. When $n \equiv 1$, like($L_{10,4}$) could only exist once. When $m \equiv 2$ and $n \equiv 1$, like($L_{11,4}$) could only exist once also.
 
 \textbf{m+1 \; 3-period \; extend}:
-In general, We have at most one case (c) and at most one case (b) or (d). We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
+In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
+\end{proof}
+
+
+
+
 
 
 We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.

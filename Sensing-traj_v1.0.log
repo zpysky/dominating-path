@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  18 JUL 2017 15:32
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  18 JUL 2017 16:40
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
@@ -563,22 +563,32 @@ $\OT1/cmr/m/n/10 2$\T1/ptm/m/n/10 , $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 D[]\OT1
 
 ** ATTENTION: \proof is deprecated (line 344). Use \IEEEproof instead.
 [4]
-** ATTENTION: \proof is deprecated (line 375). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 373). Use \IEEEproof instead.
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--375
+ \T1/ptm/m/it/10 Proof: \T1/ptm/m/n/10 As dis-cuss above, we know that
+ []
+
 [5]
-** ATTENTION: \proof is deprecated (line 428). Use \IEEEproof instead.
+Underfull \hbox (badness 1888) in paragraph at lines 397--398
+[]\T1/ptm/m/n/10 Therefore, there are on-ly sev-er-al cas-es for $\OML/cmm/m/it
+/10 m \OT1/cmr/m/n/10 3 \OMS/cmsy/m/n/10  $
+ []
 
-Overfull \hbox (6.16171pt too wide) detected at line 471
+** ATTENTION: \proof is deprecated (line 427). Use \IEEEproof instead.
+
+Overfull \hbox (6.16171pt too wide) detected at line 470
 [] []
  []
 
 
-Overfull \hbox (35.87013pt too wide) detected at line 484
+Overfull \hbox (35.87013pt too wide) detected at line 483
 [] []
  []
 
-** ATTENTION: \proof is deprecated (line 488). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 487). Use \IEEEproof instead.
 [6]
-** ATTENTION: \proof is deprecated (line 515). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 514). Use \IEEEproof instead.
 (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl
 
 ! LaTeX Error: Something's wrong--perhaps a missing \item.
@@ -602,12 +612,12 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 549.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
 [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 549.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 549.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 549.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
 
 
 Package rerunfilecheck Warning: File `Sensing-traj_v1.0.out' has changed.
@@ -638,7 +648,7 @@ KTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/CTEX/MiKTeX/fonts/type1
 /urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CTE
 X/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times
 /utmri8a.pfb>
-Output written on Sensing-traj_v1.0.pdf (7 pages, 221180 bytes).
+Output written on Sensing-traj_v1.0.pdf (7 pages, 220596 bytes).
 PDF statistics:
  190 PDF objects out of 1000 (max. 8388607)
  39 named destinations out of 1000 (max. 500000)
