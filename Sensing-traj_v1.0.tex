@@ -9,7 +9,12 @@
 
 % *** ALGORITHM PACKAGES ***
 \usepackage{algorithm}
-\usepackage{algorithmic}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+
 
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -358,7 +363,7 @@ Therefore, since $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$,
 
 \end{proof}
 
-Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$. 
+Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$.
 
 First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
 
@@ -526,6 +531,284 @@ Therefore, when $a+b \leq 4$, we could use a $m+1 \; 3-period \; extend$ for eac
 % 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
 
+\begin{algorithm}[htb]
+\caption{Trajectory planning for UAV in grid}
+\label{alg:Framwork}
+\begin{algorithmic}[1]
+\Require
+The graph of trajectory planning, $L_{m,n}$;
+The length of grid, $m$;
+The width of gird, $n$;
+\Ensure
+The set of two-dimensional coordinate of COL in trajectory, $V_C$;
+\label{code:fram:judgemod}
+\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
+\State swap($m$, $n$);
+\EndIf
+
+\label{code:fram:calculateab}
+\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$;
+
+\label{code:fram:calculate}
+\If{$m<4$ or $n<4$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+    
+    \If{$m=1$}
+        \If{$n<3$}
+            \State put $v_{1,1}$ into $V_C$;
+        \Else 
+            \For{$i=2$ to $n-1$}
+                \State put $v_{1, i}$ into $V_C$;
+            \EndFor
+        \EndIf
+        
+    \ElsIf{$m=2$}
+        \If{$n=3$}
+            \State put $v_{1,2}$, $v_{2,2}$ into $V_C$;
+        \Else
+            \For{$i=1$ to $n$}
+                \State put $v_{1, i}$ into $V_C$;
+            \EndFor
+        \EndIf
+
+    \Else
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_C$;
+        \EndFor
+    \EndIf
+    
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_C$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+        \EndIf
+    \EndFor
+    
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+        \EndFor
+        
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+        
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+            \EndIf
+        \EndFor
+        
+    \Else
+        \State put $v_{3,n}$ into $V_C$;
+        
+        \For{$i=1$ to $n$}
+            \State put $v_{2,i}$ into $V_C$;
+        \EndFor
+        
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+        
+        \If{$a = 2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+    
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_C$;
+        \EndFor
+    \EndFor
+    
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+        \EndIf
+    \EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+    
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+            \EndIf
+        \EndFor
+        
+    \Else
+        \State put $v_{3, n}$ into $V_C$;
+
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_C$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+
+        \If{$a=2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$3ab+4a-2 < 3ab+3a+2b-2$}
+        \For{$i=1$ to $n$}
+            \For{$j=0$ to $a-1$}
+                \State put $v_{3*j+2, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+
+        \For{$i=1$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+            \Else
+                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+            \EndIf
+        \EndFor
+        
+    \Else
+        \State swap($m$, $n$), swap($a$, $b$)
+        \If{$a>2$}
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+
+            \For{$i=2$ to $n$}
+                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=3$ to $a$}
+                    \State put $v_{3*j+1, i}$ into $V_C$;
+                \EndFor
+            \EndFor
+
+            \For{$i=3$ to $a-1$}
+                \If{$i \equiv 1\pmod 2$}
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \Else
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                \EndIf
+            \EndFor
+
+        \Else
+            \State put $v_{3, n}$ into $V_C$;
+
+            \For{$i=1$ to $n$}
+                \State put $v_{2, i}$ into $V_C$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=1$ to $a-1$}
+                    \State put $v_{3*j+1, i}$ into $V_C$;
+                \EndFor
+            \EndFor
+
+            \If{$a = 2$}
+                \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+            \EndIf
+        \EndIf
+        
+    \EndIf
+
+\Else
+    \If{$m<n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+    
+    \If{$a=1$ and $b=1$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
+        
+    \ElsIf{$a=2$ and $b=1$}
+        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_C$;
+    
+    \ElsIf{$a=2$ and $b=2$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
+    
+    \Else
+        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_C$;
+        
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_C$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_C$;
+            \Else
+                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_C$;
+            \EndIf
+        \EndFor
+    
+    \EndIf
+\EndIf
+
+\label{code:fram:add}
+\If{$(Jaro(r_i,r_m) \ge \theta_r)\wedge (Jaro(r_i,r_m)\ge r^{maxSim})$}
+\State replace $r^{maxSim}$ with $r_m$\;
+\ElsIf{$other condition$}
+\State replace $r^{maxSim}$ with $r_m$\;
+\Else
+\State replace $r^{maxSim}$ with $r_m$\;
+\EndIf
+\State Classifying samples in $U_n-T_n$ by $E_n$;
+\label{code:fram:classify}
+\State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+\label{code:fram:select} \\
+\Return $E_n$;
+\end{algorithmic}
+\end{algorithm}
 
 \section{Evaluation}\label{sec:experiment}
 % 仿真

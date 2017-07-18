@@ -9,7 +9,12 @@
 
 % *** ALGORITHM PACKAGES ***
 \usepackage{algorithm}
-\usepackage{algorithmic}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % Use Output in the format of Algorithm
+
 
 \usepackage{amsthm}
 \usepackage{amsmath}
@@ -349,7 +354,7 @@ Because connectivity depends on structure of $G^r_n$ and there are only two star
 
 If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, like Fig , we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^ccon_{n}$ which decreases $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$, but $|C^ccon_{n}(L) + D^c_{n+1,n+3}(L)| = 5$ which still use 4 vertexes addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$ where $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$.
 
-If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$. In the second case, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two 3-period extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}| = m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
+If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$. In the second case, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two \; 3-period \; extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}| = m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
 
 \textbf{Connectivity in the middle}:
 In this case, consider a minimum dominating path $L^*$ in $G^*$ which is the base of $L$. we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertexes between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertexes from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertexes since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
@@ -358,55 +363,54 @@ Therefore, since $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$,
 
 \end{proof}
 
-Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.
-
-Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$ when $n \geq 4$. We will discuss some cases which $\gamma_l(G)=\gamma_l(G^*)+m$ or $\gamma_l(G)=\gamma_l(G^*)+m+1$ in theorem .
+Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$.
 
 First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
 
 Then, we consider $\gamma_l(G)=\gamma_l(G^*)+m+1$. When $3 \mid m+1$, we can also use standard extend row to fulfill the additive part in theorem .
 
-Therefore, when $3 \mid m$ or $3 \mid m+1$, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
+Therefore, $standard extend row$ is the only structure which could fulfill  $\gamma_l(G)=\gamma_l(G^*)+m$. So, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
 
 \begin{thm}
-We denote \textbf{$s 3-period extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, except for standard extend rows, when $n \to \infty$, there are no $s 3 period extend$ on average which $s < m+2$. Specifically, there are only finite 3 period extend where vertexes is less than $m+2$ for fixed $m$.
+We denote \textbf{$s \; 3-period \; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, there are only finite structure for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$.
 \end{thm}
 
 \begin{proof}
-We assume that there are infinite 3-period extends where vertexes is less than $m+2$ for fixed $m$. As we discuss above, there are only $m+1 3-period extend$ which is less than $m+2$.
-
-As theorem ,we know that without standard extend row, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point.
+As discuss above, we know that $standard extend row$ could achieve substructure that makes additive vertexes equal with dominated rows. Therefore, we should consider the structure without $standard extend row$. Since without $standard extend row$, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point or from middle of path.
 
 \textbf{Extend from start point}:
-So we will consider 4 different cases of $m+1 3-period extend$ which is from start point in $L^c_{n+1,n+3}$. As shown in Fig .
+So we will consider 4 different cases of $m+1 \; 3-period \; extend$ which is from start point in $L^c_{n+1,n+3}$. As shown in Fig .
 
 For case (a), we need $v_{1,n}$ or $v_{m,n}$ to connect $L$ and case (b) is similar with (a). For case (c), we need corresponding vertexes in $G^r_n$ to dominate uncovered vertexes in $G^r_{n+1}$ and case (d) is the same.
 
-However, case (b) and case (d) can not guarantee connectivity of $L$ for further extends. Under case (b), $L$ do not reach $G^r_{n+3}$ which is still a $m+2 3-period extend$. Under case (d), except for standard extend row, to extend 3 columns further, $L$ will need two more extra vertexes to connect. Therefore, these 2 cases can only exist in the last 3-period.
+However, case (b) and case (d) can not guarantee connectivity of $L$ for further extends. Under case (b), $L$ do not reach $G^r_{n+3}$ which is still a $m+2 \; 3-period \; extend$. Under case (d), except for standard extend row, to extend 3 columns further, $L$ will need two more extra vertexes to connect. Therefore, these 2 cases can only exist in the last 3-period.
 
-Under case (a), since $v_{m-1,n+3} \in L$, to extend 3 rows on right, $L$ will add $v_{m,n+3}$ to reach condition for case (b) which is a $m+1 3-period extend$. But it will make case (a) as a $m+2 3-period extend$. Otherwise, holding the $m+1 3-period extend$ for this period, we will have following 2 cases. To reach $v_{m, n+6}$, we must reach $v_{m,n+5}$ or $v_{m-1,n+3}$ which will add extra vertexes to take a 'detour'. Then, we will need at least $m+3$ vertexes to dominate this period.
+Under case (a), since $v_{m-1,n+3} \in L$, to extend 3 rows on right, $L$ will add $v_{m,n+3}$ to reach condition for case (b) which is a $m+1 \; 3-period \; extend$. But it will make case (a) as a $m+2 \; 3-period \; extend$. Otherwise, holding the $m+1 \; 3-period \; extend$ for this period, we will have following 2 cases. To reach $v_{m, n+6}$, we must reach $v_{m,n+5}$ or $v_{m-1,n+3}$ which will add extra vertexes to take a 'detour'. Then, we will need at least $m+3$ vertexes to dominate this period.
 
 Under case (c), we will have similar result. Consider previous period of $L$. Since $G^r_{n+1}$ should be dominated by corresponding vertexes in $G^r_n$ and due to $3-period$, $v_{1,n-1}$ should be dominated by $G^r_{n-2}$. Therefore, there are $2m$ vertexes in previous period. So there are at most one case (c) in $L$.
 
-Therefore, we have at most one case (c) and at most one case (b) or (d).
+Therefore, we have at most one case (c) and at most one case (b) or (d). We could also combine $standard extend row$ with these structures to reach $m+1 \; 3-period \; extend$.
 
 \textbf{Extend from middle}:
-Except for standard extend row, there are only one $s 3-period extend$ case where $s<m+2$ which is in Theorem. When $n>1$, it could bring $m 3-period extend$. But this can only occur once.
+Obviously, we could use pure $standard extend row$ extend from middle or combine with structure above.
+
+Except for pure $standard extend row$, there is still one structure in Theorem. When $n>1$ and $m \equiv 1 \pmod 3$, it could bring $m \; 3-period \; extend$ with $standard extend row$. And when $m \equiv 2 \pmod 3$, it could bring $m+1 \; 3-period \; extend$ with $standard extend row$.But these two cases can only occur once.
 
 \textbf{Rotate direction}:
-Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $m+1 3-period extend$. But similarly, this trick could only exist once for the same $m$.
+Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $m+1 \; 3-period \; extend$. But similarly, this trick could only exist once for the same $m$.
 
-Therefore, there are only finite $m+1 3-period extend$ in $L$.
+Therefore, there are only several cases for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$. And we will show them below.
 
+\textbf{m \; 3-period \; extend}:
+There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $standard extend row$ could be a $m \; 3-period \; extend$. When $n \equiv 1$, like($L_{10,4}$) could only exist once. When $m \equiv 2$ and $n \equiv 1$, like($L_{11,4}$) could only exist once also.
+
+\textbf{m+1 \; 3-period \; extend}:
+In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 \end{proof}
 
-According to Theorem above, we could find out that there are only several cases for $m 3-period extend$ and $m+1 3-period extend$, we will show them below.
 
-\textbf{m 3-period extend}:
-There are only two cases for $m 3-period extend$. When $m \equiv 0$, $standard extend row$ could be a $m 3-period extend$. When $n \equiv 1$, like($L_{10,4}$) could only exist once. When $m \equiv 2$ and $n \equiv 1$, like($L_{11,4}$) could only exist once also.
 
-\textbf{m+1 3-period extend}:
-In general, We have at most one case (c) and at most one case (b) or (d). We could also use a $m 3-period extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 3-period extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 3-period extend}.
+
 
 
 We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
@@ -426,11 +430,11 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 \end{pro}
 
 \begin{proof}
-When $m \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, standard extend row could reach $m 3-period extend$ and $m+1 3-period extend$ respectively which is better than other structure.
+When $m \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, standard extend row could reach $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$ respectively which is better than other structure.
 
-When $n=1$, $\gamma_l{L_{m,1}} = m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ dominating vertexes and $m-2-\lceil \frac{m}{3} \rceil$ connecting vertexes which can be used to connect standard extend rows. As shown in . Further, when $m>2$, the structure in could bring a $m 3-period extend$ when $m \equiv 2 \pmod 3$.
+When $n=1$, $\gamma_l{L_{m,1}} = m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ dominating vertexes and $m-2-\lceil \frac{m}{3} \rceil$ connecting vertexes which can be used to connect standard extend rows. As shown in . Further, when $m>2$, the structure in could bring a $m \; 3-period \; extend$ when $m \equiv 2 \pmod 3$.
 
-Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m=11$. And for discuss above, when $a>2$ and $n=1$, there is a $m 3-period extend$ for $L_{m,n}$. Therefore due to Theorem they could achieve optimal solutions.
+Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m=11$. And for discuss above, when $a>2$ and $n=1$, there is a $m \; 3-period \; extend$ for $L_{m,n}$. Therefore due to Theorem they could achieve optimal solutions.
 
 Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$,
 \begin{equation*}
@@ -488,13 +492,13 @@ Besides, the results have a same structure.
 \begin{proof}
 Since we use similar proof methods for 3 cases, we only prove $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$. We will use reduction in $a$.
 
-When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig ... Since $n \equiv 2 \pmod 3$, we could use $m+1 3-period extend$ when $n \geq 11$.
+When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig ... Since $n \equiv 2 \pmod 3$, we could use $m+1 \; 3-period \; extend$ when $n \geq 11$.
 
 Assume we have prove the case when $a \leq k$, we consider the case when $a=k+1$. Since we could extend three rows from $a=k$, we could consider the structure of $L$ in $L_{m,n}$. There are also two structures in $L_{m,n}$. We consider critical point between $3ab+4a-2$ and $3ab+3a+2b-1$ or $3ab+3a+2b-2$.
 
-When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 3-period extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+4a-2$, and we could only have a $n+2 3-period extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5 = 3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m 3-period extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
+When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 \; 3-period \; extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+4a-2$, and we could only have a $n+2 \; 3-period \; extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5 = 3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m \; 3-period \; extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
 
-We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we could use $m+2 3-period extend$ on $L_{3k, 3k-3}$ to get the optimal result on $L_{3k,3k}$. Similarly, we could use similar approach when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.
+We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we could use $m+2 \; 3-period \; extend$ on $L_{3k, 3k-3}$ to get the optimal result on $L_{3k,3k}$. Similarly, we could use similar approach when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.
 
 \end{proof}
 
@@ -513,19 +517,148 @@ When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, we hav
 \end{pro}
 
 \begin{proof}
-Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $m+1 3-period extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Tail now, $L_{4,10}$ is a $m 3-period extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem. When $b \geq 4$, we could also get $m 3-period extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1}) = 6b$.
+Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $m+1 \; 3-period \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Tail now, $L_{4,10}$ is a $m \; 3-period \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem. When $b \geq 4$, we could also get $m \; 3-period \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1}) = 6b$.
 
-When $a=2$ and $b=2$, we could use a $m+1 3-period extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7}) = 21$
+When $a=2$ and $b=2$, we could use a $m+1 \; 3-period \; extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7}) = 21$
 
-When $a \geq 2$, we know that case (b), case (d) and structure ..could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1,3b+1})=3ab+3a+3b-3$ which is $a-1$ times $m+2 3-period extend$ from $L_{4,3b+1}$.
+When $a \geq 2$, we know that case (b), case (d) and structure ..could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1,3b+1})=3ab+3a+3b-3$ which is $a-1$ times $m+2 \; 3-period \; extend$ from $L_{4,3b+1}$.
 
-Therefore, when $a+b \leq 4$, we could use a $m+1 3-period extend$ for each add one on $a$ or $b$ on the basis of $L_{4,4}$.
+Therefore, when $a+b \leq 4$, we could use a $m+1 \; 3-period \; extend$ for each add one on $a$ or $b$ on the basis of $L_{4,4}$.
 
 \end{proof}
+
 
 % 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
 
+\begin{algorithm}[htb]
+\caption{Trajectory planning for UAV in grid}
+\label{alg:Framwork}
+\begin{algorithmic}[1]
+\Require
+The graph of trajectory planning, $L_{m,n}$;
+The length of grid, $m$;
+The width of gird, $n$;
+\Ensure
+The set of two-dimensional coordinate of COL in trajectory, $V_C$;
+\label{code:fram:judgemod}
+\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
+\State swap($m$, $n$);
+\EndIf
+
+\label{code:fram:calculateab}
+\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$;
+
+\label{code:fram:calculate}
+\If{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_C$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$
+        \EndIf
+    \EndFor
+    
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \If{$a > 2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$, $v_{10,n}$ into $V_C$;
+
+        \For($i=2$ to $n$)
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+        \EndFor
+        
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_C$;
+            \EndFor
+        \EndFor
+        
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$
+            \EndIf
+        \EndFor
+        
+    \Else
+        \State put $v_{3, n}$ into $V_C$
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_C$;
+        \EndFor
+
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+1, i}$ into $V_C$;
+        \EndFor
+        
+        \EndFor
+        
+            \For{$i=1$ to $a-1$}
+                \If{$i \equiv 1\pmod 2$}
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \Else
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$
+                \EndIf
+                \EndIf
+            \EndFor
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
+\If{$m$ > $n$}
+\State swap($m$, $n$);
+\EndIf
+\For{$i=1$ to $n$}
+\For{$j=0$ to $a-1$}
+\State put $v_{3*j+2, i}$ into $V_C$;
+\EndFor
+\EndFor
+\For{$i=1$ to $a-1$}
+\If{$i \equiv 1\pmod 2$}
+\State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+\Else
+\State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$
+\EndIf
+\EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
+\If{$m$ > $n$}
+\State swap($m$, $n$);
+\EndIf
+\For{$i=1$ to $n$}
+\For{$j=0$ to $a-1$}
+\State put $v_{3*j+2, i}$ into $V_C$;
+\EndFor
+\EndFor
+\For{$i=1$ to $a-1$}
+\If{$i \equiv 1\pmod 2$}
+\State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+\Else
+\State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$
+\EndIf
+\EndFor
+
+\EndIf
+
+\label{code:fram:add}
+\If{$(Jaro(r_i,r_m) \ge \theta_r)\wedge (Jaro(r_i,r_m)\ge r^{maxSim})$}
+\State replace $r^{maxSim}$ with $r_m$\;
+\ElsIf{$other condition$}
+\State replace $r^{maxSim}$ with $r_m$\;
+\Else
+\State replace $r^{maxSim}$ with $r_m$\;
+\EndIf
+\State Classifying samples in $U_n-T_n$ by $E_n$;
+\label{code:fram:classify}
+\State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
+\label{code:fram:select} \\
+\Return $E_n$;
+\end{algorithmic}
+\end{algorithm}
 
 \section{Evaluation}\label{sec:experiment}
 % 仿真
