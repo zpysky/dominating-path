@@ -172,14 +172,15 @@ Similar to traditional sensor networks and mobile base station, we consider data
 % problem formulation —— spanning tree/route problem?
 % 最优算法
 % 多个场景下的实验验证、仿真。
-In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs) and select critical observation locations (COLs) from OLs to cover measurement space, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
+In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs), select critical observation locations (COLs) from OLs to cover measurement space and find OL-path that contains all of COLs, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
 \begin{enumerate}
-\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set (A dominating set in a graph $G$ is a subset of vertices S such that
-    every vertex in $V(G)$ is a neighbor of some vertex of $S$.) problem in grid, which has been studied for a long time.
-\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last) are distinct. Briefly, it is a dominating set as well as a path.) problem in grid, which has not been solved before. In this paper, we solved this problem in grid and give an expand in three-dimensional space.
+%\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set (A dominating set in a graph $G$ is a subset of vertices S such that
+%    every vertex in $V(G)$ is a neighbor of some vertex of $S$.) problem in grid, which has been studied for a long time.
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network and take all OLs in OL-path as COLs. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last are distinct. Briefly, it is a dominating set as well as a path.) problem in grid, which has not been solved before.) In this paper, we solved this problem in grid which could extend to three-dimensional space.
+\item \emph{Consider total time consuming}: Under this condition, we consider total time consuming which is the sum of flight time and measurement time. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, since flight time usually take up most of time consuming, we would find the shortest OL-path first which is the same as last one and select least OLs as COLs from chosen path to cover it. Then, we could get both trajectory for UAV and COLs on trajectory for measurement.
 \end{enumerate}
 
-Because of algorithms we use is based on graph theory, We could solve two problems above optimally in O(1)time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time we use is less than ordinary approach.
+Because of algorithms we use is based on graph theory, We could get the number of COL in O(1) time and draw the trajectory route in O(n) time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time we use is less than ordinary approach.
 
 
 \section{Related Work}~\label{sec:related}
@@ -194,11 +195,14 @@ Because of algorithms we use is based on graph theory, We could solve two proble
 % 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
 % 例如，3d 空间怎么分，怎么定义一些变量
 % 然后，problem formulation，得到一个problem，就是我们需要求解的目标
-In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate the COL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively. In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem. In the second scene, we only consider flight time which transform problem into the minimum dominating path problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
+In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate the COL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively.
+%In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem.
+% TODO: add formulation
+In the first scene, we only consider flight time which transform problem into the minimum dominating path problem. In the second scene, we consider total time consuming which is the sum of flight time and measurement time. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
 % 形成3D OL网络，并且定义OL的Level
 \subsection{Network establishment}
-\textbf{Dividing a 3D space into cuboids}: We assume sensing object is largely same in fixed area for every position in 3D space. So we divide a 3D space into cuboids with a meters long, b meters wide and h meters high. We define the center point of cuboid $i$ as its observation location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
+\textbf{Dividing a 3D space into cuboids}: We assume sensing object is largely same in fixed area for every position in 3D space. So we divide a 3D space into cuboids with $a$ meters long, $b$ meters wide and $h$ meters high. We define the center point of cuboid $i$ as its observation location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
 \[
 OL_i=(x_i, y_i, z_i),
 \]
@@ -206,10 +210,12 @@ where $x_i, y_i, z_i$ are 3D coordinates of $OL_i$.
 
 \textbf{3D network of OLs}: The divided cuboids of a 3D space and the corresponding OLs can form a 3D network graph $G=(V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cuboid $i$ is the same as cuboid $j$ in two coordinates and adjacent to cuboid $j$ on the third dimension. Therefore, the 3D network of OLs forms a three-dimensional grid which has fine topology structure.
 
-\textbf{Levels of OLs}: Obviously, cuboids in grid could be classified by height level. We call the ground level as level $1$ at height of $\frac{h}{2} m$ , one level above as level $2$ at height of $\frac{3l}{2} m$ .
+\textbf{Levels of OLs}: Obviously, cuboids in grid could be classified by height level. We call the ground level as level $1$ at height of $\frac{h}{2} m$ , one level above as level $2$ at height of $\frac{3h}{2} m$.
+
+\textbf{COL}: Obviously, if we take all of $OLs$ in the network into consideration, it would be too time consuming. Therefore, we would select critical observation locations (COL) from $OLs$ to cover whole OL network.
 
 \subsection{Time consuming}
-For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs selected from OLs. We denote $V_C$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$.
+For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs selected from OLs and trajectory for UAV. We denote $V_C \subseteq V$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$. And we also denote $V_P \subseteq V$ as the trajectory of UAV which forms a path in $G$ and we have $V_C \subseteq V_P$ since trajectory should contains all vertexes in $V_C$.
 
 % TODO: 公式
 \textbf{Measurement time}: Measurement time $T_M$ is total time spend on mobile sensing. From empirical view, we could assume that measurement time is same for each OL. Therefore, measurement time is proportion to the number of COLs we select. The function is written as
@@ -220,9 +226,10 @@ where $t_M$ is the measurement time for each OL.
 
 \textbf{Flight time}: Flight time $T_F$ is total time spend on UAV's flight. Since we formulate 3D space into grid, we use Hamiltonian distance to characterize distance between OLs. So the flight time is proportion to the length of trajectory. The function is written as
 \[
-T_F = t_F \sum_{i=1}^{|V_C|-1} d_H(v_{C_i}, v_{C_{i+1}}),
+% T_F = t_F \sum_{i=1}^{|V_C|-1} d_H(v_{C_i}, v_{C_{i+1}}),
+T_F = t_F |V_P|,
 \]
-where $t_F$ is the flight time for unit length of coordinate system and $d_H$ denote Hamiltonian distance between two vertexes.
+where $t_F$ is the flight time for unit length of coordinate system.
 
 Therefore total time consuming $T$ is
 \[
@@ -254,27 +261,43 @@ Therefore, instead of 3D grid, we formulate the problem into constraint set cove
 
 \textbf{Two special cases of time consuming}:
 % TODO: 公式
-In section , we have discuss the components of total time consuming. But in actual scene, we usually consider only one part of it. Therefore, in this paper we will consider following two scenarios.
+In section , we have discuss the components of total time consuming. But in actual scene, we may consider flight time more since measurement time always takes a small part of total time consuming and there is a positive correlation between time consumption and trajectory length. Therefore, in this paper we will consider following two scenarios.
 
 % TODO: add section below and 符号表示及公式
 \begin{enumerate}
-  \item \emph{Consider measurement time only}: In this scenery, we assume flight time negligible and consider measurement time only. As we show in , measurement time is proportion to the number of COLs. So we should select least OLs as COLs to cover OL-network. We could formulate this problem as a minimum dominating set problem in grid.
-  \item \emph{Consider flight time only}: In this scenery, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to the distance between adjacent COLs. Therefore, we could regardless of COL that we take in measurement and select every OL in the path between adjacent COLs where flight time is proportion to the length of UAV's trajectory. So we should find the shortest OL-path in grid which could cover the whole OL-network and select OLs in path as COLs. We could formulate this problem as a minimum dominating path problem in grid.
+%  \item \emph{Consider measurement time only}: In this scenery, we assume flight time negligible and consider measurement time only. As we show in , measurement time is proportion to the number of COLs. So we should select least OLs as COLs to cover OL-network. We could formulate this problem as a minimum dominating set problem in grid.
+  \item \emph{Consider flight time only}: In this scenery, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to length of trajectory. Therefore, we could regardless of COL that we take in measurement and select every OL in trajectory as COL. So we should find the shortest OL-path in grid which could cover the whole OL-network and select OLs in path as COLs. We could formulate this problem as a minimum dominating path problem in grid.
+  \item \emph{Consider total time consuming}: In this scenery, we consider both measurement time and flight time. Since measurement time is proportion to the number of COLs, if we consider measurement time only, we should select least OLs in G as COLs to cover OL-network. However, it contradicts with the minimality of flight time. Since in most of cases flight time would account for majority part of the whole time consuming, we would give priority to flight time. Therefore, we will find the shortest OL-path first and select least OLs as COLs in path. We could formulate this problem as a combination of a minimum dominating path problem and a constraint minimum dominating set problem in grid.
 \end{enumerate}
 
-\begin{problem}
-Given a 2D network graph $G=L_{m,n}$ and $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $S=\{C(v_0), C(v_1), ..., C(v_{|V|-1}) \}$ be the set of coverage sets of all OLs in V, we want to find a minimum path $P_C \subseteq V$, which contains COLs in V for covering all OLs in network graph.
+Therefore, for two scenarios above, we would give definition to these two problems respectively.
+
+\begin{problem}[Consider flight time only]
+Given a 3D measurement space, we could divide it into several 2D grid network graphs $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
 \[
 \begin{aligned}
 & \text{minimize}
-& & \;|P_C| \\
+& & \;|V_P| \\
 & \text{subject to}
-& & \bigcup_{v \in P_C} C(v) = V\\
-&&& P_c \; is \;a \; path.
+& & \bigcup_{v \in V_P} C(v) = V,\\
+&&& \;V_P \; is \;a \; path.
 \end{aligned}
 \]
+\end{problem}
 
-
+\begin{problem}[Consider total time consuming]
+Given a 3D measurement space, we could divide it into several 2D grid network graphs $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is the sum of flight time and measurement time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, we want to find minimum path $V_P \subseteq V$ which covers all OLs in grid and select COLs from $V_P$ as dominating set $V_C \subseteq V_P$.
+\[
+\begin{aligned}
+& \text{minimize}
+& & \;|V_P|,\;|V_C| \\
+& \text{subject to}
+& & \bigcup_{v \in V_P} C(v) = V,\\
+&&& \bigcup_{v \in V_C} C(v) = V,\\
+&&& \;V_P \; is \;a \; path,\\
+&&& \;V_C \subseteq V_P.
+\end{aligned}
+\]
 \end{problem}
 
 Therefore, we will discuss these two problems above in the next section and give corresponding certifications.
@@ -291,11 +314,8 @@ $\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a 
 % 相关证明
 \section{Proof}
 
-% 引用前人论文
-\subsection{Minimum dominating set}
-
 % 证明现有结果
-\subsection{Minimum dominating path}
+\subsection{Consider flight time only}
 
 \begin{lem}
 Let $n>3$, $m>0$ be integers, and $L$ is a dominating path in $G=L_{m,n}$. Then $|L \bigcap V(G^c_{n-2,n})| \geq m$. Further, if $3 \nmid m$, then $|L \bigcap V(G^c_{n-2,n})| \geq m+1$.
@@ -425,12 +445,9 @@ There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $stan
 In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 \end{proof}
 
-
-
-
-
-
 We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
+
+% TODO: add 1 and 2 and 3
 
 \begin{pro}
 When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
@@ -544,12 +561,75 @@ Therefore, when $a+b \leq 4$, we could use a $m+1 \; 3-period \; extend$ for eac
 
 \end{proof}
 
+\subsection{Consider total time consuming}
+From last subsection, we know how to find the minimum dominating path in $L_{m,n}$. Therefore, we just have to find the set of COLs $V_C$ in dominating path $L$. However, since we have already discussed dominating vertexes in last subsection, we only need to add all dominating vertexes into $V_C$. In general, we only have 1 case for COL which is $standard extend row$ and in this case, we just take the entire row into $V_C$ and add
 
+Therefore, for the 6 different cases, we have the following result.
+
+\begin{pro}
+When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+3ab+a+3b+1       &      & {a \leq 2}\\
+3ab+a+3b+2       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+\end{pro}
+
+\begin{pro}
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
+$|V_C|=\min (3ab+a, 3ab+b)$.
+When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+2a, 3ab+3a)       &      & {b \leq 2}\\
+min (3ab+2a, 3ab+3a+1)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+2a+3b+2, 3ab+3a+2b+2)       &      & {a \leq 2, b \leq 2}\\
+min (3ab+2a+3b+3, 3ab+3a+2b+2)       &      & {a>2, b \leq 2}\\
+min (3ab+2a+3b+2, 3ab+3a+2b+3)       &      & {a \leq 2, b>2}\\
+min (3ab+2a+3b+3, 3ab+3a+2b+3)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+Besides, the results have a same structure.
+\end{pro}
+
+\begin{pro}
+When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a<b$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+7        &      & {a=1 and b=1}\\
+10       &      & {a=1 and b=2}\\
+17       &      & {a=2 and b=2}\\
+min (3ab+3a+b-1, 3ab+a+3b-1)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+\end{pro}
 % 相关算法
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
 
 \begin{algorithm}[htb]
-\caption{Trajectory planning for UAV in grid}
+\caption{Trajectory planning for UAV in grid when consider flight time only}
 \label{alg:Framwork}
 \begin{algorithmic}[1]
 \Require
@@ -557,7 +637,7 @@ The graph of trajectory planning, $L_{m,n}$;
 The length of grid, $m$;
 The width of gird, $n$;
 \Ensure
-The set of two-dimensional coordinate of COL in trajectory, $V_C$;
+The trajectory of two-dimensional coordinate of grid, $V_P$;
 \label{code:fram:judgemod}
 \If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
 \State swap($m$, $n$);
@@ -574,80 +654,80 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
 
     \If{$m=1$}
         \If{$n<3$}
-            \State put $v_{1,1}$ into $V_C$;
+            \State put $v_{1,1}$ into $V_P$;
         \Else
             \For{$i=2$ to $n-1$}
-                \State put $v_{1, i}$ into $V_C$;
+                \State put $v_{1, i}$ into $V_P$;
             \EndFor
         \EndIf
 
     \ElsIf{$m=2$}
         \If{$n=3$}
-            \State put $v_{1,2}$, $v_{2,2}$ into $V_C$;
+            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
         \Else
             \For{$i=1$ to $n$}
-                \State put $v_{1, i}$ into $V_C$;
+                \State put $v_{1, i}$ into $V_P$;
             \EndFor
         \EndIf
 
     \Else
         \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_C$;
+            \State put $v_{2, i}$ into $V_P$;
         \EndFor
     \EndIf
 
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
+            \State put $v_{3*j+2, i}$ into $V_P$;
         \EndFor
     \EndFor
 
     \For{$i=1$ to $a-1$}
         \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
         \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
         \EndIf
     \EndFor
 
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
-        \State put $v_{3,n}$ into $V_C$;
+        \State put $v_{3,n}$ into $V_P$;
 
         \For{$i=1$ to $n$}
-            \State put $v_{2,i}$ into $V_C$;
+            \State put $v_{2,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \If{$a = 2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
     \EndIf
 
@@ -658,15 +738,15 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
 
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
+            \State put $v_{3*j+2, i}$ into $V_P$;
         \EndFor
     \EndFor
 
     \For{$i=1$ to $a-1$}
         \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
         \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
         \EndIf
     \EndFor
 
@@ -676,41 +756,41 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \EndIf
 
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
-        \State put $v_{3, n}$ into $V_C$;
+        \State put $v_{3, n}$ into $V_P$;
 
         \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_C$;
+            \State put $v_{2, i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \If{$a=2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
     \EndIf
 
@@ -718,56 +798,56 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \If{$3ab+4a-2 < 3ab+3a+2b-2$}
         \For{$i=1$ to $n$}
             \For{$j=0$ to $a-1$}
-                \State put $v_{3*j+2, i}$ into $V_C$;
+                \State put $v_{3*j+2, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=1$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
         \State swap($m$, $n$), swap($a$, $b$)
         \If{$a>2$}
-            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
             \For{$i=2$ to $n$}
-                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
             \EndFor
 
             \For{$i=1$ to $n$}
                 \For{$j=3$ to $a$}
-                    \State put $v_{3*j+1, i}$ into $V_C$;
+                    \State put $v_{3*j+1, i}$ into $V_P$;
                 \EndFor
             \EndFor
 
             \For{$i=3$ to $a-1$}
                 \If{$i \equiv 1\pmod 2$}
-                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
                 \Else
-                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
                 \EndIf
             \EndFor
 
         \Else
-            \State put $v_{3, n}$ into $V_C$;
+            \State put $v_{3, n}$ into $V_P$;
 
             \For{$i=1$ to $n$}
-                \State put $v_{2, i}$ into $V_C$;
+                \State put $v_{2, i}$ into $V_P$;
             \EndFor
 
             \For{$i=1$ to $n$}
                 \For{$j=1$ to $a-1$}
-                    \State put $v_{3*j+1, i}$ into $V_C$;
+                    \State put $v_{3*j+1, i}$ into $V_P$;
                 \EndFor
             \EndFor
 
             \If{$a = 2$}
-                \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
             \EndIf
         \EndIf
 
@@ -779,51 +859,309 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \EndIf
 
     \If{$a=1$ and $b=1$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
 
     \ElsIf{$a=2$ and $b=1$}
-        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
 
     \ElsIf{$a=2$ and $b=2$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
 
     \Else
-        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j, i}$ into $V_C$;
+                \State put $v_{3*j, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_C$;
+                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_C$;
+                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \EndIf
 \EndIf
 
-\label{code:fram:add}
-\If{$(Jaro(r_i,r_m) \ge \theta_r)\wedge (Jaro(r_i,r_m)\ge r^{maxSim})$}
-\State replace $r^{maxSim}$ with $r_m$\;
-\ElsIf{$other condition$}
-\State replace $r^{maxSim}$ with $r_m$\;
-\Else
-\State replace $r^{maxSim}$ with $r_m$\;
+\Return $V_P$;
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[htb]
+\caption{Trajectory planning for UAV in grid when consider total time consuming}
+\label{alg:Framwork}
+\begin{algorithmic}[1]
+\Require
+The graph of trajectory planning, $L_{m,n}$;
+The length of grid, $m$;
+The width of gird, $n$;
+\Ensure
+The trajectory of two-dimensional coordinate of grid, $V_P$;
+The COL set of two-dimensional coordinate of grid, $V_C$;
+\label{code:fram:judgemod}
+\State get $V_P$ from algorithm 1.
+
+\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
+\State swap($m$, $n$);
 \EndIf
-\State Classifying samples in $U_n-T_n$ by $E_n$;
-\label{code:fram:classify}
-\State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
-\label{code:fram:select} \\
-\Return $E_n$;
+
+\label{code:fram:calculateab}
+\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{n}{3} \rfloor$;
+
+\label{code:fram:calculate}
+\If{$m<4$ or $n<4$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$m=1$}
+        \If{$n<3$}
+            \State put $v_{1,1}$ into $V_P$;
+        \Else
+            \For{$i=2$ to $n-1$}
+                \State put $v_{1, i}$ into $V_P$;
+            \EndFor
+        \EndIf
+
+    \ElsIf{$m=2$}
+        \If{$n=3$}
+            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
+        \Else
+            \For{$i=1$ to $n$}
+                \State put $v_{1, i}$ into $V_P$;
+            \EndFor
+        \EndIf
+
+    \Else
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_P$;
+        \EndFor
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_P$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+        \EndIf
+    \EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State put $v_{3,n}$ into $V_P$;
+
+        \For{$i=1$ to $n$}
+            \State put $v_{2,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \If{$a = 2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_P$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+        \EndIf
+    \EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State put $v_{3, n}$ into $V_P$;
+
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \If{$a=2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$3ab+4a-2 < 3ab+3a+2b-2$}
+        \For{$i=1$ to $n$}
+            \For{$j=0$ to $a-1$}
+                \State put $v_{3*j+2, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=1$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State swap($m$, $n$), swap($a$, $b$)
+        \If{$a>2$}
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+            \For{$i=2$ to $n$}
+                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=3$ to $a$}
+                    \State put $v_{3*j+1, i}$ into $V_P$;
+                \EndFor
+            \EndFor
+
+            \For{$i=3$ to $a-1$}
+                \If{$i \equiv 1\pmod 2$}
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+                \Else
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+                \EndIf
+            \EndFor
+
+        \Else
+            \State put $v_{3, n}$ into $V_P$;
+
+            \For{$i=1$ to $n$}
+                \State put $v_{2, i}$ into $V_P$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=1$ to $a-1$}
+                    \State put $v_{3*j+1, i}$ into $V_P$;
+                \EndFor
+            \EndFor
+
+            \If{$a = 2$}
+                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+            \EndIf
+        \EndIf
+
+    \EndIf
+
+\Else
+    \If{$m<n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$a=1$ and $b=1$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
+
+    \ElsIf{$a=2$ and $b=1$}
+        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
+
+    \ElsIf{$a=2$ and $b=2$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
+
+    \Else
+        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \EndIf
+\EndIf
+
+\Return $V_P$;
 \end{algorithmic}
 \end{algorithm}
 
