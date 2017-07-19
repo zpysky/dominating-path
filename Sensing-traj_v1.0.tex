@@ -117,6 +117,8 @@
 
 \newtheorem{pro}[proposition]{Proposition}
 
+\newtheorem{problem}{Problem}
+
 \DeclareMathOperator*{\argmax}{arg\,max}
 
 
@@ -259,6 +261,21 @@ In section , we have discuss the components of total time consuming. But in actu
   \item \emph{Consider measurement time only}: In this scenery, we assume flight time negligible and consider measurement time only. As we show in , measurement time is proportion to the number of COLs. So we should select least OLs as COLs to cover OL-network. We could formulate this problem as a minimum dominating set problem in grid.
   \item \emph{Consider flight time only}: In this scenery, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to the distance between adjacent COLs. Therefore, we could regardless of COL that we take in measurement and select every OL in the path between adjacent COLs where flight time is proportion to the length of UAV's trajectory. So we should find the shortest OL-path in grid which could cover the whole OL-network and select OLs in path as COLs. We could formulate this problem as a minimum dominating path problem in grid.
 \end{enumerate}
+
+\begin{problem}
+Given a 2D network graph $G=L_{m,n}$ and $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $S=\{C(v_0), C(v_1), ..., C(v_{|V|-1}) \}$ be the set of coverage sets of all OLs in V, we want to find a minimum path $P_C \subseteq V$, which contains COLs in V for covering all OLs in network graph.
+\[
+\begin{aligned}
+& \text{minimize}
+& & \;|P_C| \\
+& \text{subject to}
+& & \bigcup_{v \in P_C} C(v) = V\\
+&&& P_c \; is \;a \; path.
+\end{aligned}
+\]
+
+
+\end{problem}
 
 Therefore, we will discuss these two problems above in the next section and give corresponding certifications.
 
@@ -554,16 +571,16 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \If{$m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \If{$m=1$}
         \If{$n<3$}
             \State put $v_{1,1}$ into $V_C$;
-        \Else 
+        \Else
             \For{$i=2$ to $n-1$}
                 \State put $v_{1, i}$ into $V_C$;
             \EndFor
         \EndIf
-        
+
     \ElsIf{$m=2$}
         \If{$n=3$}
             \State put $v_{1,2}$, $v_{2,2}$ into $V_C$;
@@ -578,7 +595,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
             \State put $v_{2, i}$ into $V_C$;
         \EndFor
     \EndIf
-    
+
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
@@ -593,7 +610,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
             \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
         \EndIf
     \EndFor
-    
+
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
@@ -601,13 +618,13 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
         \For{$i=2$ to $n$}
             \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
         \EndFor
-        
+
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
                 \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
-        
+
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
                 \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
@@ -615,20 +632,20 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
                 \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
             \EndIf
         \EndFor
-        
+
     \Else
         \State put $v_{3,n}$ into $V_C$;
-        
+
         \For{$i=1$ to $n$}
             \State put $v_{2,i}$ into $V_C$;
         \EndFor
-        
+
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
                 \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
-        
+
         \If{$a = 2$}
             \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
         \EndIf
@@ -638,13 +655,13 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \If{$m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
             \State put $v_{3*j+2, i}$ into $V_C$;
         \EndFor
     \EndFor
-    
+
     \For{$i=1$ to $a-1$}
         \If{$i \equiv 1\pmod 2$}
             \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
@@ -657,7 +674,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \If{$m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
 
@@ -678,7 +695,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
                 \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
             \EndIf
         \EndFor
-        
+
     \Else
         \State put $v_{3, n}$ into $V_C$;
 
@@ -712,7 +729,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
                 \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
             \EndIf
         \EndFor
-        
+
     \Else
         \State swap($m$, $n$), swap($a$, $b$)
         \If{$a>2$}
@@ -753,26 +770,26 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
                 \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
             \EndIf
         \EndIf
-        
+
     \EndIf
 
 \Else
     \If{$m<n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \If{$a=1$ and $b=1$}
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
-        
+
     \ElsIf{$a=2$ and $b=1$}
         \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_C$;
-    
+
     \ElsIf{$a=2$ and $b=2$}
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
-    
+
     \Else
         \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_C$;
-        
+
         \For{$i=2$ to $n$}
             \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_C$;
         \EndFor
@@ -790,7 +807,7 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
                 \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_C$;
             \EndIf
         \EndFor
-    
+
     \EndIf
 \EndIf
 
