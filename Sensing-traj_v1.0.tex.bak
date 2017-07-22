@@ -270,7 +270,7 @@ In section , we have discuss the components of total time consuming. But in actu
   \item \emph{Consider total time consuming}: In this scenery, we consider both measurement time and flight time. Since measurement time is proportion to the number of COLs, if we consider measurement time only, we should select least OLs in G as COLs to cover OL-network. However, it contradicts with the minimality of flight time. Since in most of cases flight time would account for majority part of the whole time consuming, we would give priority to flight time. Therefore, we will find the shortest OL-path first and select least OLs as COLs in path. We could formulate this problem as a combination of a minimum dominating path problem and a constraint minimum dominating set problem in grid.
 \end{enumerate}
 
-Therefore, for two scenarios above, we would give definition to these two problems respectively. 
+Therefore, for two scenarios above, we would give definition to these two problems respectively.
 
 \begin{problem}[Consider flight time only]
 Given a 3D measurement space, we could divide it into several 2D grid network graphs $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
@@ -445,12 +445,9 @@ There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $stan
 In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 \end{proof}
 
-
-
-
-
-
 We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
+
+% TODO: add 1 and 2 and 3
 
 \begin{pro}
 When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
@@ -459,8 +456,8 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 &\gamma_l(L_{m,n})\\
 &=\left\{
 \begin{array}{rcl}
-3ab+3a+3b       &      & {a \leq 2}\\
-3ab+3a+3b-1       &      & {otherwise}\\
+& 3ab+3a+3b       &      & {a \leq 2}\\
+& 3ab+3a+3b-1       &      & {otherwise}\\
 \end{array} \right.
 \end{aligned}
 \].
@@ -565,16 +562,74 @@ Therefore, when $a+b \leq 4$, we could use a $m+1 \; 3-period \; extend$ for eac
 \end{proof}
 
 \subsection{Consider total time consuming}
-From last subsection, we know how to find the minimum dominating path in $L_{m,n}$. Therefore, we just find the set of COLs $V_C$ in dominating path $L$.
+From last subsection, we know how to find the minimum dominating path in $L_{m,n}$. Therefore, we just have to find the set of COLs $V_C$ in dominating path $L$. However, since we have already discussed dominating vertexes in last subsection, we only need to add all dominating vertexes into $V_C$. In general, we only have 1 case for COL which is $standard extend row$ and in this case, we just take the entire row into $V_C$ and add
 
+Therefore, for the 6 different cases, we have the following result.
 
+\begin{pro}
+When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+3ab+a+3b+1       &      & {a \leq 2}\\
+3ab+a+3b+2       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+\end{pro}
 
+\begin{pro}
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
+$|V_C|=\min (3ab+a, 3ab+b)$.
+When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+2a, 3ab+3a)       &      & {b \leq 2}\\
+min (3ab+2a, 3ab+3a+1)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+2a+3b+2, 3ab+3a+2b+2)       &      & {a \leq 2, b \leq 2}\\
+min (3ab+2a+3b+3, 3ab+3a+2b+2)       &      & {a>2, b \leq 2}\\
+min (3ab+2a+3b+2, 3ab+3a+2b+3)       &      & {a \leq 2, b>2}\\
+min (3ab+2a+3b+3, 3ab+3a+2b+3)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+Besides, the results have a same structure.
+\end{pro}
 
+\begin{pro}
+When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a<b$, we have
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+7        &      & {a=1 and b=1}\\
+10       &      & {a=1 and b=2}\\
+17       &      & {a=2 and b=2}\\
+min (3ab+3a+b-1, 3ab+a+3b-1)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+\end{pro}
 % Ïà¹ØËã·¨
 \section{Optimal Trajectory Planning Algorithms}\label{sec:floating}
 
 \begin{algorithm}[htb]
-\caption{Trajectory planning for UAV in grid}
+\caption{Trajectory planning for UAV in grid when consider flight time only}
 \label{alg:Framwork}
 \begin{algorithmic}[1]
 \Require
@@ -582,7 +637,7 @@ The graph of trajectory planning, $L_{m,n}$;
 The length of grid, $m$;
 The width of gird, $n$;
 \Ensure
-The set of two-dimensional coordinate of COL in trajectory, $V_C$;
+The trajectory of two-dimensional coordinate of grid, $V_P$;
 \label{code:fram:judgemod}
 \If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
 \State swap($m$, $n$);
@@ -599,80 +654,80 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
 
     \If{$m=1$}
         \If{$n<3$}
-            \State put $v_{1,1}$ into $V_C$;
+            \State put $v_{1,1}$ into $V_P$;
         \Else
             \For{$i=2$ to $n-1$}
-                \State put $v_{1, i}$ into $V_C$;
+                \State put $v_{1, i}$ into $V_P$;
             \EndFor
         \EndIf
 
     \ElsIf{$m=2$}
         \If{$n=3$}
-            \State put $v_{1,2}$, $v_{2,2}$ into $V_C$;
+            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
         \Else
             \For{$i=1$ to $n$}
-                \State put $v_{1, i}$ into $V_C$;
+                \State put $v_{1, i}$ into $V_P$;
             \EndFor
         \EndIf
 
     \Else
         \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_C$;
+            \State put $v_{2, i}$ into $V_P$;
         \EndFor
     \EndIf
 
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
+            \State put $v_{3*j+2, i}$ into $V_P$;
         \EndFor
     \EndFor
 
     \For{$i=1$ to $a-1$}
         \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
         \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
         \EndIf
     \EndFor
 
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
-        \State put $v_{3,n}$ into $V_C$;
+        \State put $v_{3,n}$ into $V_P$;
 
         \For{$i=1$ to $n$}
-            \State put $v_{2,i}$ into $V_C$;
+            \State put $v_{2,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \If{$a = 2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
     \EndIf
 
@@ -683,15 +738,15 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
 
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
+            \State put $v_{3*j+2, i}$ into $V_P$;
         \EndFor
     \EndFor
 
     \For{$i=1$ to $a-1$}
         \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
         \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
         \EndIf
     \EndFor
 
@@ -701,41 +756,41 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \EndIf
 
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
-        \State put $v_{3, n}$ into $V_C$;
+        \State put $v_{3, n}$ into $V_P$;
 
         \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_C$;
+            \State put $v_{2, i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
+                \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \If{$a=2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
     \EndIf
 
@@ -743,56 +798,56 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \If{$3ab+4a-2 < 3ab+3a+2b-2$}
         \For{$i=1$ to $n$}
             \For{$j=0$ to $a-1$}
-                \State put $v_{3*j+2, i}$ into $V_C$;
+                \State put $v_{3*j+2, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=1$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_C$;
+                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_C$;
+                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \Else
         \State swap($m$, $n$), swap($a$, $b$)
         \If{$a>2$}
-            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_C$;
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
             \For{$i=2$ to $n$}
-                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
             \EndFor
 
             \For{$i=1$ to $n$}
                 \For{$j=3$ to $a$}
-                    \State put $v_{3*j+1, i}$ into $V_C$;
+                    \State put $v_{3*j+1, i}$ into $V_P$;
                 \EndFor
             \EndFor
 
             \For{$i=3$ to $a-1$}
                 \If{$i \equiv 1\pmod 2$}
-                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_C$;
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
                 \Else
-                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_C$;
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
                 \EndIf
             \EndFor
 
         \Else
-            \State put $v_{3, n}$ into $V_C$;
+            \State put $v_{3, n}$ into $V_P$;
 
             \For{$i=1$ to $n$}
-                \State put $v_{2, i}$ into $V_C$;
+                \State put $v_{2, i}$ into $V_P$;
             \EndFor
 
             \For{$i=1$ to $n$}
                 \For{$j=1$ to $a-1$}
-                    \State put $v_{3*j+1, i}$ into $V_C$;
+                    \State put $v_{3*j+1, i}$ into $V_P$;
                 \EndFor
             \EndFor
 
             \If{$a = 2$}
-                \State put $v_{5,n}$, $v_{6,n}$ into $V_C$;
+                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
             \EndIf
         \EndIf
 
@@ -804,51 +859,309 @@ The set of two-dimensional coordinate of COL in trajectory, $V_C$;
     \EndIf
 
     \If{$a=1$ and $b=1$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
 
     \ElsIf{$a=2$ and $b=1$}
-        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
 
     \ElsIf{$a=2$ and $b=2$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
 
     \Else
-        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_C$;
+        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_C$;
+            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j, i}$ into $V_C$;
+                \State put $v_{3*j, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \For{$i=3$ to $a-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_C$;
+                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
             \Else
-                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_C$;
+                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
             \EndIf
         \EndFor
 
     \EndIf
 \EndIf
 
-\label{code:fram:add}
-\If{$(Jaro(r_i,r_m) \ge \theta_r)\wedge (Jaro(r_i,r_m)\ge r^{maxSim})$}
-\State replace $r^{maxSim}$ with $r_m$\;
-\ElsIf{$other condition$}
-\State replace $r^{maxSim}$ with $r_m$\;
-\Else
-\State replace $r^{maxSim}$ with $r_m$\;
+\Return $V_P$;
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[htb]
+\caption{Trajectory planning for UAV in grid when consider total time consuming}
+\label{alg:Framwork}
+\begin{algorithmic}[1]
+\Require
+The graph of trajectory planning, $L_{m,n}$;
+The length of grid, $m$;
+The width of gird, $n$;
+\Ensure
+The trajectory of two-dimensional coordinate of grid, $V_P$;
+The COL set of two-dimensional coordinate of grid, $V_C$;
+\label{code:fram:judgemod}
+\State get $V_P$ from algorithm 1.
+
+\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
+\State swap($m$, $n$);
 \EndIf
-\State Classifying samples in $U_n-T_n$ by $E_n$;
-\label{code:fram:classify}
-\State Deleting some weak classifiers in $E_n$ so as to keep the capacity of $E_n$;
-\label{code:fram:select} \\
-\Return $E_n$;
+
+\label{code:fram:calculateab}
+\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{n}{3} \rfloor$;
+
+\label{code:fram:calculate}
+\If{$m<4$ or $n<4$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$m=1$}
+        \If{$n<3$}
+            \State put $v_{1,1}$ into $V_P$;
+        \Else
+            \For{$i=2$ to $n-1$}
+                \State put $v_{1, i}$ into $V_P$;
+            \EndFor
+        \EndIf
+
+    \ElsIf{$m=2$}
+        \If{$n=3$}
+            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
+        \Else
+            \For{$i=1$ to $n$}
+                \State put $v_{1, i}$ into $V_P$;
+            \EndFor
+        \EndIf
+
+    \Else
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_P$;
+        \EndFor
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_P$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+        \EndIf
+    \EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State put $v_{3,n}$ into $V_P$;
+
+        \For{$i=1$ to $n$}
+            \State put $v_{2,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \If{$a = 2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_P$;
+        \EndFor
+    \EndFor
+
+    \For{$i=1$ to $a-1$}
+        \If{$i \equiv 1\pmod 2$}
+            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+        \Else
+            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+        \EndIf
+    \EndFor
+
+\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$a>2$}
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State put $v_{3, n}$ into $V_P$;
+
+        \For{$i=1$ to $n$}
+            \State put $v_{2, i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=1$ to $a-1$}
+                \State put $v_{3*j+1, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \If{$a=2$}
+            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+        \EndIf
+    \EndIf
+
+\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
+    \If{$3ab+4a-2 < 3ab+3a+2b-2$}
+        \For{$i=1$ to $n$}
+            \For{$j=0$ to $a-1$}
+                \State put $v_{3*j+2, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=1$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \Else
+        \State swap($m$, $n$), swap($a$, $b$)
+        \If{$a>2$}
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+
+            \For{$i=2$ to $n$}
+                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=3$ to $a$}
+                    \State put $v_{3*j+1, i}$ into $V_P$;
+                \EndFor
+            \EndFor
+
+            \For{$i=3$ to $a-1$}
+                \If{$i \equiv 1\pmod 2$}
+                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+                \Else
+                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+                \EndIf
+            \EndFor
+
+        \Else
+            \State put $v_{3, n}$ into $V_P$;
+
+            \For{$i=1$ to $n$}
+                \State put $v_{2, i}$ into $V_P$;
+            \EndFor
+
+            \For{$i=1$ to $n$}
+                \For{$j=1$ to $a-1$}
+                    \State put $v_{3*j+1, i}$ into $V_P$;
+                \EndFor
+            \EndFor
+
+            \If{$a = 2$}
+                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+            \EndIf
+        \EndIf
+
+    \EndIf
+
+\Else
+    \If{$m<n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
+    \If{$a=1$ and $b=1$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
+
+    \ElsIf{$a=2$ and $b=1$}
+        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
+
+    \ElsIf{$a=2$ and $b=2$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
+
+    \Else
+        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
+
+        \For{$i=2$ to $n$}
+            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
+        \EndFor
+
+        \For{$i=1$ to $n$}
+            \For{$j=3$ to $a$}
+                \State put $v_{3*j, i}$ into $V_P$;
+            \EndFor
+        \EndFor
+
+        \For{$i=3$ to $a-1$}
+            \If{$i \equiv 1\pmod 2$}
+                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
+            \Else
+                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
+            \EndIf
+        \EndFor
+
+    \EndIf
+\EndIf
+
+\Return $V_P$;
 \end{algorithmic}
 \end{algorithm}
 

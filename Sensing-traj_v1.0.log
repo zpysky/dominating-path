@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  19 JUL 2017 23:58
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  22 JUL 2017 11:13
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
@@ -624,22 +624,19 @@ Overfull \hbox (35.87013pt too wide) detected at line 522
 ** ATTENTION: \proof is deprecated (line 526). Use \IEEEproof instead.
 ** ATTENTION: \proof is deprecated (line 553). Use \IEEEproof instead.
 
-Overfull \hbox (35.87013pt too wide) detected at line 609
+Overfull \hbox (35.87013pt too wide) detected at line 600
 [] []
  []
 
 [7]
-Overfull \hbox (37.9188pt too wide) detected at line 626
-[] []
- []
-
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 632.
-
-LaTeX Warning: Float too large for page by 1951.04474pt on input line 896.
+put line 623.
 
 
-LaTeX Warning: Float too large for page by 1975.04474pt on input line 1166.
+LaTeX Warning: Float too large for page by 1927.04474pt on input line 887.
+
+
+LaTeX Warning: Float too large for page by 811.04474pt on input line 1044.
 
 (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl
 
@@ -664,14 +661,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1186.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1064.
 [8] [9
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1186.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1064.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1186.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1186.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1064.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1064.
 
 
 
@@ -689,7 +686,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  9690 strings out of 495354
  139058 string characters out of 3183858
- 337265 words of memory out of 3000000
+ 315265 words of memory out of 3000000
  12700 multiletter control sequences out of 15000+200000
  106545 words of font info for 111 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -705,7 +702,7 @@ m/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
 CTEX/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTe
 X/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Sensing-traj_v1.0.pdf (9 pages, 229315 bytes).
+Output written on Sensing-traj_v1.0.pdf (9 pages, 227677 bytes).
 PDF statistics:
  202 PDF objects out of 1000 (max. 8388607)
  48 named destinations out of 1000 (max. 500000)
