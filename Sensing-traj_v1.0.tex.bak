@@ -136,8 +136,9 @@ Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
 \maketitle
 
 \begin{abstract}
-Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
+%Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
 % evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
+
 \end{abstract}
 
 \section{Introduction}~\label{sec:intro}
@@ -156,32 +157,29 @@ However, civilian drones are still not popular these days. Furthermore, a lot of
 \end{itemize}
 
 % 自然就衍生出了一个问题，如何在短时间的电池使用时间内，采集更多的点？并且在三维空间内？
-Therefore, in order to make more use of existing drones, we must consider the following problem: \textbf{How to complete measurement (or flight) in the shortest possible time? Furthermore, in the three-dimensional space?}
+Therefore, in order to make more use of existing drones, we must consider the following problem: \textbf{How to complete flight in the shortest possible time? In other words, how to find the optimal trajectory? Furthermore, in the three-dimensional space?}
 
 % 这个和 传统传感器网络中的，移动 base station 等工作类似，因为都是移动的，采集数据
 % 但是，还是不同的，不同点包括：以前都是贪心的，我们这个问题不是
-Similar to traditional sensor networks and mobile base station, we consider data collection in mobile environment. So total time consumption consists of two parts: \textbf{flight time} and \textbf{measure time}. While we also have the following difference:
+Similar to traditional sensor networks and mobile base station, we consider data collection in mobile environment. So total time consumption consists of two parts: \textbf{flight time} and \textbf{measurement time}. While we also have the following difference:
 \begin{itemize}
-  \item We consider optimal algorithm in three-dimensional space.
+  \item We consider optimal trajectory in three-dimensional space.
   \item We use the routing algorithm based on graph theory apart from traditional greedy algorithms.
 \end{itemize}
-
-
 
 % 这篇文章的贡献？
 % problem formulation —— spanning tree/route problem?
 % 最优算法
 % 多个场景下的实验验证、仿真。
-In this paper, we consider mobile sensing in three-dimensional space. We divide three-dimensional space into a network of observation locations (OLs), select critical observation locations (COLs) from OLs to cover measurement space and find OL-path that contains all of COLs, which could be formulated as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
+In this paper, we consider optimal trajectory in three-dimensional mobile sensing. We divide three-dimensional space into a network of observation locations (OLs), and generate trajectory in two steps: select critical observation locations (COLs) from OLs to cover measurement space while find a OL-path(trajectory) that covers COLs. We formulate the problem as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
 \begin{enumerate}
 %\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set (A dominating set in a graph $G$ is a subset of vertices S such that
 %    every vertex in $V(G)$ is a neighbor of some vertex of $S$.) problem in grid, which has been studied for a long time.
-\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. In order to minimize flight time, we should choose the shortest OL-path in OL-network and take all OLs in OL-path as COLs. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last are distinct. Briefly, it is a dominating set as well as a path.) problem in grid, which has not been solved before.) In this paper, we solved this problem in grid which could extend to three-dimensional space.
-\item \emph{Consider total time consuming}: Under this condition, we consider total time consuming which is the sum of flight time and measurement time. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, since flight time usually take up most of time consuming, we would find the shortest OL-path first which is the same as last one and select least OLs as COLs from chosen path to cover it. Then, we could get both trajectory for UAV and COLs on trajectory for measurement.
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. We choose the shortest OL-path in OL-network to minimize flight time and select all OLs in OL-path as COLs. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last are distinct. Briefly, it is a dominating set as well as a path.) problem in grid, which has not been solved before.) In this paper, we solved this problem in grid which could extend to three-dimensional space.
+\item \emph{Consider total time consuming}: Under this condition, we consider total time consuming which is the sum of flight time and measurement time. Since flight time usually take up most of time consuming, we find the shortest OL-path first. Then in order to minimize measurement time, we select least OLs in OL-path to cover OL-network. Also, we solve this problem in grid.
 \end{enumerate}
 
-Because of algorithms we use is based on graph theory, We could get the number of COL in O(1) time and draw the trajectory route in O(n) time. We use drones to verify our simulation in multiple scenarios. We find out that the flight time we use is less than ordinary approach.
-
+Because of algorithms we use is based on graph theory, We could get size of COL and OL-path in O(1) time while select COLs and draw trajectory in O(n) time. We use drones to verify our simulation. We find out that the flight time we use is less than ordinary approach.
 
 \section{Related Work}~\label{sec:related}
 
@@ -195,10 +193,10 @@ Because of algorithms we use is based on graph theory, We could get the number o
 % 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
 % 例如，3d 空间怎么分，怎么定义一些变量
 % 然后，problem formulation，得到一个problem，就是我们需要求解的目标
-In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate the COL selection problem as a constraint set coverage problem. To simplify problem, we consider two special scenes respectively.
+In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate optimal trajectory problem as a constraint set coverage problem and we consider two special scenes respectively in this paper.
 %In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem.
 % TODO: add formulation
-In the first scene, we only consider flight time which transform problem into the minimum dominating path problem. In the second scene, we consider total time consuming which is the sum of flight time and measurement time. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
+In the first scene, we only consider flight time which is formulated as a minimum dominating path problem. In the second scene, we consider total time consuming which is formulated as a combination of minimum dominating path problem and constraint minimum dominating set problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
 % 形成3D OL网络，并且定义OL的Level
 \subsection{Network establishment}
@@ -208,99 +206,100 @@ OL_i=(x_i, y_i, z_i),
 \]
 where $x_i, y_i, z_i$ are 3D coordinates of $OL_i$.
 
-\textbf{3D network of OLs}: The divided cuboids of a 3D space and the corresponding OLs can form a 3D network graph $G=(V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cuboid $i$ is the same as cuboid $j$ in two coordinates and adjacent to cuboid $j$ on the third dimension. Therefore, the 3D network of OLs forms a three-dimensional grid which has fine topology structure.
+\textbf{3D network of OLs}: OLs form a 3D network graph $G=(V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cuboid $i$ is the same as cuboid $j$ in two coordinates and adjacent to cuboid $j$ on the third dimension. Therefore, OL-network forms a three-dimensional grid which has fine topology structure.
 
-\textbf{Levels of OLs}: Obviously, cuboids in grid could be classified by height level. We call the ground level as level $1$ at height of $\frac{h}{2} m$ , one level above as level $2$ at height of $\frac{3h}{2} m$.
-
-\textbf{COL}: Obviously, if we take all of $OLs$ in the network into consideration, it would be too time consuming. Therefore, we would select critical observation locations (COL) from $OLs$ to cover whole OL network.
+\textbf{COL}: Obviously, if we take all of $OLs$ in the network into consideration, it would be too time consuming. Therefore, we select critical observation locations (COL) from $OLs$ to cover whole OL network while find trajectory covers COLs.
 
 \subsection{Time consuming}
-For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs selected from OLs and trajectory for UAV. We denote $V_C \subseteq V$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$. And we also denote $V_P \subseteq V$ as the trajectory of UAV which forms a path in $G$ and we have $V_C \subseteq V_P$ since trajectory should contains all vertexes in $V_C$.
+For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs and trajectory. We denote $V_C \subseteq V$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$. And we also denote $V_P \subseteq V$ as the trajectory of UAV which forms a path in $G$ and we have $V_C \subseteq V_P$ since trajectory contains vertexes in $V_C$.
 
 % TODO: 公式
-\textbf{Measurement time}: Measurement time $T_M$ is total time spend on mobile sensing. From empirical view, we could assume that measurement time is same for each OL. Therefore, measurement time is proportion to the number of COLs we select. The function is written as
+\textbf{Measurement time}: Measurement time $T_M$ is the total time of mobile sensing. From empirical view, we could assume that measurement time is the same for all OLs. So measurement time is proportion to the number of COLs we select. The function is written as
 \[
-T_M = t_M |V_C|,
+T_M=t_M |V_C|,
 \]
 where $t_M$ is the measurement time for each OL.
 
-\textbf{Flight time}: Flight time $T_F$ is total time spend on UAV's flight. Since we formulate 3D space into grid, we use Hamiltonian distance to characterize distance between OLs. So the flight time is proportion to the length of trajectory. The function is written as
+\textbf{Flight time}: Flight time $T_F$ is the total time of UAV's flight. Since we formulate 3D space into a 3D grid, we use Hamiltonian distance to characterize distance between OLs. So flight time is proportion to the length of trajectory. The function is written as
 \[
-% T_F = t_F \sum_{i=1}^{|V_C|-1} d_H(v_{C_i}, v_{C_{i+1}}),
-T_F = t_F |V_P|,
+% T_F=t_F \sum_{i=1}^{|V_C|-1} d_H(v_{C_i}, v_{C_{i+1}}),
+T_F=t_F |V_P|,
 \]
 where $t_F$ is the flight time for unit length of coordinate system.
 
 Therefore total time consuming $T$ is
 \[
-T = T_M + T_F.
+T=T_M + T_F.
 \]
 
 % OL之间的关系，定义OL的相邻性
 \subsection{Correlation between OLs}
-To characterize the general mobile sensing process, we assume adjacent OLs have correlation. To characterize different adjacency, we consider following two typical scenarios in mobile sensing.
+To characterize general mobile sensing, we assume adjacent OLs have correlation. To characterize different adjacency, we consider following two typical scenes in mobile sensing.
 
 % TODO: 增加example
-\textbf{Star adjacency}: In this scenery, we assume OL's neighbors are star adjacent so the sum of three coordinates difference is at most 1 and the coverage set of an OL is the union of its vertex adjacent neighbors and itself. Specifically, an OL has two neighbors in every dimension and the total size of coverage set is 7.
+\textbf{Star adjacency}: In this scene, we assume OLs have star adjacent neighborhood relationship so the sum of three coordinates difference is at most 1 and the coverage set of an OL is the union of its vertex adjacent neighbors and itself. Specifically, an OL has 2 neighbors in every dimension and the total size of coverage set is 7.
 
-\textbf{Cubic adjacency}: In this scenery, we assume OL's neighbors are cubic adjacent so the max of three coordinates difference is at most 1 and the coverage set of an OL is OLs in a cube whose center is the target. Specifically, an OL has eight neighbors in each plane and the total size of coverage set is 27.
+\textbf{Cubic adjacency}: In this scene, we assume OLs have cubic adjacent neighborhood relationship so the max of three coordinates difference is at most 1 and the coverage set of an OL is OLs in a cube whose center is the target. Specifically, an OL has 8 neighbors in each plane and the total size of coverage set is 27.
 
 % 将3D变为2D格, 分别考虑2种特殊情况，并论述其合理性，之后将问题定义为图论中的相应问题
 \subsection{Problem formulation}
-Given a 3D space, we first establish a 3D OL network $G=(V;E)$ which forms a 3D grid. Each OL in grid has a coverage set (that contains correlated OLs with predictable sensing object). Due to drones' limited battery life, we should complete flight and measurement in the shortest time. Hence, we select some OLs as COLs to minimize time consuming while cover whole OL network and formulate the problem as a set coverage problem in 3D grid.
+Given a 3D space, we first establish a 3D OL network $G=(V;E)$ which forms a 3D grid. Each OL in grid has a coverage set. Due to drones' limited battery life, we want to complete flight in the shortest time. Hence, in order to minimize total time consuming, we select COLs from OLs to cover OL-network while find a OL-path(trajectory) covers COLs. We formulate this problem as a constraint set coverage problem in 3D grid.
 
 \textbf{Simplification from adjacency}:
 We have discussed about different adjacencies in the last subsection and in this subsection we can simplify the problem in these scenarios.
 
 % TODO: examples
 \begin{enumerate}
-  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different levels. Then, we could divide 3D grid graph into multiple 2D grids and consider set coverage problem in each grid.
+  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different heights. Then, we could divide 3D grid graph into multiple 2D grids and consider set coverage problem in each grid.
   \item \emph{Cubic adjacency}: In this scenery, if an UAV flight over a plane, then whole coverage set include the plane and its adjacent planes. Then, we could also simplify 3D grid graph into multiple 2D grids and take advantage of its periodic structure.
 \end{enumerate}
 Therefore, instead of 3D grid, we formulate the problem into constraint set coverage problem in 2D grid.
 
+\textbf{Competition between flight time and consideration time}:
+In order to minimize total time consuming, we want to minimize both flight time and consideration time. However, if we minimize consideration time, it would contradict with the minimality of flight time and vice versa. Therefore, since in most of cases flight time would account for majority part of total time consuming, we give priority to flight time.
+
 \textbf{Two special cases of time consuming}:
 % TODO: 公式
-In section , we have discuss the components of total time consuming. But in actual scene, we may consider flight time more since measurement time always takes a small part of total time consuming and there is a positive correlation between time consumption and trajectory length. Therefore, in this paper we will consider following two scenarios.
+In section , we have discuss the components of total time consuming. But in actual scene, we may consider flight time more since measurement time always takes a small part of total time consuming. Therefore, in this paper we consider following two scenes.
 
 % TODO: add section below and 符号表示及公式
 \begin{enumerate}
 %  \item \emph{Consider measurement time only}: In this scenery, we assume flight time negligible and consider measurement time only. As we show in , measurement time is proportion to the number of COLs. So we should select least OLs as COLs to cover OL-network. We could formulate this problem as a minimum dominating set problem in grid.
-  \item \emph{Consider flight time only}: In this scenery, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to length of trajectory. Therefore, we could regardless of COL that we take in measurement and select every OL in trajectory as COL. So we should find the shortest OL-path in grid which could cover the whole OL-network and select OLs in path as COLs. We could formulate this problem as a minimum dominating path problem in grid.
-  \item \emph{Consider total time consuming}: In this scenery, we consider both measurement time and flight time. Since measurement time is proportion to the number of COLs, if we consider measurement time only, we should select least OLs in G as COLs to cover OL-network. However, it contradicts with the minimality of flight time. Since in most of cases flight time would account for majority part of the whole time consuming, we would give priority to flight time. Therefore, we will find the shortest OL-path first and select least OLs as COLs in path. We could formulate this problem as a combination of a minimum dominating path problem and a constraint minimum dominating set problem in grid.
+  \item \emph{Consider flight time only}: In this scene, we assume measurement time negligible and consider flight time only. As we show in, flight time is proportion to length of trajectory. Therefore, we could select every OL in trajectory as COL. We find the shortest OL-path in grid which could cover the whole OL-network and select OLs in path as COLs. We formulate this problem as a minimum dominating path problem in grid.
+  \item \emph{Consider total time consuming}: In this scene, we consider both measurement time and flight time. Since we give priority to flight time, we find the shortest OL-path first and select least OLs as COLs for measurement in OL-path. We could formulate this problem as a combination of a minimum dominating path problem and a constraint minimum dominating set problem in grid.
 \end{enumerate}
 
-Therefore, for two scenarios above, we would give definition to these two problems respectively.
+Therefore, for two scenes above, we give definition to them respectively.
 
 \begin{problem}[Consider flight time only]
-Given a 3D measurement space, we could divide it into several 2D grid network graphs $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
+Given a 3D measurement space, we divide it into several 2D grid network graphs. For each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
 \[
 \begin{aligned}
 & \text{minimize}
 & & \;|V_P| \\
 & \text{subject to}
-& & \bigcup_{v \in V_P} C(v) = V,\\
+& & \bigcup_{v \in V_P} C(v)=V,\\
 &&& \;V_P \; is \;a \; path.
 \end{aligned}
 \]
 \end{problem}
 
 \begin{problem}[Consider total time consuming]
-Given a 3D measurement space, we could divide it into several 2D grid network graphs $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is the sum of flight time and measurement time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, we want to find minimum path $V_P \subseteq V$ which covers all OLs in grid and select COLs from $V_P$ as dominating set $V_C \subseteq V_P$.
+Given a 3D measurement space, we divide it into several 2D grid network graphs. For each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is the sum of flight time and measurement time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, we want to find minimum path $V_P \subseteq V$ which covers all OLs in grid and select COLs from $V_P$ as dominating set $V_C \subseteq V_P$.
 \[
 \begin{aligned}
 & \text{minimize}
 & & \;|V_P|,\;|V_C| \\
 & \text{subject to}
-& & \bigcup_{v \in V_P} C(v) = V,\\
-&&& \bigcup_{v \in V_C} C(v) = V,\\
+& & \bigcup_{v \in V_P} C(v)=V,\\
+&&& \bigcup_{v \in V_C} C(v)=V,\\
 &&& \;V_P \; is \;a \; path,\\
 &&& \;V_C \subseteq V_P.
 \end{aligned}
 \]
 \end{problem}
 
-Therefore, we will discuss these two problems above in the next section and give corresponding certifications.
+Therefore, we will discuss these two problems in the next section and give corresponding certifications.
 
 % 定义相关变量。包括图G，格Lm,n，Gn, G3，连接顶点等等
 \subsection{Variable definitions}
@@ -329,7 +328,7 @@ We follow proof. Since is for connected dominating set and dominating path is a 
 In lemma , we know that every dominating path $L$ in $L_{m,n}$ has at least $m$ vertexes in the three rightmost columns. Therefore, we will consider the three periodicity of dominating path. Specifically, we could construct dominating path in three columns or three rows.
 
 \textbf{Connecting vertex and dominating vertex}:
-Since dominating path $L$ has both connectivity and dominance, there is thus some vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other word, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
+Since dominating path $L$ has both connectivity and dominance, there is thus at least one vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other words, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
 
 Therefore, since we want to prove three periodicity of minimum dominating path in grid, we split dominating path $L$ in $L_{m,n+3}$ into several parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
@@ -338,11 +337,11 @@ Let $n \geq 2$ is integer and $L$ is minimum dominating path of $G=L_{m,n+3}$. W
 \end{lem}
 
 \begin{proof}
-Since $D(G^*)$ is dominating vertexes in minimum dominating path in $L_{m,n}$ as well as $G^c_{1,n}$ for $L_{m,n+3}$, we have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertexes in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$. Therefore, if $|D^c_{1,n}(L)| < |D(G^*)|$, some vertexes in $G^c_{1,n}$ must be dominated by $D^c_{n+1,n+3}(L)$ and do not have neighbors in $D^c_{1,n}(L)$ (as well as $C^c_{1,n}(L)$, but this could make that vertex belongs to $D^c_{1,n}(L)$ instead of $C^c_{1,n}(L)$). Furthermore, these vertexes must belong to $G^c_n$ since vertexes in other columns do not have neighbors in $G^c_{n+1,n+3}$.
+Since $D(G^*)$ is dominating vertexes of minimum dominating path in $L_{m,n}$ as well as $G^c_{1,n}$ for $L_{m,n+3}$, we have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertexes in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$. Therefore, if $|D^c_{1,n}(L)|<|D(G^*)|$, some vertexes in $G^c_{1,n}$ must be dominated by $D^c_{n+1,n+3}(L)$ and do not have neighbors in $D^c_{1,n}(L)$ (as well as $C^c_{1,n}(L)$, but this could make that vertex belongs to $D^c_{1,n}(L)$ instead of $C^c_{1,n}(L)$). Furthermore, these vertexes must belong to $G^c_n$ since vertexes in other columns do not have neighbors in $G^c_{n+1,n+3}$.
 
 \textbf{$n=2$}: if there is a vertex $v$ in $G^c_{1,2}$ that not be covered by $D^c_{1,2}(L)$ and the row $r$ that $v$ belongs to is not in $L$. Since $v$ must lie in $G^c_2$ and its left vertex should be dominated by other vertex, the vertex to the up (or down) left of $v$ must belong to $L$ and be one of starting points.
 
-Therefore, we construct dominating path $L^*$ with $|L^*| = |L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $G^c_2$. As shown in . So $|L^*| = |L|$ and $|D^c_{1,n}(L)| \geq |D(G^*)|$.
+Therefore, we construct dominating path $L^*$ with $|L^*|=|L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $G^c_2$. As shown in . So $|L^*|=|L|$ and $|D^c_{1,n}(L)| \geq |D(G^*)|$.
 
 \textbf{$n\geq3$}: Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1,n+3}(L)$.
 
@@ -350,18 +349,18 @@ If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the
 
 Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and then move out from $G^c_{n+1,n+3}$ or just step into $G^c_{n+1,n+3}$ and move to the end.
 
-In the first case, Because $L$ may move out from $G^c_{n+1,n+3}$, we could construct as Fig and add connecting vertex to corresponding position.
+In the first case, since $L$ may move out from $G^c_{n+1,n+3}$, we could construct as Fig and add connecting vertex to corresponding position.
 
-In the second case, when dominating vertexes in $G^c_{n+1}$ come from $G^c_{n+2}$, we have the following three cases. When $|v_k| > 3$, $L$ would need more vertexes in $G^c_{n+3}$ to dominate vertexes in $G^c_{n+2}$. And we could use similar construct like the first case. When $|v_k| < 3$, $L$ will need more connecting vertexes which could also use the same construct. When $|v_k| = 3$ and vertex in $v_k$ do not reach $G^r_m$, then vertex below $v_{k'}$ must belong to $L$. So vertexes in Fig is a dominating path for $L_{6,n+3}$ partial but can not reach the minimum so that $L$ could not be the minimum dominating path because the form of minimum dominating path for has same start pointing as $L$.
+In the second case, when dominating vertexes in $G^c_{n+1}$ come from $G^c_{n+2}$, we have the following three cases. When $|v_k|>3$, $L$ would need more vertexes in $G^c_{n+3}$ to dominate vertexes in $G^c_{n+2}$. And we could use similar construct like the first case. When $|v_k|<3$, $L$ will need more connecting vertexes which could also use the same construct. When $|v_k|=3$ and vertex in $v_k$ do not reach $G^r_m$, then vertex below $v_{k'}$ must belong to $L$. So vertexes in Fig is a dominating path for $L_{6,n+3}$ partial but can not reach the minimum so that $L$ could not be the minimum dominating path because the form of minimum dominating path for has same start pointing as $L$.
 
-When dominating vertexes in $G^c_{n+1}$ do not come from $G^c_{n+2}$, in other words, $L$ step into $G^c_{n+1,n+3}$ in the first row, move down to $v_{m-1, n+1}$ and use vertexes in $G^c_{n+3}$ to dominate remain vertexes. Since $v_{1, n+1} \in L$, $v_k$ starts from $G^r_3$. Therefore, we could use similar construct before in Fig to replace $L$ to another dominating path $L^*$ where $|L^*| = |L|$
+When dominating vertexes in $G^c_{n+1}$ do not come from $G^c_{n+2}$, in other words, $L$ step into $G^c_{n+1,n+3}$ in the first row, move down to $v_{m-1, n+1}$ and use vertexes in $G^c_{n+3}$ to dominate remain vertexes. Since $v_{1, n+1} \in L$, $v_k$ starts from $G^r_3$. Therefore, we could use similar construct before in Fig to replace $L$ to another dominating path $L^*$ where $|L^*|=|L|$
 
 If $k=1$, then the vertex must lay in boundary otherwise it will need extra vertexes to connect vertex between $G^r_{n+1}$ and $G^r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $G^r_{n-1}$ to dominate vertexes in $G^r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in L$, we will have $L$ like Fig (like $L_{4,11}$). This case could only exist once. We transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ since none of vertexes in $G^c_{1,n}$ has private neighbor in $D^c_{n+1,n+3}(L)$.
 
 \end{proof}
 
 \begin{lem}
-Given $L$ as the minimum dominating path of $G=L_{m,n+3}$, then $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq m+1$.
+Given $L$ as the minimum dominating path of $G=L_{m,n+3}$, then $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq m+1$.
 \end{lem}
 
 \begin{proof}
@@ -373,9 +372,9 @@ If $G^r_i$ in $G^c_{n+2,n+3}$ is dominated by two connected components in $L^c_{
 
 Therefore, there are two different scenarios. Under the first scenery, $G^r_i$ is dominated by two end vertexes like Fig which can be transformed by extending one vertex to dominate all vertexes dominated by two components. Under the second scenery, $G^r_i$ is dominated by one end vertex and one intermediate vertex. This is the unique case that could not be replaced. But we could take them as one part since the union of two components follows the result.
 
-Then, we prove the lemma by induction. When $m=1$, $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 2$. When $m=2$, $|D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 3$. When $m=3, |D^c_{n+1,n+3}(L) + C^{ccon}_n(L)| \geq 3$. As shown in .
+Then, we prove the lemma by induction. When $m=1$, $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 2$. When $m=2$, $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 3$. When $m=3, |D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 3$. As shown in .
 
-Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connecting component in $L^c_{n+1,n+3}$, $|\gamma_c(G^c_{n+2,n+3})| \geq m$. Adding 1 connecting vertex in $G^c_{n+1}$, $|D^c_{n+1,n+3}(L) + C^ccon_n(L)| \geq m+1$. If there are multiple connecting components in $L^c_{n+1,n+3}$, we assume $G^c_{n+2,n+3}$ is dominated by rows by proof above. If $a$ rows and $b$ rows are dominated by two connected components $L_a$ and $L_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) + C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) + C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
+Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connecting component in $L^c_{n+1,n+3}$, $|\gamma_c(G^c_{n+2,n+3})| \geq m$. Adding 1 connecting vertex in $G^c_{n+1}$, $|D^c_{n+1,n+3}(L) \cup C^ccon_n(L)| \geq m+1$. If there are multiple connecting components in $L^c_{n+1,n+3}$, we assume $G^c_{n+2,n+3}$ is dominated by rows by proof above. If $a$ rows and $b$ rows are dominated by two connected components $L_a$ and $L_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) \cup C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $(D^c_{n+1,n+3}(L) \cup C^ccon_n(L)) \cap (L_a \cup L_b) \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
 
 \end{proof}
 
@@ -384,36 +383,36 @@ Let $m \geq 2$ and $n \geq 2$ as integers. We assume $G=L_{m,n+3}$, $G^*=L_{m,n}
 \end{thm}
 
 \begin{proof}
-In lemma and lemma, we know that for there exist at least one minimum dominating path $L$ in $G=L_{m,n+3}$, $|D^c_{n+1,n+3}(L)| + |C^ccon_{n}(L)| + |D^c_{1,n}(L)|$ could fulfill additive part in result. Therefore, if the result if false, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ in $G$ must be less than $C(G^*)$.
+In lemma and lemma, we know that for there exist at least one minimum dominating path $L$ in $G=L_{m,n+3}$, $|D^c_{n+1,n+3}(L)| \cup |C^ccon_{n}(L)| \cup |D^c_{1,n}(L)|$ could fulfill additive part in result. Therefore, if the result if false, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ in $G$ must be less than $C(G^*)$.
 
 \textbf{Connectivity on the boundary}:
 Because connectivity depends on structure of $G^r_n$ and there are only two start vertexes in $L$, we have structures in $G^r_n$ like Fig. We will consider different structures of $L$ in $G^r_n$.
 
-If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, like Fig , we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^ccon_{n}$ which decreases $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$, but $|C^ccon_{n}(L) + D^c_{n+1,n+3}(L)| = 5$ which still use 4 vertexes addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$ where $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$.
+If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, like Fig , we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^ccon_{n}$ which decreases $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$, but $|C^ccon_{n}(L) \cup D^c_{n+1,n+3}(L)|=5$ which still use 4 vertexes addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$ where $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|=|C(G^*)|$.
 
-If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)| = |C(G^*)|$. In the second case, $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two \; 3-period \; extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}| = m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
+If there are two connecting vertexes in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertexes are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|=|C(G^*)|$. In the second case, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertexes addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertexes in dominating path. Specifically, if there are two 2-period extend, the dominated rows will decrease more than gain in the dominating vertexes. And if there are two \; 3-period \; extend, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertexes in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
 
 \textbf{Connectivity in the middle}:
-In this case, consider a minimum dominating path $L^*$ in $G^*$ which is the base of $L$. we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertexes between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertexes from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertexes since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
+In this case, consider a minimum dominating path $L^*$ in $G^*$ which is the base of $L$. we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertexes between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertexes from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertexes since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
 
-Therefore, since $|C^c_{1,n}(L)| + |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$, we could prove the result.
+Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(G^*)$, we could prove the result.
 
 \end{proof}
 
 Assume $G=L_{m,n+3}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. This structure is quite useful since it uses only 3 vertexes to dominate 3 rows which is 1 vertex per row. Furthermore, it can extend to the next 3 columns which is scalable. Therefore, with standard extend row, we could extend $G$ while holding minimality of $L$.Now, we consider the use of standard extend row in $G^c_{n+1,n+3}$.
 
-First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n}) = n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
+First, we consider $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$. When $n=3$, $\gamma_l(L_{2,3})=2$, otherwise $\gamma_l(L_{2,n})=n$. Therefore, if there are more than or less than 3 rows in $G^c_{n+1,n+3}$ that dominated by a connected component, we will need one more vertexes to connect just like Fig. In lemma , except for combination of standard extend rows, we could replace any pair connected components with one connected component without the same amount of vertexes. Therefore, to reach $\gamma_l(G)=\gamma_l(G^*)+m$, we need divide each three rows into one group and select the middle one into $L$ which could only realize when $3 \mid m$. Besides, we need the same structure in $L^c_{n+1,n+3}$ as shown in Fig .
 
 Then, we consider $\gamma_l(G)=\gamma_l(G^*)+m+1$. When $3 \mid m+1$, we can also use standard extend row to fulfill the additive part in theorem .
 
 Therefore, $standard extend row$ is the only structure which could fulfill  $\gamma_l(G)=\gamma_l(G^*)+m$. So, we can use standard extend row to construct $L$ which could reach additive component in the result. And we could combine standard extend row with other structure while hold minimality of vertexes. So we will consider the structure without standard extend rows.
 
 \begin{thm}
-We denote \textbf{$s \; 3-period \; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G = L_{m,n}$, there are only finite structure for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$.
+We denote \textbf{$s \; 3-period \; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G=L_{m,n}$, there are only finite structure for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$.
 \end{thm}
 
 \begin{proof}
-As discuss above, we know that $standard extend row$ could achieve substructure that makes additive vertexes equal with dominated rows. Therefore, we should consider the structure without $standard extend row$. Since without $standard extend row$, $|C^{conn}_{n} + D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point or from middle of path.
+As discuss above, we know that $standard extend row$ could achieve substructure that makes additive vertexes equal with dominated rows. Therefore, we should consider the structure without $standard extend row$. Since without $standard extend row$, $|C^{conn}_{n} \cup D^c_{n+1,n+3}|$ is more than dominated rows in other structure. And multiple connected components can transform into one connected components so that two start points can merge to one start point. Therefore, we only need to consider the coverage problem with one start point or from middle of path.
 
 \textbf{Extend from start point}:
 So we will consider 4 different cases of $m+1 \; 3-period \; extend$ which is from start point in $L^c_{n+1,n+3}$. As shown in Fig .
@@ -445,7 +444,7 @@ There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $stan
 In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 \end{proof}
 
-We denote $a = \lfloor \frac{m}{3} \rfloor$, $b = \lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
+We denote $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
 
 % TODO: add 1 and 2 and 3
 
@@ -456,8 +455,8 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 &\gamma_l(L_{m,n})\\
 &=\left\{
 \begin{array}{rcl}
-& 3ab+3a+3b       &      & {a \leq 2}\\
-& 3ab+3a+3b-1       &      & {otherwise}\\
+3ab+3a+3b       &      & {a \leq 2}\\
+3ab+3a+3b-1       &      & {otherwise}\\
 \end{array} \right.
 \end{aligned}
 \].
@@ -466,7 +465,7 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 \begin{proof}
 When $m \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, standard extend row could reach $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$ respectively which is better than other structure.
 
-When $n=1$, $\gamma_l{L_{m,1}} = m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ dominating vertexes and $m-2-\lceil \frac{m}{3} \rceil$ connecting vertexes which can be used to connect standard extend rows. As shown in . Further, when $m>2$, the structure in could bring a $m \; 3-period \; extend$ when $m \equiv 2 \pmod 3$.
+When $n=1$, $\gamma_l{L_{m,1}}=m-2$. $L$ contains $\lceil \frac{m}{3} \rceil$ dominating vertexes and $m-2-\lceil \frac{m}{3} \rceil$ connecting vertexes which can be used to connect standard extend rows. As shown in . Further, when $m>2$, the structure in could bring a $m \; 3-period \; extend$ when $m \equiv 2 \pmod 3$.
 
 Then, when $m \equiv 0 \pmod 3$, $L$ will add $m$ vertexes in every 3-period while when $m \equiv 0 \pmod 2$, $L$ will add $m+1$ vertexes in every 3-period except for $m=11$. And for discuss above, when $a>2$ and $n=1$, there is a $m \; 3-period \; extend$ for $L_{m,n}$. Therefore due to Theorem they could achieve optimal solutions.
 
@@ -488,7 +487,7 @@ When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $a \leq 2$,
 
 if $a > 2$,
 \begin{equation*}
-\gamma_l(L_{m,n}) = 3ab+3a+3b-1
+\gamma_l(L_{m,n})=3ab+3a+3b-1
 \end{equation*}
 
 \end{proof}
@@ -530,7 +529,7 @@ When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig 
 
 Assume we have prove the case when $a \leq k$, we consider the case when $a=k+1$. Since we could extend three rows from $a=k$, we could consider the structure of $L$ in $L_{m,n}$. There are also two structures in $L_{m,n}$. We consider critical point between $3ab+4a-2$ and $3ab+3a+2b-1$ or $3ab+3a+2b-2$.
 
-When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 \; 3-period \; extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n}) = 3ab+4a-2$, and we could only have a $n+2 \; 3-period \; extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5 = 3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m \; 3-period \; extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
+When critical point is between $3ab+4a-2$ and $3ab+3a+2b-2$, when $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+3a+2b-2$ which has structure (a), we could use standard extend row to reach a $n+1 \; 3-period \; extend$ which is the lower bound. When $b > \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3ab+4a-2$, and we could only have a $n+2 \; 3-period \; extend$ from its structure. $L$ in $L_{3k+3,3b+2}$ is $3kb+3k+5b+1$ and $L$ in $L_{3k+3, 3b+5}$ is $3kb+7k+3b+5$. $3kb+3k+5b+1+3k+5=3kb+6k+5b+6 \geq 3kb+7k+3b+5$. Therefore, $L$ in $L_{3k+3, 3b+2}$ is a minimum dominating path and there are no $m+1 3period extend$ or $m \; 3-period \; extend$ for this structure, $L$ in $L_{3k+3, 3b+5}$ is also the minimum dominating path with structure (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution. When critical point is between $3ab+4a-2$ and $3ab+3a+2b-1$ result is the same.
 
 We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we could use $m+2 \; 3-period \; extend$ on $L_{3k, 3k-3}$ to get the optimal result on $L_{3k,3k}$. Similarly, we could use similar approach when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.
 
@@ -551,9 +550,9 @@ When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, we hav
 \end{pro}
 
 \begin{proof}
-Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $m+1 \; 3-period \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Tail now, $L_{4,10}$ is a $m \; 3-period \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem. When $b \geq 4$, we could also get $m \; 3-period \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1}) = 6b$.
+Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $m+1 \; 3-period \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Tail now, $L_{4,10}$ is a $m \; 3-period \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem. When $b \geq 4$, we could also get $m \; 3-period \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1})=6b$.
 
-When $a=2$ and $b=2$, we could use a $m+1 \; 3-period \; extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7}) = 21$
+When $a=2$ and $b=2$, we could use a $m+1 \; 3-period \; extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7})=21$
 
 When $a \geq 2$, we know that case (b), case (d) and structure ..could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1,3b+1})=3ab+3a+3b-3$ which is $a-1$ times $m+2 \; 3-period \; extend$ from $L_{4,3b+1}$.
 
@@ -582,18 +581,9 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m 
 
 \begin{pro}
 When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
-$|V_C|=\min (3ab+a, 3ab+b)$.
+$|V_C|=3ab$.
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
-\[
-\begin{aligned}
-&|V_C|\\
-&=\left\{
-\begin{array}{rcl}
-min (3ab+2a, 3ab+3a)       &      & {b \leq 2}\\
-min (3ab+2a, 3ab+3a+1)       &      & {otherwise}\\
-\end{array} \right.
-\end{aligned}
-\].
+$|V_C|=3ab+2a$.
 When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
 \begin{aligned}
@@ -611,16 +601,16 @@ Besides, the results have a same structure.
 \end{pro}
 
 \begin{pro}
-When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a<b$, we have
+When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a \leq b$, we have
 \[
 \begin{aligned}
 &|V_C|\\
 &=\left\{
 \begin{array}{rcl}
-7        &      & {a=1 and b=1}\\
-10       &      & {a=1 and b=2}\\
-17       &      & {a=2 and b=2}\\
-min (3ab+3a+b-1, 3ab+a+3b-1)       &      & {otherwise}\\
+7        &      & {a=1, b=1}\\
+10       &      & {a=1, b=2}\\
+17       &      & {a=2, b=2}\\
+3ab+3a+b-1       &      & {otherwise}\\
 \end{array} \right.
 \end{aligned}
 \].
@@ -693,7 +683,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
             \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
@@ -726,7 +716,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
             \EndFor
         \EndFor
 
-        \If{$a = 2$}
+        \If{$a=2$}
             \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
     \EndIf
@@ -756,7 +746,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \EndIf
 
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
         \For{$i=2$ to $n$}
             \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
@@ -777,7 +767,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \EndFor
 
     \Else
-        \State put $v_{3, n}$ into $V_P$;
+        \State put $v_{3,n}$ into $V_P$;
 
         \For{$i=1$ to $n$}
             \State put $v_{2, i}$ into $V_P$;
@@ -813,7 +803,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \Else
         \State swap($m$, $n$), swap($a$, $b$)
         \If{$a>2$}
-            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+            \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
             \For{$i=2$ to $n$}
                 \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
@@ -846,7 +836,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
                 \EndFor
             \EndFor
 
-            \If{$a = 2$}
+            \If{$a=2$}
                 \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
             \EndIf
         \EndIf
@@ -854,37 +844,37 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \EndIf
 
 \Else
-    \If{$m<n$}
+    \If{$m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
 
     \If{$a=1$ and $b=1$}
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
 
-    \ElsIf{$a=2$ and $b=1$}
-        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
+    \ElsIf{$a=1$ and $b=2$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$ into $V_P$;
 
     \ElsIf{$a=2$ and $b=2$}
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
 
     \Else
-        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
+        \State put $v_{1,2}$, $v_{n,3}$, $v_{2,5}$, $v_{2,6}$, $v_{n,8}$ into $V_P$;
 
-        \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
+        \For{$i=2$ to $m$}
+            \State put $v_{i,2}$, $v_{i,4}$, $v_{i,7}$ into $V_P$;
         \EndFor
 
-        \For{$i=1$ to $n$}
-            \For{$j=3$ to $a$}
-                \State put $v_{3*j, i}$ into $V_P$;
+        \For{$i=1$ to $m$}
+            \For{$j=3$ to $b$}
+                \State put $v_{i, 3*j}$ into $V_P$;
             \EndFor
         \EndFor
 
-        \For{$i=3$ to $a-1$}
+        \For{$i=3$ to $b-1$}
             \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
+                \State put $v_{1, 3*i+1}$, $v_{1, 3*i+2}$ into $V_P$;
             \Else
-                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
+                \State put $v_{n, 3*i+1}$, $v_{n, 3*i+2}$ into $V_P$;
             \EndIf
         \EndFor
 
@@ -924,100 +914,58 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 
     \If{$m=1$}
         \If{$n<3$}
-            \State put $v_{1,1}$ into $V_P$;
+            \State $V_C=V_P$;
         \Else
-            \For{$i=2$ to $n-1$}
-                \State put $v_{1, i}$ into $V_P$;
-            \EndFor
-        \EndIf
-
-    \ElsIf{$m=2$}
-        \If{$n=3$}
-            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
-        \Else
-            \For{$i=1$ to $n$}
-                \State put $v_{1, i}$ into $V_P$;
+            \For{$i=0$ to $a-1$}
+                \State put $v_{1, 3i+2}$ into $V_C$;
+            \If{$n \equiv 1 \pmod 3$ or $n \equiv 2 \pmod 3$}
+                \State put $v_{1, 3a+1}$ into $V_C$;
+            \EndIf
             \EndFor
         \EndIf
 
     \Else
-        \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_P$;
-        \EndFor
+        \State $V_C=V_P$;
     \EndIf
 
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_P$;
+            \State put $v_{3*j+2, i}$ into $V_C$;
         \EndFor
-    \EndFor
-
-    \For{$i=1$ to $a-1$}
-        \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-        \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-        \EndIf
     \EndFor
 
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
+                \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
 
-        \For{$i=3$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
     \Else
-        \State put $v_{3,n}$ into $V_P$;
-
         \For{$i=1$ to $n$}
-            \State put $v_{2,i}$ into $V_P$;
+            \State put $v_{2,i}$ into $V_C$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
+                \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
-
-        \If{$a = 2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
-        \EndIf
     \EndIf
 
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_P$;
+            \State put $v_{3*j+2, i}$ into $V_C$;
         \EndFor
-    \EndFor
-
-    \For{$i=1$ to $a-1$}
-        \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-        \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-        \EndIf
     \EndFor
 
 \ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
@@ -1026,142 +974,71 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
     \EndIf
 
     \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
+        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
 
         \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
+                \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
 
-        \For{$i=3$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
     \Else
-        \State put $v_{3, n}$ into $V_P$;
-
         \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_P$;
+            \State put $v_{2, i}$ into $V_C$;
         \EndFor
 
         \For{$i=1$ to $n$}
             \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
+                \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
-
-        \If{$a=2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
-        \EndIf
     \EndIf
 
 \ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
-    \If{$3ab+4a-2 < 3ab+3a+2b-2$}
-        \For{$i=1$ to $n$}
-            \For{$j=0$ to $a-1$}
-                \State put $v_{3*j+2, i}$ into $V_P$;
-            \EndFor
+    \For{$i=1$ to $n$}
+        \For{$j=0$ to $a-1$}
+            \State put $v_{3*j+2, i}$ into $V_C$;
         \EndFor
-
-        \For{$i=1$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
-    \Else
-        \State swap($m$, $n$), swap($a$, $b$)
-        \If{$a>2$}
-            \State put $v_{2,1}$, $v_{3,1}$, $v_{10,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
-
-            \For{$i=2$ to $n$}
-                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
-            \EndFor
-
-            \For{$i=1$ to $n$}
-                \For{$j=3$ to $a$}
-                    \State put $v_{3*j+1, i}$ into $V_P$;
-                \EndFor
-            \EndFor
-
-            \For{$i=3$ to $a-1$}
-                \If{$i \equiv 1\pmod 2$}
-                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-                \Else
-                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-                \EndIf
-            \EndFor
-
-        \Else
-            \State put $v_{3, n}$ into $V_P$;
-
-            \For{$i=1$ to $n$}
-                \State put $v_{2, i}$ into $V_P$;
-            \EndFor
-
-            \For{$i=1$ to $n$}
-                \For{$j=1$ to $a-1$}
-                    \State put $v_{3*j+1, i}$ into $V_P$;
-                \EndFor
-            \EndFor
-
-            \If{$a = 2$}
-                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
-            \EndIf
-        \EndIf
-
-    \EndIf
+    \EndFor
 
 \Else
-    \If{$m<n$}
+    \If{$m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
 
     \If{$a=1$ and $b=1$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
 
-    \ElsIf{$a=2$ and $b=1$}
-        \State put $v_{2,1}$, $v_{2,2}$, $v_{2,3}$, $v_{2,4}$, $v_{3,4}$, $v_{4,4}$, $v_{4,3}$, $v_{4,2}$, $v_{5,2}$, $v_{6,2}$, $v_{7,2}$, $v_{7,3}$, $v_{7,4}$ into $V_P$;
+    \ElsIf{$a=1$ and $b=2$}
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$ into $V_C$;
 
     \ElsIf{$a=2$ and $b=2$}
-        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
+        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
 
     \Else
-        \State put $v_{2,1}$, $v_{3,n}$, $v_{5,2}$, $v_{6,2}$, $v_{8,n}$ into $V_P$;
+        \State put $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$ into $V_C$;
 
-        \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{4,i}$, $v_{7,i}$ into $V_P$;
+        \For{$i=1$ to $m$}
+            \State put $v_{i,2}$ into $V_C$;
         \EndFor
 
-        \For{$i=1$ to $n$}
-            \For{$j=3$ to $a$}
-                \State put $v_{3*j, i}$ into $V_P$;
+        \For{$i=3$ to $m$}
+            \State put $v_{i,4}$, $v_{i,7}$ into $V_C$;
+        \EndFor
+
+        \For{$i=1$ to $m$}
+            \For{$j=3$ to $b$}
+                \State put $v_{i, 3*j}$ into $V_C$;
             \EndFor
         \EndFor
-
-        \For{$i=3$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+1, 1}$, $v_{3*i+2, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i+1, n}$, $v_{3*i+2, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
     \EndIf
 \EndIf
 
-\Return $V_P$;
+\Return $V_P$, $V_C$;
 \end{algorithmic}
 \end{algorithm}
 
@@ -1171,7 +1048,7 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 % 真实的放飞实验，看看电池能飞多久。
 
 \section{Conclusions}\label{sec:conclude}
-In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
+%In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
 
 
 %\section{Acknowledgements}
