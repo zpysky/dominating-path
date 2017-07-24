@@ -184,10 +184,15 @@ Because of algorithms we use is based on graph theory, We could get size of COL 
 
 \section{Related Work}~\label{sec:related}
 
-\subsection{3D mobile sensing}
+\subsection{Drones in 3D mobile sensing}
+Mobile sensing is the process of using the sensors of a mobile device to acquire data from the environment. Traditional mobile sensing uses traditional traffic tools like bikes \cite{eisenman2009bikenet} or cars \cite{devarakonda2013real}.
 
-\subsection{Route planning in conventional wireless sensor networks}
+Nowadays, drones are popular in mobile sensing applications since they could capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photo or video-graphy \cite{Newman2014Drone}, 3D wireless signal survey \cite{Yu2016Automating}, inspection in inaccessible places where people rarely venture \cite{Purohit2011SensorFly}. However, drones are constrained by its limited battery life which require an efficient measurement approach to overcome the limitations.
 
+\subsection{Trajectory planning in mobile sensing}
+In conventional mobile sensing system, genetic algorithm \cite{Hu2006A, Yun2011Improved} and particle swarm optimization \cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes. 
+
+On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem \cite{Tekdas2009Using, Savla2005On}. Also, some heuristic algorithms like Life Long A* \cite{Koenig2004Lifelong} are developed to find shortest paths for path planning problems. It repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. For conventional trajectory planning in mobile sensing, it will find measurement nodes first and find a path to connect them. In this paper, we will give a different approach that reverses order of path finding and nodes selecting. And we give an algorithm based on graph theory which could be optimal if considering flight time only.
 
 
 \section{System Model}~\label{sec:problem}
@@ -671,7 +676,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \If{$n \equiv 0 \pmod 3$ and $m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
             \State put $v_{3*j+2, i}$ into $V_P$;
@@ -691,7 +696,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \If{$n \equiv 2 \pmod 3$ and $m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
-    
+
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
@@ -765,7 +770,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
                 \State put $v_{n, 3*i+1}$, $v_{n, 3*i+2}$ into $V_P$;
             \EndIf
         \EndFor
-        
+
     \EndIf
 \EndIf
 

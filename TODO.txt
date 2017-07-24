@@ -1,10 +1,14 @@
-0. 注册
-3. 增加 dominating path 数学证明的描述
-4. 简化 dominating set ，并增加 flight time + measurement time 的混合情况
-	(i).   先计算出 minimum dominating set 的 点，然后串联起来
-	(ii).  先计算出 minimum dominating path 的点，然后找到 dominating vertex
-	(iii). 贪心算法，从固定点出发，选取 收益/距离 最大的点
-5. 增加 related work 
-4. 增加 图片
-5. 增加 实际飞行场景
-6. 增加 simulation
+7-24
+增加 related work
+简化 数学证明
+
+7-25
+增加 实际飞行场景 
+增加 simulation
+
+7-26
+增加 图片
+增加 dominating path 数学证明的描述
+
+实验设计：
+寻找一种传统的 UAV trajectory in mobile sensing 的方法来进行比较做对比实验。

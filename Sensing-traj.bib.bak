@@ -1,0 +1,51 @@
+@inproceedings{devarakonda2013real,
+  title={Real-time air quality monitoring through mobile sensing in metropolitan areas},
+  author={Devarakonda, Srinivas and Sevusu, Parveen and Liu, Hongzhang and Liu, Ruilin and Iftode, Liviu and Nath, Badri},
+  booktitle={Proceedings of the 2nd ACM SIGKDD international workshop on urban computing},
+  pages={15},
+  year={2013},
+  organization={ACM}
+}
+
+@article{eisenman2009bikenet,
+  title={BikeNet: A mobile sensing system for cyclist experience mapping},
+  author={Eisenman, Shane B and Miluzzo, Emiliano and Lane, Nicholas D and Peterson, Ronald A and Ahn, Gahng-Seop and Campbell, Andrew T},
+  journal={ACM Transactions on Sensor Networks (TOSN)},
+  volume={6},
+  number={1},
+  pages={6},
+  year={2009},
+  publisher={ACM}
+}
+
+@misc{Newman2014Drone,
+  title={Drone for collecting images and system for categorizing image data},
+  author={Newman, David L.},
+  year={2014},
+}
+
+@inproceedings{Purohit2011SensorFly,
+  title={SensorFly: Controlled-mobile sensing platform for indoor emergency response applications},
+  author={Purohit, Aveek and Sun, Zheng and Mokaya, Frank and Zhang, Pei},
+  booktitle={International Conference on Information Processing in Sensor Networks},
+  pages={223-234},
+  year={2011},
+}
+
+@inproceedings{Yu2016Automating,
+  title={Automating 3D wireless measurements with drones},
+  author={Yu, Ethan and Xiong, Xi and Zhou, Xia},
+  booktitle={Tenth ACM International Workshop on Wireless Network Testbeds, Experimental Evaluation, and Characterization},
+  pages={65-72},
+  year={2016},
+}
+
+@article{Tekdas2009Using,
+  title={Using mobile robots to harvest data from sensor fields. Wirel Commun},
+  author={Tekdas, Onur and Isler, Volkan and Lim, Jong Hyun and Terzis, Andreas},
+  journal={Wireless Communications IEEE},
+  volume={16},
+  number={1},
+  pages={22-28},
+  year={2009},
+}

@@ -137,8 +137,9 @@ Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
 
 \begin{abstract}
 %Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
-% evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
+%evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
 
+Drones are born suitable for data collection and mobile sensing. However, due to limited battery available time, drones are still not popular these days. Therefore, in order to make use of drones in mobile sensing, it is necessary to find the optimal trajectory. In this paper, we propose the optimal trajectory planning in three-dimensional mobile sensing. Specifically, we first divide target space into a network of observation locations (OL) which forms a 3D grid, then for each divided 2D grid we find the optimal OL-path (trajectory) that covers network and finally select necessary critical observation locations (COL) from OL-path for measurement.
 \end{abstract}
 
 \section{Introduction}~\label{sec:intro}
@@ -183,10 +184,15 @@ Because of algorithms we use is based on graph theory, We could get size of COL 
 
 \section{Related Work}~\label{sec:related}
 
-\subsection{3D mobile sensing}
+\subsection{Drones in 3D mobile sensing}
+Mobile sensing is the process of using the sensors of a mobile device to acquire data from the environment. Traditional mobile sensing uses traditional traffic tools like bikes \cite{eisenman2009bikenet} or cars \cite{devarakonda2013real}.
 
-\subsection{Route planning in conventional wireless sensor networks}
+Nowadays, drones are popular in mobile sensing applications since they could capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photo or video-graphy \cite{Newman2014Drone}, 3D wireless signal survey \cite{Yu2016Automating}, inspection in inaccessible places where people rarely venture \cite{Purohit2011SensorFly}. However, drones are constrained by its limited battery life which require an efficient measurement approach to overcome the limitations.
 
+\subsection{Trajectory planning in mobile sensing}
+In conventional mobile sensing system, genetic algorithm \cite{Hu2006A, Yun2011Improved} and particle swarm optimization \cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes. 
+
+On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem \cite{Tekdas2009Using, Savla2005On}. Also, some heuristic algorithms like Life Long A* \cite{Koenig2004Lifelong} are developed to find shortest paths for path planning problems. It repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. Therefore, for conventional trajectory planning in mobile sensing, it will find measurement nodes first and then, find a path to connect them. In this paper, we will give a different approach that reverses order of finding path and selecting nodes. And we give an algorithm based on graph theory which could be optimal if considering flight time only.
 
 
 \section{System Model}~\label{sec:problem}
@@ -666,7 +672,11 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \EndFor
     \EndIf
 
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+\ElsIf{$m \equiv 0 \pmod 3$ and ($n \equiv 0 \pmod 3$ or $n \equiv 1 \pmod 3$ or ($n \equiv 0 \pmod 2$ and $3ab+4a-2 < 3ab+3a+2b-2$))}
+    \If{$n \equiv 0 \pmod 3$ and $m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
             \State put $v_{3*j+2, i}$ into $V_P$;
@@ -681,7 +691,12 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \EndIf
     \EndFor
 
-\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+
+\ElsIf{$m \equiv 2 \pmod 3$ and ($n \equiv 1 \pmod 3$ or $n \equiv 2 \pmod 3$) or ($n \equiv 0 \pmod 2$ and $3ab+4b-2 \geq 3ab+3b+2a-2$)}
+    \If{$n \equiv 2 \pmod 3$ and $m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
+
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
 
@@ -719,128 +734,6 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \If{$a=2$}
             \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
         \EndIf
-    \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
-    \For{$i=1$ to $n$}
-        \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_P$;
-        \EndFor
-    \EndFor
-
-    \For{$i=1$ to $a-1$}
-        \If{$i \equiv 1\pmod 2$}
-            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-        \Else
-            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-        \EndIf
-    \EndFor
-
-\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
-    \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
-
-        \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
-        \EndFor
-
-        \For{$i=1$ to $n$}
-            \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
-            \EndFor
-        \EndFor
-
-        \For{$i=3$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
-    \Else
-        \State put $v_{3,n}$ into $V_P$;
-
-        \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_P$;
-        \EndFor
-
-        \For{$i=1$ to $n$}
-            \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_P$;
-            \EndFor
-        \EndFor
-
-        \If{$a=2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
-        \EndIf
-    \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
-    \If{$3ab+4a-2 < 3ab+3a+2b-2$}
-        \For{$i=1$ to $n$}
-            \For{$j=0$ to $a-1$}
-                \State put $v_{3*j+2, i}$ into $V_P$;
-            \EndFor
-        \EndFor
-
-        \For{$i=1$ to $a-1$}
-            \If{$i \equiv 1\pmod 2$}
-                \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-            \Else
-                \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-            \EndIf
-        \EndFor
-
-    \Else
-        \State swap($m$, $n$), swap($a$, $b$)
-        \If{$a>2$}
-            \State put $v_{2,1}$, $v_{3,1}$, $v_{3,n}$, $v_{4,n}$, $v_{6,2}$, $v_{7,2}$, $v_{9,n}$ into $V_P$;
-
-            \For{$i=2$ to $n$}
-                \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
-            \EndFor
-
-            \For{$i=1$ to $n$}
-                \For{$j=3$ to $a$}
-                    \State put $v_{3*j+1, i}$ into $V_P$;
-                \EndFor
-            \EndFor
-
-            \For{$i=3$ to $a-1$}
-                \If{$i \equiv 1\pmod 2$}
-                    \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-                \Else
-                    \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-                \EndIf
-            \EndFor
-
-        \Else
-            \State put $v_{3, n}$ into $V_P$;
-
-            \For{$i=1$ to $n$}
-                \State put $v_{2, i}$ into $V_P$;
-            \EndFor
-
-            \For{$i=1$ to $n$}
-                \For{$j=1$ to $a-1$}
-                    \State put $v_{3*j+1, i}$ into $V_P$;
-                \EndFor
-            \EndFor
-
-            \If{$a=2$}
-                \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
-            \EndIf
-        \EndIf
-
     \EndIf
 
 \Else
@@ -928,14 +821,17 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
         \State $V_C=V_P$;
     \EndIf
 
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$}
+\ElsIf{$m \equiv 0 \pmod 3$}
     \For{$i=1$ to $n$}
         \For{$j=0$ to $a-1$}
             \State put $v_{3*j+2, i}$ into $V_C$;
         \EndFor
     \EndFor
 
-\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 1 \pmod 3$}
+\ElsIf{$m \equiv 2 \pmod 3$}
+    \If{$n \equiv 2 \pmod 3$ and $m>n$}
+        \State swap($m$, $n$), swap($a$, $b$);
+    \EndIf
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
 
@@ -960,50 +856,6 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
             \EndFor
         \EndFor
     \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 0 \pmod 3$}
-    \For{$i=1$ to $n$}
-        \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
-        \EndFor
-    \EndFor
-
-\ElsIf{$m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
-    \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
-
-        \For{$i=2$ to $n$}
-            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
-        \EndFor
-
-        \For{$i=1$ to $n$}
-            \For{$j=3$ to $a$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
-            \EndFor
-        \EndFor
-
-    \Else
-        \For{$i=1$ to $n$}
-            \State put $v_{2, i}$ into $V_C$;
-        \EndFor
-
-        \For{$i=1$ to $n$}
-            \For{$j=1$ to $a-1$}
-                \State put $v_{3*j+1, i}$ into $V_C$;
-            \EndFor
-        \EndFor
-    \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$}
-    \For{$i=1$ to $n$}
-        \For{$j=0$ to $a-1$}
-            \State put $v_{3*j+2, i}$ into $V_C$;
-        \EndFor
-    \EndFor
 
 \Else
     \If{$m>n$}
