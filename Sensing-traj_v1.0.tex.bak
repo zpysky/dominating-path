@@ -190,9 +190,9 @@ Mobile sensing is the process of using the sensors of a mobile device to acquire
 Nowadays, drones are popular in mobile sensing applications since they could capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photo or video-graphy \cite{Newman2014Drone}, 3D wireless signal survey \cite{Yu2016Automating}, inspection in inaccessible places where people rarely venture \cite{Purohit2011SensorFly}. However, drones are constrained by its limited battery life which require an efficient measurement approach to overcome the limitations.
 
 \subsection{Trajectory planning in mobile sensing}
-In conventional mobile sensing system, genetic algorithm \cite{Hu2006A, Yun2011Improved} and particle swarm optimization \cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes. 
+In conventional mobile sensing system, genetic algorithm \cite{Hu2006A,Yun2011Improved} and particle swarm optimization \cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes.
 
-On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem \cite{Tekdas2009Using, Savla2005On}. Also, some heuristic algorithms like Life Long A* \cite{Koenig2004Lifelong} are developed to find shortest paths for path planning problems. It repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. Therefore, for conventional trajectory planning in mobile sensing, it will find measurement nodes first and then, find a path to connect them. In this paper, we will give a different approach that reverses order of finding path and selecting nodes. And we give an algorithm based on graph theory which could be optimal if considering flight time only.
+On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem \cite{Tekdas2009Using,Savla2005On}. Also, some heuristic algorithms like Life Long A* \cite{Koenig2004Lifelong} are developed to find shortest paths for path planning problems. It repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. For conventional trajectory planning in mobile sensing, it will find measurement nodes first and find a path to connect them. In this paper, we will give a different approach that reverses order of path finding and nodes selecting. And we give an algorithm based on graph theory which could be optimal if considering flight time only.
 
 
 \section{System Model}~\label{sec:problem}
@@ -585,11 +585,23 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m 
 \].
 \end{pro}
 
+% TODO 化简 b 小于等于 2 的情况，增加 1、2、3的情况
 \begin{pro}
 When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
 $|V_C|=3ab$.
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
-$|V_C|=3ab+2a$.
+\[
+\begin{aligned}
+&|V_C|\\
+&=\left\{
+\begin{array}{rcl}
+3ab+2a       &      & {b \leq 2, 3ab+4a-2 \leq 3ab+3a+2b-1}\\
+3ab+3a       &      & {b \leq 2, 3ab+4a-2 > 3ab+3a+2b-1}\\
+3ab+2a       &      & {b > 2, 3ab+4a-2 \leq 3ab+3a+2b-2}\\
+3ab+3a+1       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
 When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
 \begin{aligned}
@@ -634,13 +646,15 @@ The length of grid, $m$;
 The width of gird, $n$;
 \Ensure
 The trajectory of two-dimensional coordinate of grid, $V_P$;
-\label{code:fram:judgemod}
-\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
-\State swap($m$, $n$);
-\EndIf
-
 \label{code:fram:calculateab}
 \State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$;
+
+\label{code:fram:judgemod}
+\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$ or $(m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$ and $3ab+4a-2 > 3ab+3a+2b-2)$ or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3$ and $3ab+4b-2 \leq 3ab+3b+2a-2)$}
+\State swap($m$, $n$), swap($a$, $b$);
+\EndIf
+
+
 
 \label{code:fram:calculate}
 \If{$m<4$ or $n<4$}
@@ -672,7 +686,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \EndFor
     \EndIf
 
-\ElsIf{$m \equiv 0 \pmod 3$ and ($n \equiv 0 \pmod 3$ or $n \equiv 1 \pmod 3$ or ($n \equiv 0 \pmod 2$ and $3ab+4a-2 < 3ab+3a+2b-2$))}
+\ElsIf{$m \equiv 0 \pmod 3$}
     \If{$n \equiv 0 \pmod 3$ and $m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
@@ -692,7 +706,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \EndFor
 
 
-\ElsIf{$m \equiv 2 \pmod 3$ and ($n \equiv 1 \pmod 3$ or $n \equiv 2 \pmod 3$) or ($n \equiv 0 \pmod 2$ and $3ab+4b-2 \geq 3ab+3b+2a-2$)}
+\ElsIf{$m \equiv 2 \pmod 3$}
     \If{$n \equiv 2 \pmod 3$ and $m>n$}
         \State swap($m$, $n$), swap($a$, $b$);
     \EndIf
@@ -726,13 +740,13 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \EndFor
 
         \For{$i=1$ to $n$}
-            \For{$j=1$ to $a-1$}
+            \For{$j=1$ to $a$}
                 \State put $v_{3*j+1, i}$ into $V_P$;
             \EndFor
         \EndFor
 
         \If{$a=2$}
-            \State put $v_{5,n}$, $v_{6,n}$ into $V_P$;
+            \State put $v_{5,1}$, $v_{6,1}$ into $V_P$;
         \EndIf
     \EndIf
 
@@ -751,7 +765,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$, $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
 
     \Else
-        \State put $v_{1,2}$, $v_{n,3}$, $v_{2,5}$, $v_{2,6}$, $v_{n,8}$ into $V_P$;
+        \State put $v_{1,2}$, $v_{m,3}$, $v_{2,5}$, $v_{2,6}$, $v_{m,8}$ into $V_P$;
 
         \For{$i=2$ to $m$}
             \State put $v_{i,2}$, $v_{i,4}$, $v_{i,7}$ into $V_P$;
@@ -767,10 +781,9 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
             \If{$i \equiv 1\pmod 2$}
                 \State put $v_{1, 3*i+1}$, $v_{1, 3*i+2}$ into $V_P$;
             \Else
-                \State put $v_{n, 3*i+1}$, $v_{n, 3*i+2}$ into $V_P$;
+                \State put $v_{m, 3*i+1}$, $v_{m, 3*i+2}$ into $V_P$;
             \EndIf
         \EndFor
-
     \EndIf
 \EndIf
 
@@ -790,21 +803,13 @@ The width of gird, $n$;
 The trajectory of two-dimensional coordinate of grid, $V_P$;
 The COL set of two-dimensional coordinate of grid, $V_C$;
 \label{code:fram:judgemod}
-\State get $V_P$ from algorithm 1.
-
-\If{$(m \equiv 1 \pmod 3$ and $n \equiv 0 \pmod 3)$ or $(m \equiv 1 \pmod 3$ and $n \equiv 2 \pmod 3)$} or $(m \equiv 2 \pmod 3$ and $n \equiv 0 \pmod 3)$
-\State swap($m$, $n$);
-\EndIf
+\State do algorithm 1 and get $V_P$.
 
 \label{code:fram:calculateab}
 \State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{n}{3} \rfloor$;
 
 \label{code:fram:calculate}
 \If{$m<4$ or $n<4$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
     \If{$m=1$}
         \If{$n<3$}
             \State $V_C=V_P$;
@@ -829,9 +834,6 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
     \EndFor
 
 \ElsIf{$m \equiv 2 \pmod 3$}
-    \If{$n \equiv 2 \pmod 3$ and $m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
 
@@ -851,17 +853,13 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
         \EndFor
 
         \For{$i=1$ to $n$}
-            \For{$j=1$ to $a-1$}
+            \For{$j=1$ to $a$}
                 \State put $v_{3*j+1, i}$ into $V_C$;
             \EndFor
         \EndFor
     \EndIf
 
 \Else
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$);
-    \EndIf
-
     \If{$a=1$ and $b=1$}
         \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
 
@@ -896,7 +894,7 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 
 \section{Evaluation}\label{sec:experiment}
 % 仿真
-% 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
+% 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
 
 \section{Conclusions}\label{sec:conclude}
