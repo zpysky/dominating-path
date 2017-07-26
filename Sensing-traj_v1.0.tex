@@ -334,9 +334,9 @@ Then, we give notations of variables.
   \item $L^r_{i,j}(G)=L \cap G^r_{i,j}$: Intersection between $L$ and $G^r_{i,j}$.
   \item $D^c_{i,j}(L)$: Dominating vertexes in $L^c_{i,j}(G)$.
   \item $D^r_{i,j}(L)$: Dominating vertexes in $L^r_{i,j}(G)$.
-  \item $C^c_{i,j}(L)$: Connecting vertexes in $L^c_{i,j}(G)$.
-  \item $C^r_{i,j}(L)$: Connecting vertexes in $L^r_{i,j}(G)$.
-  \item $C^{ccon}_{i}(L)$: Connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$.
+  \item $C^c_{i,j}(L)$: Connecting vertexes for vertexes in $D^c_{i,j}(L)$.
+  \item $C^r_{i,j}(L)$: Connecting vertexes for vertexes in $D^r_{i,j}(G)$.
+  \item $C^{ccon}_{i}(L)$: Connecting vertexes for vertexes between $D^c_{1,i}(L)$ and $D^c_{i+1,n}(L)$.
   \item $\gamma(G)$: The size of minimum dominating set of $G$.
   \item $\gamma_c(G)$: The size of minimum connected dominating set of $G$.
   \item $\gamma_l(G)$: The size of minimum dominating path of $G$.
@@ -367,17 +367,17 @@ In lemma \ref{lem:right3}, we know that for $L$ in $G=L_{m,n}$, $|L^c_{n-2,n}(G)
 Since vertexes in $L$ consists of dominating vertexes and connecting vertexes, we split dominating path in $L_{m,n+3}$ into 5 parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
 \begin{lem}
-Let $n \geq 2$ is integer and $L$ is minimum dominating path of $G=L_{m,n+3}$. We denote $G^*=L_{m,n}$. Then there is at least one condition that $|D^c_{1,n}(L)| \geq |D(G^*)|$. In other words, none of vertexes in $G^c_{1,n}$ has private neighbor in $D^c_{n+1,n+3}(L)$.
+Let $n \geq 2$ is integer and $L$ is minimum dominating path of $G=L_{m,n+3}$. We denote $G^*=L_{m,n}$. Then there is at least one condition that $|D^c_{1,n}(L)| \geq |D(G^*)|$. In other words, none of vertexes in $G^c_{1,n}$ is covered by $D^c_{n+1,n+3}(L)$.
 \end{lem}
 
 \begin{proof}
 Since $D(G^*)$ is dominating vertexes of minimum dominating path in $L_{m,n}$ as well as $G^c_{1,n}$ for $L_{m,n+3}$, we have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertexes in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$. Therefore, if $|D^c_{1,n}(L)|<|D(G^*)|$, some vertexes in $G^c_{1,n}$ must be dominated by $D^c_{n+1,n+3}(L)$ and do not have neighbors in $D^c_{1,n}(L)$ (as well as $C^c_{1,n}(L)$, but this could make that vertex belongs to $D^c_{1,n}(L)$ instead of $C^c_{1,n}(L)$). Furthermore, these vertexes must belong to $G^c_n$ since vertexes in other columns do not have neighbors in $G^c_{n+1,n+3}$.
 
-\textbf{$n=2$}: if there is a vertex $v$ in $G^c_{1,2}$ that not be covered by $D^c_{1,2}(L)$ and the row $r$ that $v$ belongs to is not in $L$. Since $v$ must lie in $G^c_2$ and its left vertex should be dominated by other vertex, the vertex to the up (or down) left of $v$ must belong to $L$ and be one of starting points.
+\textbf{n=2}: if there is a vertex $v$ in $G^c_{1,2}$ that not be covered by $D^c_{1,2}(L)$ and the row $r$ that $v$ belongs to is not in $L$. Since $v$ must lie in $G^c_2$ and its left vertex should be dominated by other vertex, the vertex to the up (or down) left of $v$ must belong to $L$ and be one of starting points.
 
 Therefore, we construct dominating path $L^*$ with $|L^*|=|L|$. We replace vertexes in the leftmost column from inflection point to the cross point with $G^c_2$. As shown in . So $|L^*|=|L|$ and $|D^c_{1,n}(L)| \geq |D(G^*)|$.
 
-\textbf{$n\geq3$}: Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1,n+3}(L)$.
+\textbf{n>2}: Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1,n+3}(L)$.
 
 If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct. As shown in .
 
