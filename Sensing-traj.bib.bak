@@ -49,3 +49,57 @@
   pages={22-28},
   year={2009},
 }
+
+@article{Beard2002Coordinated,
+  title={Coordinated target assignment and intercept for unmanned air vehicles},
+  author={Beard, R. W. and Mclain, T. W. and Goodrich, M. A. and Anderson, E. P.},
+  journal={IEEE Transactions on Robotics & Automation},
+  volume={18},
+  number={6},
+  pages={911-922},
+  year={2002},
+}
+
+@article{Hu2006A,
+  title={A knowledge based genetic algorithm for path planning of a mobile robot},
+  author={Hu, Yanrong and Yang, Simon X},
+  journal={Acta Electronica Sinica},
+  volume={34},
+  number={5},
+  pages={4350-4355 Vol.5},
+  year={2006},
+}
+
+@inproceedings{Yun2011Improved,
+  title={Improved genetic algorithms based optimum path planning for mobile robot},
+  author={Yun, Soh Chin and Ganapathy, Veleppa and Chong, Lim Ooi},
+  booktitle={International Conference on Control Automation Robotics & Vision},
+  pages={1565-1570},
+  year={2011},
+}
+
+@inproceedings{Savla2005On,
+  title={On Traveling Salesperson Problems for Dubins ¡¯ vehicle: stochastic and dynamic environments},
+  author={Savla, K. and Bullo, F. and Frazzoli, E.},
+  booktitle={Decision and Control, 2005 and 2005 European Control Conference. Cdc-Ecc '05.  IEEE Conference on},
+  pages={4530-4535},
+  year={2005},
+}
+
+@article{Fu2012Phase,
+  title={Phase Angle-Encoded and Quantum-Behaved Particle Swarm Optimization Applied to Three-Dimensional Route Planning for UAV},
+  author={Fu, Yangguang and Ding, Mingyue and Zhou, Chengping},
+  journal={IEEE Transactions on Systems, Man, and Cybernetics - Part A: Systems and Humans},
+  volume={42},
+  number={2},
+  pages={511-526},
+  year={2012},
+}
+
+@book{Koenig2004Lifelong,
+  title={Lifelong planning A*},
+  author={Koenig, Sven and Likhachev, Maxim and Furcy, David},
+  publisher={Elsevier Science Publishers Ltd.},
+  pages={93-146},
+  year={2004},
+}

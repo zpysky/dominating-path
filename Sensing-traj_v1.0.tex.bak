@@ -608,10 +608,10 @@ When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 &|V_C|\\
 &=\left\{
 \begin{array}{rcl}
-min (3ab+2a+3b+2, 3ab+3a+2b+2)       &      & {a \leq 2, b \leq 2}\\
-min (3ab+2a+3b+3, 3ab+3a+2b+2)       &      & {a>2, b \leq 2}\\
-min (3ab+2a+3b+2, 3ab+3a+2b+3)       &      & {a \leq 2, b>2}\\
-min (3ab+2a+3b+3, 3ab+3a+2b+3)       &      & {otherwise}\\
+3ab+2a+3b+2       &      & {a < b, a \leq 2}\\
+3ab+2a+3b+3       &      & {a < b, a > 2}\\
+3ab+3a+2b+2       &      & {a \geq b, b \leq 2}\\
+3ab+3a+2b+3       &      & {otherwise}\\
 \end{array} \right.
 \end{aligned}
 \].
@@ -876,7 +876,7 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
             \State put $v_{i,2}$ into $V_C$;
         \EndFor
 
-        \For{$i=3$ to $m$}
+        \For{$i=4$ to $m$}
             \State put $v_{i,4}$, $v_{i,7}$ into $V_C$;
         \EndFor
 
@@ -896,6 +896,39 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 % 仿真
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
+\subsection{Experiment Setup}
+\textbf{Experimental preconditions}: We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
+
+\textbf{Comparison algorithms}: We consider two different algorithms for comparison. Since in our algorithm we choose the minimum dominating path in grid first and select COLs from path, we consider conventional algorithms as comparison which select COLs in grid first and choose a path to connect them.
+\begin{enumerate}
+  \item \emph{Row-first COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we use row-first
+  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we use select next point which could maximum $\frac{coverage set}{distance}$.
+\end{enumerate}
+
+\textbf{Performance metrics}: We use the following two metrics for evaluating algorithm performance.
+\begin{itemize}
+  \item \emph{Time Consuming}: The time consuming is defined as total time of flight and measurement of drone to cover the space under specific algorithm.
+  \item \emph{Battery Coverage}: The battery coverage is defined as maximum coverage area during entire battery life. Since algorithm is affected by input width and length, We fix the width of grid.
+\end{itemize}
+
+\subsection{Results in specific open space}
+We choose a open space in university which has a size of 45 m length, 35 m width and 10m height, and it is divided into a 9*7*2 3D grid by 5*5*5 cuboids. We consider the 2D 9*7 grid in space. Since time consuming is the sum of flight time and measurement time, we consider measurement time of different granularity which is 0, 1, 2, 5 seconds for each COL. 
+
+Figure show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The disparity of time consuming decreases as measurement time increases and when measurement time is 5 seconds it becomes 0.
+
+Figure show the battery coverage in grid of different algorithms on different granularity of measurement time. We fix the width of grid as n. Similar with time consuming, when consider flight time only, our algorithm could covers more than twice the area of two other algorithms. And as measurement time increases, coverage areas become closer.
+
+\subsection{Results of simulations}
+% TODO rate, start-stop(?) 
+We simulate grids of different lengths and widths in this subsection. 
+
+Figure show that 
+
+Figure show that
+
+\subsection{}
+
+
 
 \section{Conclusions}\label{sec:conclude}
 %In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.

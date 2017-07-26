@@ -20,6 +20,11 @@ Y.~Fu, M.~Ding, and C.~Zhou.
 \newblock {\em IEEE Transactions on Systems, Man, and Cybernetics - Part A:
   Systems and Humans}, 42(2):511--526, 2012.
 
+\bibitem{Hamburger2007Routing}
+P.~Hamburger, R.~Vandell, and M.~Walsh.
+\newblock Routing sets in the integer lattice.
+\newblock {\em Discrete Applied Mathematics}, 155(11):1384--1394, 2007.
+
 \bibitem{Hu2006A}
 Y.~Hu and S.~X. Yang.
 \newblock A knowledge based genetic algorithm for path planning of a mobile

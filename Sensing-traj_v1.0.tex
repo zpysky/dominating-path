@@ -450,12 +450,26 @@ There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $stan
 In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 \end{proof}
 
+
+\begin{pro}
+$\\$
+\begin{enumerate}
+  \item $\gamma_l(L_{1,1})=\gamma_l(L_{1,2})=1$, and if $3 \leq n$, $\gamma_l(L_{1,n})=n-2$
+  \item $\gamma_l(L_{2,2})=\gamma_l(L_{2,3})=2$, and if $4 \leq n$, $\gamma_l(L_{2,n})=n$
+  \item $\gamma_l(L_{3,n})=n$
+\end{enumerate}
+\end{pro}
+
+\begin{proof}
+Since connected dominating set is also dominating path when $m \geq 3$ or $n \geq 3$, we have the same result as \cite{Hamburger2007Routing}.
+\end{proof}
+
 We denote $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{n}{3} \rfloor$. And we will show six different cases for minimum dominating path for $L_{m,n}$ and give its proof.
 
 % TODO: add 1 and 2 and 3
 
 \begin{pro}
-When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -499,7 +513,7 @@ if $a > 2$,
 \end{proof}
 
 \begin{pro}
-When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
 $\gamma_l(L_{m,n})=\min (3ab+2a-2, 3ab+2b-2)$.
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
@@ -542,7 +556,7 @@ We could use reduction to prove the result on the other two cases. When $m \equi
 \end{proof}
 
 \begin{pro}
-When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, we have
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -572,7 +586,16 @@ From last subsection, we know how to find the minimum dominating path in $L_{m,n
 Therefore, for the 6 different cases, we have the following result.
 
 \begin{pro}
-When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+$\\$
+\begin{enumerate}
+  \item $\gamma_l(L_{1,n})=\lfloor \frac{n+2}{3} \rfloor$
+  \item $\gamma_l(L_{2,2})=\gamma_l(L_{2,3})=2$, and if $4 \leq n$, $\gamma_l(L_{2,n})=n$
+  \item $\gamma_l(L_{3,n})=n$
+\end{enumerate}
+\end{pro}
+
+\begin{pro}
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
 \begin{aligned}
 &|V_C|\\
@@ -587,7 +610,7 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$. When $m 
 
 % TODO 化简 b 小于等于 2 的情况，增加 1、2、3的情况
 \begin{pro}
-When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
 $|V_C|=3ab$.
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
@@ -619,7 +642,7 @@ Besides, the results have a same structure.
 \end{pro}
 
 \begin{pro}
-When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a \leq b$, we have
+Assume $m \geq 4$, $n \geq 4$. When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a \geq 1$ and $b \geq 1$, assume $a \leq b$, we have
 \[
 \begin{aligned}
 &|V_C|\\
@@ -896,6 +919,39 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 % 仿真
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
+\subsection{Experiment Setup}
+\textbf{Experimental preconditions}: We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
+
+\textbf{Comparison algorithms}: We consider two different algorithms for comparison. Since in our algorithm we choose the minimum dominating path in grid first and select COLs from path, we consider conventional algorithms as comparison which select COLs in grid first and choose a path to connect them.
+\begin{enumerate}
+  \item \emph{Row-first COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we use row-first
+  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we use select next point which could maximum $\frac{coverage set}{distance}$.
+\end{enumerate}
+
+\textbf{Performance metrics}: We use the following two metrics for evaluating algorithm performance.
+\begin{itemize}
+  \item \emph{Time Consuming}: The time consuming is defined as total time of flight and measurement of drone to cover the space under specific algorithm.
+  \item \emph{Battery Coverage}: The battery coverage is defined as maximum coverage area during entire battery life. Since algorithm is affected by input width and length, We fix the width of grid.
+\end{itemize}
+
+\subsection{Results in specific open space}
+We choose a open space in university which has a size of 45 m length, 35 m width and 10m height, and it is divided into a 9*7*2 3D grid by 5*5*5 cuboids. We consider the 2D 9*7 grid in space. Since time consuming is the sum of flight time and measurement time, we consider measurement time of different granularity which is 0, 1, 2, 5 seconds for each COL.
+
+Figure show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The disparity of time consuming decreases as measurement time increases and when measurement time is 5 seconds it becomes 0.
+
+Figure show the battery coverage in grid of different algorithms on different granularity of measurement time. We fix the width of grid as n. Similar with time consuming, when consider flight time only, our algorithm could covers more than twice the area of two other algorithms. And as measurement time increases, coverage areas become closer.
+
+\subsection{Results of simulations}
+% TODO rate, start-stop(?)
+We simulate grids of different lengths and widths in this subsection.
+
+Figure show that
+
+Figure show that
+
+\subsection{}
+
+
 
 \section{Conclusions}\label{sec:conclude}
 %In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
