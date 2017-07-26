@@ -136,9 +136,6 @@ Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
 \maketitle
 
 \begin{abstract}
-%Projecting the population distribution in geographical regions is important for many applications such as launching marketing campaigns or enhancing the public safety in certain densely-populated areas. Conventional studies require the collection of people's trajectory data through offline means, which is limited in terms of cost and data availability. The wide use of online social network (OSN) apps over smartphones has provided the opportunities of devising a lightweight approach of conducting the study using the online data of smartphone apps. In this paper, we propose the concept of geo-homophily in OSNs to determine how much the data of an OSN can help project the population distribution in a given division of geographical regions. Specifically, we establish a three-layer theoretic framework that first maps the online message diffusion among friends in the OSN to the offline population distribution over a given division of regions via a Dirichlet process, and then projects the floating population across the regions. By experiments over large-scale OSN datasets, we show that the proposed prediction models have a high prediction accuracy in characterizing the process of how the population distribution forms and how the floating population changes over time.
-%evaluate the performance of floating population prediction model upon the occurrence of human migration during the Chinese Spring Festival 2016.
-
 Drones are born suitable for data collection and mobile sensing. However, due to limited battery available time, drones are still not popular these days. Therefore, in order to make use of drones in mobile sensing, it is necessary to find the optimal trajectory. In this paper, we propose the optimal trajectory planning in three-dimensional mobile sensing. Specifically, we first divide target space into a network of observation locations (OL) which forms a 3D grid, then for each divided 2D grid we find the optimal OL-path (trajectory) that covers network and finally select necessary critical observation locations (COL) from OL-path for measurement.
 \end{abstract}
 
@@ -174,9 +171,7 @@ Similar to traditional sensor networks and mobile base station, we consider data
 % 多个场景下的实验验证、仿真。
 In this paper, we consider optimal trajectory in three-dimensional mobile sensing. We divide three-dimensional space into a network of observation locations (OLs), and generate trajectory in two steps: select critical observation locations (COLs) from OLs to cover measurement space while find a OL-path(trajectory) that covers COLs. We formulate the problem as a constraint set coverage problem in graph theory. Specifically, we consider the following two special cases:
 \begin{enumerate}
-%\item \emph{Consider measurement time only}: Under this condition, we assume flight time negligible and consider measurement time only. In order to minimize measurement time, we should select least OLs to cover OL-network. Therefore, we could formulate this problem as a minimum dominating set (A dominating set in a graph $G$ is a subset of vertices S such that
-%    every vertex in $V(G)$ is a neighbor of some vertex of $S$.) problem in grid, which has been studied for a long time.
-\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. We choose the shortest OL-path in OL-network to minimize flight time and select all OLs in OL-path as COLs. Therefore, we could formulate problem as a minimum dominating path (A dominating path is a dominating set as well as a trail where all vertices (except possibly the first and last are distinct. Briefly, it is a dominating set as well as a path.) problem in grid, which has not been solved before.) In this paper, we solved this problem in grid which could extend to three-dimensional space.
+\item \emph{Consider flight time only}: Under this condition, we assume measurement time negligible and consider flight time only. We choose the shortest OL-path in OL-network to minimize flight time and select all OLs in OL-path as COLs. Therefore, we could formulate problem as a minimum dominating path. In this paper, we solved this problem in grid which could extend to three-dimensional space.
 \item \emph{Consider total time consuming}: Under this condition, we consider total time consuming which is the sum of flight time and measurement time. Since flight time usually take up most of time consuming, we find the shortest OL-path first. Then in order to minimize measurement time, we select least OLs in OL-path to cover OL-network. Also, we solve this problem in grid.
 \end{enumerate}
 
@@ -185,14 +180,14 @@ Because of algorithms we use is based on graph theory, We could get size of COL 
 \section{Related Work}~\label{sec:related}
 
 \subsection{Drones in 3D mobile sensing}
-Mobile sensing is the process of using the sensors of a mobile device to acquire data from the environment. Traditional mobile sensing uses traditional traffic tools like bikes \cite{eisenman2009bikenet} or cars \cite{devarakonda2013real}.
+Mobile sensing is the process of using the sensors of a mobile device to acquire data from the environment. Traditional mobile sensing uses traffic tools like bikes~\cite{eisenman2009bikenet} or cars~\cite{devarakonda2013real} to realize mobility.
 
-Nowadays, drones are popular in mobile sensing applications since they could capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photo or video-graphy \cite{Newman2014Drone}, 3D wireless signal survey \cite{Yu2016Automating}, inspection in inaccessible places where people rarely venture \cite{Purohit2011SensorFly}. However, drones are constrained by its limited battery life which require an efficient measurement approach to overcome the limitations.
+Nowadays, drones are popular in mobile sensing applications since they could capture different dimensions of signals in the environment that are beyond our sensing capability, such as aerial photo or video-graphy~\cite{Newman2014Drone}, 3D wireless signal survey~\cite{Yu2016Automating}, inspection in inaccessible places where people rarely venture~\cite{Purohit2011SensorFly}. However, drones are constrained by its limited battery life which require an efficient measurement approach to overcome the limitations.
 
 \subsection{Trajectory planning in mobile sensing}
-In conventional mobile sensing system, genetic algorithm \cite{Hu2006A,Yun2011Improved} and particle swarm optimization \cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes.
+In conventional mobile sensing system, genetic algorithm~\cite{Hu2006A,Yun2011Improved} and particle swarm optimization~\cite{Fu2012Phase} are always proposed for real-time path planning which could find an optimal or near-optimal robot path in both complex static and dynamic environments. It is now embedded into UAVs which could ensure partial minimality between two nodes.
 
-On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem \cite{Tekdas2009Using,Savla2005On}. Also, some heuristic algorithms like Life Long A* \cite{Koenig2004Lifelong} are developed to find shortest paths for path planning problems. It repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. For conventional trajectory planning in mobile sensing, it will find measurement nodes first and find a path to connect them. In this paper, we will give a different approach that reverses order of path finding and nodes selecting. And we give an algorithm based on graph theory which could be optimal if considering flight time only.
+On the other hand, large scale mobile sensing could be formulated as a ordinary Travelling Salesman Problem (TSP) or a special TSP problem~\cite{Tekdas2009Using,Savla2005On}. Also, some heuristic algorithms like Life Long A*~\cite{Koenig2004Lifelong} are developed to find shortest paths for path planning which repeatedly finds shortest paths from a given start vertex to a given goal vertex while the edge costs of a graph change or vertices are added or deleted. For conventional trajectory planning in mobile sensing, the first step is to find measurement locations and the second step is to find a path connect them. In this paper, we will give a different approach that reverses order of path finding and locations selecting, and we will give an algorithm based on graph theory which could be optimal if considering flight time only.
 
 
 \section{System Model}~\label{sec:problem}
@@ -202,11 +197,11 @@ On the other hand, large scale mobile sensing could be formulated as a ordinary 
 In this section, we establish a three-dimensional (3D) network model that characterizes the ordinary mobile sensing scene for drone. Then, we analyse correlation between OLs and relationship between 3D and 2D network model. Afterwards, we formulate optimal trajectory problem as a constraint set coverage problem and we consider two special scenes respectively in this paper.
 %In the first scene, we only consider measurement time which transform problem into the minimum dominating set problem.
 % TODO: add formulation
-In the first scene, we only consider flight time which is formulated as a minimum dominating path problem. In the second scene, we consider total time consuming which is formulated as a combination of minimum dominating path problem and constraint minimum dominating set problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
+In the first scene, we consider flight time only and formulate problem as a minimum dominating path problem. In the second scene, we consider total time consuming and formulate problem as a combination of minimum dominating path problem and constraint minimum dominating set problem. We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
 % 形成3D OL网络，并且定义OL的Level
 \subsection{Network establishment}
-\textbf{Dividing a 3D space into cuboids}: We assume sensing object is largely same in fixed area for every position in 3D space. So we divide a 3D space into cuboids with $a$ meters long, $b$ meters wide and $h$ meters high. We define the center point of cuboid $i$ as its observation location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
+\textbf{Dividing 3D space into cuboids}: We assume sensing object is largely same in fixed area for every position in 3D space. So we divide a 3D space into cuboids with $a$ meters long, $b$ meters wide and $h$ meters high. We define the center point of cuboid $i$ as its observation location (OL) (as shown in Figure 4), which is denoted by the 3-tuple (longitude, latitude, and altitude), i.e.,
 \[
 OL_i=(x_i, y_i, z_i),
 \]
@@ -214,19 +209,19 @@ where $x_i, y_i, z_i$ are 3D coordinates of $OL_i$.
 
 \textbf{3D network of OLs}: OLs form a 3D network graph $G=(V;E)$, where $V$ denotes the set of vertices and $E$ represents the edges connecting neighboring vertices. Specifically, the OL inside each cuboid $i$ is considered as a vertex in G, and an edge $(i,j)$ exists if cuboid $i$ is the same as cuboid $j$ in two coordinates and adjacent to cuboid $j$ on the third dimension. Therefore, OL-network forms a three-dimensional grid which has fine topology structure.
 
-\textbf{COL}: Obviously, if we take all of $OLs$ in the network into consideration, it would be too time consuming. Therefore, we select critical observation locations (COL) from $OLs$ to cover whole OL network while find trajectory covers COLs.
+\textbf{COL}: Obviously, if we take all of OLs in the network into consideration, it would be too time consuming. Therefore, we select critical observation locations (COL) from OLs to cover whole OL network while find trajectory to cover COLs.
 
 \subsection{Time consuming}
-For general mobile sensing, total time consuming consists of flight time and measurement time. And time consuming depends on COLs and trajectory. We denote $V_C \subseteq V$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$. And we also denote $V_P \subseteq V$ as the trajectory of UAV which forms a path in $G$ and we have $V_C \subseteq V_P$ since trajectory contains vertexes in $V_C$.
+For general mobile sensing, total time consuming consists of flight time and measurement time which depends on both COLs and trajectory. We denote $V_C \subseteq V$ as the set of COLs and $v_{C_i}$ as $i-th$ vertex in $V_C$. And we also denote $V_P \subseteq V$ as the trajectory of UAV which forms a path in $G$ and we have $V_C \subseteq V_P$ since trajectory should contain vertexes in $V_C$.
 
 % TODO: 公式
-\textbf{Measurement time}: Measurement time $T_M$ is the total time of mobile sensing. From empirical view, we could assume that measurement time is the same for all OLs. So measurement time is proportion to the number of COLs we select. The function is written as
+\textbf{Measurement time}: Measurement time $T_M$ is time consuming in mobile sensing. From empirical view, we could assume that measurement time is the same for all OLs. So measurement time is proportion to the number of COLs we select. The function is written as
 \[
 T_M=t_M |V_C|,
 \]
 where $t_M$ is the measurement time for each OL.
 
-\textbf{Flight time}: Flight time $T_F$ is the total time of UAV's flight. Since we formulate 3D space into a 3D grid, we use Hamiltonian distance to characterize distance between OLs. So flight time is proportion to the length of trajectory. The function is written as
+\textbf{Flight time}: Flight time $T_F$ is time consuming in drones' flight. Since we formulate 3D space into a 3D grid, we use Hamiltonian distance to characterize distance between OLs. So flight time is proportion to the length of trajectory. The function is written as
 \[
 % T_F=t_F \sum_{i=1}^{|V_C|-1} d_H(v_{C_i}, v_{C_{i+1}}),
 T_F=t_F |V_P|,
@@ -252,21 +247,21 @@ To characterize general mobile sensing, we assume adjacent OLs have correlation.
 Given a 3D space, we first establish a 3D OL network $G=(V;E)$ which forms a 3D grid. Each OL in grid has a coverage set. Due to drones' limited battery life, we want to complete flight in the shortest time. Hence, in order to minimize total time consuming, we select COLs from OLs to cover OL-network while find a OL-path(trajectory) covers COLs. We formulate this problem as a constraint set coverage problem in 3D grid.
 
 \textbf{Simplification from adjacency}:
-We have discussed about different adjacencies in the last subsection and in this subsection we can simplify the problem in these scenarios.
+We have discussed about different adjacencies in the last subsection and in this subsection we can use them to simplify the problem.
 
 % TODO: examples
 \begin{enumerate}
-  \item \emph{Star adjacency}: In actual mobile sensing scenery using UAV, we often consider two dimensions only in this scenery because usually two distant OLs in a line is not predictable, i.e., OLs in different heights. Then, we could divide 3D grid graph into multiple 2D grids and consider set coverage problem in each grid.
-  \item \emph{Cubic adjacency}: In this scenery, if an UAV flight over a plane, then whole coverage set include the plane and its adjacent planes. Then, we could also simplify 3D grid graph into multiple 2D grids and take advantage of its periodic structure.
+  \item \emph{Star adjacency}: Under start adjacency, we often consider two dimensions only because two distant OLs in a line is usually unpredictable, i.e., OLs in different heights. Then, we could divide 3D grid graph into multiple 2D grids and consider set coverage problem in each grid.
+  \item \emph{Cubic adjacency}: Under cubic adjacency, if a drone flight over a plane, then adjacent planes will also be covered. Then, we could also simplify 3D grid graph into multiple 2D grids.
 \end{enumerate}
-Therefore, instead of 3D grid, we formulate the problem into constraint set coverage problem in 2D grid.
+Therefore, instead of 3D grid, we formulate the problem as a constraint set coverage problem in 2D grid.
 
 \textbf{Competition between flight time and consideration time}:
-In order to minimize total time consuming, we want to minimize both flight time and consideration time. However, if we minimize consideration time, it would contradict with the minimality of flight time and vice versa. Therefore, since in most of cases flight time would account for majority part of total time consuming, we give priority to flight time.
+In order to minimize total time consuming, we want to minimize both flight time and consideration time. However, the minimality of flight time contradicts with the minimality of flight time. Therefore, since in most cases flight time would account for majority part of total time consuming, we give priority to flight time.
 
 \textbf{Two special cases of time consuming}:
 % TODO: 公式
-In section , we have discuss the components of total time consuming. But in actual scene, we may consider flight time more since measurement time always takes a small part of total time consuming. Therefore, in this paper we consider following two scenes.
+Due to last topic, we would give priority to flight time in this paper. Therefore, we will consider following two scenes.
 
 % TODO: add section below and 符号表示及公式
 \begin{enumerate}
@@ -275,10 +270,10 @@ In section , we have discuss the components of total time consuming. But in actu
   \item \emph{Consider total time consuming}: In this scene, we consider both measurement time and flight time. Since we give priority to flight time, we find the shortest OL-path first and select least OLs as COLs for measurement in OL-path. We could formulate this problem as a combination of a minimum dominating path problem and a constraint minimum dominating set problem in grid.
 \end{enumerate}
 
-Therefore, for two scenes above, we give definition to them respectively.
+Therefore, for two scenes above, we give definitions to them respectively.
 
 \begin{problem}[Consider flight time only]
-Given a 3D measurement space, we divide it into several 2D grid network graphs. For each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
+Given a 3D measurement space, we divide it into several 2D grid. For each grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is only relevant to flight time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, since $V_C=V_P$, we want to find the minimum path $V_P \subseteq V$ which contains COLs in V and covers all OLs in grid.
 \[
 \begin{aligned}
 & \text{minimize}
@@ -291,7 +286,7 @@ Given a 3D measurement space, we divide it into several 2D grid network graphs. 
 \end{problem}
 
 \begin{problem}[Consider total time consuming]
-Given a 3D measurement space, we divide it into several 2D grid network graphs. For each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is the sum of flight time and measurement time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, we want to find minimum path $V_P \subseteq V$ which covers all OLs in grid and select COLs from $V_P$ as dominating set $V_C \subseteq V_P$.
+Given a 3D measurement space, we divide it into several 2D grid. For each grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$ is vertex set of G, assuming the drone's trajectory time consuming is the sum of flight time and measurement time, let $C(v_i)$ be the coverage set of vertex $v_i$ in V, we want to find the minimum path $V_P \subseteq V$ which covers all OLs in grid and select COLs from $V_P$ as dominating set $V_C \subseteq V_P$.
 \[
 \begin{aligned}
 & \text{minimize}
@@ -307,36 +302,69 @@ Given a 3D measurement space, we divide it into several 2D grid network graphs. 
 
 Therefore, we will discuss these two problems in the next section and give corresponding certifications.
 
-% 定义相关变量。包括图G，格Lm,n，Gn, G3，连接顶点等等
-\subsection{Variable definitions}
-For the convenience of proof in next section, we define some variables following.
+\section{Lower bound and construction for two cases}
 
-$G=(V, E)$ denotes 3D OL network graph. $L_{m,n}$ denotes grid graph with m rows and n columns. $G^c_i$ and $G^r_i$ the leftmost $i-th$ column and topmost $i-th$ row. For graph $G$, $V(G)$ denotes set of vertexes in $G$. And $v_{i,j}$ denotes the vertex in row $i$ and column $j$ in $L_{m,n}$. For any vertex $v, y\in V$, $N[y]=\{v\in V: yv\in E\} \cup \{y\}$ is the closed neighborhood of $y$ (i.e., the set of neighbors of $y$ and $y$ itself). And for $S \subset V$, $N[S]= \bigcup_{v \in S} N[v]$. We denote $G^c_{i,j}$ as columns between $G^c_i$ and $G^c_j$ and $G^r_{i,j}$ as rows between $G^r_i$ and $G^r_j$.
-%If $G$ has $n+3$ columns, $G_3$ denotes rightmost three columns and $G_n$ denotes leftmost n columns.
-$\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a dominating set of $G$. $\gamma_c(G)$ denotes the minimum size of a connected dominating set of $G$. $\gamma_l(G)$ denotes the minimum size of a dominating path of $G$. For convenience, we assure dominating path $L$ as a special case of connected dominating set which could be represented as a vertex set. We also denote $L^c_{i,j}(G)$ as dominating path $L \cap G^c_{i,j}$ and $L^r_{i,j}(G)$ as dominating path $L \cap G^r_{i,j}$
-%If $G$ has $n+3$ columns, we also denote $L_3$ and $L_n$ as L in $G_3$ and $G_n$ respectively.
+\textbf{Connecting vertex and dominating vertex}:
+Since dominating path $L$ has both connectivity and dominance, there is thus at least one vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other words, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. We defines this kind of vertexes as \textbf{connecting vertex} and others as \textbf{dominating vertex}. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
 
-% 相关证明
-\section{Proof}
+\subsection{Definitions and notations}
+For proof in the following subsections, we define some variables in this subsection.
+
+First, we give specific definitions of dominating set, connected dominating set and dominating path.
+
+\begin{itemize}
+  \item Dominating Set: A dominating set for graph $G=(V,E)$ is a subset $D \subset V$ such that every vertex not in $D$ has a neighbor on $D$.
+  \item Connected Dominating Set: A connected dominating set $D$ for graph $G=(V,E)$ is a special dominating set such that any vertex in $D$ can reach any other node in $D$ by a path that stays entirely within $D$.
+  \item Dominating path: A dominating path $L$ for graph $G=(V,E)$ is path $L \subset V$ such that every vertex not in $L$ has a neighbor on $L$ which is a special connected dominating set. $L$ consists of \textbf{connecting vertexes} and \textbf{dominating vertexes}. A connecting vertex $v$ is a vertex whose coverage set is covered by other vertexes while a dominating vertex is on the contrary.
+\end{itemize}
+
+Then, we give notations of variables.
+\begin{itemize}
+  \item $G=(V,E)$: 3D OL network graph.
+  \item $L_{m,n}$: Grid graph with m rows and n columns.
+  \item $G^c_i$: Leftmost $i-th$ column in grid $G$.
+  \item $G^r_i$: Topmost $i-th$ row in grid $G$.
+  \item $G^c_{i,j}$: Columns between $G^c_i$ and $G^c_j$.
+  \item $G^r_{i,j}$: Rows between $G^r_i$ and $G^r_j$.
+  \item $v_{i,j}$: Vertex of intersection of $G^r_i$ and $G^c_j$ in grid.
+  \item $N[y]=\{v,y\in V: yv\in E\} \cup \{y\}$: Coverage set of vertex $y$.
+  \item $N[S]= \bigcup_{v \in S} N[v]$: Coverage set of vertex set $S \subset V$.
+  \item $L$: Vertex set of dominating path.
+  \item $L^c_{i,j}(G)=L \cap G^c_{i,j}$: Intersection between $L$ and $G^c_{i,j}$.
+  \item $L^r_{i,j}(G)=L \cap G^r_{i,j}$: Intersection between $L$ and $G^r_{i,j}$.
+  \item $D^c_{i,j}(L)$: Dominating vertexes in $L^c_{i,j}(G)$.
+  \item $D^r_{i,j}(L)$: Dominating vertexes in $L^r_{i,j}(G)$.
+  \item $C^c_{i,j}(L)$: Connecting vertexes in $L^c_{i,j}(G)$.
+  \item $C^r_{i,j}(L)$: Connecting vertexes in $L^r_{i,j}(G)$.
+  \item $C^{ccon}_{i}(L)$: Connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$.
+  \item $\gamma(G)$: The size of minimum dominating set of $G$.
+  \item $\gamma_c(G)$: The size of minimum connected dominating set of $G$.
+  \item $\gamma_l(G)$: The size of minimum dominating path of $G$.
+  \item $D(G)$: The size of dominating vertexes of minimum dominating path of $G$.
+  \item $C(G)$: The size of connecting vertexes of minimum dominating path of $G$.
+\end{itemize}
+
+%$G=(V, E)$ denotes 3D OL network graph. $L_{m,n}$ denotes grid graph with m rows and n columns. $G^c_i$ and $G^r_i$ the leftmost $i-th$ column and topmost $i-th$ row. For graph $G$, $V(G)$ denotes set of vertexes in $G$. And $v_{i,j}$ denotes the vertex in row $i$ and column $j$ in $L_{m,n}$. For any vertex $v, y\in V$, $N[y]=\{v\in V: yv\in E\} \cup \{y\}$ is the closed neighborhood of $y$ (i.e., the set of neighbors of $y$ and $y$ itself). And for $S \subset V$, $N[S]= \bigcup_{v \in S} N[v]$. We denote $G^c_{i,j}$ as columns between $G^c_i$ and $G^c_j$ and $G^r_{i,j}$ as rows between $G^r_i$ and $G^r_j$.
+%$\gamma(G)$ denotes the domination number of $G$ which is the minimum size of a dominating set of $G$. $\gamma_c(G)$ denotes the minimum size of a connected dominating set of $G$. $\gamma_l(G)$ denotes the minimum size of a dominating path of $G$. For convenience, we assure dominating path $L$ as a special case of connected dominating set which could be represented as a vertex set. We also denote $L^c_{i,j}(G)$ as $L \cap G^c_{i,j}$ and $L^r_{i,j}(G)$ as $L \cap G^r_{i,j}$
 
 % 证明现有结果
 \subsection{Consider flight time only}
+In this subsection, we will give the lower bound and construction of minimum dominating path of $L_{m,n}$ which is the shortest path in grid when consider flight time only.
 
-\begin{lem}
-Let $n>3$, $m>0$ be integers, and $L$ is a dominating path in $G=L_{m,n}$. Then $|L \bigcap V(G^c_{n-2,n})| \geq m$. Further, if $3 \nmid m$, then $|L \bigcap V(G^c_{n-2,n})| \geq m+1$.
+\begin{lem}~\label{lem:right3}
+Let $n>3$, $m>0$ be integers, and $L$ is a dominating path in $G=L_{m,n}$. Then $|L^c_{n-2,n}(G)| \geq m$. Further, if $3 \nmid m$, then $|L^c_{n-2,n}(G)| \geq m+1$.
 \end{lem}
 
 \begin{proof}
-We follow proof. Since is for connected dominating set and dominating path is a special dominating set, the conclusion as well as the analyzing method of this paper is also applicable to dominating set.
-
+We follow proof in \cite{Hamburger2007Routing}. Since dominating path is a special case of connected dominating set, the conclusion is also applicable to our result.
 \end{proof}
 
-In lemma , we know that every dominating path $L$ in $L_{m,n}$ has at least $m$ vertexes in the three rightmost columns. Therefore, we will consider the three periodicity of dominating path. Specifically, we could construct dominating path in three columns or three rows.
+In lemma \ref{lem:right3}, we know that for $L$ in $G=L_{m,n}$, $|L^c_{n-2,n}(G)| \geq m$. Therefore, we consider the three periodicity of dominating path. Specifically, we could extend $L$ in $L_{m,n}$ to $L_{m,n+3}$.
 
-\textbf{Connecting vertex and dominating vertex}:
-Since dominating path $L$ has both connectivity and dominance, there is thus at least one vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other words, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. It is necessary part which connects a dominating set to a dominating path. We defines this kind of vertex as \textbf{connecting vertex} whose main effect is connecting vertexes and the other as \textbf{dominating vertex} whose main effect is dominating vertexes. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
+%\textbf{Connecting vertex and dominating vertex}:
+%Since dominating path $L$ has both connectivity and dominance, there is thus at least one vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other words, the dominating set of $v$ is contained in the dominating set of other vertexes and $v$ is used to connect other vertexes. We defines this kind of vertexes as \textbf{connecting vertex} and others as \textbf{dominating vertex}. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertexes in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertexes between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertexes and connecting vertexes for minimum dominating path of graph $G$.
 
-Therefore, since we want to prove three periodicity of minimum dominating path in grid, we split dominating path $L$ in $L_{m,n+3}$ into several parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
+Since vertexes in $L$ consists of dominating vertexes and connecting vertexes, we split dominating path in $L_{m,n+3}$ into 5 parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
 \begin{lem}
 Let $n \geq 2$ is integer and $L$ is minimum dominating path of $G=L_{m,n+3}$. We denote $G^*=L_{m,n}$. Then there is at least one condition that $|D^c_{1,n}(L)| \geq |D(G^*)|$. In other words, none of vertexes in $G^c_{1,n}$ has private neighbor in $D^c_{n+1,n+3}(L)$.
@@ -444,7 +472,7 @@ Since we may change the origin structure of $L$, we could rotate direction of ex
 Therefore, there are only several cases for $m \; 3-period \; extend$ and $m+1 \; 3-period \; extend$. And we will show them below.
 
 \textbf{m \; 3-period \; extend}:
-There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $standard extend row$ could be a $m \; 3-period \; extend$. When $n \equiv 1$, like($L_{10,4}$) could only exist once. When $m \equiv 2$ and $n \equiv 1$, like($L_{11,4}$) could only exist once also.
+There are only two cases for $m \; 3-period \; extend$. When $m \equiv 0$, $standard extend row$ could be a $m \; 3-period \; extend$. When $n=1$, like($L_{10,4}$, $L_{11,4}$) could only exist once.
 
 \textbf{m+1 \; 3-period \; extend}:
 In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2$, like($L_{11,4}$) could only exist once also. When $m \equiv 2$ and $n \equiv 2$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0$ and $n \equiv 2$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.

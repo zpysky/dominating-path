@@ -1,14 +1,3 @@
-7-24
-增加 related work
-简化 数学证明
-
-7-25
-增加 实际飞行场景 
-增加 simulation
-
-7-26
-增加 图片
-增加 dominating path 数学证明的描述
-
-实验设计：
-寻找一种传统的 UAV trajectory in mobile sensing 的方法来进行比较做对比实验。
+增加图片
+增加 simulation 和 实验 的描述
+简化 dominating path 的数学证明

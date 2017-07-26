@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  26 JUL 2017 12:45
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  27 JUL 2017 00:22
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.0.tex
@@ -554,25 +554,32 @@ LaTeX Info: Redefining \nameref on input line 125.
 \@outlinefile=\write3
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 155.
+LaTeX Font Info:    Try loading font information for U+msa on input line 152.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 155.
+LaTeX Font Info:    Try loading font information for U+msb on input line 152.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [1{C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
 
 
-] [2]
-** ATTENTION: \proof is deprecated (line 329). Use \IEEEproof instead.
-[3]
-** ATTENTION: \proof is deprecated (line 345). Use \IEEEproof instead.
-** ATTENTION: \proof is deprecated (line 372). Use \IEEEproof instead.
+] [2] [3]
+** ATTENTION: \proof is deprecated (line 358). Use \IEEEproof instead.
+
+Underfull \hbox (badness 1515) in paragraph at lines 362--363
+[]\T1/ptm/m/n/10 In lem-ma []1[], we know that for $\OML/cmm/m/it/10 L$ \T1/ptm
+/m/n/10 in $\OML/cmm/m/it/10 G \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 L[]$\T1/ptm/m
+/n/10 ,
+ []
+
+** ATTENTION: \proof is deprecated (line 373). Use \IEEEproof instead.
 [4]
-Underfull \hbox (badness 5832) in paragraph at lines 381--382
+** ATTENTION: \proof is deprecated (line 400). Use \IEEEproof instead.
+
+Underfull \hbox (badness 5832) in paragraph at lines 409--410
 $\OT1/cmr/m/n/10 1$\T1/ptm/m/n/10 , $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 D[]\OT1
 /cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 [ \OML/cmm/m/
 it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j
@@ -581,7 +588,7 @@ it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j
  []
 
 
-Underfull \hbox (badness 5832) in paragraph at lines 381--382
+Underfull \hbox (badness 5832) in paragraph at lines 409--410
 $\OT1/cmr/m/n/10 2$\T1/ptm/m/n/10 , $\OMS/cmsy/m/n/10 j\OML/cmm/m/it/10 D[]\OT1
 /cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 [ \OML/cmm/m/
 it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j
@@ -589,59 +596,59 @@ it/10 C[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 j
 =$
  []
 
-** ATTENTION: \proof is deprecated (line 391). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 419). Use \IEEEproof instead.
 [5]
-** ATTENTION: \proof is deprecated (line 420). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 448). Use \IEEEproof instead.
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--422
+Underfull \hbox (badness 10000) in paragraph at lines 449--450
  \T1/ptm/m/it/10 Proof: \T1/ptm/m/n/10 As dis-cuss above, we know that
  []
 
 
-Underfull \hbox (badness 1888) in paragraph at lines 444--445
+Underfull \hbox (badness 1888) in paragraph at lines 472--473
 []\T1/ptm/m/n/10 Therefore, there are on-ly sev-er-al cas-es for $\OML/cmm/m/it
 /10 m \OT1/cmr/m/n/10 3 \OMS/cmsy/m/n/10  $
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 455--457
+Underfull \hbox (badness 10000) in paragraph at lines 483--485
 
  []
 
-** ATTENTION: \proof is deprecated (line 463). Use \IEEEproof instead.
 [6]
-** ATTENTION: \proof is deprecated (line 485). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 491). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 513). Use \IEEEproof instead.
 
-Overfull \hbox (6.16171pt too wide) detected at line 528
+Overfull \hbox (6.16171pt too wide) detected at line 556
 [] []
  []
 
 
-Overfull \hbox (35.87013pt too wide) detected at line 541
+Overfull \hbox (35.87013pt too wide) detected at line 569
 [] []
  []
 
-** ATTENTION: \proof is deprecated (line 545). Use \IEEEproof instead.
-** ATTENTION: \proof is deprecated (line 572). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 573). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 600). Use \IEEEproof instead.
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 589--591
+Underfull \hbox (badness 10000) in paragraph at lines 617--619
 
  []
 
 
-Overfull \hbox (27.92834pt too wide) detected at line 627
+Overfull \hbox (27.92834pt too wide) detected at line 655
 [] []
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 663.
+put line 691.
 
-LaTeX Warning: Float too large for page by 823.04474pt on input line 815.
+LaTeX Warning: Float too large for page by 823.04474pt on input line 843.
 
 
-LaTeX Warning: Float too large for page by 247.04474pt on input line 916.
+LaTeX Warning: Float too large for page by 247.04474pt on input line 944.
 
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl [8]
+[8] (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.bbl
 ! Misplaced alignment tab character &.
 l.73 ...onference on Control Automation Robotics &
                                                   
@@ -658,14 +665,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 969.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 997.
 [9] [10
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 969.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 997.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.0.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 969.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 969.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 997.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 997.
 
 
 Package rerunfilecheck Warning: File `Sensing-traj_v1.0.out' has changed.
@@ -673,20 +680,20 @@ Package rerunfilecheck Warning: File `Sensing-traj_v1.0.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `Sensing-traj_v1.0.out':
-(rerunfilecheck)             Before: CE0CA3C9DE51B1D99B935EDB5AF3A1BC;4991
-(rerunfilecheck)             After:  A4BDCFA4FFF5DBD0D0CFBBBB0DA50D46;3695.
+(rerunfilecheck)             Before: 85D7FB8E48A4B7D2A0B03E3F639EC708;5319
+(rerunfilecheck)             After:  DD216E051E3B37A497501D382D31C991;3921.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9735 strings out of 495354
- 139742 string characters out of 3183858
- 279605 words of memory out of 3000000
- 12717 multiletter control sequences out of 15000+200000
+ 9736 strings out of 495354
+ 139754 string characters out of 3183858
+ 279625 words of memory out of 3000000
+ 12718 multiletter control sequences out of 15000+200000
  107681 words of font info for 112 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 36i,13n,38p,2267b,445s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,13n,38p,2267b,471s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTe
@@ -698,9 +705,9 @@ m/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
 CTEX/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTe
 X/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Sensing-traj_v1.0.pdf (10 pages, 241431 bytes).
+Output written on Sensing-traj_v1.0.pdf (10 pages, 242171 bytes).
 PDF statistics:
- 262 PDF objects out of 1000 (max. 8388607)
+ 264 PDF objects out of 1000 (max. 8388607)
  75 named destinations out of 1000 (max. 500000)
  169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
