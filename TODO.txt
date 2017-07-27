@@ -1,3 +1,7 @@
 增加图片
 增加 simulation 和 实验 的描述
 简化 dominating path 的数学证明
+
+two quick comments
+1. proposition 5--8 我看没有 proof，所以这些是不是都很容易证？是否可以合并——这个可以最后考虑
+2. algorithms 1, 2 这么写肯定太夸张了，一个伪代码最多2/3 列
