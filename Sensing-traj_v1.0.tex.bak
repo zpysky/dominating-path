@@ -382,7 +382,7 @@ Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n
 
 If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct. As shown in .
 
-Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and then move out $G^c_{n+1,n+3}$ or just move to the end point.
+Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and then move out $G^c_{n+1,n+3}$ or just end in $G^c_{n+1,n+3}$.
 
 In the first case, since $L$ may move out from $G^c_{n+1,n+3}$, we could construct as Fig and add connecting vertex to corresponding position.
 
@@ -457,7 +457,7 @@ Under case (c), we consider previous 3-period of $L$. Since $G^r_{n+1}$ should b
 \textbf{Extend from middle}:
 Obviously, we could use standard extend row extend from middle.
 
-Except for pure standard extend row, there is still one structure in Theorem \ref{thm:3period}. With standard extend row, when $n=1$, it could bring $m_3 \; extend$, and when $m \equiv 2 \pmod 3$, it could bring $(m+1)_3 \; extend$. But they can only occur once.
+Except for pure standard extend row, there is still one structure in Theorem \ref{thm:3period}. With standard extend row, when $n=1$, it could bring $m_3 \; extend$, and when $n \equiv 2 \pmod 3$ and $n \geq 11$, it could bring $(m+1)_3 \; extend$. But they can only occur once.
 
 \textbf{Rotate direction}:
 Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $(m+1)_3 \; extend$. But similarly, this method could only exist once for the same $m$.
@@ -475,7 +475,7 @@ Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; exte
   \item Once case (c).
   \item Once case (b) or (d).
   \item Once Rotate direction with standard extend row on rotated structure.
-  \item When $m \equiv 2 \pmod 3$, structure in Theorem \ref{thm:3period}.
+  \item When $n \equiv 2 \pmod 3$ and $n \geq 11$, structure in Theorem \ref{thm:3period}.
 \end{itemize}
 %In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2 \pmod 3$, like($L_{11,4}$) could only exist once also. When $m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 
@@ -726,18 +726,17 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
 
     \ElsIf($m=2$)
-        \State put $G^r_1$ except $v_{1,1}$ into $V_P$;
+        \State put $G^r_1$ into $V_P$;
 %        \If{$n=3$}
 %            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
 %        \Else
-%            \State put $G^r_1$ into $V_P$ except $v_{1,1}$
 %            \For{$i=1$ to $n$}
 %                \State put $v_{1, i}$ into $V_P$;
 %            \EndFor
 %        \EndIf
 
     \Else
-        \State put $G^r_2$ into $V_P$ except $v_{1,1}$
+        \State put $G^r_2$ into $V_P$;
 %        \For{$i=1$ to $n$}
 %            \State put $v_{2, i}$ into $V_P$;
 %        \EndFor
@@ -745,7 +744,6 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 
 \ElsIf{$m \equiv 0 \pmod 3$}
     \State put $G^r_2$, $G^r_5$ ... , $G^r_{3a-1}$ into $V_P$;
-
     \State put connecting vertexes in $G^c_1$ and $G^c_n$ into $V_P$;
 
 %    \For{$i=1$ to $n$}
@@ -766,11 +764,8 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 \ElsIf{$m \equiv 2 \pmod 3$}
     \If{$a>2$}
         \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_P$;
-
         \State put $G^r_2$, $G^r_5$, $G^r_8$ except vertexes in $G^c_1$ into $V_P$;
-
         \State put $G^r_10$, $G^r_13$..., $G^r_{3a+1}$ into $V_P$;
-
         \State put connecting vertexes in $G^c_1$ and $G^c_n$ into $V_P$;
 
 %        \For{$i=2$ to $n$}
@@ -792,9 +787,9 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 %        \EndFor
 
     \Else
-        \State put $G^r_2$, $G^r_4$, ..., $G^r_{3a+1}$ into $V_P$;
-
-        \State put connecting vertexes in $G^c_1$ into $V_P$;
+        \State put $G^r_2$ into $V_P$;
+        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_P$;
+        \State put connecting vertexes in $G^c_1$ and $G^c_n$ into $V_P$;
 
 %        \State put $v_{3,n}$ into $V_P$;
 %        \For{$i=1$ to $n$}
@@ -813,7 +808,6 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
     \EndIf
 
 \Else
-
     \If{$a \leq 2$ and $b \leq 2$}
         \State \textbf{if} $a \geq 1$ and $b \geq 1$, \textbf{then} put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
 
@@ -822,7 +816,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
         \State \textbf{if} $a=2$, \textbf{then} put $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
 
     \Else
-        \State put $v_{1,2}$, $v_{m,3}$, $v_{2,5}$, $v_{2,6}$, $v_{m,8}$ into $V_P$;
+        \State put $v_{1,2}$, $v_{2,5}$, $v_{2,6}$ into $V_P$;
 
         \State put $G^c_2$, $G^c_4$, $G^c_7$ except vertexes in $G^r_1$ into $V_P$;
 
@@ -919,7 +913,8 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 %        \EndFor
 
     \Else
-        \State put $G^r_2$, $G^r_4$, ..., $G^r_{3a+1}$ into $V_C$;
+        \State put $G^r_2$ into $V_C$;
+        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_C$;
 
 %        \For{$i=1$ to $n$}
 %            \State put $v_{2,i}$ into $V_C$;
@@ -955,7 +950,7 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 
         \State put $G^c_2$ into $V_C$;
 
-        \State put $G^c_4$, $G^c_7$ except for $G^c_{1,3}$ into $V_C$;
+        \State put $G^c_4$, $G^c_7$ except for $G^r_{1,3}$ into $V_C$;
 
         \State put $G^c_{10}$, $G^c_{13}$, ..., $G^c_{3b}$ into $V_C$;
 
