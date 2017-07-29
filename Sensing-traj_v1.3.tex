@@ -502,8 +502,10 @@ Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(L^*
 
 \end{proof}
 
-\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$ }
 From Theorem~\ref{thm:3period}, we could also know that when $n=1$, $\gamma_l(G) \geq \gamma_l(G^*)+m$.
+
+\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$ }
+
 
 \textbf{Struct~1: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m$}.
 
@@ -563,7 +565,13 @@ Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; exte
 We have four cases to construct minimum dominating path $L$ in grid $G=L_{m,n}$: (1) $m<4$ and $m<n$; (2) $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$; (3) $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$ or $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$; and (4) $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.
 
 \subsubsection{Case~1}
-Since connected dominating set is also dominating path when $m<4$ and $m<n$, we have the same structure as shown in Figure~ of \cite{Hamburger2007Routing}.
+\begin{figure}[htbp]
+ \centering \includegraphics[width=2.4in]{pix/sensing-traj/path_1.pdf} %\vspace{-0.1in}
+\caption{Minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ }
+\label{fig:path_1}
+\end{figure}
+
+Since connected dominating set is also dominating path when $m<4$ and $m<n$, we have the same structure as shown in Figure~\ref{fig:path_1} of \cite{Hamburger2007Routing}.
 Therefore, we have
 \begin{enumerate}
   \item $\gamma_l(L_{1,1})=\gamma_l(L_{1,2})=1$, and if $3 \leq n$, $\gamma_l(L_{1,n})=n-2$
@@ -572,9 +580,30 @@ Therefore, we have
 \end{enumerate}
 
 \subsubsection{Case~2}
-Since minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, standard extend row can be used to construct a $m_3 extend$ or $(m+1)_3 extend$. Further, from Theorem~\ref{thm:differentextend}, we know that when $m \equiv 2 \pmod3$ and $n=1$, we could construct a $m_3 extend$.
-Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we could use standard extend row to construct minimum dominating path, as shown in Figure~ . And when $m \equiv 2 \pmod3$, we have structure shown in Figure
-When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+\begin{figure}
+\begin{minipage}[c]{0.45\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_2.pdf}
+\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$.}
+\label{fig:path2_1}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.45\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_3.pdf}
+\caption{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$.}
+\label{fig:path2_2}
+\end{minipage}
+\hfill
+\end{figure}
+
+Since minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we could use meta struct 1 to construct $L_{m,n}$. we have the following structure as shown in Figure~\ref{fig:path2_1}.
+
+Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$.
+
+Similarly, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we use meta struct 1 when $n=1$, then we use meta struct 2 as $n$ increases. We have the following structure as shown in Figure~\ref{fig:path2_2}.
+
+Therefore, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -587,18 +616,84 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 \].
 
 \subsubsection{Case~3}
-When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig . Since $n \equiv 2 \pmod 3$, we could use $(m+1)_3 extend$ when $n \geq 11$.
-Assume we have proved the case when $a \leq k$, we consider the case when $a=k+1$.
-When $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+3k+2b-2$ has structure (a), we could use only standard extend row to reach a $(n+1)_3 \; extend$ which reaches lower bound. When $b>\lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+4k-2$ has structure (b), and we could only have a $(n+2)_3 \; extend$ from its structure. Since we could get $\gamma_l(L_{3k+3,3b+2})=3kb+3k+5b+1$ which has structure (a). Since we do not have structure in ~\ref{thm:differentextend} for minimum dominating path in both $L_{3k+3,3b+2}$ and $L_{3k,3b+5}$. We could only use standard extend row in structure (a) or (b) and the result is also in structure (a) or (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution in Theorem~\ref{thm:3period}.
-We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, assume $m \leq n$, we use standard extend row to extend columns. Similarly,  When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we use standard extend row to extend column and when $a>2$, we use structure in Fig. once.
+\begin{figure*}
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_4.pdf}
+\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$.}
+\label{fig:path3_1}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_5.pdf}
+\caption{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.}
+\label{fig:path3_2}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_6.pdf}
+\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, middle one with structure (a) and right one with structure (b).}
+\label{fig:path3_3}
+\end{minipage}
+\end{figure*}
+
+We could use reduction on the structure to construct minimum dominating path of $L_{m,n}$ in this case. 
+
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, if $m=6$, we could construct $L_{6,n}$ using meta struct 1. Assume the result hold for $m=k$, then we could get minimum dominating path for $L_{k+3,k}$ from $L_{k,k+3}$, since none of meta struct 1 and meta struct 2 fit the structure, we could use meta struct 3 to get minimum dominating path for $L_{k+3,k+3}$. Then, we could use meta struct 1 to get $L_{k+3,n}$ when $n \geq k+3$ as shown in Figure~\ref{fig:path3_1} which hold the structure for $k+3$. We could use the same approach to prove result when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$ as shown in Figure~\ref{fig:path3_2}.
+
+When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have two structures (a) and (b) as shown in Figure~\ref{fig:path3_3} and for different $n$ we also have two structures shown in ~\ref{fig:path3_2}. Assume result hold for $m=k$, and the critical point between structure (a) and structure (b) is $n=l$ when $m=k$. Specifically, when $n \leq l$, $L_{k,n}$ has structure (a) and otherwise, $L_{k,n}$ has structure (b). For $L_{k,n}$ with structure (a), we could construct from $L_{k+3, l}$. Since structure (a) could only use meta struct 3 or meta struct 2, we use meta struct 3 on $L_{k+3,l}$ until it satisfies the condition of meta struct 2. And we hold result for $m=k+1$.
+
+Therefore, we have following results.
+
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, assume $m \leq n$, we have $\gamma_l(L_{m,n})=3ab+2a-2$.
+When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we have
+\[
+\begin{aligned}
+&\gamma_l(L_{m,n})\\
+&=\left\{
+\begin{array}{rcl}
+3ab+4a+3b+1       &      & {a \leq 2}\\
+3ab+4a+3b      &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
+When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
+\[
+\begin{aligned}
+&\gamma_l(L_{m,n})\\
+&=\left\{
+\begin{array}{rcl}
+min (3ab+4a-2, 3ab+3a+2b-1)       &      & {b \leq 2}\\
+min (3ab+4a-2, 3ab+3a+2b-2)       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
 
 \subsubsection{Case~4}
-Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $(m+1)_3 \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Till now, $L_{4,10}$ is a $m_3 \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem~\ref{thm:3period}. When $b \geq 4$, we could also get $m_3 \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1})=6b$.
-When $a=2$ and $b=2$, we could use a $(m+1)_3 \; extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7})=21$
-When $a \geq 2$, we know that case (b), case (d) and structure in Fig could only exist once. Therefore, when $b \geq 3$, we have $\gamma_l(L_{3a+1,3b+1})=3ab+3a+3b-3$ which is $a-1$ times $(m+2)_3 \; extend$ from $L_{4,3b+1}$.
-Therefore, when $a+b \leq 4$, we could use a $(m+1)_3 \; extend$ for each add one on $a$ or $b$ on the basis of $L_{4,4}$.
+\begin{figure}
+\begin{minipage}[c]{0.45\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_7.pdf}
+\caption{Minimum dominating path when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.}
+\label{fig:path4_1}
+\end{minipage}%
+\end{figure}
 
+We could get minimum dominating path of $L_{4,4}$ in Figure~\ref{fig:path4_1}. Therefore, we could use two meta structs 2 to construct minimum dominating path of $L_{4,7}$ and $L_{4,10}$ and we could use meta struct 2 to construct minimum dominating path of $L_{7,7}$. And we could construct minimum dominating path of $L_{4,n}$ when $n \geq 10$ from $L_{1,n}$ with a meta struct 1. Finally, for $m \geq 7$, $n \geq 10$, we could only use meta struct 3 to construct minimum dominating path of $L_{m,n}$ from $L_{m-3,n}$ which get the result in Figure~\ref{fig:path4_1}.
 
+Therefore, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+\[
+\begin{aligned}
+&\gamma_l(L_{m,n})\\
+&=\left\{
+\begin{array}{rcl}
+3ab+3a+3b-3       &      & {a+b \leq 4}\\
+3ab+2a+2b+1       &      & {otherwise}\\
+\end{array} \right.
+\end{aligned}
+\].
 
 \begin{algorithm}[htb]
 \caption{Trajectory planning for UAV in grid when consider flight time only}
@@ -763,6 +858,7 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 \end{algorithm}
 
 \subsection{How to concatenate 2D trajectories to a 3D one}
+
 % XXXXXXXX
 
 \section{Finding the COLs from the minimum dominating path}

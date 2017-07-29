@@ -502,8 +502,10 @@ Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(L^*
 
 \end{proof}
 
-\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$ }
 From Theorem~\ref{thm:3period}, we could also know that when $n=1$, $\gamma_l(G) \geq \gamma_l(G^*)+m$.
+
+\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$ }
+
 
 \textbf{Struct~1: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m$}.
 
@@ -563,7 +565,13 @@ Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; exte
 We have four cases to construct minimum dominating path $L$ in grid $G=L_{m,n}$: (1) $m<4$ and $m<n$; (2) $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$; (3) $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$ or $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$; and (4) $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.
 
 \subsubsection{Case~1}
-Since connected dominating set is also dominating path when $m<4$ and $m<n$, we have the same structure as shown in Figure~ of \cite{Hamburger2007Routing}.
+\begin{figure}[htbp]
+ \centering \includegraphics[width=2.4in]{pix/sensing-traj/path_1.pdf} %\vspace{-0.1in}
+\caption{Minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ }
+\label{fig:path_1}
+\end{figure}
+
+Since connected dominating set is also dominating path when $m<4$ and $m<n$, we have the same structure as shown in Figure~\ref{fig:path_1} of \cite{Hamburger2007Routing}.
 Therefore, we have
 \begin{enumerate}
   \item $\gamma_l(L_{1,1})=\gamma_l(L_{1,2})=1$, and if $3 \leq n$, $\gamma_l(L_{1,n})=n-2$
@@ -572,9 +580,30 @@ Therefore, we have
 \end{enumerate}
 
 \subsubsection{Case~2}
-Since minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, standard extend row can be used to construct a $m_3 extend$ or $(m+1)_3 extend$. Further, from Theorem~\ref{thm:differentextend}, we know that when $m \equiv 2 \pmod3$ and $n=1$, we could construct a $m_3 extend$.
-Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we could use standard extend row to construct minimum dominating path, as shown in Figure~ . And when $m \equiv 2 \pmod3$, we have structure shown in Figure
-When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$. When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
+\begin{figure}
+\begin{minipage}[c]{0.45\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_2.pdf}
+\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$}
+\label{fig:path2_1}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.45\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_3.pdf}
+\caption{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$}
+\label{fig:path2_2}
+\end{minipage}
+\hfill
+\end{figure}
+
+Since minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we could use meta struct 1 to construct $L_{m,n}$. we have the following structure as shown in Figure~\ref{fig:path2_1}.
+
+Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+3a-2$.
+
+Similarly, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we use meta struct 1 when $n=1$, then we use meta struct 2 as $n$ increases. We have the following structure as shown in Figure~\ref{fig:path2_2}.
+
+Therefore, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
 \begin{aligned}
 &\gamma_l(L_{m,n})\\
@@ -587,9 +616,14 @@ When $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_l(L_{m,n})=3ab+
 \].
 
 \subsubsection{Case~3}
+We could use reduction to construct minimum dominating path of $L_{m,n}$ when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, if $m=6$, we could construct $L_{6,n}$ using meta struct 1. Assume the result hold for $m=k$, then we could get minimum dominating path for $L_{k+3,k}$ from $L_{k,k+3}$, since none of meta struct 1 and meta struct 2 fit the structure, we could use meta struct 3 to get minimum dominating path for $L_{k+3,k+3}$. Then, we could use meta struct 1 to get $L_{k+3,n}$ when $n \geq k+3$.
+
 When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig . Since $n \equiv 2 \pmod 3$, we could use $(m+1)_3 extend$ when $n \geq 11$.
+
 Assume we have proved the case when $a \leq k$, we consider the case when $a=k+1$.
+
 When $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+3k+2b-2$ has structure (a), we could use only standard extend row to reach a $(n+1)_3 \; extend$ which reaches lower bound. When $b>\lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+4k-2$ has structure (b), and we could only have a $(n+2)_3 \; extend$ from its structure. Since we could get $\gamma_l(L_{3k+3,3b+2})=3kb+3k+5b+1$ which has structure (a). Since we do not have structure in ~\ref{thm:differentextend} for minimum dominating path in both $L_{3k+3,3b+2}$ and $L_{3k,3b+5}$. We could only use standard extend row in structure (a) or (b) and the result is also in structure (a) or (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution in Theorem~\ref{thm:3period}.
+
 We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, assume $m \leq n$, we use standard extend row to extend columns. Similarly,  When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we use standard extend row to extend column and when $a>2$, we use structure in Fig. once.
 
 \subsubsection{Case~4}
@@ -988,14 +1022,14 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 \begin{minipage}[c]{0.23\textwidth}
 \centering
 \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare2.pdf}
-\caption{Battery coverage of three algorithms with different granularity of measurement time.}
+\caption{Time consuming of three algorithms with different loads when considering flight time only.}
 \label{fig:comp2}
 \end{minipage}
 \hfill
 \begin{minipage}[c]{0.23\textwidth}
 \centering
 \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare3.pdf}
-\caption{Time consuming of three algorithms with different loads when considering flight time only.}
+\caption{Battery coverage of three algorithms with different granularity of measurement time.}
 \label{fig:comp3}
 \end{minipage}
 \begin{minipage}[c]{0.23\textwidth}
