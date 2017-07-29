@@ -21,6 +21,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{epsfig}
 \usepackage{balance}
 \usepackage{multirow}
@@ -425,7 +426,7 @@ We follow proof in \cite{Hamburger2007Routing}. Since dominating path is a speci
 
 \end{proof}
 
-In lemma \ref{lem:3extend}, we know that for $L$ in $G=L_{m,n}$, $|L^c_{n-2,n}(G)| \geq m$. Therefore, we consider the three periodicity of dominating path. Specifically, we could extend $L$ in $L_{m,n}$ to $L_{m,n+3}$.
+In Lemma~\ref{lem:3extend}, we know that for $L$ in $G=L_{m,n}$, $|L^c_{n-2,n}(G)| \geq m$. Therefore, we consider the three periodicity of dominating path. Specifically, we could extend $L$ in $L_{m,n}$ to $L_{m,n+3}$.
 
 %\textbf{Connecting vertex and dominating vertex}:
 %Since dominating path $L$ has both connectivity and dominance, there is thus at least one vertex $v$ which $N[v] \cap N[L-v]=N[v]$. In other words, the dominating set of $v$ is contained in the dominating set of other vertices and $v$ is used to connect other vertices. We defines this kind of vertices as \textbf{connecting vertex} and others as \textbf{dominating vertex}. Similar with $G^r_{i,j}$ and $G^c_{i,j}$, assume $L$ is a dominating path in $G$, we denote $D^r_{i,j}(L)$ and $D^c_{i,j}(L)$ as dominating vertices in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. We also denote $C^r_{i,j}(L)$ and $C^c_{i,j}(L)$ as connecting vertices in $L^r_{i,j}(G)$ and $L^c_{i,j}(G)$ respectively. And we denote $C^{ccon}_{i}(L)$ as connecting vertices between $G^c_{1,i}(L)$ and $G^c_{i+1,n}(L)$ for $G$ with $n$ columns. Besides, we denote $D(G)$ and $C(G)$ as dominating vertices and connecting vertices for minimum dominating path of graph $G$.
@@ -481,7 +482,7 @@ Let $m \geq 2$ and $n \geq 2$ as integers. We assume $G=L_{m,n+3}$, $G^*=L_{m,n}
 \end{thm}
 
 \begin{proof}
-In lemma \ref{lem:ndominating} and lemma \ref{lem:3dominating}, we know that there exist at least one minimum dominating path $L$ in $G=L_{m,n+3}$, $|D^c_{n+1,n+3}(L)| \cup |C^{ccon}_{n}(L)| \cup |D^c_{1,n}(L)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ in $G$ must be less than $C(L^*)$ of a minimum dominating path $L^*$ in $G^*$.
+In Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we know that there exist at least one minimum dominating path $L$ in $G=L_{m,n+3}$, $|D^c_{n+1,n+3}(L)| \cup |C^{ccon}_{n}(L)| \cup |D^c_{1,n}(L)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ in $G$ must be less than $C(L^*)$ of a minimum dominating path $L^*$ in $G^*$.
 
 \textbf{Connectivity on the boundary}:
 Because connectivity depends on structure of $G^r_n$ and there are only two start vertices in $L$, we have structures in $G^r_n$ like Fig. We will consider different structures of $L$ in $G^r_n$.
@@ -491,15 +492,15 @@ If there are only one connecting vertex $v_{i,n}$ in connected component, we hav
 If there are two connecting vertices in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4 as shown in Fig . We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|=|C(L^*)|$. In the second case, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertices in dominating path. Specifically, if there are two 2-period extends, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period extends, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, $m \equiv 2 \pmod 3$ and $m \geq 11$, as shown in Fig , we have the structure. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
 
 \textbf{Connectivity in the middle}:
-In this case, we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertices between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In lemma \ref{lem:3extend}, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
+In this case, we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertices between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In Lemma~\ref{lem:3extend}, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
 
 Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(L^*)$, we could prove the result.
 
 \end{proof}
 
-From theorem \ref{thm:3period}, we could also know that when $n=1$, $\gamma_l(G) \geq \gamma_l(G^*)+m$.
+From Theorem~\ref{thm:3period}, we could also know that when $n=1$, $\gamma_l(G) \geq \gamma_l(G^*)+m$.
 
-Assume $G=L_{m,n+3}$ and $G^*=L_{m,n}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. It uses only 3 vertices to dominate 3 rows which is also scalable. And it is the only structure that reach $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$ while it is one of structures that reach $\gamma_l(G)=\gamma_l(G^*)+m+1$ when $3 \mid m+1$ which satisfy additive part in theorem \ref{thm:3period}. Besides, we could combine standard extend row with other structure while hold minimality of vertices.
+Assume $G=L_{m,n+3}$ and $G^*=L_{m,n}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. It uses only 3 vertices to dominate 3 rows which is also scalable. And it is the only structure that reach $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$ while it is one of structures that reach $\gamma_l(G)=\gamma_l(G^*)+m+1$ when $3 \mid m+1$ which satisfy additive part in Theorem~\ref{thm:3period}. Besides, we could combine standard extend row with other structure while hold minimality of vertices.
 
 \begin{thm}~\label{thm:differentextend}
 We denote \textbf{$s_3\; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G=L_{m,n}$, there are only finite structure for $m_3 \; extend$ and $(m+1)_3 \; extend$.
@@ -520,7 +521,7 @@ Under case (c), we consider previous 3-period of $L$. Since $G^r_{n+1}$ should b
 \textbf{Extend from middle}:
 Obviously, we could use standard extend row extend from middle.
 
-Except for pure standard extend row, there is still one structure in Theorem \ref{thm:3period}. With standard extend row, when $n=1$, it could bring $m_3 \; extend$, and when $n \equiv 2 \pmod 3$ and $n \geq 11$, it could bring $(m+1)_3 \; extend$. But they can only occur once.
+Except for pure standard extend row, there is still one structure in Theorem~\ref{thm:3period}. With standard extend row, when $n=1$, it could bring $m_3 \; extend$, and when $n \equiv 2 \pmod 3$ and $n \geq 11$, it could bring $(m+1)_3 \; extend$. But they can only occur once.
 
 \textbf{Rotate direction}:
 Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $(m+1)_3 \; extend$. But similarly, this method could only exist once for the same $m$.
@@ -530,7 +531,7 @@ Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; exte
 \textbf{$m_3 \; extend$}:
 \begin{itemize}
   \item When $m \equiv 0 \pmod 3$, pure standard extend row.
-  \item When $n=1$, structure in Theorem \ref{thm:3period}.
+  \item When $n=1$, structure in Theorem~\ref{thm:3period}.
 \end{itemize}
 
 \textbf{$(m+1)_3 \; extend$}:
@@ -538,7 +539,7 @@ Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; exte
   \item Once case (c).
   \item Once case (b) or (d).
   \item Once Rotate direction with standard extend row on rotated structure.
-  \item When $n \equiv 2 \pmod 3$ and $n \geq 11$, structure in Theorem \ref{thm:3period}.
+  \item When $n \equiv 2 \pmod 3$ and $n \geq 11$, structure in Theorem~\ref{thm:3period}.
 \end{itemize}
 %In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2 \pmod 3$, like($L_{11,4}$) could only exist once also. When $m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
 
@@ -581,7 +582,7 @@ When $m \equiv 0 \pmod 3$ or $m \equiv 2 \pmod 3$, standard extend row could rea
 
 When $n=1$, $\gamma_l{L_{m,1}}=m-2$. $L$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices which can be used to in standard extend rows. As shown in . Further, when $m \equiv 2 \pmod 3$ and $m \geq 11$, the structure in Fig. could bring a $m_3 \; extend$.
 
-Then, when $n>1$, due to theorem \ref{thm:3period}, we could use standard extend rows to achieve optimal results.
+Then, when $n>1$, due to Theorem~\ref{thm:3period}, we could use standard extend rows to achieve optimal results.
 
 Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$,
 \begin{equation*}
@@ -641,7 +642,7 @@ When $a=1$, $\gamma_l(L_{3,n})=3b+2$. And the two structures is as shown in Fig 
 
 Assume we have proved the case when $a \leq k$, we consider the case when $a=k+1$.
 
-When $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+3k+2b-2$ has structure (a), we could use only standard extend row to reach a $(n+1)_3 \; extend$ which reaches lower bound. When $b>\lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+4k-2$ has structure (b), and we could only have a $(n+2)_3 \; extend$ from its structure. Since we could get $\gamma_l(L_{3k+3,3b+2})=3kb+3k+5b+1$ which has structure (a). Since we do not have structure in \ref{thm:differentextend} for minimum dominating path in both $L_{3k+3,3b+2}$ and $L_{3k,3b+5}$. We could only use standard extend row in structure (a) or (b) and the result is also in structure (a) or (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution in theorem \ref{thm:3period}.
+When $b \leq \lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+3k+2b-2$ has structure (a), we could use only standard extend row to reach a $(n+1)_3 \; extend$ which reaches lower bound. When $b>\lfloor \frac{k}{2} \rfloor$, $\gamma_l(L_{m,n})=3kb+4k-2$ has structure (b), and we could only have a $(n+2)_3 \; extend$ from its structure. Since we could get $\gamma_l(L_{3k+3,3b+2})=3kb+3k+5b+1$ which has structure (a). Since we do not have structure in ~\ref{thm:differentextend} for minimum dominating path in both $L_{3k+3,3b+2}$ and $L_{3k,3b+5}$. We could only use standard extend row in structure (a) or (b) and the result is also in structure (a) or (b). Therefore, we could use standard extend rows in structure (b) to reach optimal solution in Theorem~\ref{thm:3period}.
 
 We could use reduction to prove the result on the other two cases. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, assume $m \leq n$, we use standard extend row to extend columns. Similarly,  When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we use standard extend row to extend column and when $a>2$, we use structure in Fig. once.
 
@@ -662,7 +663,7 @@ Assume $m \geq 4$, $n \geq 4$. When $m \equiv 1\pmod 3$, $n \equiv 1\pmod 3$, $a
 \end{prop}
 
 \begin{proof}
-Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $(m+1)_3 \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Till now, $L_{4,10}$ is a $m_3 \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem \ref{thm:3period}. When $b \geq 4$, we could also get $m_3 \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1})=6b$.
+Consider the condition when $a=1$. When $b=1$, we have $\gamma_l(L_{4,4})=8$ with following structure. Therefore, we could use $(m+1)_3 \; extend$ case (b) and case (c) respectively to get $\gamma_l(L_{4,7})=13$ and $\gamma_l(L_{4,10})=18$. Till now, $L_{4,10}$ is a $m_3 \; extend$ for $L_{1,10}$ using ... and reach the lower bound on Theorem~\ref{thm:3period}. When $b \geq 4$, we could also get $m_3 \; extend$ on $L_{4,n}$ using standard extend row on the extend of $L_{4, 10}$. Therefore, when $b \geq 3$, we have $\gamma_l(L_{4, 3b+1})=6b$.
 
 When $a=2$ and $b=2$, we could use a $(m+1)_3 \; extend$ on $L_{4,7}$ and get $\gamma_l(L_{7,7})=21$
 
@@ -1051,42 +1052,93 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
 \begin{figure*}
+\begin{minipage}[c]{0.23\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare1.pdf}
+\caption{Time consuming of three algorithms with different granularity of measurement time.}
+\label{fig:comp1}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.23\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare2.pdf}
+\caption{Battery coverage of three algorithms with different granularity of measurement time.}
+\label{fig:comp2}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.23\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare3.pdf}
+\caption{Time consuming of three algorithms with different loads when considering flight time only.}
+\label{fig:comp3}
+\end{minipage}
+\begin{minipage}[c]{0.23\textwidth}
+\centering
+\includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare4.pdf}
+\caption{Battery coverage of three algorithms with different loads when considering flight time only.}
+\label{fig:comp4}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}
 \begin{minipage}[t]{0.3\textwidth}
 \centering
-\includegraphics[width=0.8\linewidth]{pix/Figures/Compare1.eps}
-\caption{The viewing distribution of a hot message originated from Beijing.}
-\label{fig:ChinaMap}
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_timeconsume.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:timeconsume}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.3\textwidth}
 \centering
-\includegraphics[width=0.8\linewidth]{pix/Figures/Compare2.eps}
-\caption{The change of modularity towards Information Increment.}
-\label{fig:stability}
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_timedomain.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:timedomain}
 \end{minipage}
 \hfill
 \begin{minipage}[t]{0.3\textwidth}
 \centering
-\includegraphics[width=0.8\linewidth]{pix/Figures/Compare3.eps}
-\caption{Performance of UDM on WM and Gowalla datasets.}
-\label{fig:UDM}
-\end{minipage}
-\begin{minipage}[t]{0.3\textwidth}
-\centering
-\includegraphics[width=0.8\linewidth]{pix/Figures/Compare4.eps}
-\caption{Performance of UDM on WM and Gowalla datasets.}
-\label{fig:UDM}
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_battery.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:battery}
 \end{minipage}
 \end{figure*}
+
+%\begin{figure*}
+%\centering
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on Message Diffusion.\\~}
+%    \label{fig:FPIM:a}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on $P_\mathbb{S}$.\\~}
+%    \label{fig:FPIM:b}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on $P_{\Delta\mathbb{S}}$.\\~}
+%    \label{fig:FPIM:c}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Proportion of correct predictions.}
+%    \label{fig:FPIM:d}
+%\end{subfigure}
+%\caption{Results of inferring the floating population (FP) that has excluded those whose home and remote regions are the same.}
+%\label{fig:FPIM}
+%\end{figure*}
+
+
 \subsection{Experiment Setup}
 \textbf{Experimental preconditions}: We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
 
 \textbf{Comparison algorithms}: We consider two different algorithms for comparison. Since in our algorithm we choose the minimum dominating path in grid first and select COLs from path, we consider conventional algorithms as comparison which select COLs in grid first and choose a path to connect them.
 \begin{enumerate}
   \item \emph{Row-first COL First}: We select the minimum dominating set in grid first and select an OL at boundary as start point. Then, we use row-first form a suboptimal trajectory by prior choosing OLs row by row (the longer side of the grid).
-  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we follow the greedy algorithm that 
+  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we follow the greedy algorithm that
       \[
-       \min\limits_{d(v,v')} \max\limits_{N[y]-N[P]} v, 
+       \min\limits_{d(v,v')} \max\limits_{N[y]-N[P]} v,
       \]
       where $v,v' \in NG$, $P \subset NG$ is selected vertices of path, and $v'$ is the last vertex in path.
 \end{enumerate}
@@ -1100,20 +1152,18 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 \subsection{Results in specific open space}
 We choose a open space in university which has a size of 45 m length, 35 m width and 10m height, and it is divided into a 9*7*2 3D grid by 5*5*5 cuboids. We consider the 2D 9*7 grid in space. Since time consuming is the sum of flight time and measurement time, we consider measurement time of different granularity which is 0, 1, 2, 5 seconds for each COL.
 
-Figure show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The difference between our algorithm and sequential algorithm decreases as measurement time increases and when measurement time is 5 seconds total time of two algorithms are equal.
+Figure~\ref{fig:comp1} show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The gap between our algorithm and sequential algorithm decreases as measurement time increases and when measurement time is 5 seconds total time of two algorithms are equal.
 
-Figure show the battery coverage in grid of different algorithms on different granularity of measurement time. We fix the width of grid as n. Similar with time consuming, when consider flight time only, our algorithm could covers more area than other algorithms. And as measurement time increases, coverage areas of three algorithms as well as difference among three algorithms decrease and when measurement time is 5 seconds, coverage sets of three algorithms are nearly equal.
+Figure~\ref{fig:comp2} show the battery coverage in grid of different algorithms on different granularity of measurement time. We fix the width of grid as n. Similar with time consuming, when consider flight time only, our algorithm could covers more area than other algorithms. And as measurement time increases, coverage areas of three algorithms as well as difference among three algorithms decrease and when measurement time is 5 seconds, coverage sets of three algorithms are nearly equal.
 
-\subsection{Results of different loads}
-Figure show the battery coverage in grid with different loads. As load increases, coverage set of three algorithms decreases and the difference among three algorithms decrease as well.
+In a real scenario, drones might be used to delivery packages or other goods. Therefore, we also consider time consuming and battery coverage with different loads when considering flight time only. Results in Figure~\ref{fig:comp3} and~\ref{fig:comp4} show that as load increases, coverage set of three algorithms decreases and time consuming of three algorithms increases. Meanwhile, gap among three algorithms decrease as well.
 
-\subsection{Results of simulations}
-We simulate grids of different length and width in this subsection.
+\subsection{Results of different measurement space}
+Figure~\ref{fig:timeconsume} show the flight time in different measurement spaces with different width and length. We observe that our algorithm uses less time in every grid. And fixing width (or length), gap among algorithms increases as length (or width) increases.
 
-Figure show the flight time in grid with different width and length of different algorithms. We observe that our algorithm uses less time in every grid. And fixing width (or length), difference among algorithms increases as length (or width) increases.
+Similarly, we have the same result when considering battery coverage in Figure~\ref{fig:battery}. When fixing width (or length), our algorithm could cover more area than other algorithms.
 
-Similarly, we have the same result when considering battery coverage. When fixing width (or length), our algorithm could cover more area than other algorithms.
-
+We also observe that, when fixing width, as length increases, the ratio between our algorithm and row-first algorithm could converge to a periodic result.
 
 \section{Conclusions}\label{sec:conclude}
 %In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.

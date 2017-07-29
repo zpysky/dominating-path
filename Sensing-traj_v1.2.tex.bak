@@ -21,6 +21,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{epsfig}
 \usepackage{balance}
 \usepackage{multirow}
@@ -1050,16 +1051,96 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 % 仿真
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
+\begin{figure*}
+\begin{minipage}[c]{0.24\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_compare1.pdf}
+\caption{The viewing distribution of a hot message originated from Beijing.}
+\label{fig:comp1}
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.24\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_compare2.pdf}
+\caption{The change of modularity towards Information Increment.}
+\label{fig:comp2}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.24\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_compare3.pdf}
+\caption{Performance of UDM on WM and Gowalla datasets.}
+\label{fig:comp3}
+\end{minipage}
+\begin{minipage}[c]{0.24\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_compare4.pdf}
+\caption{Performance of UDM on WM and Gowalla datasets.}
+\label{fig:comp4}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_timeconsume.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:ChinaMap}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_timedomain.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:stability}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.3\textwidth}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_battery.pdf}
+\caption{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.}
+\label{fig:UDM}
+\end{minipage}
+\end{figure*}
+
+%\begin{figure*}
+%\centering
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on Message Diffusion.\\~}
+%    \label{fig:FPIM:a}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on $P_\mathbb{S}$.\\~}
+%    \label{fig:FPIM:b}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Based on $P_{\Delta\mathbb{S}}$.\\~}
+%    \label{fig:FPIM:c}
+%\end{subfigure}
+% \begin{subfigure}[b]{0.23\linewidth}
+%    \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_battery.pdf}
+%    \caption{Proportion of correct predictions.}
+%    \label{fig:FPIM:d}
+%\end{subfigure}
+%\caption{Results of inferring the floating population (FP) that has excluded those whose home and remote regions are the same.}
+%\label{fig:FPIM}
+%\end{figure*}
+
+
 \subsection{Experiment Setup}
 \textbf{Experimental preconditions}: We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
 
 \textbf{Comparison algorithms}: We consider two different algorithms for comparison. Since in our algorithm we choose the minimum dominating path in grid first and select COLs from path, we consider conventional algorithms as comparison which select COLs in grid first and choose a path to connect them.
 \begin{enumerate}
   \item \emph{Row-first COL First}: We select the minimum dominating set in grid first and select an OL at boundary as start point. Then, we use row-first form a suboptimal trajectory by prior choosing OLs row by row (the longer side of the grid).
-  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we follow the greedy algorithm that 
+  \item \emph{Greedy COL First}: We select the minimum dominating set in grid first and select a point at boundary as start point. Then, we follow the greedy algorithm that
       \[
-      p=(P=\{p_i\}|\alpha_i) = \frac{\prod_i \Gamma(\alpha_i)}{\Gamma(\sum_i \alpha_i)} \prod_i p_i^{\alpha_i-1}.
+       \min\limits_{d(v,v')} \max\limits_{N[y]-N[P]} v,
       \]
+      where $v,v' \in NG$, $P \subset NG$ is selected vertices of path, and $v'$ is the last vertex in path.
 \end{enumerate}
 
 \textbf{Performance metrics}: We use the following two metrics for evaluating algorithm performance.
@@ -1071,12 +1152,11 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 \subsection{Results in specific open space}
 We choose a open space in university which has a size of 45 m length, 35 m width and 10m height, and it is divided into a 9*7*2 3D grid by 5*5*5 cuboids. We consider the 2D 9*7 grid in space. Since time consuming is the sum of flight time and measurement time, we consider measurement time of different granularity which is 0, 1, 2, 5 seconds for each COL.
 
-Figure show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The difference between our algorithm and sequential algorithm decreases as measurement time increases and when measurement time is 5 seconds total time of two algorithms are equal.
+Figure show the time consuming in grid of different algorithms on different granularity of measurement time. We observe that our algorithm uses less time when consider flight time only. The gap between our algorithm and sequential algorithm decreases as measurement time increases and when measurement time is 5 seconds total time of two algorithms are equal. 
 
 Figure show the battery coverage in grid of different algorithms on different granularity of measurement time. We fix the width of grid as n. Similar with time consuming, when consider flight time only, our algorithm could covers more area than other algorithms. And as measurement time increases, coverage areas of three algorithms as well as difference among three algorithms decrease and when measurement time is 5 seconds, coverage sets of three algorithms are nearly equal.
 
-\subsection{Results of different loads}
-Figure show the battery coverage in grid with different loads. As load increases, coverage set of three algorithms decreases and the difference among three algorithms decrease as well.
+
 
 \subsection{Results of simulations}
 We simulate grids of different length and width in this subsection.
@@ -1085,6 +1165,8 @@ Figure show the flight time in grid with different width and length of different
 
 Similarly, we have the same result when considering battery coverage. When fixing width (or length), our algorithm could cover more area than other algorithms.
 
+\subsection{Impact of different loads}
+In a real scenario, drones might be used to delivery packages or other goods. Therefore, we show the impact of battery coverage with different loads in Figure ~\ref{fig:comp4}. Results show that as load increases, coverage set of three algorithms decreases and the gap among three algorithms decrease as well.
 
 \section{Conclusions}\label{sec:conclude}
 %In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
