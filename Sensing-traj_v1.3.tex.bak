@@ -988,14 +988,14 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 \begin{minipage}[c]{0.23\textwidth}
 \centering
 \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare2.pdf}
-\caption{Time consuming of three algorithms with different loads when considering flight time only.}
+\caption{Battery coverage of three algorithms with different granularity of measurement time.}
 \label{fig:comp2}
 \end{minipage}
 \hfill
 \begin{minipage}[c]{0.23\textwidth}
 \centering
 \includegraphics[width=1.0\linewidth]{pix/sensing-traj/eva_compare3.pdf}
-\caption{Battery coverage of three algorithms with different granularity of measurement time.}
+\caption{Time consuming of three algorithms with different loads when considering flight time only.}
 \label{fig:comp3}
 \end{minipage}
 \begin{minipage}[c]{0.23\textwidth}
