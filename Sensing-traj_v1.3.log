@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  30 JUL 2017 13:14
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  30 JUL 2017 13:36
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.3.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.3.tex
@@ -799,82 +799,76 @@ put line 738.
 LaTeX Warning: Float too large for page by 7.04474pt on input line 897.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 911--913
+Underfull \hbox (badness 10000) in paragraph at lines 913--915
 
  []
 
 
-Overfull \hbox (27.92834pt too wide) detected at line 949
+Overfull \hbox (27.92834pt too wide) detected at line 951
 [] []
  []
 
-<pix/sensing-traj/eva_compare1_2.pdf, id=384, 665.48625pt x 447.6725pt>
+[8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_4.pdf> <C:/Us
+ers/zpysky/Desktop/dominating-path/pix/sensing-traj/path_5.pdf> <C:/Users/zpysk
+y/Desktop/dominating-path/pix/sensing-traj/path_6.pdf> <C:/Users/zpysky/Desktop
+/dominating-path/pix/sensing-traj/path_7.pdf>]
+<pix/sensing-traj/eva_compare1_2.pdf, id=408, 665.48625pt x 447.6725pt>
 File: pix/sensing-traj/eva_compare1_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_compare1_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_compare1_2.pdf used on input line
- 1118.
+ 1120.
 (pdftex.def)             Requested size: 118.6778pt x 79.833pt.
 
-<pix/sensing-traj/eva_compare2_2.pdf, id=385, 665.48625pt x 447.6725pt>
+<pix/sensing-traj/eva_compare2_2.pdf, id=409, 665.48625pt x 447.6725pt>
 File: pix/sensing-traj/eva_compare2_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_compare2_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_compare2_2.pdf used on input line
- 1125.
+ 1127.
 (pdftex.def)             Requested size: 118.6778pt x 79.833pt.
 
-<pix/sensing-traj/eva_compare3_2.pdf, id=386, 665.48625pt x 447.6725pt>
+<pix/sensing-traj/eva_compare3_2.pdf, id=410, 665.48625pt x 447.6725pt>
 File: pix/sensing-traj/eva_compare3_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_compare3_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_compare3_2.pdf used on input line
- 1132.
+ 1134.
 (pdftex.def)             Requested size: 118.6778pt x 79.833pt.
 
-<pix/sensing-traj/eva_compare4_2.pdf, id=387, 665.48625pt x 447.6725pt>
+<pix/sensing-traj/eva_compare4_2.pdf, id=411, 665.48625pt x 447.6725pt>
 File: pix/sensing-traj/eva_compare4_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_compare4_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_compare4_2.pdf used on input line
- 1138.
+ 1140.
 (pdftex.def)             Requested size: 118.6778pt x 79.833pt.
 
-<pix/sensing-traj/eva_timeconsume.pdf, id=388, 665.48625pt x 468.75125pt>
+<pix/sensing-traj/eva_timeconsume.pdf, id=412, 665.48625pt x 468.75125pt>
 File: pix/sensing-traj/eva_timeconsume.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_timeconsume.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_timeconsume.pdf used on input lin
-e 1147.
+e 1149.
 (pdftex.def)             Requested size: 123.84172pt x 87.22545pt.
 
-<pix/sensing-traj/eva_timedomain_2.pdf, id=389, 665.48625pt x 396.48125pt>
+<pix/sensing-traj/eva_timedomain_2.pdf, id=413, 665.48625pt x 396.48125pt>
 File: pix/sensing-traj/eva_timedomain_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_timedomain_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_timedomain_2.pdf used on input li
-ne 1154.
+ne 1156.
 (pdftex.def)             Requested size: 123.84172pt x 73.7774pt.
 
-<pix/sensing-traj/eva_battery_2.pdf, id=390, 665.48625pt x 396.48125pt>
+<pix/sensing-traj/eva_battery_2.pdf, id=414, 665.48625pt x 396.48125pt>
 File: pix/sensing-traj/eva_battery_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_battery_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_battery_2.pdf used on input line 
-1161.
+1163.
 (pdftex.def)             Requested size: 123.84172pt x 73.7774pt.
- [8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_4.pdf> <C:/U
-sers/zpysky/Desktop/dominating-path/pix/sensing-traj/path_5.pdf> <C:/Users/zpys
-ky/Desktop/dominating-path/pix/sensing-traj/path_6.pdf> <C:/Users/zpysky/Deskto
-p/dominating-path/pix/sensing-traj/path_7.pdf>] [9 <C:/Users/zpysky/Desktop/dom
-inating-path/pix/sensing-traj/eva_compare1_2.pdf> <C:/Users/zpysky/Desktop/domi
-nating-path/pix/sensing-traj/eva_compare2_2.pdf> <C:/Users/zpysky/Desktop/domin
-ating-path/pix/sensing-traj/eva_compare3_2.pdf> <C:/Users/zpysky/Desktop/domina
-ting-path/pix/sensing-traj/eva_compare4_2.pdf> <C:/Users/zpysky/Desktop/dominat
-ing-path/pix/sensing-traj/eva_timeconsume.pdf> <C:/Users/zpysky/Desktop/dominat
-ing-path/pix/sensing-traj/eva_timedomain_2.pdf> <C:/Users/zpysky/Desktop/domina
-ting-path/pix/sensing-traj/eva_battery_2.pdf>] (C:\Users\zpysky\Desktop\dominat
-ing-path\Sensing-traj_v1.3.bbl)
+
+(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.3.bbl [9])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -886,14 +880,21 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1242.
-[10] [11
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1244.
+[10
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1242.
+ <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_compare1_2.pdf> 
+<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_compare2_2.pdf> <
+C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_compare3_2.pdf> <C
+:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_compare4_2.pdf> <C:
+/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_timeconsume.pdf> <C:
+/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_timedomain_2.pdf> <C
+:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_battery_2.pdf>]
+[11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1244.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1242.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1242.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1244.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1244.
 
 Package rerunfilecheck Info: File `Sensing-traj_v1.3.out' has not changed.
 (rerunfilecheck)             Checksum: 8C8021C02BE195F4DBEEBB7E080455D2;7742.
@@ -908,11 +909,11 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  9900 strings out of 495354
  144684 string characters out of 3183858
- 268111 words of memory out of 3000000
+ 261117 words of memory out of 3000000
  12834 multiletter control sequences out of 15000+200000
  107681 words of font info for 112 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,13n,40p,2263b,397s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,40p,2263b,445s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTe
@@ -924,7 +925,7 @@ m/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/
 CTEX/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/ti
 mes/utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTe
 X/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Sensing-traj_v1.3.pdf (11 pages, 1263656 bytes).
+Output written on Sensing-traj_v1.3.pdf (11 pages, 1263191 bytes).
 PDF statistics:
  545 PDF objects out of 1000 (max. 8388607)
  94 named destinations out of 1000 (max. 500000)

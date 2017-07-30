@@ -897,7 +897,9 @@ The trajectory of two-dimensional coordinate of grid, $V_P$;
 \end{algorithm}
 
 \subsection{How to concatenate 2D trajectories to a 3D one}
+In actual scenery, 3D space might be irregular. Therefore, we give a approach to concatenate 2D trajectories to a 3D trajectory.
 
+First, we divide 3D space into cuboids and we divide gotten 3D irregular grid into multiple layers of 2D irregular grids. Then, for each irregular grid, we could divide it into regular 2D grids in which we could use proposed algorithm to construct minimum dominating path. Finally, we could simple connect minimum dominating path for regular grids since the start points of minimum dominating path always lay in the boundary.
 % XXXXXXXX
 
 \section{Finding the COLs from the minimum dominating path}
