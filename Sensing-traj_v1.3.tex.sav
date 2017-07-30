@@ -504,31 +504,7 @@ Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(L^*
 
 From Theorem~\ref{thm:3period}, we could also know that when $n=1$, $\gamma_l(G) \geq \gamma_l(G^*)+m$.
 
-\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$}
-\begin{figure*}
-\begin{minipage}[t]{0.32\textwidth}
-\centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1.pdf}
-\caption{(a)}
-\label{fig:meta_struct1_1}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-\centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct2.pdf}
-\caption{(b) 1}
-\label{fig:meta_struct1_2}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.32\textwidth}
-\centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct3.pdf}
-\caption{(b)}
-\label{fig:meta_struct1_3}
-\end{minipage}
-\caption{Different cases of meta struct 1. Red vertices are extra vertices in minimum dominating path of $L_{m,n+3}$, blue vertices are shifted connecting vertices, Black vertices are vertices in minimum dominating path of $L_{m,n}$}
-\end{figure*}
-
+\subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$ }
 Although we have proof the lower bound for minimum dominating path in $L_{m,n}$, in many cases we can not reach it. Therefore, we consider structures of minimum dominating path instead and give \textbf{meta structs} to construct them.
 
 \textbf{Struct~1: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m$}.
@@ -540,59 +516,70 @@ There are two cases for meta struct 1.
 \end{enumerate}
 
 \textbf{Struct~2: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+1$}.
-\begin{figure*}
-\begin{minipage}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=1\linewidth]{pix/sensing-traj/meta_struct4.pdf}
-\caption{(a)}
-\label{fig:meta_struct2_1}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=0.8\linewidth]{pix/sensing-traj/meta_struct5.pdf}
-\caption{(b)}
-\label{fig:meta_struct2_2}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=0.8\linewidth]{pix/sensing-traj/meta_struct6.pdf}
-\caption{(c)}
-\label{fig:meta_struct2_3}
-\end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
-\centering
-\includegraphics[height=0.4\linewidth]{pix/sensing-traj/meta_struct7.pdf}
-\caption{(d)}
-\label{fig:meta_struct2_4}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.2\textwidth}
-\centering
-\includegraphics[height=0.5\linewidth]{pix/sensing-traj/meta_struct8.pdf}
-\caption{(e)}
-\label{fig:meta_struct2_5}
-\end{minipage}
-\hfill
-\end{figure*}
-
-
-
-There are five cases for meta struct 2.
+There are four cases for meta struct 2.
 
 \begin{enumerate}
-  \item When $m \equiv 2 \pmod 3$, we could construct minimum dominating path using similar struct like Figure~\ref{} as shown in Figure~\ref{} which is also scalable.
-  \item When $v_{1,n}$ belong to minimum dominating path in $L_{m,n}$, we could construct as Figure~\ref{}
-  \item When $G^c_n \backslash v_{1,n}$ belong to minimum dominating path in $L_{m,n}$, we could construct as Figure ~\ref{}
-  \item When $n \equiv 0 \pmod 3$, we could rotate direction of minimum dominating path of $L_{m,n}$ and construct with meta struct 1. If rotation only bring one extra vertex, we could have construct as Figure~\ref{} and $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+1$.
-  \item When $n \equiv 2 \pmod 3$ and $n \geq 8$, we could use structure in Figure~\ref{} once to construct minimum dominating path in $L_{m,n+3}$.
+  \item When $m \equiv 2 \pmod 3$, we could construct minimum dominating path using similar struct like Figure~\ref{} as shown in Figure~\ref{}.
+  \item 
+  \item
+  \item
+  %  \item Once case (c).
+%  \item Once case (b) or (d).
+%  \item Once Rotate direction with standard extend row on rotated structure.
+%  \item When $n \equiv 2 \pmod 3$ and $n \geq 11$, structure in Theorem~\ref{thm:3period}.
 \end{enumerate}
 
 \textbf{Struct~3: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+2$}.
 Since there are several cases for meta struct 3. We consider the most common and useful case.
 
 When there are no vertices in $G^c_n$ belong to minimum dominating path $L$ in $L_{m,n}$, vertices in $G^c_{n-1}$ must belong to $L$. Then, we could construct minimum dominating path in $L_{m,n+3}$ with structure shown in Figure~\ref{}
+
+%Assume $G=L_{m,n+3}$ and $G^*=L_{m,n}$, we denote \textbf{standard extend row} as the minimum dominating path of $L_{3,3}$. It uses only 3 vertices to dominate 3 rows which is also scalable. And it is the only structure that reach $\gamma_l(G)=\gamma_l(G^*)+m$ when $3 \mid m$ while it is one of structures that reach $\gamma_l(G)=\gamma_l(G^*)+m+1$ when $3 \mid m+1$ which satisfy additive part in Theorem~\ref{thm:3period}. Besides, we could combine standard extend row with other structure while hold minimality of vertices.
+%
+%% XXX~definition first , then theorem?
+%\begin{thm}~\label{thm:differentextend}
+%We denote \textbf{$s_3\; extend$} as extending three columns right from $L_{m,n}$ to $L_{m,n+3}$ where $|L_{m,n+3}|-|L_{m,n}|=s$. Assume $G=L_{m,n}$, there are only finite structure for $m_3 \; extend$ and $(m+1)_3 \; extend$.
+%\end{thm}
+%
+%\begin{proof}
+%Multiple connected components with two start points can transform into one connected components. Therefore, we could consider the coverage problem with one start point or from middle of path.
+%
+%\textbf{Extend from start point}:
+%We consider 4 different cases of $(m+1)_3 \; extend$ from start point in $L^c_{n+1,n+3}$. As shown in Fig .
+%
+%For case (a), we need $v_{1,n}$ or $v_{m,n}$ to connect $L$. For case (b), we need $v_{1,n}$ to connect. For case (c) and (d), we need corresponding vertices in $G^r_n$ to dominate uncovered vertices in $G^r_{n+1}$.
+%
+%However, case(a), case (b) and case (d) can not guarantee minimality of $L$ for further extends. Under case (b), $L$ do not reach $G^r_{n+3}$ which is still a $(m+2)_3\; extend$. Under case(a), except for $v_{m,n}$, $L$ need at least m+3 vertices in next 3-period so we could use case(b) replace case(a). Under case (d), except for standard extend row, to extend 3 columns further, $L$ will need two more extra vertices to connect. Therefore, we have at most one case (b) or case (d) in last period.
+%
+%Under case (c), we consider previous 3-period of $L$. Since $G^r_{n+1}$ should be dominated by corresponding vertices in $G^r_n$, $v_{1,n-1}$ should be dominated by $G^r_{n-2}$. Therefore, there are $2m$ vertices in previous period. Therefore, we could have at most one case (c).
+%
+%\textbf{Extend from middle}:
+%Obviously, we could use standard extend row extend from middle.
+%
+%Except for pure standard extend row, there is still one structure in Theorem~\ref{thm:3period}. With standard extend row, when $n=1$, it could bring $m_3 \; extend$, and when $n \equiv 2 \pmod 3$ and $n \geq 11$, it could bring $(m+1)_3 \; extend$. But they can only occur once.
+%
+%\textbf{Rotate direction}:
+%Since we may change the origin structure of $L$, we could rotate direction of extend direction by 90 degree. Therefore, when $m \equiv 0 \pmod 3$, we may use standard extend row on rotated structure which could bring a $(m+1)_3 \; extend$. But similarly, this method could only exist once for the same $m$.
+%
+%Therefore, there are only several cases for $m_3 \; extend$ and $(m+1)_3 \; extend$.
+%
+%\textbf{$m_3 \; extend$}:
+%\begin{itemize}
+%  \item When $m \equiv 0 \pmod 3$, pure standard extend row.
+%  \item When $n=1$, structure in Theorem~\ref{thm:3period}.
+%\end{itemize}
+%
+%\textbf{$(m+1)_3 \; extend$}:
+%\begin{itemize}
+%  \item Once case (c).
+%  \item Once case (b) or (d).
+%  \item Once Rotate direction with standard extend row on rotated structure.
+%  \item When $n \equiv 2 \pmod 3$ and $n \geq 11$, structure in Theorem~\ref{thm:3period}.
+%\end{itemize}
+%%In general, We have at most one case (c) and at most one case (b) or (d) with or without $standard extend row$. We could also use a $m \; 3-period \; extend$ on the $L^*$ where $|L^*|=|L|+1$, i.e., we could rotate the extend rotation by 90 degree and use standard extend row on it. When $m \equiv 2 \pmod 3$, like($L_{11,4}$) could only exist once also. When $m \equiv 2 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{5, 11}$) could be a {m+1 \; 3-period \; extend}. When $m \equiv 0 \pmod 3$ and $n \equiv 2 \pmod 3$, like($L_{6, 11}$) could be a {m+1 \; 3-period \; extend}.
+%
+%\end{proof}
+
 
 \subsection{Optimal Trajectory Planning Algorithms}\label{sec:floating}
 We have four cases to construct minimum dominating path $L$ in grid $G=L_{m,n}$: (1) $m<4$ and $m<n$; (2) $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$; (3) $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$ or $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$ or $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$; and (4) $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.
