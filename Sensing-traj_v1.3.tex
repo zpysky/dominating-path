@@ -435,23 +435,19 @@ Let $L^*$ denote minimum dominating path of $L_{m,n}$, and $L$ denote a minimum 
 \end{lem}
 
 \begin{proof}
-We have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertices in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$ since $G^c_{1,n}=G^*$. Therefore, if $|D^c_{1,n}(L)|<|D(L^*)|$, some vertices in $G^c_n$ must be dominated by $D^c_{n+1}(L)$ and do not have neighbors in $D^c_{1,n}(L)$.
+We have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertexes in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$ since $G^c_{1,n}=G^*$. Therefore, if $|D^c_{1,n}(L)|<|D(L^*)|$, some vertexes in $G^c_n$ must be dominated by $D^c_{n+1}(L)$ and do not have neighbors in $D^c_{1,n}(L)$.
 
-%\textbf{n=2}: if there is a vertex $v$ in $G^c_2$ that not be covered by $D^c_{1,2}(L)$, its left vertex should be dominated by vertex to the up (or down) left of $v$ which is one of starting points. Then we could construct dominating path $L^'$ with $|L^'|=|L|$. We replace vertices in $G^c_1$ from inflection point to the cross point with $G^c_2$. As shown in . So $|L^*|=|L|$ and $|D^c_{1,n}(L)| \geq |D(G^*)|$.
+Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1}(L)$.
 
-Consider there are $k$ continuous vertices $v_k$ in $G^c_n$ dominated by $D^c_{n+1}(L)$.
+If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct, as shown in Figure~\ref{}.
 
-If $k \geq 2$, since these $k$ vertices are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertices $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertices $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertices in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct. As shown in .
+Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and finish trajectory or move out $G^c_{n+1,n+3}$.
 
-Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and then move out $G^c_{n+1,n+3}$ or just move to the end point.
+In the first case, we could construct as Figure~\ref{} and create $L'$ such that $|L|=|L'|$ and none of vertexes in $G^c_m$ is dominated by $D^c_{n+1}(L')$.
 
-In the first case, since $L$ may move out from $G^c_{n+1,n+3}$, we could construct as Fig and add connecting vertex to corresponding position.
+In the second case, when $D^c_{n+1}$ come from $D^c_{n+2}$, we have the following three cases. When $|v_k|>3$, $L$ would need more vertexes in $G^c_{n+3}$ to dominate vertexes in $G^c_{n+2}$. When $|v_k|<3$, $L$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{}. When $|v_k|=3$, assume $L$ move back to $G^c{1,n}$ from row $r$. If $v_{r,n+3} \notin L$, we could use same structure in Fig. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $L$ could not be the minimum dominating path when $|v_k|=3$.
 
-In the second case, when $D^c_{n+1}$ come from $D^c_{n+2}$, we have the following three cases. When $|v_k|>3$, $L$ would need more vertices in $G^c_{n+3}$ to dominate vertices in $G^c_{n+2}$. And we could use similar construct like the first case. When $|v_k|<3$, $L$ will need more connecting vertices which could also use the same construct. When $|v_k|=3$ and vertex in $v_k$ do not reach $G^r_m$, then vertex below $v_{k'}$ must belong to $L$. So vertices in Fig is a dominating path for $L_{6,n+3}$ partial but can not reach the minimum so that $L$ could not be the minimum dominating path because the form of minimum dominating path for has same start pointing as $L$.
-
-When $D^c_{n+1}$ do not come from $D^c_{n+2}$, $L$ would step into $G^c_{n+1,n+3}$ in the first row, move down to $v_{m-1, n+1}$ and use vertices in $G^c_{n+3}$ to dominate remain vertices. Since $v_{1, n+1} \in L$, $v_k$ starts from $G^r_3$. Therefore, we could use similar construct before in Fig to replace $L$ to another dominating path $L^*$ where $|L^*|=|L|$
-
-If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertices between $G^r_{n+1}$ and $G^r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $G^r_{n-1}$ to dominate vertices in $G^r_n$ and it will bring more vertices than the following condition. If $v_{2,n-1} \in L$, we will have $L$ like Fig (like $L_{4,11}$). This case could only exist once. We transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$.
+If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $G^r_{n+1}$ and $G^r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $G^r_{n-1}$ to dominate vertexes in $G^r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in L$, we will have $L$ like Fig (like $L_{4,11}$). This case could only exist once. We transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$.
 
 \end{proof}
 
@@ -590,8 +586,8 @@ There are five cases for meta struct 2.
 
 \textbf{Struct~3: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+2$}.
 \begin{figure}[htbp]
- \centering 
- \includegraphics[height=0.3\linewidth]{pix/sensing-traj/meta_struct9.pdf} 
+ \centering
+ \includegraphics[height=0.3\linewidth]{pix/sensing-traj/meta_struct9.pdf}
 \caption{Typical case of meta struct 3.}
 \label{fig:meta_struct3}
 \end{figure}
