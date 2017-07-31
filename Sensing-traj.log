@@ -1,0 +1,41 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdftex 2017.7.31)  31 JUL 2017 15:01
+entering extended mode
+**C:/Users/zpysky/Desktop/dominating-path/Sensing-traj.bib
+(C:/Users/zpysky/Desktop/dominating-path/Sensing-traj.bib
+Overfull \hbox (8.80042pt too wide) in paragraph at lines 35--42
+[]\tenrm @inproceedingsYu2016Automating, ti-tle=Automating 3D wire-less mea-sur
+e-ments with drones, au-thor=Yu,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm i
+.\tenrm n
+.\tenrm p
+.etc.
+
+
+Overfull \hbox (5.8572pt too wide) in paragraph at lines 63--72
+\tenrm thor=Hu, Yan-rong and Yang, Si-mon X, jour-nal=Acta Elec-tron-ica Sinica
+, vol-ume=34, num-ber=5, pages=4350-|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm t
+.\tenrm h
+.\tenrm o
+.\tenrm r
+.\tenrm =
+.etc.
+
+Missing character: There is no ¡ in font cmr10!
+Missing character: There is no ¯ in font cmr10!
+! Undefined control sequence.
+l.132     note = {\url
+                      {https://www.dji.com/cn/phantom-3-pro}}
+? 
+! Emergency stop.
+l.132     note = {\url
+                      {https://www.dji.com/cn/phantom-3-pro}}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -125,11 +125,12 @@ Optimal Trajectory Planning of Drones \\ for 3D Mobile Sensing}
 \maketitle
 
 \begin{abstract}
-Mobile sensing is usually limited in 3D space, as there are many inaccessible places where people rarely venture. Unmanned aerial vehicle (UAV), commonly known as drone, has greatly extends the scope of mobile sensing in 3D space, and pushed forward a variety of 3D mobile sensing applications, such as aerial photo- or video-graphy, 3D wireless signal survey, air quality monitoring. However, the limited battery life of drones has largely restricted the wide adoption of these applications; meanwhile, the flight between two locations consumes more of the drone's battery power than hovering over one location.
+Mobile sensing is challenging in 3D space, as there are many inaccessible places where people rarely venture. Unmanned aerial vehicle (UAV), commonly known as drone, has greatly extended the scope of mobile sensing in 3D space, and pushed forward a variety of 3D mobile sensing applications, such as aerial photo- or video-graphy, 3D wireless signal survey, air quality monitoring. However, the short battery life of drones has largely restricted the wide adoption of these applications.
+% ; meanwhile, the flight between two locations consumes more of the drone's battery power than hovering over one location.
 % http://forum.dji.com/thread-44164-1-1.html
 To maximally expand the sensing scope of the drone, in this paper, we study the trajectory planning problem for optimizing its flight route in 3D space, given its limited battery life.
-Specifically, we divide the target 3D space into a network of observation locations formed by multiple 2D grids, formulate the minimum dominating path problem in each 2D grid to find the optimal trajectory that has the maximal coverage in 3D space, and then select necessary critical observation locations along the trajectory for the drone to hover and perform the measurement.
-Experimental results show that the proposed algorithm outperforms other approaches XXX.
+We first divide the target 3D space into a grid of observation locations formed by multiple 2D grids. By extending the concept of dominating set, we formulate the problem as finding the minimum dominating path in the grid to cover the sensing scope in 3D space using the minimum trajectory, and then select necessary critical observation locations within the trajectory for the drone to hover and perform the measurement.
+Experimental results show that the proposed algorithm outperforms existing approaches in two aspects: (1) it takes less time to complete sensing the same space, on average XXX\% less time than other solutions; (2) during the battery life, it can reach on average XXX\% more sensing scope than existing solutions.
 %XXX related work
 %XXX 2d mobile base station
 %XXX 3d map using vision technique
@@ -143,17 +144,17 @@ Experimental results show that the proposed algorithm outperforms other approach
 %1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi 信号，AQI 指数
 %XXX intro: mobile sensing in space is limited: refers to the use of the sensors of a mobile device to acquire data from the environment, which
 %XXX drone sensing in space starts to receive attention, AQI, wifi, etc.
-Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling in 3D space. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond the sensing capability and scope of human beings, such as aerial photography~\cite{XXX}, 3D wireless signal survey~\cite{XXX}, air quality index (AQI) measurement~\cite{XXX, YangyuzheGlovecom}.
+Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling in 3D space~\cite{valavanis2014handbook}. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond the sensing capability and scope of human beings, such as aerial photography~\cite{Newman2014Drone}, 3D wireless signal survey~\cite{Yu2016Automating}, air quality index (AQI) measurement~\cite{Purohit2011SensorFly,hu2016blueaer,Yang2017ARMS}.
 
 %
 %2. 但是，飞机并未普及，很多公司还死掉了，为什么？
 % 如果你真正用过玩过飞机，你就知道了（1）电池很短（2）大部分都很吵（3）无法负重因为会摇晃且电池更短
 %XXX pain points: battery, noise, and hurt people
-However, civilian drones are still not widely used by customers in our daily life today, due to lack of killer applications (e.g., the social network applications), and the privacy/safety concerns (no-drone zones are defined to protect the residents' privacy, or the safety of civil aviation system)~\cite{XXX}.
+However, civilian drones are still not widely used by customers in our daily life today, due to lack of killer applications (e.g., the social network applications), and the privacy/safety concerns (no-drone zones are defined to protect the residents' privacy, or the safety of civil aviation system)~\cite{schlag2012new}.
 Moreover, if one has actually tried flying a drone, he/she may feel that existing civilian drones are not ready for use in daily life for its limitation in hardware.
 \begin{itemize}
-  \item \emph{Short batter life}: A drone's battery life is usually tens of minutes (less than half an hour)~\cite{XXX}, which limits the scope of the drone when mobile sensing in a large scale space.
-  \item \emph{Annoying noise}: The noise made by the drone's propellers during flight prevents any application to be easily deployed in urban areas where people are living. For example, DJI drones generates noise over 70db~\cite{XXX}.
+  \item \emph{Short battery life}: A drone's battery life is usually tens of minutes (less than half an hour)~\cite{Da-Jiang2017Phantom}, which limits the scope of the drone when mobile sensing in a large scale space.
+  \item \emph{Annoying noise}: The noise made by the drone's propellers during flight prevents any application to be easily deployed in urban areas where people are living. For example, DJI drones generates noise over 70db~\cite{Da-Jiang2017Phantom}.
 %  \item Wing rock and more battery drain caused by poor carrying capacity.
 \end{itemize}
 
@@ -171,18 +172,18 @@ Instead, we focus on how to maximize the scope that a drone can sense by followi
 % in drone, traj first, as traj is more important. this holds the promise of being optimized.
 
 
-The conventional way of addressing the trajectory planning problem for a mobile device (e.g., a robot) takes a two-step approach: (1) first select an arbitrary number of stops first; and then (2) connect these stops to create a path. The first step is usually completed by a near-optimal solution to find a minimum vertex cover; and the second step can be done by a simple greedy algorithm to find the shortest path connecting those stops~\ref{XXX}.
+The conventional way of addressing the trajectory planning problem for a mobile device (e.g., a robot) takes a two-step approach: (1) first select an arbitrary number of stops first; and then (2) connect these stops to create a path. The first step is usually completed by a near-optimal solution to find a minimum vertex cover; and the second step can be done by finding the shortest path connecting those stops~\cite{Savla2005On}.
 
 However, such a stop-selection-first strategy does not work well for planning a drone's trajectory. If an arbitrary number of stops is chosen first, due to the limited battery life, the drone may not be able to complete the expected path and traverse all stops before running out of battery. Hence, it is necessary to first find a path for the drone, and then select an appropriate number of stops within the path based on its remaining battery life.
 
-Moreover, the flight mode is usually dominant in a drone's trajectory, while the hovering mode (for collecting sufficient measurement data in mobile sensing) only takes a few seconds at each stop. Thirdly, it is known that the flight mode consumes more battery power than the hovering mode~\cite{XXX}, and our experimental results shown in Figure~\ref{fig:eva_time_battery} also confirm this when flying a DJI DJI Phantom 3 Quadcopter. These observations again motivate the design of a path-planning-first strategy for addressing the problem
+Moreover, the flight mode is usually dominant in a drone's trajectory, while the hovering mode (for collecting sufficient measurement data in mobile sensing) only takes a few seconds at each stop. Thirdly, it is known that the flight mode consumes more battery power than the hovering mode~\cite{Da-Jiang2017Phantom}, and our experimental results shown in Figure~\ref{fig:eva_time_battery} also confirm this when flying a DJI DJI Phantom 3 Quadcopter. These observations again motivate the design of a path-planning-first strategy for addressing the problem
 
 % A drone has two modes, flight and hovering in a trajectory. The time consumed by a drone trajectory can be divided into flight time, and hovering time (or measurement time in mobile sensing applications). During most time of a drone's trajectory, it is in the flight mode, as the measurement at a stop only requires a few seconds for the drone.
 
 \begin{figure}
 \centering
 \includegraphics[width=2 in]{pix/sensing-traj/eva_time_battery.pdf}
-\caption{The flight mode consumes more battery power than the hovering mode when flying a DJI DJI Phantom 3 Quadcopter. }
+\caption{The flight mode consumes more battery power than the hovering mode when flying a DJI Phantom 3 Quadcopter. }
 \label{fig:eva_time_battery}
 \end{figure}
 
@@ -210,7 +211,7 @@ According to the proposed algorithm, we are able to calculate the length of the 
 \section{Related Work}~\label{sec:related}
 
 \subsection{Drones in 3D mobile sensing}
-Conventional mobile sensing systems rely on the mobile devices or ground-vehicles to perform the environmental sensing in a 2D plane, e.g., the mobile data analysis using bikes~\cite{eisenman2009bikenet} or cars~\cite{devarakonda2013real}.
+Conventional mobile sensing systems rely on the mobile devices or ground-vehicles to perform the environmental sensing in a 2D plane, e.g., the mobile data analysis using robots~\cite{brooks1986robust}, bikes~\cite{eisenman2009bikenet} or cars~\cite{devarakonda2013real}.
 
 %BikeNet: A mobile sensing system for cyclist experience mapping :
 %BikeNet represents the first comprehensive mobile sensing system quantifying the cyclist experience and provides for the collection and analysis of personal performance and communal environmental sampling. BikeNet supports two modes of operation in support of delay-tolerant and real-time sensing, and collected data can be presented both locally to the cyclist or to others via back end services.
@@ -355,30 +356,30 @@ In this section, we first extend the well-known concept of the dominating set to
 Then, we address Problem~\ref{prob:flight-time-only} by proposing an optimal algorithm to find the minimum dominating path in the 2D grid. We can concatenate the discovered paths (trajectories) in 2D grids to construct the one in the 3D grid.
 
 \subsection{From the dominating set to dominating path}
-\begin{figure*}[htbp]
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/dominating_set.pdf}
-\caption{A dominating set of $L_{8,7}$;}
+\includegraphics[width=1in]{pix/sensing-traj/dominating_set.pdf}
+\caption{}
 \label{fig:dominating_set}
 \end{subfigure}%
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/con_dominating_set.pdf}
-\caption{A connected dominating set of $L_{8,7}$;}
+\includegraphics[width=1in]{pix/sensing-traj/con_dominating_set.pdf}
+\caption{}
 \label{fig:con_dominating_set}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}[t]{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/dominating_path.pdf}
-\caption{A dominating path of $L_{8,7}$;}
+\includegraphics[width=1in]{pix/sensing-traj/dominating_path.pdf}
+\caption{}
 \label{fig:dominating_path}
 \end{subfigure}
-\caption{A dominating set, connected dominating set and dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.}
+\caption{A (a) dominating set, (b) connected dominating set, (c) dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.}
 \label{fig:dominating_path_difference}
-\end{figure*}
+\end{figure}
 
 % XXX add a figure to explain how to extend dominating path, and what are dominating path vertices
 
@@ -393,36 +394,36 @@ A dominating path $P$ for graph $G=(V,E)$ is path $P \subset V$ such that every 
 \end{defn}
 We show difference among dominating set, connected dominating set and dominating path in Figure~\ref{fig:dominating_path_difference}.
 
-\begin{figure*}[htbp]
-\begin{subfigure}[t]{0.24\textwidth}
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.24\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_1.pdf}
+\includegraphics[width=0.5in]{pix/sensing-traj/trivial_step_1.pdf}
 \caption{A minimum dominating path of $L_{3,3}$;}
 \label{fig:trivial_step_1}
 \end{subfigure}%
 \hfill
-\begin{subfigure}[t]{0.24\textwidth}
+\begin{subfigure}[t]{0.24\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_2.pdf}
+\includegraphics[width=1in]{pix/sensing-traj/trivial_step_2.pdf}
 \caption{A minimum dominating path of $L_{3,6}$;}
 \label{fig:trivial_step_2}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.24\textwidth}
+\begin{subfigure}[t]{0.24\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_3.pdf}
+\includegraphics[width=0.5in]{pix/sensing-traj/trivial_step_3.pdf}
 \caption{A minimum dominating path of $L_{6,3}$;}
 \label{fig:trivial_step_3}
 \end{subfigure}
-\begin{subfigure}[t]{0.24\textwidth}
+\begin{subfigure}[t]{0.24\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_further.pdf}
+\includegraphics[width=1in]{pix/sensing-traj/trivial_step_further.pdf}
 \caption{A minimum dominating path of $L_{6,6}$;}
 \label{fig:trivial_step_further}
 \end{subfigure}
 \caption{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$}
 \label{fig:trivial_steps}
-\end{figure*}
+\end{figure}
 
 \textbf{Start from the trivial cases}: The goal is to find the minimum dominating path in a 2D grid $L_{m,n}$, where $m,n$ are positive integers.
 \begin{itemize}
@@ -438,27 +439,27 @@ Next, we show the correlation between the smaller grid $L_{m,n}$ and the expande
 
 We give notations of variables.
 \begin{itemize}
- \item $c_i$: Leftmost $i-th$ column in grid $G$.
-  \item $r_i$: Topmost $i-th$ row in grid $G$.
-  \item $C_{i,j}$: Columns between $c_i$ and $c_j$.
-  \item $R_{i,j}$: Rows between $r_i$ and $r_j$.
-  \item $v_{i,j} = r_i \cap c_j$: Vertex of intersection of $i$-th row and $j$-th column in grid.
-  \item $N[y]$: Coverage set of vertex $y$.
-  \item $N[S]$: Coverage set of vertices in set $S \subset V$.
-  \item $P^c_i=P \cap c_i$: Intersection between $P$ and column~$c_i$.
-  \item $P^r_i=P \cap r_i$: Intersection between $P$ and row-$r_i$.
-  \item $P^c_{i,j}=P \cap C_{i,j}$: Intersection between $P$ and columns~$C_{i,j}$.
-  \item $P^r_{i,j}=P \cap R_{i,j}$: Intersection between $P$ and rows~$R_{i,j}$.
+% \item $c_i$: Leftmost $i-th$ column in grid $G$.
+%  \item $r_i$: Topmost $i-th$ row in grid $G$.
+%  \item $C_{i,j}$: Columns between $c_i$ and $c_j$.
+%  \item $R_{i,j}$: Rows between $r_i$ and $r_j$.
+%  \item $v_{i,j} = r_i \cap c_j$: Vertex of intersection of $i$-th row and $j$-th column in grid.
+%  \item $N[y]$: Coverage set of vertex $y$.
+%  \item $N[S]$: Coverage set of vertices in set $S \subset V$.
+%  \item $P^c_i=P \cap c_i$: Intersection between $P$ and column~$c_i$.
+%  \item $P^r_i=P \cap r_i$: Intersection between $P$ and row-$r_i$.
+%  \item $P^c_{i,j}=P \cap C_{i,j}$: Intersection between $P$ and columns~$C_{i,j}$.
+%  \item $P^r_{i,j}=P \cap R_{i,j}$: Intersection between $P$ and rows~$R_{i,j}$.
   %XXXXXXXXXXXXXXXX
   \item $D(P)$: Dominating vertices in path~$P$.
   \item $C(P)$: Connecting vertices in path~$L$.
-  \item $D^c_i(P)$: Dominating vertex in $P^c_i$.
-  \item $D^r_i(P)$: Dominating vertex in $P^r_i$.
-  \item $D^c_{i,j}(P)$: Dominating vertices in $P^c_{i,j}$.
-  \item $D^r_{i,j}(P)$: Dominating vertices in $P^r_{i,j}$.
-  \item $C^c_{i,j}(P)$: Connecting vertices that connect vertices in $D^c_{i,j}(P)$.
-  \item $C^r_{i,j}(P)$: Connecting vertices that connect vertices in $D^r_{i,j}(P)$.
-  \item $C^{con}_{i}(P)$: Connecting vertices that connect vertices between $D^c_{1,i}(P)$ and $D^c_{i+1,n}(P)$.
+  %\item $D^c_i(P)$: Dominating vertex in $P^c_i$.
+%  \item $D^r_i(P)$: Dominating vertex in $P^r_i$.
+%  \item $D^c_{i,j}(P)$: Dominating vertices in $P^c_{i,j}$.
+%  \item $D^r_{i,j}(P)$: Dominating vertices in $P^r_{i,j}$.
+%  \item $C^c_{i,j}(P)$: Connecting vertices that connect vertices in $D^c_{i,j}(P)$.
+%  \item $C^r_{i,j}(P)$: Connecting vertices that connect vertices in $D^r_{i,j}(P)$.
+%  \item $C^{con}_{i}(P)$: Connecting vertices that connect vertices between $D^c_{1,i}(P)$ and $D^c_{i+1,n}(P)$.
   \item $\gamma(G)$: The size of minimum dominating set of $G$.
   \item $\gamma_c(G)$: The size of minimum connected dominating set of $G$.
   \item $\gamma_p(G)$: The size of minimum dominating path of $G$.
@@ -495,29 +496,34 @@ We give notations of variables.
 The grid $L_{m,n+3}$ can be divided into two parts: (1) the left part grid from the 1st to the $n$-th columns, and (2) the right part from the $(n+1)$-th to the $(n+3)$-th columns. The left part is basically a smaller grid of $L_{m,n}$.
 
 Given the grid $L_{m,{n+3}}$, we will derive the minimum number of vertices needed to add into the minimum dominating path of left part grid (i.e., $L_{m,n}$), so as to construct the minimum dominating path in $L_{m,{n+3}}$.
+
+Since vertices in a dominating path $P$ consists of dominating vertices ($D(P)$) and connecting vertices ($C(P)$), we could split $P$ of $L_{m,n+3}$ into 5 parts: dominating vertices from the 1st column to the $n$-th column ($D^c_{1,n}(P)$), dominating vertices from the $(n+1)$-th column to the $(n+3)$-th column ($D^c_{n+1,n+3}(P)$), connecting vertices that connect vertices in $D^c_{1,n}(P)$ ($C^c_{1,n}(P)$), connecting vertices that connect vertices in $D^c_{n+1,n+3}(P)$ ($C^c_{n+1,n+3}(P)$) and connecting vertices that connect vertices between $D^c_{1,n}(P)$ and $D^c_{n+1,n+3}(P)$ ($C^{con}_{n}(P)$). $N[y]$ denotes coverage set of vertex $y$ and $N[S]$ denotes coverage set of vertices in set $S \subset V$.
+
+To simplify proof, we also give some notations of variables. $c_i$ denotes leftmost $i-th$ column of $L_{m,n+3}$. $r_i$ denotes topmost $i-th$ row of $L_{m,n+3}$. $C_{i,j}$ denotes columns between $c_i$ and $c_j$. $v_{i,j} = r_i \cap c_j$ denotes the intersection of $i$-th row and $j$-th column in grid. $P^c_{i,j}=P \cap C_{i,j}$ denotes intersection between $P$ and columns~$C_{i,j}$.
+
 % Since vertices in $L$ consists of dominating vertices and connecting vertices, we split dominating path in $L_{m,n+3}$ into 5 parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
-\begin{lem}~\label{lem:ndominating}
 
 \begin{figure}[htbp]
-\begin{subfigure}[t]{0.45\textwidth}
+\begin{subfigure}[t]{0.45\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/lem2_prob.pdf}
-\caption{3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$.}
+\includegraphics[width=1.3in]{pix/sensing-traj/lem2_prob.pdf}
+\caption{}
 \label{fig:lem2_prob}
 \end{subfigure}%
 \hfill
-\begin{subfigure}[t]{0.45\textwidth}
+\begin{subfigure}[t]{0.45\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/lem2_sol.pdf}
-\caption{Partial of $P'$ that could replace $P$.}
+\includegraphics[width=1.3in]{pix/sensing-traj/lem2_sol.pdf}
+\caption{}
 \label{fig:lem2_sol}
 \end{subfigure}
 \hfill
-\caption{}
+\caption{(a) 3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$; (b) Partial of $P'$ that could replace $P$.}
 \label{fig:lem2}
 \end{figure}
 
+\begin{lem}~\label{lem:ndominating}
 Let $P^*$ denote minimum dominating path of $L_{m,n}$, and $P$ denote a minimum dominating path of $L_{m,(n+3)}$. Then there exists at least one minimum dominating path $P$ in $L_{m,(n+3)}$, such that the number of dominating vertices of path $P$ from the 1st to the $n$-th column is no less than the number of dominating vertices of path $P^*$. That is, $|D^c_{1,n}(P)| \geq |D(P^*)|$.
 % In other words, none of vertices in $G^c_{1,n}$ is covered by $D^c_{n+1,n+3}(L)$.
 \end{lem}
@@ -535,7 +541,7 @@ In the first case, we could construct as Figure~\ref{lem2_sol} and construct $P'
 
 In the second case, when $D^c_{n+1}(P)$ come from $D^c_{n+2}(P)$, we have the following three cases. When $|v_k|>3$, $P$ would need more vertexes in $c_{n+3}$ to dominate vertexes in $c_{n+2}$. When $|v_k|<3$, $P$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{lem2_sol} to construct $P'$. When $|v_k|=3$, assume $P$ move back to $C_{1,n}$ from row $r$. If $v_{r,n+3} \notin P$, we could use same structure in Figure~\ref{lem2_sol}. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $P$ could not be the minimum dominating path when $|v_k|=3$.
 
-If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $R_{n+1}$ and $R_{n+2}$. Therefore, we assume $v_{1,n+1} \in P$. Then $v_{1,n}, v_{1,n-1} \notin P$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $P$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in P$, $P$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in P$, we have structure shown in Figure~\ref{fig:meta_struct1_b}. This case could only exist once. We could transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$.
+If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $r_{n+1}$ and $r_{n+2}$. Therefore, we assume $v_{1,n+1} \in P$. Then $v_{1,n}, v_{1,n-1} \notin P$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $P$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in P$, $P$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in P$, we have structure shown in Figure~\ref{fig:meta_struct1_b}. This case could only exist once. We could transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$.
 
 \end{proof}
 
@@ -566,6 +572,27 @@ Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connec
 
 % Based on the results of Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we decompose a minimum dominating path in $L_{m,n+3}$ into two parts: (1) the left part from 1st column to the $n$-th column of $L_{m,n+3}$; and (2) the right part from $n+1$-th column to the $n+3$-th column of $L_{m,n+3}$.
 
+
+
+%\begin{figure}[htbp]
+%\begin{subfigure}[t]{0.45\linewidth}
+%\centering
+%\includegraphics[height = 1.5 in]{pix/sensing-traj/thm4_struct_boundary.pdf}
+%\caption{}
+%\label{fig:thm4_struct_boundary}
+%\end{subfigure}%
+%\hfill
+%\begin{subfigure}[t]{0.45\linewidth}
+%\centering
+%\includegraphics[height = 1.5 in]{pix/sensing-traj/thm4_period.pdf}
+%\caption{}
+%\label{fig:thm4_period}
+%\end{subfigure}
+%\hfill
+%\caption{(a) Typical structure of minimum dominating path on the boundary; (b) 2-period coverage and 3-period coverage of specific structure.}
+%\label{fig:lem2}
+%\end{figure}
+
 Since the left part of $L_{m,n+3}$ is a grid $L_{m,n}$, the following theorem tells the relationship between the minimum dominating paths of $L_{m,n+3}$ and $L_{m,n}$.
 \begin{thm}~\label{thm:3period}
 The minimum dominating path of $L_{m,n+3}$ contains at least $m$ more vertices than that of $L_{m,n}$. That is $\gamma_p(L_{m,n+3}) \geq \gamma_p(L_{m,n})+m$. Further, when $3 \nmid m$, $\gamma_p(L_{m,n+3}) \geq \gamma_p(L_{m,n})+m+1$.
@@ -573,24 +600,6 @@ The minimum dominating path of $L_{m,n+3}$ contains at least $m$ more vertices t
 
 \begin{proof}
 
-\begin{figure}[htbp]
-\begin{subfigure}[t]{0.45\textwidth}
-\centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/thm4_struct_boundary.pdf}
-\caption{Typical structure of minimum dominating path on the boundary.}
-\label{fig:thm4_struct_boundary}
-\end{subfigure}%
-\hfill
-\begin{subfigure}[t]{0.45\textwidth}
-\centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/thm4_period.pdf}
-\caption{2-period coverage and 3-period coverage of specific structure.}
-\label{fig:thm4_period}
-\end{subfigure}
-\hfill
-\caption{}
-\label{fig:lem2}
-\end{figure}
 
 In Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we know that there exist at least one minimum dominating path $P$ in $G=L_{m,n+3}$ and $|D^c_{n+1,n+3}(P)| + |C^{con}_{n}(P)| + |D^c_{1,n}(P)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ in $G$ must be less than $C(P^*)$ which is the connecting vertices of a minimum dominating path $P^*$ in $L_{m,n}$.
 
@@ -602,39 +611,97 @@ If there are only one connecting vertex $v_{i,n}$ in connected component, we hav
 If there are two connecting vertices in one connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $P$ of the component in $r_n$ must be 4. We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in P$, which hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i,n+2}$, $v_{i+1,n+2}$, $v_{i+2, n+1}$, $v_{i+2, n+2} \in P$, and $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ decreases 2, $|C^{con}_{n}(P)|$ add 2 and $|D^c_{n+1,n+3}(P)|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to construct that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components. This structure destroys the 3 periodic structure which will need more vertices in further extend. Specifically, it has the 2-period coverage and 3-period coverage as shown in figure~\ref{fig:thm4_period}. If there are two 2-period coverage, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period coverage, it could be simple replaced by regular structure. Therefore, there are only two structures exist. In the first possibility, when $m \equiv 2 \pmod 3$ and $m \geq 11$, we have the same structure in figure~\ref{fig:meta_struct1_c}. Consider this structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|P^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which could not obey the result. In the second possibility, $n' \equiv 1 \pmod 3$ which could be simplified till $n'=1$ which is also out of range.
 
 \textbf{Connectivity in the middle}:
-In this case, we split $P^{*c}_{1,n}$ on middle and connect two connected components in $P^c_{n+1,n+3}$ and generate $P$. We assume the origin endpoints in $P^*$ lay in the $n-th$ column of $L_{m,n}$, otherwise we need more connecting vertices between $P^c_{1,n}$ and $P^c_{n+1,n+3}$. If $C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)$ could be less than $|C(P^*)|$, we consider $P^c_{1,3}$. From Lemma~\ref{lem:ndominating}, we could infer that $|P^c_{1,3}| \geq m$ and if $3 \nmid m$, $|P^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in the $4-th$ of $L_{m,n}$ and we could reduce the extend from minimum dominating path in $P_{m,n-3}$ to $P^*$. Then, we could construct a minimum dominating path $P^{**}$ from $P^c_{4,n+3}$ and $|P^{**}| < \gamma_p(L_{m,n})$ and this makes contradiction.
+In this case, we split $P^{*c}_{1,n}$ on middle and connect two connected components in $P^c_{n+1,n+3}$ and generate $P$. We assume the origin endpoints in $P^*$ lay in the $n-th$ column of $L_{m,n}$, otherwise we need more connecting vertices between $P^c_{1,n}$ and $P^c_{n+1,n+3}$. If $C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)$ could be less than $|C(P^*)|$, we consider $P^c_{1,3}$. From Lemma~\ref{lem:ndominating}, we could infer that $|P^c_{1,3}| \geq m$ and if $3 \nmid m$, $|P^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices in $P^c_{1,3}$ to connecting vertices in $P^c_{4,n}$ if necessary without add more vertices since there are no start point in the $4-th$ of $L_{m,n}$ and we could reduce the extend from minimum dominating path in $P_{m,n-3}$ to $P^*$. Then, we could construct a minimum dominating path $P^{**}$ from $P^c_{4,n+3}$ and $|P^{**}| < \gamma_p(L_{m,n})$ and this makes contradiction.
 
 Therefore, since $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ is no less than $C(P^*)$, we could prove the result.
 
 \end{proof}
 
 \begin{figure*}[htbp]
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{minipage}{0.35\textwidth}
+\begin{subfigure}{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1a.pdf}
+\includegraphics[height = 1.5 in]{pix/sensing-traj/thm4_struct_boundary.pdf}
+\caption{}
+\label{fig:thm4_struct_boundary}
+\end{subfigure}%
+\hfill
+\begin{subfigure}{0.6\linewidth}
+\centering
+\includegraphics[height = 1.5 in]{pix/sensing-traj/thm4_period.pdf}
+\caption{}
+\label{fig:thm4_period}
+\end{subfigure}
+\hfill
+\caption{(a) Typical structure of minimum dominating path on the boundary; (b) 2-period coverage and 3-period coverage of specific structure.}
+\label{fig:lem2}
+\end{minipage}
+\hfill
+\begin{minipage}{0.6\textwidth}
+\begin{subfigure}{0.3\linewidth}
+\centering
+\includegraphics[height = 1.5 in]{pix/sensing-traj/meta_struct1a.pdf}
 \caption{The 9$\times$4 grid expanded to the 9$\times$7 grid;}
 \label{fig:meta_struct1_a}
 \end{subfigure}%
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1b.pdf}
-\caption{The 13$\times$1 grid expanded to the 13$\times$7 grid;}
+\includegraphics[height = 1.5 in]{pix/sensing-traj/meta_struct1b.pdf}
+\caption{The 13$\times$1 grid expanded to the 13$\times$4 grid;}
 \label{fig:meta_struct1_b}
 \end{subfigure}
 \hfill
-\begin{subfigure}[t]{0.32\textwidth}
+\begin{subfigure}{0.3\linewidth}
 \centering
-\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1c.pdf}
-\caption{The 14$\times$1 grid expanded to the 14$\times$7 grid;}
+\includegraphics[height = 1.5 in]{pix/sensing-traj/meta_struct1c.pdf}
+\caption{The 14$\times$1 grid expanded to the 14$\times$4 grid;}
 \label{fig:meta_struct1_c}
 \end{subfigure}
 \caption{Different cases of meta struct 1 by adding $m$ vertices to construct the minimum dominating path in the expanded grid. Red vertices are extra vertices in the minimum dominating path of $L_{m,n+3}$, blue vertices are vertices shifted from blue dashed-line vertices in the $n$-th column, black vertices are part of vertices in the minimum dominating path of $L_{m,n}$. The dashed line separates columns in~$C_{1,n}$ and columns in~$C_{n+1,n+3}$.}
+\end{minipage}
+
 \end{figure*}
 
 
 \subsubsection{Meta structs for constructing the minimum dominating path in $L_{m,n+3}$}
-
+\begin{figure*}
+\begin{subfigure}{0.13\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{pix/sensing-traj/meta_struct2a.pdf}
+\caption{The 8$\times$4 grid expanded to the 8$\times$7 grid;}
+\label{fig:meta_struct2_a}
+\end{subfigure}%
+\hfill
+\begin{subfigure}{0.13\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{pix/sensing-traj/meta_struct2b.pdf}
+\caption{The 4$\times$4 grid expanded to the 4$\times$7 grid;}
+\label{fig:meta_struct2_b}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.13\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{pix/sensing-traj/meta_struct2c.pdf}
+\caption{The 4$\times$7 grid expanded to the 4$\times$10 grid;}
+\label{fig:meta_struct2_c}
+\end{subfigure}
+\begin{subfigure}{0.25\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{pix/sensing-traj/meta_struct2d.pdf}
+\caption{The 8$\times$8 grid expanded to the 8$\times$11 grid;}
+\label{fig:meta_struct2_d}
+\end{subfigure}%
+\hfill
+\begin{subfigure}{0.2\textwidth}
+\centering
+\includegraphics[width=1\linewidth]{pix/sensing-traj/meta_struct2e.pdf}
+\caption{The 9$\times$5 grid expanded to the 9$\times$8 grid;}
+\label{fig:meta_struct2_e}
+\end{subfigure}
+\hfill
+\caption{Different cases of meta struct 2 by adding $(m+1)$ vertices to construct the minimum dominating path in the expanded grid.}
+\end{figure*}
 
 
 In Theorem~\ref{thm:3period}, we have proof the minimum number of vertices needed to add into the minimum dominating path in $L_{m,n}$ is $m$, which can be achieved in certain structures of the grid. In other structures, we need either $(m+1)$ or $(m+2)$ vertices to construct the minimum dominating path in $L_{m,n+3}$ from that in $L_{m,n}$.
@@ -642,8 +709,8 @@ We call these certain structures in grids as three types of \emph{meta struct}.
 
 \textbf{Struct~1: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m$}. There are two cases for meta struct 1.
 \begin{enumerate}
-  \item When $m \equiv 0 \pmod 3$, we could select vertices (red ones in Figure~\ref{fig:meta_struct1_1}) in rows~$r_2$, $r_5$..., $r_m-1$ in columns in~$C_{n+1,n+3}$ into minimum dominating path, plus the vertices (blue ones in Figure~\ref{fig:meta_struct1_1}) shifted from column~$c_n$ to column~$c_{n+3}$, as shown in Figure~\ref{fig:meta_struct1_1}. This struct can be repeated in bigger-size grids.
-  \item When $n=1$, when $m \equiv 3 \pmod 1$ we could construct as Figure~\ref{fig:meta_struct1_2} and when $m \equiv 3 \pmod 2$ we could construct as Figure~\ref{fig:meta_struct1_3}. Both cases could only exist once.
+  \item When $m \equiv 0 \pmod 3$, we could select vertices (red ones in Figure~\ref{fig:meta_struct1_a}) in rows~$r_2$, $r_5$..., $r_m-1$ in columns in~$C_{n+1,n+3}$ into minimum dominating path, plus the vertices (blue ones in Figure~\ref{fig:meta_struct1_a}) shifted from column~$c_n$ to column~$c_{n+3}$, as shown in Figure~\ref{fig:meta_struct1_a}. This struct can be repeated in bigger-size grids.
+  \item When $n=1$, when $m \equiv 3 \pmod 1$ we could construct as Figure~\ref{fig:meta_struct1_b} and when $m \equiv 3 \pmod 2$ we could construct as Figure~\ref{fig:meta_struct1_c}. Both cases could only exist once.
 \end{enumerate}
 
 
@@ -652,51 +719,15 @@ We call these certain structures in grids as three types of \emph{meta struct}.
 
 \textbf{Struct~2: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+1$}. There are five cases for meta struct 2.
 \begin{enumerate}
-  \item When $m \equiv 2 \pmod 3$, we could construct the minimum dominating path using similar struct as shown in Figure~\ref{fig:meta_struct2_1}, which can be also repeated in bigger-size grids.
-  \item When $v_{1,n}$ belong to the minimum dominating path in $L_{m,n}$, we have the meta struct as shown in Figure~\ref{fig:meta_struct2_2}.
-  \item When $c_n \setminus v_{1,n}$ belong to minimum dominating path in $L_{m,n}$, we have another meta struct as shown in  Figure~\ref{fig:meta_struct2_3}.
-  \item When $n \equiv 0 \pmod 3$, we could rotate direction of minimum dominating path of $L_{m,n}$ and construct with meta struct~1. If the rotation only brings one extra vertex, we have the meta struct as shown in Figure~\ref{fig:meta_struct2_4}.
-  \item When $n \equiv 2 \pmod 3$ and $n \geq 8$, we could use the meta struct as shown in Figure~\ref{fig:meta_struct2_5} to construct the minimum dominating path in $L_{m,n+3}$.
+  \item When $m \equiv 2 \pmod 3$, we could construct the minimum dominating path using similar struct as shown in Figure~\ref{fig:meta_struct2_a}, which can be also repeated in bigger-size grids.
+  \item When $v_{1,n}$ belong to the minimum dominating path in $L_{m,n}$, we have the meta struct as shown in Figure~\ref{fig:meta_struct2_b}.
+  \item When $c_n \setminus v_{1,n}$ belong to minimum dominating path in $L_{m,n}$, we have another meta struct as shown in  Figure~\ref{fig:meta_struct2_c}.
+  \item When $n \equiv 0 \pmod 3$, we could rotate direction of minimum dominating path of $L_{m,n}$ and construct with meta struct~1. If the rotation only brings one extra vertex, we have the meta struct as shown in Figure~\ref{fig:meta_struct2_d}.
+  \item When $n \equiv 2 \pmod 3$ and $n \geq 8$, we could use the meta struct as shown in Figure~\ref{fig:meta_struct2_e} to construct the minimum dominating path in $L_{m,n+3}$.
 \end{enumerate}
 
 
-\begin{figure*}
-\begin{subfigure}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=1\linewidth]{pix/sensing-traj/meta_struct2a.pdf}
-\caption{The 8$\times$4 grid expanded to the 8$\times$7 grid;}
-\label{fig:meta_struct2_a}
-\end{subfigure}%
-\hfill
-\begin{subfigure}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=0.8\linewidth]{pix/sensing-traj/meta_struct2b.pdf}
-\caption{The XXX8$\times$4 grid expanded to the 8$\times$7 grid;}
-\label{fig:meta_struct2_b}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.13\textwidth}
-\centering
-\includegraphics[height=0.8\linewidth]{pix/sensing-traj/meta_struct2c.pdf}
-\caption{The XXX8$\times$4 grid expanded to the 8$\times$7 grid;}
-\label{fig:meta_struct2_c}
-\end{subfigure}
-\begin{subfigure}[t]{0.25\textwidth}
-\centering
-\includegraphics[height=0.4\linewidth]{pix/sensing-traj/meta_struct2d.pdf}
-\caption{(d)}
-\label{fig:meta_struct2_d}
-\end{subfigure}%
-\hfill
-\begin{subfigure}[t]{0.2\textwidth}
-\centering
-\includegraphics[height=0.5\linewidth]{pix/sensing-traj/meta_struct2e.pdf}
-\caption{(e)}
-\label{fig:meta_struct2_e}
-\end{subfigure}
-\hfill
-\caption{Different cases of meta struct 2 by adding $(m+1)$ vertices to construct the minimum dominating path in the expanded grid.}
-\end{figure*}
+
 
 \textbf{Struct~3: $\gamma_l(L_{m,n+3})-\gamma_l(L_{m,n})=m+2$}.
 There are many cases for meta struct 3, and we only show the most common case here.
@@ -721,7 +752,7 @@ Based on the previous meta structs, we will elaborate the trajectory planning pr
 \end{figure}
 
 \subsubsection{Case~1}
-In trivial cases when $m<4$ and $m<n$, since the connected dominating set is also dominating path, we have the same structure as shown in Figure~\ref{fig:path_1} of \cite{Hamburger2007Routing}.
+In trivial cases when $m<4$ and $m<n$, since the connected dominating set is also dominating path, we have the same structure as shown in Figure~\ref{fig:path_case_1} of \cite{Hamburger2007Routing}.
 Therefore, we have
 \begin{enumerate}
   \item $\gamma_p(L_{1,1})=\gamma_p(L_{1,2})=1$, and if $3 \leq n$, $\gamma_p(L_{1,n})=n-2$
@@ -731,16 +762,16 @@ Therefore, we have
 
 
 \begin{figure}
-\begin{minipage}[c]{0.45\textwidth}
+\begin{minipage}[c]{0.45\linewidth}
 \centering
-\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_case_2_1.pdf}
+\includegraphics[width=0.9\linewidth]{pix/sensing-traj/path_case_2_1.pdf}
 \caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$.}
 \label{fig:path_case_2_1}
 \end{minipage}%
 \hfill
-\begin{minipage}[c]{0.45\textwidth}
+\begin{minipage}[c]{0.45\linewidth}
 \centering
-\includegraphics[width=1.0\linewidth]{pix/sensing-traj/path_case_2_2.pdf}
+\includegraphics[width=1\linewidth]{pix/sensing-traj/path_case_2_2.pdf}
 \caption{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$.}
 \label{fig:path_case_2_2}
 \end{minipage}
@@ -749,20 +780,17 @@ Therefore, we have
 
 
 \subsubsection{Case~2}
-Since the minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, when $m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$, we could use the meta struct~1 to construct $L_{m,n}$, and we can construct the minimum dominating path as shown in Figure~\ref{fig:path2_1}. Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_p(L_{m,n})=3ab+3a-2$.
+Since the minimum dominating path in $L{m,1}$ contains $m-2-\lceil \frac{m}{3} \rceil$ connecting vertices, when $m \equiv 0 \pmod 3$ and $n \equiv 1 \pmod 3$, we could use the meta struct~1 to construct $L_{m,n}$, and we can construct the minimum dominating path as shown in Figure~\ref{fig:path_case_2_1}. Therefore, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $\gamma_p(L_{m,n})=3ab+3a-2$.
 
-Similarly, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we use meta struc~1 when $n=1$, then we use meta struct~2 as $n$ increases. We can construct the minimum dominating path as shown in Figure~\ref{fig:path2_2}.
+Similarly, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $m \geq 11$, we use meta struct~1 when $n=1$, then we use meta struct~2 as $n$ increases. And when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, if $m<11$, we use different meta struct~2 to construct the minimum dominating path, as shown in Figure~\ref{fig:path_case_2_2}.
 Therefore, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
-\begin{aligned}
-&\gamma_p(L_{m,n})\\
-&=\left\{
+\gamma_p(L_{m,n})=\left\{
 \begin{array}{rcl}
 3ab+3a+3b       &      & {a \leq 2}\\
-3ab+3a+3b-1       &      & {otherwise}\\
+3ab+3a+3b-1       &      & {otherwise}.
 \end{array} \right.
-\end{aligned}
-\].
+\]
 
 
 \begin{figure*}
@@ -791,35 +819,29 @@ Therefore, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \subsubsection{Case~3}
 XXX~We use the reduction on the structure to construct the minimum dominating path of $L_{m,n}$ in this case.
 
-When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, if $m=6$, we could construct $L_{6,n}$ using meta struct~1. Assume the result holds for $m=k$, then we could get the minimum dominating path for $L_{k+3,k}$ from $L_{k,k+3}$, since none of meta struct~1 or meta struct~2 will fit in the structure, we could use meta struct~3 to get the minimum dominating path for $L_{k+3,k+3}$. Then, we could use meta struct~1 to get $L_{k+3,n}$ when $n \geq k+3$ as shown in Figure~\ref{fig:path3_1} which holds the structure for $k+3$. We could use the same approach to construct $P$, when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$ as shown in Figure~\ref{fig:path3_2}.
+When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, if $m=6$, we could construct $L_{6,n}$ using meta struct~1. Assume the result holds for $m=k$, then we could get the minimum dominating path for $L_{k+3,k}$ from $L_{k,k+3}$, since none of meta struct~1 or meta struct~2 will fit in the structure, we could use meta struct~3 to get the minimum dominating path for $L_{k+3,k+3}$. Then, we could use meta struct~1 to get $L_{k+3,n}$ when $n \geq k+3$ as shown in Figure~\ref{fig:path_case_3_1} which holds the structure for $k+3$. We could use the same approach to construct $P$, when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$ as shown in Figure~\ref{fig:path_case_3_2}.
 
-When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have two structures (a) and (b) as shown in Figure~\ref{fig:path3_3} and for different $n$ we also have two structures shown in ~\ref{fig:path3_2}. Assume the result holds for $m=k$, and the critical point between structure (a) and structure (b) is $n=l$ when $m=k$. Specifically, when $n \leq l$, $L_{k,n}$ has structure (a) and otherwise, $L_{k,n}$ has structure (b). For $L_{k,n}$ with structure (a), we could construct $P$ XXX~from $L_{k+3, l}$. Since structure (a) could only use meta struct 3 or meta struct~2, we use meta struct~3 on XXX~$L_{k+3,l}$ until it satisfies the condition of meta struct~2. XXX~And we hold result for $m=k+1$.
+When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have two structures (a) and (b) as shown in Figure~\ref{fig:path_case_3_3} and for different $n$ we also have two structures shown in ~\ref{fig:path_case_3_2}. Assume the result holds for $m=k$, and the critical point between structure (a) and structure (b) is $n=l$ when $m=k$. Specifically, when $n \leq l$, $L_{k,n}$ has structure (a) and otherwise, $L_{k,n}$ has structure (b). For $L_{k,n}$ with structure (a), we could construct $P$ XXX~from $L_{k+3, l}$. Since structure (a) could only use meta struct 3 or meta struct~2, we use meta struct~3 on XXX~$L_{k+3,l}$ until it satisfies the condition of meta struct~2. XXX~And we hold result for $m=k+1$.
 
 Therefore, we have following results.
 
 When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, assume $m \leq n$, we have $\gamma_p(L_{m,n})=3ab+2a-2$.
 When $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we have
 \[
-\begin{aligned}
-&\gamma_p(L_{m,n})\\
-&=\left\{
+\gamma_p(L_{m,n})=\left\{
 \begin{array}{rcl}
 3ab+4a+3b+1       &      & {a \leq 2}\\
-3ab+4a+3b      &      & {otherwise}\\
+3ab+4a+3b      &      & {otherwise.}
 \end{array} \right.
-\end{aligned}
-\].
+\]
 When $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
-\begin{aligned}
-&\gamma_p(L_{m,n})\\
-&=\left\{
+\gamma_p(L_{m,n})=\left\{
 \begin{array}{rcl}
-min (3ab+4a-2, 3ab+3a+2b-1)       &      & {b \leq 2}\\
-min (3ab+4a-2, 3ab+3a+2b-2)       &      & {otherwise}\\
+3ab+3a-1+\min\{a-1, 2b\}       &      & {b \leq 2}\\
+3ab+3a-2+\min\{a, 2b\}       &      & {otherwise.}
 \end{array} \right.
-\end{aligned}
-\].
+\]
 
 
 \begin{figure}
@@ -832,181 +854,178 @@ min (3ab+4a-2, 3ab+3a+2b-2)       &      & {otherwise}\\
 \end{figure}
 
 \subsubsection{Case~4}
-We could easily get the minimum dominating path of $L_{4,4}$ in Figure~\ref{fig:path4_1}. Therefore, we use two meta structs 2 to construct the minimum dominating path of $L_{4,7}$ and we use meta struct~2 to construct the minimum dominating path of $L_{7,7}$. Besides, we construct minimum dominating path of $L_{4,n}$ when $n \geq 10$ from $L_{1,n}$ with a meta struct 1. Finally, for $m \geq 7$, $n \geq 10$, we could only use meta struct 3 to construct the minimum dominating path of $L_{m,n}$ from $L_{m-3,n}$, which leads to the result in Figure~\ref{fig:path4_1}.
+We could easily get the minimum dominating path of $L_{4,4}$ in Figure~\ref{fig:path_case_4}. Therefore, we use two meta structs 2 to construct the minimum dominating path of $L_{4,7}$ and we use meta struct~2 to construct the minimum dominating path of $L_{7,7}$. Besides, we construct minimum dominating path of $L_{4,n}$ when $n \geq 10$ from $L_{1,n}$ with a meta struct 1. Finally, for $m \geq 7$, $n \geq 10$, we could only use meta struct 3 to construct the minimum dominating path of $L_{m,n}$ from $L_{m-3,n}$, which leads to the result in Figure~\ref{fig:path_case_4}.
 
 Therefore, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \[
-\begin{aligned}
-&\gamma_p(L_{m,n})\\
-&=\left\{
+\gamma_p(L_{m,n})=\left\{
 \begin{array}{rcl}
 3ab+3a+3b-3       &      & {a+b \leq 4}\\
-3ab+2a+2b+1       &      & {otherwise}\\
+3ab+2a+2b+1       &      & {otherwise.}
 \end{array} \right.
-\end{aligned}
-\].
+\]
 
-\begin{algorithm}[htb]
-\caption{Trajectory planning for UAV in 2D grids when considering flight time only.}
-\label{alg:Framwork1}
-\begin{algorithmic}[1]
-\Require
-The graph of trajectory planning, $L_{m,n}$;
-The length of grid, $m$;
-The width of gird, $n$;
-\Ensure
-The trajectory of two-dimensional coordinate of grid, $V_P$;
-\label{code:fram:calculateab}
-\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$, $ra \equiv m \pmod 3$, $rb \equiv n \pmod 3$;
-
-\label{code:fram:judgemod}
-\If{$(ra=1$ and $rb=0)$ or $(ra=1$ and $rb=2)$ or $(ra=0$ and $rb=2$ and $a>2b)$ or $(ra=2$ and $rb=0$ and $b \leq 2a)$ or $(ra \equiv rb \pmod 3$ and $a>b)$}
-\State swap($m$, $n$), swap($a$, $b$), swap($ra$, $rb$);
-\EndIf
-
-\label{code:fram:calculate}
-\If{$m<4$ or $n<4$}
-    \If{$m>n$}
-        \State swap($m$, $n$), swap($a$, $b$), swap($ra$, $rb$);
-    \EndIf
-
-    \If{$m=1$}
-        \State put $G^r_1$ except $v_{1,1}$ into $V_P$;
-        \State \textbf{if} $n=1$, \textbf{then} put $v_{1,1}$ into $V_P$;
-%        \If{$n<3$}
-%            \State put $v_{1,1}$ into $V_P$;
-%        \Else
-%            \State put $G^r_1$ into $V_P$ except $v_{1,1}$
-%            \For{$i=2$ to $n-1$}
-%                \State put $v_{1, i}$ into $V_P$;
-%            \EndFor
-%        \EndIf
-
-    \ElsIf{$m=2$ and $n=3$}
-        \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
-
-    \ElsIf($m=2$)
-        \State put $G^r_1$ into $V_P$;
-%        \If{$n=3$}
-%            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
-%        \Else
-%            \For{$i=1$ to $n$}
-%                \State put $v_{1, i}$ into $V_P$;
-%            \EndFor
-%        \EndIf
-
-    \Else
-        \State put $G^r_2$ into $V_P$;
-%        \For{$i=1$ to $n$}
-%            \State put $v_{2, i}$ into $V_P$;
-%        \EndFor
-    \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$}
-    \State put $G^r_2$, $G^r_5$ ... , $G^r_{3a-1}$ into $V_P$;
-    \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
-
-%    \For{$i=1$ to $n$}
-%        \For{$j=0$ to $a-1$}
-%            \State put $v_{3*j+2, i}$ into $V_P$;
-%        \EndFor
-%    \EndFor
-
-%    \For{$i=1$ to $a-1$}
-%        \If{$i \equiv 1\pmod 2$}
-%            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
-%        \Else
-%            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
-%        \EndIf
-%    \EndFor
-
-
-\ElsIf{$m \equiv 2 \pmod 3$}
-    \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_P$;
-        \State put $G^r_2$, $G^r_5$, $G^r_8$ except vertices in $G^c_1$ into $V_P$;
-        \State put $G^r_10$, $G^r_13$..., $G^r_{3a+1}$ into $V_P$;
-        \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
-
-%        \For{$i=2$ to $n$}
-%            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
-%        \EndFor
+%\begin{algorithm}[htb]
+%\caption{Trajectory planning for UAV in 2D grids when considering flight time only.}
+%\label{alg:Framwork1}
+%\begin{algorithmic}[1]
+%\Require
+%The graph of trajectory planning, $L_{m,n}$;
+%The length of grid, $m$;
+%The width of gird, $n$;
+%\Ensure
+%The trajectory of two-dimensional coordinate of grid, $V_P$;
+%\label{code:fram:calculateab}
+%\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$, $ra \equiv m \pmod 3$, $rb \equiv n \pmod 3$;
 %
-%        \For{$i=1$ to $n$}
-%            \For{$j=3$ to $a$}
-%                \State put $v_{3*j+1, i}$ into $V_P$;
-%            \EndFor
-%        \EndFor
+%\label{code:fram:judgemod}
+%\If{$(ra=1$ and $rb=0)$ or $(ra=1$ and $rb=2)$ or $(ra=0$ and $rb=2$ and $a>2b)$ or $(ra=2$ and $rb=0$ and $b \leq 2a)$ or $(ra \equiv rb \pmod 3$ and $a>b)$}
+%\State swap($m$, $n$), swap($a$, $b$), swap($ra$, $rb$);
+%\EndIf
 %
-%        \For{$i=3$ to $a-1$}
-%            \If{$i \equiv 1\pmod 2$}
-%                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
-%            \Else
-%                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
-%            \EndIf
-%        \EndFor
-
-    \Else
-        \State put $G^r_2$ into $V_P$;
-        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_P$;
-        \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
-
-%        \State put $v_{3,n}$ into $V_P$;
-%        \For{$i=1$ to $n$}
-%            \State put $v_{2,i}$ into $V_P$;
-%        \EndFor
-
-%        \For{$i=1$ to $n$}
-%            \For{$j=1$ to $a$}
-%                \State put $v_{3*j+1, i}$ into $V_P$;
-%            \EndFor
-%        \EndFor
+%\label{code:fram:calculate}
+%\If{$m<4$ or $n<4$}
+%    \If{$m>n$}
+%        \State swap($m$, $n$), swap($a$, $b$), swap($ra$, $rb$);
+%    \EndIf
 %
-%        \If{$a=2$}
-%            \State put $v_{5,1}$, $v_{6,1}$ into $V_P$;
-%        \EndIf
-    \EndIf
-
-\Else
-    \If{$a \leq 2$ and $b \leq 2$}
-        \State \textbf{if} $a \geq 1$ and $b \geq 1$, \textbf{then} put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
-
-        \State \textbf{if} $a \geq 1$ and $b=2$, \textbf{then} put $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$ into $V_P$;
-
-        \State \textbf{if} $a=2$, \textbf{then} put $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
-
-    \Else
-        \State put $v_{1,2}$, $v_{2,5}$, $v_{2,6}$ into $V_P$;
-
-        \State put $G^c_2$, $G^c_4$, $G^c_7$ except vertices in $G^r_1$ into $V_P$;
-
-        \State put $G^c_9$, $G^c_12$, ..., $G^c_{3b}$ into $V_P$;
-
-        \State put connecting vertices in $G^r_1$ and $G^r_m$ into $V_P$;
-
-%        \For{$i=2$ to $m$}
-%            \State put $v_{i,2}$, $v_{i,4}$, $v_{i,7}$ into $V_P$;
-%        \EndFor
+%    \If{$m=1$}
+%        \State put $G^r_1$ except $v_{1,1}$ into $V_P$;
+%        \State \textbf{if} $n=1$, \textbf{then} put $v_{1,1}$ into $V_P$;
+%%        \If{$n<3$}
+%%            \State put $v_{1,1}$ into $V_P$;
+%%        \Else
+%%            \State put $G^r_1$ into $V_P$ except $v_{1,1}$
+%%            \For{$i=2$ to $n-1$}
+%%                \State put $v_{1, i}$ into $V_P$;
+%%            \EndFor
+%%        \EndIf
 %
-%        \For{$i=1$ to $m$}
-%            \For{$j=3$ to $b$}
-%                \State put $v_{i, 3*j}$ into $V_P$;
-%            \EndFor
-%        \EndFor
+%    \ElsIf{$m=2$ and $n=3$}
+%        \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
 %
-%        \For{$i=3$ to $b-1$}
-%            \If{$i \equiv 1\pmod 2$}
-%                \State put $v_{1, 3*i+1}$, $v_{1, 3*i+2}$ into $V_P$;
-%            \Else
-%                \State put $v_{m, 3*i+1}$, $v_{m, 3*i+2}$ into $V_P$;
-%            \EndIf
-%        \EndFor
-    \EndIf
-\EndIf
-
-\Return $V_P$;
-\end{algorithmic}
-\end{algorithm}
+%    \ElsIf($m=2$)
+%        \State put $G^r_1$ into $V_P$;
+%%        \If{$n=3$}
+%%            \State put $v_{1,2}$, $v_{2,2}$ into $V_P$;
+%%        \Else
+%%            \For{$i=1$ to $n$}
+%%                \State put $v_{1, i}$ into $V_P$;
+%%            \EndFor
+%%        \EndIf
+%
+%    \Else
+%        \State put $G^r_2$ into $V_P$;
+%%        \For{$i=1$ to $n$}
+%%            \State put $v_{2, i}$ into $V_P$;
+%%        \EndFor
+%    \EndIf
+%
+%\ElsIf{$m \equiv 0 \pmod 3$}
+%    \State put $G^r_2$, $G^r_5$ ... , $G^r_{3a-1}$ into $V_P$;
+%    \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
+%
+%%    \For{$i=1$ to $n$}
+%%        \For{$j=0$ to $a-1$}
+%%            \State put $v_{3*j+2, i}$ into $V_P$;
+%%        \EndFor
+%%    \EndFor
+%
+%%    \For{$i=1$ to $a-1$}
+%%        \If{$i \equiv 1\pmod 2$}
+%%            \State put $v_{3*i, 1}$, $v_{3*i+1, 1}$ into $V_P$;
+%%        \Else
+%%            \State put $v_{3*i, n}$, $v_{3*i+1, n}$ into $V_P$;
+%%        \EndIf
+%%    \EndFor
+%
+%
+%\ElsIf{$m \equiv 2 \pmod 3$}
+%    \If{$a>2$}
+%        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_P$;
+%        \State put $G^r_2$, $G^r_5$, $G^r_8$ except vertices in $G^c_1$ into $V_P$;
+%        \State put $G^r_10$, $G^r_13$..., $G^r_{3a+1}$ into $V_P$;
+%        \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
+%
+%%        \For{$i=2$ to $n$}
+%%            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_P$;
+%%        \EndFor
+%%
+%%        \For{$i=1$ to $n$}
+%%            \For{$j=3$ to $a$}
+%%                \State put $v_{3*j+1, i}$ into $V_P$;
+%%            \EndFor
+%%        \EndFor
+%%
+%%        \For{$i=3$ to $a-1$}
+%%            \If{$i \equiv 1\pmod 2$}
+%%                \State put $v_{3*i+2, 1}$, $v_{3*i+3, 1}$ into $V_P$;
+%%            \Else
+%%                \State put $v_{3*i+2, n}$, $v_{3*i+3, n}$ into $V_P$;
+%%            \EndIf
+%%        \EndFor
+%
+%    \Else
+%        \State put $G^r_2$ into $V_P$;
+%        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_P$;
+%        \State put connecting vertices in $G^c_1$ and $G^c_n$ into $V_P$;
+%
+%%        \State put $v_{3,n}$ into $V_P$;
+%%        \For{$i=1$ to $n$}
+%%            \State put $v_{2,i}$ into $V_P$;
+%%        \EndFor
+%
+%%        \For{$i=1$ to $n$}
+%%            \For{$j=1$ to $a$}
+%%                \State put $v_{3*j+1, i}$ into $V_P$;
+%%            \EndFor
+%%        \EndFor
+%%
+%%        \If{$a=2$}
+%%            \State put $v_{5,1}$, $v_{6,1}$ into $V_P$;
+%%        \EndIf
+%    \EndIf
+%
+%\Else
+%    \If{$a \leq 2$ and $b \leq 2$}
+%        \State \textbf{if} $a \geq 1$ and $b \geq 1$, \textbf{then} put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,3}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_P$;
+%
+%        \State \textbf{if} $a \geq 1$ and $b=2$, \textbf{then} put $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{3,7}$, $v_{4,7}$ into $V_P$;
+%
+%        \State \textbf{if} $a=2$, \textbf{then} put $v_{5,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_P$;
+%
+%    \Else
+%        \State put $v_{1,2}$, $v_{2,5}$, $v_{2,6}$ into $V_P$;
+%
+%        \State put $G^c_2$, $G^c_4$, $G^c_7$ except vertices in $G^r_1$ into $V_P$;
+%
+%        \State put $G^c_9$, $G^c_12$, ..., $G^c_{3b}$ into $V_P$;
+%
+%        \State put connecting vertices in $G^r_1$ and $G^r_m$ into $V_P$;
+%
+%%        \For{$i=2$ to $m$}
+%%            \State put $v_{i,2}$, $v_{i,4}$, $v_{i,7}$ into $V_P$;
+%%        \EndFor
+%%
+%%        \For{$i=1$ to $m$}
+%%            \For{$j=3$ to $b$}
+%%                \State put $v_{i, 3*j}$ into $V_P$;
+%%            \EndFor
+%%        \EndFor
+%%
+%%        \For{$i=3$ to $b-1$}
+%%            \If{$i \equiv 1\pmod 2$}
+%%                \State put $v_{1, 3*i+1}$, $v_{1, 3*i+2}$ into $V_P$;
+%%            \Else
+%%                \State put $v_{m, 3*i+1}$, $v_{m, 3*i+2}$ into $V_P$;
+%%            \EndIf
+%%        \EndFor
+%    \EndIf
+%\EndIf
+%
+%\Return $V_P$;
+%\end{algorithmic}
+%\end{algorithm}
 
 \subsection{How to concatenate 2D trajectories to a 3D one}
 In a real-world 3D space that might be irregular, we give an approach to concatenate 2D trajectories to a 3D trajectory.
@@ -1019,55 +1038,173 @@ In a real-world 3D space that might be irregular, we give an approach to concate
 
 
 
-\section{Finding the COLs from the minimum dominating path}
+
 %TODO: decrease one point when $m \equiv 2 \pmod 3$
 
-\subsection{Consider total time consuming}\label{dominating_set_construct}
-Since we formulate this problem as a combination of a minimum dominating path problem and a constrained minimum dominating set problem, we could use the same method in subsection~\ref{sec:dominating_path_construct} to construct minimum dominating path of four cases and then select the least number of OLs along the path as COLs. However, dominating vertices in the minimum dominating path is the minimum dominating set of path from definition. Therefore, we could simply select dominating vertices in minimum dominating path as COLs which are shown in black vertices of figures in~\ref{sec:dominating_path_construct}. We use the same cases in~\ref{sec:dominating_path_construct} and get $|V_C|$.
+\subsection{Select critical OLs from the minimum dominating path}\label{dominating_set_construct}
+Since Problem~2 is a combination of a minimum dominating path problem and a constrained minimum dominating set problem, we could use the same method in subsection~\ref{sec:dominating_path_construct} to first construct minimum dominating path of four cases, and then select the least number of OLs within the path as critical OLs (stops for the drone to hover at). However, dominating vertices in the minimum dominating path is the minimum dominating set of path by definition. Therefore, we could simply select dominating vertices in minimum dominating path as COLs which are shown in black vertices of figures in~\ref{sec:dominating_path_construct}. We use the same cases in~\ref{sec:dominating_path_construct} and get $|V_C|$.
 
-\subsubsection{Case~1}
-From figure~\ref{fig:path_case_1}, we have
+\subsubsection{Case~1}: From figure~\ref{fig:path_case_1}, we have
 \begin{enumerate}
   \item when $m=1$, $|V_C|=\lfloor \frac{n+2}{3} \rfloor$.
   \item when $m=2$ or $m=3$, $|V_C|=\gamma_l(L_{m,n})$.
 \end{enumerate}
 
-\subsubsection{Case~2}
-From figure~\ref{fig:path_case_2_1}, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$.
+\subsubsection{Case~2}: From figure~\ref{fig:path_case_2_1}, when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a$.
 
 From figure~\ref{fig:path_case_2_2}, When $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have $|V_C|=3ab+a+3b+1$.
 
-\subsubsection{Case~3}
-From figure~\ref{fig:path_case_3_1}, when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have $|V_C|=3ab$.
+\subsubsection{Case~3}: From figure~\ref{fig:path_case_3_1}, when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have $|V_C|=3ab$.
 
 From figure~\ref{fig:path_case_3_2}, when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$, assume $m \leq n$, we have $|V_C|=3ab+2a+3b+2$.
 
 From figure~\ref{fig:path_case_3_3}, when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, we have
 \[
-\begin{aligned}
-&|V_C|\\
-&=\left\{
+|V_C|=\left\{
 \begin{array}{rcl}
-3ab+2a       &      & {3ab+4a-2 \leq 3ab+3a+2b-2}\\
-3ab+3a       &      & {otherwise}\\
+3ab+2a       &      & {a \leq 2b}\\
+3ab+3a       &      & {otherwise.}
 \end{array} \right.
-\end{aligned}
-\].
+\]
 
 
-\subsubsection{Case~4}
-From figure~\ref{fig:path_case_4}, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, assume $m \leq n$, we have
+\subsubsection{Case~4}: From Figure~\ref{fig:path_case_4}, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, assume $m \leq n$, we have
 \[
-\begin{aligned}
-&|V_C|\\
-&=\left\{
+|V_C|=\left\{
 \begin{array}{rcl}
 7        &      & {a=1, b=1}\\
 17       &      & {a=2, b=2}\\
-3ab+3a+b-1       &      & {otherwise}\\
+3ab+3a+b-1       &      & {otherwise.}
 \end{array} \right.
-\end{aligned}
-\].
+\]
+
+%\begin{algorithm}[htb]
+%\caption{Trajectory planning for UAV in grid when consider total time consuming}
+%\label{alg:Framwork2}
+%\begin{algorithmic}[1]
+%\Require
+%The graph of trajectory planning, $L_{m,n}$;
+%The length of grid, $m$;
+%The width of gird, $n$;
+%\Ensure
+%The trajectory of two-dimensional coordinate of grid, $V_P$;
+%The COL set of two-dimensional coordinate of grid, $V_C$;
+%\label{code:fram:judgemod}
+%\State do algorithm 1 and get $V_P$.
+%
+%\label{code:fram:calculateab}
+%\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$, $ra \equiv m \pmod 3$, $rb \equiv n \pmod 3$;
+%
+%\label{code:fram:calculate}
+%\If{$m<4$ or $n<4$}
+%    \If{$(m=1$ and $n \leq 3)$ or $m \geq 2$}
+%        \State $V_C=V_P$;
+%%        \If{$n<3$}
+%%            \State $V_C=V_P$;
+%%        \Else
+%%            \For{$i=0$ to $b-1$}
+%%                \State put $v_{1, 3i+2}$ into $V_C$;
+%%            \If{$n \equiv 1 \pmod 3$ or $n \equiv 2 \pmod 3$}
+%%                \State put $v_{1, 3b+1}$ into $V_C$;
+%%            \EndIf
+%%            \EndFor
+%%        \EndIf
+%
+%    \Else
+%        \State put $v_{1,2}$, $v_{1,5}$, ..., $v_{1, 3b-1}$ into $V_C$;
+%        \State \textbf{If} $rb=1$ or $rb=2$, \textbf{then} put $v_{1,3b+1}$ into $V_C$
+%    \EndIf
+%
+%\ElsIf{$m \equiv 0 \pmod 3$}
+%    \State put $G^r_2$, $G^r_5$ ... , $G^r_{3a-1}$ into $V_C$;
+%
+%%    \For{$i=1$ to $n$}
+%%        \For{$j=0$ to $a-1$}
+%%            \State put $v_{3*j+2, i}$ into $V_C$;
+%%        \EndFor
+%%    \EndFor
+%
+%\ElsIf{$m \equiv 2 \pmod 3$}
+%    \If{$a>2$}
+%        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
+%
+%        \State put $G^r_2$, $G^r_5$ except0 vertices in $G^c_1$ into $V_C$;
+%
+%        \State put $G^r_8$ except vertices in $G^c_1$ and $G^c_3$ into $V_C$;
+%
+%        \State put $G^r_10$, $G^r_13$..., $G^r_{3a+1}$ into $V_C$;
+%
+%%        \For{$i=2$ to $n$}
+%%            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
+%%        \EndFor
+%%
+%%        \For{$i=1$ to $n$}
+%%            \For{$j=3$ to $a$}
+%%                \State put $v_{3*j+1, i}$ into $V_C$;
+%%            \EndFor
+%%        \EndFor
+%
+%    \Else
+%        \State put $G^r_2$ into $V_C$;
+%        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_C$;
+%
+%%        \For{$i=1$ to $n$}
+%%            \State put $v_{2,i}$ into $V_C$;
+%%        \EndFor
+%%
+%%        \For{$i=1$ to $n$}
+%%            \For{$j=1$ to $a$}
+%%                \State put $v_{3*j+1, i}$ into $V_C$;
+%%            \EndFor
+%%        \EndFor
+%    \EndIf
+%
+%\Else
+%
+%    \If{$a \leq 2$ and $b \leq 2$}
+%        \State \textbf{if} $a \geq 1$ and $b \geq 1$, \textbf{then} put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
+%
+%        \State \textbf{if} $a \geq 1$ and $b=2$, \textbf{then} put $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$ into $V_C$ and move $v_{3,4}$ out from $V_C$;
+%
+%        \State \textbf{if} $a=2$, \textbf{then} put $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
+%
+%%    \If{$a=1$ and $b=1$}
+%%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
+%%
+%%    \ElsIf{$a=1$ and $b=2$}
+%%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$ into $V_C$;
+%%
+%%    \ElsIf{$a=2$ and $b=2$}
+%%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
+%
+%    \Else
+%        \State put $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$ into $V_C$;
+%
+%        \State put $G^c_2$ into $V_C$;
+%
+%        \State put $G^c_4$, $G^c_7$ except for $G^r_{1,3}$ into $V_C$;
+%
+%        \State put $G^c_{10}$, $G^c_{13}$, ..., $G^c_{3b}$ into $V_C$;
+%
+%%        \For{$i=1$ to $m$}
+%%            \State put $v_{i,2}$ into $V_C$;
+%%        \EndFor
+%%
+%%        \For{$i=4$ to $m$}
+%%            \State put $v_{i,4}$, $v_{i,7}$ into $V_C$;
+%%        \EndFor
+%%
+%%        \For{$i=1$ to $m$}
+%%            \For{$j=3$ to $b$}
+%%                \State put $v_{i, 3*j}$ into $V_C$;
+%%            \EndFor
+%%        \EndFor
+%    \EndIf
+%\EndIf
+%
+%\Return $V_P$, $V_C$;
+%\end{algorithmic}
+%\end{algorithm}
 
 %From last subsection, we know how to find the minimum dominating path in $L_{m,n}$. Therefore, we just have to find the set of COLs $V_C$ in dominating path $L$. However, since we have already discussed dominating vertices in last subsection, we only need to add all dominating vertices into $V_C$. In general, we only have 1 case for COL which is $standard extend row$ and in this case, we just take the entire row into $V_C$ and add
 %
@@ -1145,142 +1282,18 @@ From figure~\ref{fig:path_case_4}, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 
 
 % 相关算法
 
-\subsection{Optimal Trajectory Planning Algorithms}
-
-\begin{algorithm}[htb]
-\caption{Trajectory planning for UAV in grid when consider total time consuming}
-\label{alg:Framwork2}
-\begin{algorithmic}[1]
-\Require
-The graph of trajectory planning, $L_{m,n}$;
-The length of grid, $m$;
-The width of gird, $n$;
-\Ensure
-The trajectory of two-dimensional coordinate of grid, $V_P$;
-The COL set of two-dimensional coordinate of grid, $V_C$;
-\label{code:fram:judgemod}
-\State do algorithm 1 and get $V_P$.
-
-\label{code:fram:calculateab}
-\State $a=\lfloor \frac{m}{3} \rfloor$, $b=\lfloor \frac{m}{3} \rfloor$, $ra \equiv m \pmod 3$, $rb \equiv n \pmod 3$;
-
-\label{code:fram:calculate}
-\If{$m<4$ or $n<4$}
-    \If{$(m=1$ and $n \leq 3)$ or $m \geq 2$}
-        \State $V_C=V_P$;
-%        \If{$n<3$}
-%            \State $V_C=V_P$;
-%        \Else
-%            \For{$i=0$ to $b-1$}
-%                \State put $v_{1, 3i+2}$ into $V_C$;
-%            \If{$n \equiv 1 \pmod 3$ or $n \equiv 2 \pmod 3$}
-%                \State put $v_{1, 3b+1}$ into $V_C$;
-%            \EndIf
-%            \EndFor
-%        \EndIf
-
-    \Else
-        \State put $v_{1,2}$, $v_{1,5}$, ..., $v_{1, 3b-1}$ into $V_C$;
-        \State \textbf{If} $rb=1$ or $rb=2$, \textbf{then} put $v_{1,3b+1}$ into $V_C$
-    \EndIf
-
-\ElsIf{$m \equiv 0 \pmod 3$}
-    \State put $G^r_2$, $G^r_5$ ... , $G^r_{3a-1}$ into $V_C$;
-
-%    \For{$i=1$ to $n$}
-%        \For{$j=0$ to $a-1$}
-%            \State put $v_{3*j+2, i}$ into $V_C$;
-%        \EndFor
-%    \EndFor
-
-\ElsIf{$m \equiv 2 \pmod 3$}
-    \If{$a>2$}
-        \State put $v_{2,1}$, $v_{3,1}$, $v_{6,2}$, $v_{7,2}$ into $V_C$;
-
-        \State put $G^r_2$, $G^r_5$ except0 vertices in $G^c_1$ into $V_C$;
-
-        \State put $G^r_8$ except vertices in $G^c_1$ and $G^c_3$ into $V_C$;
-
-        \State put $G^r_10$, $G^r_13$..., $G^r_{3a+1}$ into $V_C$;
-
-%        \For{$i=2$ to $n$}
-%            \State put $v_{2,i}$, $v_{5,i}$, $v_{8,i}$ into $V_C$;
-%        \EndFor
-%
-%        \For{$i=1$ to $n$}
-%            \For{$j=3$ to $a$}
-%                \State put $v_{3*j+1, i}$ into $V_C$;
-%            \EndFor
-%        \EndFor
-
-    \Else
-        \State put $G^r_2$ into $V_C$;
-        \State put $G^r_4$, ..., $G^r_{3a+1}$ into $V_C$;
-
-%        \For{$i=1$ to $n$}
-%            \State put $v_{2,i}$ into $V_C$;
-%        \EndFor
-%
-%        \For{$i=1$ to $n$}
-%            \For{$j=1$ to $a$}
-%                \State put $v_{3*j+1, i}$ into $V_C$;
-%            \EndFor
-%        \EndFor
-    \EndIf
-
-\Else
-
-    \If{$a \leq 2$ and $b \leq 2$}
-        \State \textbf{if} $a \geq 1$ and $b \geq 1$, \textbf{then} put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
-
-        \State \textbf{if} $a \geq 1$ and $b=2$, \textbf{then} put $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$ into $V_C$ and move $v_{3,4}$ out from $V_C$;
-
-        \State \textbf{if} $a=2$, \textbf{then} put $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
-
-%    \If{$a=1$ and $b=1$}
-%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{3,4}$, $v_{2,4}$ into $V_C$;
-%
-%    \ElsIf{$a=1$ and $b=2$}
-%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$ into $V_C$;
-%
-%    \ElsIf{$a=2$ and $b=2$}
-%        \State put $v_{1,2}$, $v_{2,2}$, $v_{3,2}$, $v_{4,2}$, $v_{4,4}$, $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$, $v_{4,7}$, $v_{6,7}$, $v_{6,6}$, $v_{6,5}$, $v_{6,4}$, $v_{6,3}$, $v_{6,2}$, $v_{6,1}$ into $V_C$;
-
-    \Else
-        \State put $v_{2,4}$, $v_{2,5}$, $v_{2,6}$, $v_{2,7}$ into $V_C$;
-
-        \State put $G^c_2$ into $V_C$;
-
-        \State put $G^c_4$, $G^c_7$ except for $G^r_{1,3}$ into $V_C$;
-
-        \State put $G^c_{10}$, $G^c_{13}$, ..., $G^c_{3b}$ into $V_C$;
-
-%        \For{$i=1$ to $m$}
-%            \State put $v_{i,2}$ into $V_C$;
-%        \EndFor
-%
-%        \For{$i=4$ to $m$}
-%            \State put $v_{i,4}$, $v_{i,7}$ into $V_C$;
-%        \EndFor
-%
-%        \For{$i=1$ to $m$}
-%            \For{$j=3$ to $b$}
-%                \State put $v_{i, 3*j}$ into $V_C$;
-%            \EndFor
-%        \EndFor
-    \EndIf
-\EndIf
-
-\Return $V_P$, $V_C$;
-\end{algorithmic}
-\end{algorithm}
-
-
 \section{Evaluation}\label{sec:experiment}
 
 % 仿真
 % 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
 % 真实的放飞实验，看看电池能飞多久。
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_uav.pdf}
+\caption{DJI Phantom 3 Quadcopter.}
+\label{fig:eva_uav}
+\end{figure}
+
 \begin{figure*}
 \begin{minipage}[c]{0.23\textwidth}
 \centering
@@ -1380,19 +1393,16 @@ The COL set of two-dimensional coordinate of grid, $V_C$;
 
 
 \textbf{Prototype}:
-The prototype consists of two parts: (1) a drone with an API that can configure its trajectory; and (2) a measurement sensor board or a smartphone is installed into a plastic box with vent-holes made by a laser engraving machine, which is attached at the bottom of the drone. The drone we use is a DJI Phantom 3 Quadcopter, as shown in Figure~\ref{XXX}. There is an intelligent flight mode that allows the customization of the trajectory by configuring a number of stop locations such that the drone will autonomously follow this trajectory to hover over each stop and complete the flight. The GPS sensor, ultrasonic sensor, and the motion sensors collectively determine the current observation location of the drone and guide the drone to the next stop in the trajectory. At each stop, the drone hover for a few seconds, $T_M$, to collect sufficient measurement data, before traversing to the next stop.
+The prototype consists of two parts: (1) a drone with an API that can configure its trajectory; and (2) a measurement sensor board or a smartphone is installed into a plastic box with vent-holes made by a laser engraving machine, which is attached at the bottom of the drone. The drone we use is a DJI Phantom 3 Quadcopter, as shown in Figure~\ref{fig:eva_uav}. There is an intelligent flight mode that allows the customization of the trajectory by configuring a number of stop locations such that the drone will autonomously follow this trajectory to hover over each stop and complete the flight. The GPS sensor, ultrasonic sensor, and the motion sensors collectively determine the current observation location of the drone and guide the drone to the next stop in the trajectory. At each stop, the drone hover for a few seconds, $T_M$, to collect sufficient measurement data, before traversing to the next stop.
 
 
 % We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
 
 \textbf{Compared algorithms}: We compare the proposed algorithm with two other conventional algorithms. In the proposed algorithm, we choose the minimum dominating path in grids first, and then select COLs from path. In contrast, the conventional algorithms we considered will select COLs in grids first, and then choose a path to connect the selected COLs. The two conventional algorithms differ by the way of selecting COLs, as introduced below.
 \begin{enumerate}
-  \item \emph{Row-wise COL selection}: We select the minimum dominating set in grids first, and select an OL at boundary as start point. Then, we use a row-first COL selection strategy to find a row by row, along the longer side of the grid.
+  \item \emph{Row-wise COL selection}: We select the minimum dominating set in grids first~\cite{alanko2011computing,gonccalves2011domination,chang1992domination}, and select an OL at boundary as start point. Then, we use a row-first COL selection strategy to find a row by row, along the longer side of the grid.
   \item \emph{Greedy COL selection}: We select the minimum dominating set in grids first, and then select a COL at boundary as start point. Then, we follow the greedy algorithm that chooses the next vertex $v$ as the closest one that can lead to the maximum coverage, such as:
-      %XXX what greedy
-      \[
-       \min\limits_{d(v,v')} \max\limits_{ |N[v]\setminus N[P]| } v,
-      \]
+      $       \min\limits_{d(v,v')} \max\limits_{ |N[v]\setminus N[P]| } v,       $
       where $v' \in \mathcal{G}$ is the last vertex of path of $P \subset \mathcal{G}$.
 \end{enumerate}
 
@@ -1407,24 +1417,24 @@ We choose an open space in a university campus which has a size of 45~m in lengt
 %We consider the 2D 9*7 grid in space.
 Since the time consumed is the sum of flight time and measurement time, we consider the impact of different measurement times in experiments, which are set as 0, 1, 2, 5 seconds at each COL. Note that the case when the measurement time is 0 second is equivalent to the case when we consider the flight time only.
 
-Figure~\ref{fig:comp1} show the time consumed under compared algorithms with different granularity of the measurement time. The sensing area is a 2D grid of size 9 by 7~m. We observe that our proposed algorithm consumes less time when the measurement time is small. The gap between our algorithm and the row-wise COL selection algorithm decreases as the measurement time increases. When the measurement time is 5 seconds at each COL, the total time consumed by the proposed and the row-wise COL selection algorithms are equal.
+Figure~\ref{fig:eva_time} show the time consumed under compared algorithms with different granularity of the measurement time. The sensing area is a 2D grid of size 9 by 7~m. We observe that our proposed algorithm consumes less time when the measurement time is small. The gap between our algorithm and the row-wise COL selection algorithm decreases as the measurement time increases. When the measurement time is 5 seconds at each COL, the total time consumed by the proposed and the row-wise COL selection algorithms are equal.
 
-Figure~\ref{fig:comp2} show the coverage space in the 3D grid under compared algorithms with different granularity of the measurement time during the battery life.
+Figure~\ref{fig:eva_coverage} show the coverage space in the 3D grid under compared algorithms with different granularity of the measurement time during the battery life.
 We fix the width of the grid as 6~m, we observe that our proposed algorithm could cover more space than other algorithms in all cases, during the whole battery life. As the measurement time increases, the coverage area by any of three algorithms decreases, since the measurement time consumes part of the battery. Meanwhile, the difference in the coverage space among three algorithms decreases when the measurement time is set greater.
 
-In a real-world application, drones might be used to delivery packages or other goods. Hence, we also evaluate the time consumed and the coverage space with different loads when we only consider the flight time. Results in Figure~\ref{fig:comp3} and~\ref{fig:comp4} show that as the load increases, the time consumed of three algorithms to complete the sensing task of a given grid increases; meanwhile, the coverage space of three algorithms during the battery life decreases. Note that the proposed algorithm performs the best in all scenarios under different loads on the drone.
+In a real-world application, drones might be used to delivery packages or other goods. Hence, we also evaluate the time consumed and the coverage space with different loads when we only consider the flight time. Results in Figure~\ref{fig:eva_time_load} and~\ref{fig:eva_coverage_load} show that as the load increases, the time consumed of three algorithms to complete the sensing task of a given grid increases; meanwhile, the coverage space of three algorithms during the battery life decreases. Note that the proposed algorithm performs the best in all scenarios under different loads on the drone.
 
 \subsection{Results in different-size spaces}
 In experiments, we only test the performance of compared algorithm in a give 3d space with the fixed size. Next, we can evaluate the algorithm performance in different-size spaces.
 
-Figure~\ref{fig:timeconsume} show the flight time in spaces with different width and length. We observe that our algorithm consumes less time to complete the sensing task in each grid. When fixing the width (or length) of the grid, the gap among algorithms increases as the length (or width) increases.
+Figure~\ref{fig:eva_grid_time} show the flight time in spaces with different width and length. We observe that our algorithm consumes less time to complete the sensing task in each grid. When fixing the width (or length) of the grid, the gap among algorithms increases as the length (or width) increases.
 
 Similarly, we observe in Figure~\ref{fig:battery}, our proposed algorithm has the maximum  coverage space during the battery life; When fixing the width (or length), our algorithm could cover more space than other compared algorithms.
 
 % XXX~We also observe that, when fixing the width, as length increases, the ratio between our algorithm and the row-wise COL selection algorithm could converge to a periodic result.
 
 \section{Conclusions}\label{sec:conclude}
-%In this paper, we propose a systematic study on the population distribution projection over offline geographical regions by analyzing the geographical attributes of online social networks (OSNs). We propose the concept of geo-homophily in OSNs to establish the correlation between online message diffusion and the stability of geographical regions where a population distribution can be drawn. We formulate the population distribution problem from the perspective of Dirichlet process, and present prediction models to show the process that OSN users are distributed into regions, and infer the floating population across regions. By experiments over the large scale datasets, it is shown that the online message diffusions can help evaluate the stability of geographical regions, which further facilitates the determination of population distribution over fixed regions; the proposed prediction models have a high prediction accuracy in inferring the change of floating population across regions.
+In this paper, we study the optimal trajectory planning problem for mobile sensing in 3D space, where a drone can cover the sensing scope of the space by using the minimum trajectory. We extend the concept of dominating set in graph theory to define the dominating path, and formulate the problem as the minimum dominating path coverage problem. By dividing the 3D space into a grid of observation locations, we propose an optimal algorithm that first finds the minimum dominating path (trajectory) for the drone, and then selects the least number critical OLs within the trajectory to perform measurement. Experimental results show that the proposed algorithm can save XXX\% less time than existing approaches to complete sensing the given space; during the battery life, it can cover XXX\% more sensing scope than existing solutions.
 
 
 %\section{Acknowledgements}
@@ -1435,5 +1445,4 @@ Similarly, we observe in Figure~\ref{fig:battery}, our proposed algorithm has th
 \bibliographystyle{abbrv}
 \small
 \bibliography{Sensing-traj}
-
 \end{document}

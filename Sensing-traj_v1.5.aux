@@ -14,9 +14,11 @@
 \global\let\hyper@last\relax 
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
+\citation{valavanis2014handbook}
 \citation{Newman2014Drone}
 \citation{Yu2016Automating}
 \citation{Purohit2011SensorFly}
+\citation{hu2016blueaer}
 \citation{Yang2017ARMS}
 \citation{schlag2012new}
 \citation{Da-Jiang2017Phantom}
@@ -25,6 +27,7 @@
 \citation{Da-Jiang2017Phantom}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}}
 \newlabel{sec:intro}{{I}{1}{Introduction\relax }{section.1}{}}
+\citation{brooks1986robust}
 \citation{eisenman2009bikenet}
 \citation{devarakonda2013real}
 \citation{Newman2014Drone}
@@ -35,9 +38,9 @@
 \citation{Fu2012Phase}
 \citation{Tekdas2009Using}
 \citation{Savla2005On}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The flight mode consumes more battery power than the hovering mode when flying a DJI DJI Phantom 3 Quadcopter. \relax }}{2}{figure.caption.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The flight mode consumes more battery power than the hovering mode when flying a DJI Phantom 3 Quadcopter. \relax }}{2}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:eva_time_battery}{{1}{2}{The flight mode consumes more battery power than the hovering mode when flying a DJI DJI Phantom 3 Quadcopter. \relax \relax }{figure.caption.1}{}}
+\newlabel{fig:eva_time_battery}{{1}{2}{The flight mode consumes more battery power than the hovering mode when flying a DJI Phantom 3 Quadcopter. \relax \relax }{figure.caption.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}}
 \newlabel{sec:related}{{II}{2}{Related Work\relax }{section.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Drones in 3D mobile sensing}{2}{subsection.2.1}}
@@ -53,125 +56,134 @@
 \newlabel{prob:flight-time-only}{{1}{3}{Trajectory planning by flight time only\relax }{prob.1}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-C}2}Case\nobreakspace  {}2: Considering both flight time and measurement time}{3}{subsubsection.3.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {IV}Construction of the minimum dominating path in 2D grids}{3}{section.4}}
-\newlabel{fig:dominating_set}{{3a}{4}{A dominating set of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:dominating_set}{{a}{4}{A dominating set of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\newlabel{fig:con_dominating_set}{{3b}{4}{A connected dominating set of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:con_dominating_set}{{b}{4}{A connected dominating set of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\newlabel{fig:dominating_path}{{3c}{4}{A dominating path of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\newlabel{sub@fig:dominating_path}{{c}{4}{A dominating path of $L_{8,7}$;\relax \relax }{figure.caption.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A dominating set, connected dominating set and dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.\relax }}{4}{figure.caption.3}}
-\newlabel{fig:dominating_path_difference}{{3}{4}{A dominating set, connected dominating set and dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.\relax \relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}From the dominating set to dominating path}{4}{subsection.4.1}}
+\newlabel{fig:dominating_set}{{3a}{4}{\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig:dominating_set}{{a}{4}{\relax \relax }{figure.caption.3}{}}
+\newlabel{fig:con_dominating_set}{{3b}{4}{\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig:con_dominating_set}{{b}{4}{\relax \relax }{figure.caption.3}{}}
+\newlabel{fig:dominating_path}{{3c}{4}{\relax \relax }{figure.caption.3}{}}
+\newlabel{sub@fig:dominating_path}{{c}{4}{\relax \relax }{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces A (a) dominating set, (b) connected dominating set, (c) dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.\relax }}{4}{figure.caption.3}}
+\newlabel{fig:dominating_path_difference}{{3}{4}{A (a) dominating set, (b) connected dominating set, (c) dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.\relax \relax }{figure.caption.3}{}}
 \newlabel{lem:3extend}{{1}{4}{\relax }{thm.1}{}}
+\newlabel{fig:trivial_step_1}{{4a}{4}{A minimum dominating path of $L_{3,3}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig:trivial_step_1}{{a}{4}{A minimum dominating path of $L_{3,3}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{fig:trivial_step_2}{{4b}{4}{A minimum dominating path of $L_{3,6}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig:trivial_step_2}{{b}{4}{A minimum dominating path of $L_{3,6}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{fig:trivial_step_3}{{4c}{4}{A minimum dominating path of $L_{6,3}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig:trivial_step_3}{{c}{4}{A minimum dominating path of $L_{6,3}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{fig:trivial_step_further}{{4d}{4}{A minimum dominating path of $L_{6,6}$;\relax \relax }{figure.caption.4}{}}
+\newlabel{sub@fig:trivial_step_further}{{d}{4}{A minimum dominating path of $L_{6,6}$;\relax \relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$\relax }}{4}{figure.caption.4}}
+\newlabel{fig:trivial_steps}{{4}{4}{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$\relax \relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}The size of the minimum dominating path in the expanded grid $L_{m,{n+3}}$}{4}{subsection.4.2}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}1}How many vertices are needed for constructing the minimum dominating path in $L_{m,n+3}$}{4}{subsubsection.4.2.1}}
-\newlabel{fig:trivial_step_1}{{4a}{5}{A minimum dominating path of $L_{3,3}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:trivial_step_1}{{a}{5}{A minimum dominating path of $L_{3,3}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{fig:trivial_step_2}{{4b}{5}{A minimum dominating path of $L_{3,6}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:trivial_step_2}{{b}{5}{A minimum dominating path of $L_{3,6}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{fig:trivial_step_3}{{4c}{5}{A minimum dominating path of $L_{6,3}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:trivial_step_3}{{c}{5}{A minimum dominating path of $L_{6,3}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{fig:trivial_step_further}{{4d}{5}{A minimum dominating path of $L_{6,6}$;\relax \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:trivial_step_further}{{d}{5}{A minimum dominating path of $L_{6,6}$;\relax \relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$\relax }}{5}{figure.caption.4}}
-\newlabel{fig:trivial_steps}{{4}{5}{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$\relax \relax }{figure.caption.4}{}}
-\newlabel{lem:ndominating}{{2}{5}{\relax }{thm.2}{}}
-\newlabel{fig:lem2_prob}{{5a}{5}{3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$.\relax \relax }{figure.caption.5}{}}
-\newlabel{sub@fig:lem2_prob}{{a}{5}{3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$.\relax \relax }{figure.caption.5}{}}
-\newlabel{fig:lem2_sol}{{5b}{5}{Partial of $P'$ that could replace $P$.\relax \relax }{figure.caption.5}{}}
-\newlabel{sub@fig:lem2_sol}{{b}{5}{Partial of $P'$ that could replace $P$.\relax \relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces \relax }}{5}{figure.caption.5}}
-\newlabel{fig:lem2}{{5}{5}{\relax \relax }{figure.caption.5}{}}
-\newlabel{lem:3dominating}{{3}{6}{\relax }{thm.3}{}}
+\newlabel{lem:ndominating}{{2}{4}{\relax }{thm.2}{}}
+\newlabel{fig:lem2_prob}{{5a}{5}{\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig:lem2_prob}{{a}{5}{\relax \relax }{figure.caption.5}{}}
+\newlabel{fig:lem2_sol}{{5b}{5}{\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig:lem2_sol}{{b}{5}{\relax \relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces (a) 3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$; (b) Partial of $P'$ that could replace $P$.\relax }}{5}{figure.caption.5}}
+\newlabel{fig:lem2}{{5}{5}{(a) 3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$; (b) Partial of $P'$ that could replace $P$.\relax \relax }{figure.caption.5}{}}
+\newlabel{lem:3dominating}{{3}{5}{\relax }{thm.3}{}}
 \newlabel{thm:3period}{{4}{6}{\relax }{thm.4}{}}
-\newlabel{fig:thm4_struct_boundary}{{6a}{6}{Typical structure of minimum dominating path on the boundary.\relax \relax }{figure.caption.6}{}}
-\newlabel{sub@fig:thm4_struct_boundary}{{a}{6}{Typical structure of minimum dominating path on the boundary.\relax \relax }{figure.caption.6}{}}
-\newlabel{fig:thm4_period}{{6b}{6}{2-period coverage and 3-period coverage of specific structure.\relax \relax }{figure.caption.6}{}}
-\newlabel{sub@fig:thm4_period}{{b}{6}{2-period coverage and 3-period coverage of specific structure.\relax \relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \relax }}{6}{figure.caption.6}}
-\newlabel{fig:lem2}{{6}{6}{\relax \relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Meta structs for constructing the minimum dominating path in $L_{m,n+3}$}{7}{subsubsection.4.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}2}Meta structs for constructing the minimum dominating path in $L_{m,n+3}$}{6}{figure.caption.7}}
+\citation{Hamburger2007Routing}
+\newlabel{fig:thm4_struct_boundary}{{6a}{7}{\relax \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:thm4_struct_boundary}{{a}{7}{\relax \relax }{figure.caption.6}{}}
+\newlabel{fig:thm4_period}{{6b}{7}{\relax \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:thm4_period}{{b}{7}{\relax \relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces (a) Typical structure of minimum dominating path on the boundary; (b) 2-period coverage and 3-period coverage of specific structure.\relax }}{7}{figure.caption.6}}
+\newlabel{fig:lem2}{{6}{7}{(a) Typical structure of minimum dominating path on the boundary; (b) 2-period coverage and 3-period coverage of specific structure.\relax \relax }{figure.caption.6}{}}
+\newlabel{fig:meta_struct1_a}{{7a}{7}{The 9$\times $4 grid expanded to the 9$\times $7 grid;\relax \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:meta_struct1_a}{{a}{7}{The 9$\times $4 grid expanded to the 9$\times $7 grid;\relax \relax }{figure.caption.6}{}}
+\newlabel{fig:meta_struct1_b}{{7b}{7}{The 13$\times $1 grid expanded to the 13$\times $4 grid;\relax \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:meta_struct1_b}{{b}{7}{The 13$\times $1 grid expanded to the 13$\times $4 grid;\relax \relax }{figure.caption.6}{}}
+\newlabel{fig:meta_struct1_c}{{7c}{7}{The 14$\times $1 grid expanded to the 14$\times $4 grid;\relax \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:meta_struct1_c}{{c}{7}{The 14$\times $1 grid expanded to the 14$\times $4 grid;\relax \relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Different cases of meta struct 1 by adding $m$ vertices to construct the minimum dominating path in the expanded grid. Red vertices are extra vertices in the minimum dominating path of $L_{m,n+3}$, blue vertices are vertices shifted from blue dashed-line vertices in the $n$-th column, black vertices are part of vertices in the minimum dominating path of $L_{m,n}$. The dashed line separates columns in\nobreakspace  {}$C_{1,n}$ and columns in\nobreakspace  {}$C_{n+1,n+3}$.\relax }}{7}{figure.caption.6}}
+\newlabel{fig:meta_struct2_a}{{8a}{7}{The 8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{sub@fig:meta_struct2_a}{{a}{7}{The 8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:meta_struct2_b}{{8b}{7}{The 4$\times $4 grid expanded to the 4$\times $7 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{sub@fig:meta_struct2_b}{{b}{7}{The 4$\times $4 grid expanded to the 4$\times $7 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:meta_struct2_c}{{8c}{7}{The 4$\times $7 grid expanded to the 4$\times $10 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{sub@fig:meta_struct2_c}{{c}{7}{The 4$\times $7 grid expanded to the 4$\times $10 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:meta_struct2_d}{{8d}{7}{The 8$\times $8 grid expanded to the 8$\times $11 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{sub@fig:meta_struct2_d}{{d}{7}{The 8$\times $8 grid expanded to the 8$\times $11 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{fig:meta_struct2_e}{{8e}{7}{The 9$\times $5 grid expanded to the 9$\times $8 grid;\relax \relax }{figure.caption.7}{}}
+\newlabel{sub@fig:meta_struct2_e}{{e}{7}{The 9$\times $5 grid expanded to the 9$\times $8 grid;\relax \relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Different cases of meta struct 2 by adding $(m+1)$ vertices to construct the minimum dominating path in the expanded grid.\relax }}{7}{figure.caption.7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces An example of meta struct 3 when expanding a 5$\times $3 grid to a 5$\times $6 one.\relax }}{7}{figure.caption.8}}
+\newlabel{fig:meta_struct3}{{9}{7}{An example of meta struct 3 when expanding a 5$\times $3 grid to a 5$\times $6 one.\relax \relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Optimal Trajectory Planning Algorithm}{7}{subsection.4.3}}
 \newlabel{sec:floating}{{\unhbox \voidb@x \hbox {IV-C}}{7}{Optimal Trajectory Planning Algorithm\relax }{subsection.4.3}{}}
-\citation{Hamburger2007Routing}
-\newlabel{fig:meta_struct1_a}{{7a}{8}{The 9$\times $4 grid expanded to the 9$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:meta_struct1_a}{{a}{8}{The 9$\times $4 grid expanded to the 9$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\newlabel{fig:meta_struct1_b}{{7b}{8}{The 13$\times $1 grid expanded to the 13$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:meta_struct1_b}{{b}{8}{The 13$\times $1 grid expanded to the 13$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\newlabel{fig:meta_struct1_c}{{7c}{8}{The 14$\times $1 grid expanded to the 14$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\newlabel{sub@fig:meta_struct1_c}{{c}{8}{The 14$\times $1 grid expanded to the 14$\times $7 grid;\relax \relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Different cases of meta struct 1 by adding $m$ vertices to construct the minimum dominating path in the expanded grid. Red vertices are extra vertices in the minimum dominating path of $L_{m,n+3}$, blue vertices are vertices shifted from blue dashed-line vertices in the $n$-th column, black vertices are part of vertices in the minimum dominating path of $L_{m,n}$. The dashed line separates columns in\nobreakspace  {}$C_{1,n}$ and columns in\nobreakspace  {}$C_{n+1,n+3}$.\relax }}{8}{figure.caption.7}}
-\newlabel{fig:meta_struct2_a}{{8a}{8}{The 8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:meta_struct2_a}{{a}{8}{The 8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:meta_struct2_b}{{8b}{8}{The XXX8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:meta_struct2_b}{{b}{8}{The XXX8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:meta_struct2_c}{{8c}{8}{The XXX8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:meta_struct2_c}{{c}{8}{The XXX8$\times $4 grid expanded to the 8$\times $7 grid;\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:meta_struct2_d}{{8d}{8}{(d)\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:meta_struct2_d}{{d}{8}{(d)\relax \relax }{figure.caption.8}{}}
-\newlabel{fig:meta_struct2_e}{{8e}{8}{(e)\relax \relax }{figure.caption.8}{}}
-\newlabel{sub@fig:meta_struct2_e}{{e}{8}{(e)\relax \relax }{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Different cases of meta struct 2 by adding $(m+1)$ vertices to construct the minimum dominating path in the expanded grid.\relax }}{8}{figure.caption.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces An example of meta struct 3 when expanding a 5$\times $3 grid to a 5$\times $6 one.\relax }}{8}{figure.caption.9}}
-\newlabel{fig:meta_struct3}{{9}{8}{An example of meta struct 3 when expanding a 5$\times $3 grid to a 5$\times $6 one.\relax \relax }{figure.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ \relax }}{8}{figure.caption.10}}
-\newlabel{fig:path_case_1}{{10}{8}{The minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ \relax \relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Case\nobreakspace  {}1}{8}{subsubsection.4.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces The minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ \relax }}{7}{figure.caption.9}}
+\newlabel{fig:path_case_1}{{10}{7}{The minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ \relax \relax }{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}1}Case\nobreakspace  {}1}{7}{subsubsection.4.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{8}{figure.caption.10}}
+\newlabel{fig:path_case_2_1}{{11}{8}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Minimum dominating path when $m \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{8}{figure.caption.10}}
+\newlabel{fig:path_case_2_2}{{12}{8}{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}2}Case\nobreakspace  {}2}{8}{subsubsection.4.3.2}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}3}Case\nobreakspace  {}3}{8}{subsubsection.4.3.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.12}}
-\newlabel{fig:path_case_3_1}{{13}{9}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$.\relax \relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Minimum dominating path when $m \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.12}}
-\newlabel{fig:path_case_3_2}{{14}{9}{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.\relax \relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, middle one with structure (a) and right one with structure (b).\relax }}{9}{figure.caption.12}}
-\newlabel{fig:path_case_3_3}{{15}{9}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, middle one with structure (a) and right one with structure (b).\relax \relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.11}}
-\newlabel{fig:path_case_2_1}{{11}{9}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Minimum dominating path when $m \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.11}}
-\newlabel{fig:path_case_2_2}{{12}{9}{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Minimum dominating path when $m \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.13}}
-\newlabel{fig:path_case_4}{{16}{9}{Minimum dominating path when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}4}Case\nobreakspace  {}4}{9}{subsubsection.4.3.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}How to concatenate 2D trajectories to a 3D one}{9}{subsection.4.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces DJI Phantom 3 Quadcopter.\relax }}{10}{figure.caption.14}}
-\newlabel{fig:eva_uav}{{17}{10}{DJI Phantom 3 Quadcopter.\relax \relax }{figure.caption.14}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Select critical OLs from the minimum dominating path}{10}{subsection.4.5}}
-\newlabel{dominating_set_construct}{{\unhbox \voidb@x \hbox {IV-E}}{10}{Select critical OLs from the minimum dominating path\relax }{subsection.4.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}1}Case\nobreakspace  {}1}{10}{subsubsection.4.5.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}2}Case\nobreakspace  {}2}{10}{subsubsection.4.5.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}3}Case\nobreakspace  {}3}{10}{subsubsection.4.5.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}4}Case\nobreakspace  {}4}{10}{subsubsection.4.5.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.\relax }}{10}{figure.caption.16}}
-\newlabel{fig:eva_grid_time}{{22}{10}{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.\relax \relax }{figure.caption.16}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {V}Evaluation}{10}{section.5}}
-\newlabel{sec:experiment}{{V}{10}{Evaluation\relax }{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experiment Setup}{10}{subsection.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}4}Case\nobreakspace  {}4}{8}{subsubsection.4.3.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}How to concatenate 2D trajectories to a 3D one}{8}{subsection.4.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}}Select critical OLs from the minimum dominating path}{8}{subsection.4.5}}
+\newlabel{dominating_set_construct}{{\unhbox \voidb@x \hbox {IV-E}}{8}{Select critical OLs from the minimum dominating path\relax }{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}1}Case\nobreakspace  {}1}{8}{subsubsection.4.5.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}2}Case\nobreakspace  {}2}{8}{subsubsection.4.5.2}}
+\citation{alanko2011computing}
+\citation{gonccalves2011domination}
+\citation{chang1992domination}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.11}}
+\newlabel{fig:path_case_3_1}{{13}{9}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$.\relax \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Minimum dominating path when $m \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.11}}
+\newlabel{fig:path_case_3_2}{{14}{9}{Minimum dominating path when $m \equiv 2 \pmod 3$, $n \equiv 2 \pmod 3$.\relax \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Minimum dominating path when $m \equiv 0 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 2 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, middle one with structure (a) and right one with structure (b).\relax }}{9}{figure.caption.11}}
+\newlabel{fig:path_case_3_3}{{15}{9}{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, middle one with structure (a) and right one with structure (b).\relax \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Minimum dominating path when $m \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$, $n \equiv 1 \penalty \z@ \mkern 8mu({\mathgroup \symoperators mod}\mkern 6mu3)$.\relax }}{9}{figure.caption.12}}
+\newlabel{fig:path_case_4}{{16}{9}{Minimum dominating path when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$.\relax \relax }{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces DJI Phantom 3 Quadcopter.\relax }}{9}{figure.caption.13}}
+\newlabel{fig:eva_uav}{{17}{9}{DJI Phantom 3 Quadcopter.\relax \relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}3}Case\nobreakspace  {}3}{9}{subsubsection.4.5.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {IV-E}4}Case\nobreakspace  {}4}{9}{subsubsection.4.5.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Evaluation}{9}{section.5}}
+\newlabel{sec:experiment}{{V}{9}{Evaluation\relax }{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-A}}Experiment Setup}{9}{subsection.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.\relax }}{9}{figure.caption.15}}
+\newlabel{fig:eva_grid_time}{{22}{9}{Comparison of the Adaptive Monitoring Algorithm, Greedy Algorithm and Sequential Selection.\relax \relax }{figure.caption.15}{}}
 \bibstyle{abbrv}
 \bibdata{Sensing-traj}
-\bibcite{devarakonda2013real}{1}
-\bibcite{eisenman2009bikenet}{2}
-\bibcite{Fu2012Phase}{3}
-\bibcite{Hamburger2007Routing}{4}
-\bibcite{Hu2006A}{5}
-\bibcite{Newman2014Drone}{6}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Time consuming of three algorithms with different granularity of measurement time.\relax }}{11}{figure.caption.15}}
-\newlabel{fig:eva_time}{{18}{11}{Time consuming of three algorithms with different granularity of measurement time.\relax \relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Battery coverage of three algorithms with different granularity of measurement time.\relax }}{11}{figure.caption.15}}
-\newlabel{fig:eva_coverage}{{19}{11}{Battery coverage of three algorithms with different granularity of measurement time.\relax \relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Time consuming of three algorithms with different loads when considering flight time only.\relax }}{11}{figure.caption.15}}
-\newlabel{fig:eva_time_load}{{20}{11}{Time consuming of three algorithms with different loads when considering flight time only.\relax \relax }{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Battery coverage of three algorithms with different loads when considering flight time only.\relax }}{11}{figure.caption.15}}
-\newlabel{fig:eva_coverage_load}{{21}{11}{Battery coverage of three algorithms with different loads when considering flight time only.\relax \relax }{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Experimental Results}{11}{subsection.5.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results in different-size spaces}{11}{subsection.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{11}{section.6}}
-\newlabel{sec:conclude}{{VI}{11}{Conclusions\relax }{section.6}{}}
-\@writefile{toc}{\contentsline {section}{References}{11}{section*.17}}
-\bibcite{Purohit2011SensorFly}{7}
-\bibcite{Savla2005On}{8}
-\bibcite{schlag2012new}{9}
-\bibcite{Da-Jiang2017Phantom}{10}
-\bibcite{Tekdas2009Using}{11}
-\bibcite{Yang2017ARMS}{12}
-\bibcite{Yu2016Automating}{13}
-\bibcite{Yun2011Improved}{14}
+\bibcite{alanko2011computing}{1}
+\bibcite{brooks1986robust}{2}
+\bibcite{chang1992domination}{3}
+\bibcite{devarakonda2013real}{4}
+\bibcite{eisenman2009bikenet}{5}
+\bibcite{Fu2012Phase}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Time consuming of three algorithms with different granularity of measurement time.\relax }}{10}{figure.caption.14}}
+\newlabel{fig:eva_time}{{18}{10}{Time consuming of three algorithms with different granularity of measurement time.\relax \relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Battery coverage of three algorithms with different granularity of measurement time.\relax }}{10}{figure.caption.14}}
+\newlabel{fig:eva_coverage}{{19}{10}{Battery coverage of three algorithms with different granularity of measurement time.\relax \relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Time consuming of three algorithms with different loads when considering flight time only.\relax }}{10}{figure.caption.14}}
+\newlabel{fig:eva_time_load}{{20}{10}{Time consuming of three algorithms with different loads when considering flight time only.\relax \relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Battery coverage of three algorithms with different loads when considering flight time only.\relax }}{10}{figure.caption.14}}
+\newlabel{fig:eva_coverage_load}{{21}{10}{Battery coverage of three algorithms with different loads when considering flight time only.\relax \relax }{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-B}}Experimental Results}{10}{subsection.5.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {V-C}}Results in different-size spaces}{10}{subsection.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Conclusions}{10}{section.6}}
+\newlabel{sec:conclude}{{VI}{10}{Conclusions\relax }{section.6}{}}
+\@writefile{toc}{\contentsline {section}{References}{10}{section*.16}}
+\bibcite{gonccalves2011domination}{7}
+\bibcite{Hamburger2007Routing}{8}
+\bibcite{hu2016blueaer}{9}
+\bibcite{Hu2006A}{10}
+\bibcite{Newman2014Drone}{11}
+\bibcite{Purohit2011SensorFly}{12}
+\bibcite{Savla2005On}{13}
+\bibcite{schlag2012new}{14}
+\bibcite{Da-Jiang2017Phantom}{15}
+\bibcite{Tekdas2009Using}{16}
+\bibcite{valavanis2014handbook}{17}
+\bibcite{Yang2017ARMS}{18}
+\bibcite{Yu2016Automating}{19}
+\bibcite{Yun2011Improved}{20}

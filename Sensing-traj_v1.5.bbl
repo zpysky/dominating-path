@@ -1,5 +1,20 @@
 \begin{thebibliography}{10}
 
+\bibitem{alanko2011computing}
+S.~Alanko, S.~Crevals, A.~Isopoussu, P.~{\"O}sterg{\aa}rd, and V.~Pettersson.
+\newblock Computing the domination number of grid graphs.
+\newblock {\em the electronic journal of combinatorics}, 18(1):P141, 2011.
+
+\bibitem{brooks1986robust}
+R.~Brooks.
+\newblock A robust layered control system for a mobile robot.
+\newblock {\em IEEE journal on robotics and automation}, 2(1):14--23, 1986.
+
+\bibitem{chang1992domination}
+T.~Y. Chang.
+\newblock {\em Domination numbers of grid graphs}.
+\newblock PhD thesis, University of South Florida, 1992.
+
 \bibitem{devarakonda2013real}
 S.~Devarakonda, P.~Sevusu, H.~Liu, R.~Liu, L.~Iftode, and B.~Nath.
 \newblock Real-time air quality monitoring through mobile sensing in
@@ -20,10 +35,22 @@ Y.~Fu, M.~Ding, and C.~Zhou.
 \newblock {\em IEEE Transactions on Systems, Man, and Cybernetics - Part A:
   Systems and Humans}, 42(2):511--526, 2012.
 
+\bibitem{gonccalves2011domination}
+D.~Gon{\c{c}}alves, A.~Pinlou, M.~Rao, and S.~Thomass{\'e}.
+\newblock The domination number of grids.
+\newblock {\em SIAM Journal on Discrete Mathematics}, 25(3):1443--1453, 2011.
+
 \bibitem{Hamburger2007Routing}
 P.~Hamburger, R.~Vandell, and M.~Walsh.
 \newblock Routing sets in the integer lattice.
 \newblock {\em Discrete Applied Mathematics}, 155(11):1384--1394, 2007.
+
+\bibitem{hu2016blueaer}
+Y.~Hu, G.~Dai, J.~Fan, Y.~Wu, and H.~Zhang.
+\newblock Blueaer: A fine-grained urban pm2. 5 3d monitoring system using
+  mobile sensing.
+\newblock In {\em Computer Communications, IEEE INFOCOM 2016-The 35th Annual
+  IEEE International Conference on}, pages 1--9. IEEE, 2016.
 
 \bibitem{Hu2006A}
 Y.~Hu and S.~X. Yang.
@@ -66,6 +93,11 @@ D.-J.~I. Science and L.~D. Technology~Co.
 O.~Tekdas, V.~Isler, J.~H. Lim, and A.~Terzis.
 \newblock Using mobile robots to harvest data from sensor fields. wirel commun.
 \newblock {\em Wireless Communications IEEE}, 16(1):22--28, 2009.
+
+\bibitem{valavanis2014handbook}
+K.~P. Valavanis and G.~J. Vachtsevanos.
+\newblock {\em Handbook of unmanned aerial vehicles}.
+\newblock Springer Publishing Company, Incorporated, 2014.
 
 \bibitem{Yang2017ARMS}
 Y.~Yang, Z.~Zheng, K.~Bian, Y.~Jiang, L.~Song, and Z.~Han.
