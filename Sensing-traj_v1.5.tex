@@ -333,7 +333,30 @@ In this section, we first extend the well-known concept of the dominating set to
 Then, we address Problem~\ref{prob:flight-time-only} by proposing an optimal algorithm to find the minimum dominating path in the 2D grid. We can concatenate the discovered paths (trajectories) in 2D grids to construct the one in the 3D grid.
 
 \subsection{From the dominating set to dominating path}
-
+\begin{figure*}[htbp]
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/dominating_set.pdf}
+\caption{A dominating set of $L_{8,7}$;}
+\label{fig:dominating_set}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/con_dominating_set.pdf}
+\caption{A connected dominating set of $L_{8,7}$;}
+\label{fig:con_dominating_set}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/dominating_path.pdf}
+\caption{A dominating path of $L_{8,7}$;}
+\label{fig:dominating_path}
+\end{subfigure}
+\caption{A dominating set, connected dominating set and dominating path of $L_{8,7}$. In dominating path, orange vertices are dominating vertices and green vertices are connecting vertices.}
+\label{fig:dominating_path_difference}
+\end{figure*}
 
 % XXX add a figure to explain how to extend dominating path, and what are dominating path vertices
 
@@ -346,6 +369,38 @@ A dominating path $P$ for graph $G=(V,E)$ is path $P \subset V$ such that every 
   \item and the other vertices in $P \setminus D_P$ are called \emph{connecting vertices} of path $P$.
 \end{itemize}
 \end{defn}
+We show difference among dominating set, connected dominating set and dominating path in Figure~\ref{fig:dominating_path_difference}.
+
+\begin{figure*}[htbp]
+\begin{subfigure}[t]{0.24\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_1.pdf}
+\caption{A minimum dominating path of $L_{3,3}$;}
+\label{fig:trivial_step_1}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.24\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_2.pdf}
+\caption{A minimum dominating path of $L_{3,6}$;}
+\label{fig:trivial_step_2}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.24\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_3.pdf}
+\caption{A minimum dominating path of $L_{6,3}$;}
+\label{fig:trivial_step_3}
+\end{subfigure}
+\begin{subfigure}[t]{0.24\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/trivial_step_further.pdf}
+\caption{A minimum dominating path of $L_{6,6}$;}
+\label{fig:trivial_step_further}
+\end{subfigure}
+\caption{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$}
+\label{fig:trivial_steps}
+\end{figure*}
 
 \textbf{Start from the trivial cases}: The goal is to find the minimum dominating path in a 2D grid $L_{m,n}$, where $m,n$ are positive integers.
 \begin{itemize}
@@ -353,7 +408,7 @@ A dominating path $P$ for graph $G=(V,E)$ is path $P \subset V$ such that every 
   \item \emph{Step~2: adding more columns to trivial cases}. When $m\leq 3$ and $ 3< n \leq 6$, we seek to construct the minimum dominating path in the 2D grid  $L_{m,n}$ by extending the minimum dominating path in the 2D grid  $L_{m,(n-3)}$ that has been found in Step~1;
   \item \emph{Step~3: adding more rows to trivial cases and transposing the grid}. When $3< m \leq 6$ and $ n\leq 3$, we first transpose the grid---swap the rows and columns of the grid, and construct the minimum dominating path in the 2D grid $L_{n,m}$ by following Step~2;
 \end{itemize}
-Any bigger-size grid $L_{m,n}$ when $3< m \leq 6$ and $3< n \leq 6$ can be expended by adding three more rows and/or three more columns from one of the grids in trivial cases. The minimum dominating path in the bigger-size grid $L_{m,n}$ can be also found by repeating above Steps~2 and~3.
+Any bigger-size grid $L_{m,n}$ when $3< m \leq 6$ and $3< n \leq 6$ can be expended by adding three more rows and/or three more columns from one of the grids in trivial cases. The minimum dominating path in the bigger-size grid $L_{m,n}$ can be also found by repeating above Steps~2 and~3. A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$ is shown in Figure~\ref{fig:trivial_steps}.
 
 Next, we show the correlation between the smaller grid $L_{m,n}$ and the expanded grid $L_{m,(n+3)}$; note that the latter is expanded by adding three columns to the former.
 
@@ -421,6 +476,26 @@ Given the grid $L_{m,{n+3}}$, we will derive the minimum number of vertices need
 % Since vertices in $L$ consists of dominating vertices and connecting vertices, we split dominating path in $L_{m,n+3}$ into 5 parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
 \begin{lem}~\label{lem:ndominating}
+
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.45\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/lem2_prob.pdf}
+\caption{3 continuous vertexes in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$.}
+\label{fig:lem2_prob}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.45\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/lem2_sol.pdf}
+\caption{Partial of $P'$ that could replace $P$.}
+\label{fig:lem2_sol}
+\end{subfigure}
+\hfill
+\caption{}
+\label{fig:lem2}
+\end{figure}
+
 Let $P^*$ denote minimum dominating path of $L_{m,n}$, and $P$ denote a minimum dominating path of $L_{m,(n+3)}$. Then there exists at least one minimum dominating path $P$ in $L_{m,(n+3)}$, such that the number of dominating vertices of path $P$ from the 1st to the $n$-th column is no less than the number of dominating vertices of path $P^*$. That is, $|D^c_{1,n}(P)| \geq |D(P^*)|$.
 % In other words, none of vertices in $G^c_{1,n}$ is covered by $D^c_{n+1,n+3}(L)$.
 \end{lem}
@@ -430,13 +505,13 @@ We have $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$ if all vertexes in $C_{1,n}$ is domin
 
 Consider there are $k$ continuous vertexes $v_k$ in $c_n$ dominated by $D^c_{n+1}(P)$.
 
-If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(P)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $c_{n-1}$ can not belong to $D^c_{1,n}(P)$. Therefore, k vertexes $v_{k''}$ in $c_{n-2}$ should belong to $D^c_{1,n}(P)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $P$ which makes $P$ irregular. So we could use the corresponding vertexes in $c_{n-2}$ to replace them so as to shorten $P$. Then, we could use $v_{k''}$ to construct, as shown in Figure~\ref{}.
+If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(P)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $c_{n-1}$ can not belong to $D^c_{1,n}(P)$. Therefore, k vertexes $v_{k''}$ in $c_{n-2}$ should belong to $D^c_{1,n}(P)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $P$ which makes $P$ irregular. So we could use the corresponding vertexes in $c_{n-2}$ to replace them so as to shorten $P$. Then, we could use $v_{k''}$ to construct, as shown in Figure~\ref{fig:lem2_prob}.
 
 Since $C_{n+1,n+3}$ may have multiple connected components, $P$ may step into $C_{n+1,n+3}$ and finish trajectory or move out $C_{n+1,n+3}$.
 
-In the first case, we could construct as Figure~\ref{} and construct $P'$ such that $|P'|=|P|$ and none of vertexes in $c_n$ is dominated by $D^c_{n+1}(P')$.
+In the first case, we could construct as Figure~\ref{lem2_sol} and construct $P'$ such that $|P'|=|P|$ and none of vertexes in $c_n$ is dominated by $D^c_{n+1}(P')$.
 
-In the second case, when $D^c_{n+1}(P)$ come from $D^c_{n+2}(P)$, we have the following three cases. When $|v_k|>3$, $P$ would need more vertexes in $c_{n+3}$ to dominate vertexes in $c_{n+2}$. When $|v_k|<3$, $P$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{} to construct $P'$. When $|v_k|=3$, assume $P$ move back to $C_{1,n}$ from row $r$. If $v_{r,n+3} \notin P$, we could use same structure in Figure~\ref{}. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $P$ could not be the minimum dominating path when $|v_k|=3$.
+In the second case, when $D^c_{n+1}(P)$ come from $D^c_{n+2}(P)$, we have the following three cases. When $|v_k|>3$, $P$ would need more vertexes in $c_{n+3}$ to dominate vertexes in $c_{n+2}$. When $|v_k|<3$, $P$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{lem2_sol} to construct $P'$. When $|v_k|=3$, assume $P$ move back to $C_{1,n}$ from row $r$. If $v_{r,n+3} \notin P$, we could use same structure in Figure~\ref{lem2_sol}. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $P$ could not be the minimum dominating path when $|v_k|=3$.
 
 If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $R_{n+1}$ and $R_{n+2}$. Therefore, we assume $v_{1,n+1} \in P$. Then $v_{1,n}, v_{1,n-1} \notin P$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $P$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in P$, $P$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in P$, we have structure shown in Figure~\ref{fig:meta_struct1_b}. This case could only exist once. We could transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$.
 
@@ -450,7 +525,7 @@ Given $P$ as the minimum dominating path of the grid $L_{m,n+3}$, let $D^c_{n+1,
 The number of dominating vertices of path $P$ from the $n+1$-th column to the $n+3$-th column of grid $L_{m,n+3}$, plus the number of connecting vertices of path $P$ between the dominating vertices from the 1st column to the $n$-th column and the dominating vertices from the $n+1$-th column to the $n+3$-th column is no less than $m$. That is $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m+1$.
 \end{lem}
 
-% todo: $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)|$ change to origin format? 
+% todo: $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)|$ change to origin format?
 \begin{proof}
 Since $c_{n+1}$ might be dominated by $D^c_{1,n}(P)$, we consider the coverage problem of $C_{n+2,n+3}$ only.
 
@@ -475,14 +550,34 @@ The minimum dominating path of $L_{m,n+3}$ contains at least $m$ more vertices t
 \end{thm}
 
 \begin{proof}
+
+\begin{figure}[htbp]
+\begin{subfigure}[t]{0.45\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/thm4_struct_boundary.pdf}
+\caption{Typical structure of minimum dominating path on the boundary.}
+\label{fig:thm4_struct_boundary}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.45\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/thm4_period.pdf}
+\caption{2-period coverage and 3-period coverage of specific structure.}
+\label{fig:thm4_period}
+\end{subfigure}
+\hfill
+\caption{}
+\label{fig:lem2}
+\end{figure}
+
 In Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we know that there exist at least one minimum dominating path $P$ in $G=L_{m,n+3}$ and $|D^c_{n+1,n+3}(P)| + |C^{con}_{n}(P)| + |D^c_{1,n}(P)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ in $G$ must be less than $C(P^*)$ which is the connecting vertices of a minimum dominating path $P^*$ in $L_{m,n}$.
 
 \textbf{Connectivity on the boundary}:
-Since connectivity depends on structure of $r_n$ and there are only two start vertices in $P$, we have structures in $r_n$ like figure~\ref{}. We will consider different structures of $P$ in $r_n$.
+Since connectivity depends on structure of $r_n$ and there are only two start vertices in $P$, we have structures in $r_n$ like figure~\ref{fig:thm4_struct_boundary}. We will consider different structures of $P$ in $r_n$.
 
 If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in P$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^{con}_n(P)$ which decreases $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$, but we still use 4 addition vertices to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in P$ which still hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$.
 
-If there are two connecting vertices in one connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $P$ of the component in $r_n$ must be 4. We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in P$, which hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i,n+2}$, $v_{i+1,n+2}$, $v_{i+2, n+1}$, $v_{i+2, n+2} \in P$, and $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ decreases 2, $|C^{con}_{n}(P)|$ add 2 and $|D^c_{n+1,n+3}(P)|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to construct that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components. This structure destroys the 3 periodic structure which will need more vertices in further extend. Specifically, it has the 2-period extend and 3-period extend as shown in figure~\ref{fig:meta_struct1_c}. If there are two 2-period extends, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period extends, it could be simple replaced by regular structure. Therefore, there are only two possibilities that the structure could exist. In the first possibility, when $m \equiv 2 \pmod 3$ and $m \geq 11$, we have the same structure in figure~\ref{fig:meta_struct1_c}. Consider this structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|P^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which could not obey the result. In the second possibility, $n' \equiv 1 \pmod 3$ which could be simplified till $n'=1$ which is also out of range.
+If there are two connecting vertices in one connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $P$ of the component in $r_n$ must be 4. We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in P$, which hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i,n+2}$, $v_{i+1,n+2}$, $v_{i+2, n+1}$, $v_{i+2, n+2} \in P$, and $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ decreases 2, $|C^{con}_{n}(P)|$ add 2 and $|D^c_{n+1,n+3}(P)|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to construct that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components. This structure destroys the 3 periodic structure which will need more vertices in further extend. Specifically, it has the 2-period coverage and 3-period coverage as shown in figure~\ref{fig:thm4_period}. If there are two 2-period coverage, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period coverage, it could be simple replaced by regular structure. Therefore, there are only two structures exist. In the first possibility, when $m \equiv 2 \pmod 3$ and $m \geq 11$, we have the same structure in figure~\ref{fig:meta_struct1_c}. Consider this structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|P^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which could not obey the result. In the second possibility, $n' \equiv 1 \pmod 3$ which could be simplified till $n'=1$ which is also out of range.
 
 \textbf{Connectivity in the middle}:
 In this case, we split $P^{*c}_{1,n}$ on middle and connect two connected components in $P^c_{n+1,n+3}$ and generate $P$. We assume the origin endpoints in $P^*$ lay in the $n-th$ column of $L_{m,n}$, otherwise we need more connecting vertices between $P^c_{1,n}$ and $P^c_{n+1,n+3}$. If $C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)$ could be less than $|C(P^*)|$, we consider $P^c_{1,3}$. From Lemma~\ref{lem:ndominating}, we could infer that $|P^c_{1,3}| \geq m$ and if $3 \nmid m$, $|P^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in the $4-th$ of $L_{m,n}$ and we could reduce the extend from minimum dominating path in $P_{m,n-3}$ to $P^*$. Then, we could construct a minimum dominating path $P^{**}$ from $P^c_{4,n+3}$ and $|P^{**}| < \gamma_p(L_{m,n})$ and this makes contradiction.

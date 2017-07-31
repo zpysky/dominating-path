@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  31 JUL 2017 00:29
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  31 JUL 2017 11:05
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.5.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.5.tex
@@ -437,6 +437,9 @@ Package hyperref Info: Option `plainpages' set `false' on input line 36.
 
 (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.aux
 
+LaTeX Warning: Label `fig:lem2' multiply defined.
+
+
 LaTeX Warning: Label `code:fram:judgemod' multiply defined.
 
 
@@ -564,259 +567,331 @@ File: pix/sensing-traj/cuboids.pdf Graphic file (type pdf)
 <use pix/sensing-traj/cuboids.pdf>
 Package pdftex.def Info: pix/sensing-traj/cuboids.pdf used on input line 235.
 (pdftex.def)             Requested size: 238.49121pt x 108.0699pt.
- [2 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/cuboids.pdf>] [3]
+ [2 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/cuboids.pdf>]
+<pix/sensing-traj/dominating_set.pdf, id=199, 269.22028pt x 297.23952pt>
+File: pix/sensing-traj/dominating_set.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/dominating_set.pdf>
+Package pdftex.def Info: pix/sensing-traj/dominating_set.pdf used on input line
+ 339.
+(pdftex.def)             Requested size: 104.6915pt x 115.58614pt.
+
+<pix/sensing-traj/con_dominating_set.pdf, id=200, 260.47937pt x 290.24567pt>
+File: pix/sensing-traj/con_dominating_set.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/con_dominating_set.pdf>
+Package pdftex.def Info: pix/sensing-traj/con_dominating_set.pdf used on input 
+line 346.
+(pdftex.def)             Requested size: 103.73282pt x 115.58614pt.
+
+<pix/sensing-traj/dominating_path.pdf, id=201, 265.72394pt x 283.2518pt>
+File: pix/sensing-traj/dominating_path.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/dominating_path.pdf>
+Package pdftex.def Info: pix/sensing-traj/dominating_path.pdf used on input lin
+e 353.
+(pdftex.def)             Requested size: 108.43257pt x 115.58614pt.
+ [3]
+<pix/sensing-traj/trivial_step_1.pdf, id=213, 117.12833pt x 106.65652pt>
+File: pix/sensing-traj/trivial_step_1.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/trivial_step_1.pdf>
+Package pdftex.def Info: pix/sensing-traj/trivial_step_1.pdf used on input line
+ 377.
+(pdftex.def)             Requested size: 95.20047pt x 86.6896pt.
+
+<pix/sensing-traj/trivial_step_2.pdf, id=214, 222.01929pt x 104.90805pt>
+File: pix/sensing-traj/trivial_step_2.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/trivial_step_2.pdf>
+Package pdftex.def Info: pix/sensing-traj/trivial_step_2.pdf used on input line
+ 384.
+(pdftex.def)             Requested size: 183.46289pt x 86.6896pt.
+
+Overfull \hbox (59.62006pt too wide) in paragraph at lines 384--385
+ [][] 
+ []
+
+<pix/sensing-traj/trivial_step_3.pdf, id=215, 108.38742pt x 223.8039pt>
+File: pix/sensing-traj/trivial_step_3.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/trivial_step_3.pdf>
+Package pdftex.def Info: pix/sensing-traj/trivial_step_3.pdf used on input line
+ 391.
+(pdftex.def)             Requested size: 41.98314pt x 86.6896pt.
+
+<pix/sensing-traj/trivial_step_further.pdf, id=216, 213.27843pt x 227.3008pt>
+File: pix/sensing-traj/trivial_step_further.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/trivial_step_further.pdf>
+Package pdftex.def Info: pix/sensing-traj/trivial_step_further.pdf used on inpu
+t line 397.
+(pdftex.def)             Requested size: 81.34277pt x 86.6896pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 415.
+(hyperref)                removing `math shift' on input line 470.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 415.
+(hyperref)                removing `subscript' on input line 470.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 415.
+(hyperref)                removing `math shift' on input line 470.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 418.
+(hyperref)                removing `math shift' on input line 473.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 418.
+(hyperref)                removing `subscript' on input line 473.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 418.
+(hyperref)                removing `math shift' on input line 473.
 
-** ATTENTION: \proof is deprecated (line 428). Use \IEEEproof instead.
+<pix/sensing-traj/lem2_prob.pdf, id=218, 255.2348pt x 241.28856pt>
+File: pix/sensing-traj/lem2_prob.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `' on page 4 undefined on input line 433.
+<use pix/sensing-traj/lem2_prob.pdf>
+Package pdftex.def Info: pix/sensing-traj/lem2_prob.pdf used on input line 483.
+
+(pdftex.def)             Requested size: 171.93723pt x 162.53818pt.
+
+<pix/sensing-traj/lem2_sol.pdf, id=219, 242.9975pt x 246.53395pt>
+File: pix/sensing-traj/lem2_sol.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/lem2_sol.pdf>
+Package pdftex.def Info: pix/sensing-traj/lem2_sol.pdf used on input line 490.
+(pdftex.def)             Requested size: 160.20456pt x 162.53818pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 481--495
+[][]
+ []
+
+** ATTENTION: \proof is deprecated (line 503). Use \IEEEproof instead.
+[4 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/dominating_set.pdf
+> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/con_dominating_set.
+pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/dominating_path.
+pdf>]
+Underfull \vbox (badness 1077) has occurred while \output is active []
 
 
-LaTeX Warning: Reference `' on page 4 undefined on input line 437.
+
+LaTeX Warning: Reference `lem2_sol' on page 5 undefined on input line 512.
 
 
-LaTeX Warning: Reference `' on page 4 undefined on input line 439.
+LaTeX Warning: Reference `lem2_sol' on page 5 undefined on input line 514.
 
 
-LaTeX Warning: Reference `' on page 4 undefined on input line 439.
+LaTeX Warning: Reference `lem2_sol' on page 5 undefined on input line 514.
 
-[4]
-** ATTENTION: \proof is deprecated (line 454). Use \IEEEproof instead.
-** ATTENTION: \proof is deprecated (line 477). Use \IEEEproof instead.
+[5 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_1.pdf
+> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_2.pdf>
+ <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_3.pdf> 
+<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_further.
+pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/lem2_prob.pdf> <
+C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/lem2_sol.pdf>]
+** ATTENTION: \proof is deprecated (line 529). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 552). Use \IEEEproof instead.
+<pix/sensing-traj/thm4_struct_boundary.pdf, id=271, 83.9128pt x 517.54646pt>
+File: pix/sensing-traj/thm4_struct_boundary.pdf Graphic file (type pdf)
 
-LaTeX Warning: Reference `' on page 5 undefined on input line 481.
+<use pix/sensing-traj/thm4_struct_boundary.pdf>
+Package pdftex.def Info: pix/sensing-traj/thm4_struct_boundary.pdf used on inpu
+t line 557.
+(pdftex.def)             Requested size: 26.35327pt x 162.53818pt.
 
-[5] <pix/sensing-traj/meta_struct1a.pdf, id=229, 267.47208pt x 382.91441pt>
+<pix/sensing-traj/thm4_period.pdf, id=272, 185.3074pt x 421.38074pt>
+File: pix/sensing-traj/thm4_period.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/thm4_period.pdf>
+Package pdftex.def Info: pix/sensing-traj/thm4_period.pdf used on input line 56
+4.
+(pdftex.def)             Requested size: 71.47786pt x 162.53818pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 555--569
+[][]
+ []
+
+[6 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/thm4_struct_bounda
+ry.pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/thm4_period.p
+df>] <pix/sensing-traj/meta_struct1a.pdf, id=293, 267.47208pt x 382.91441pt>
 File: pix/sensing-traj/meta_struct1a.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1a.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1a.pdf used on input line 
-497.
+592.
 (pdftex.def)             Requested size: 80.74016pt x 115.58614pt.
 
-<pix/sensing-traj/meta_struct1b.pdf, id=230, 159.0847pt x 486.07402pt>
+<pix/sensing-traj/meta_struct1b.pdf, id=294, 159.0847pt x 486.07402pt>
 File: pix/sensing-traj/meta_struct1b.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1b.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1b.pdf used on input line 
-504.
+599.
 (pdftex.def)             Requested size: 37.82912pt x 115.58614pt.
 
-<pix/sensing-traj/meta_struct1c.pdf, id=231, 153.8402pt x 535.0311pt>
+<pix/sensing-traj/meta_struct1c.pdf, id=295, 153.8402pt x 535.0311pt>
 File: pix/sensing-traj/meta_struct1c.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1c.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1c.pdf used on input line 
-511.
+606.
 (pdftex.def)             Requested size: 33.23462pt x 115.58614pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 523.
+(hyperref)                removing `math shift' on input line 618.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 523.
+(hyperref)                removing `subscript' on input line 618.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 523.
+(hyperref)                removing `math shift' on input line 618.
 
 
-LaTeX Warning: Reference `fig:meta_struct1_1' on page 6 undefined on input line
- 528.
+LaTeX Warning: Reference `fig:meta_struct1_1' on page 7 undefined on input line
+ 623.
 
 
-LaTeX Warning: Reference `fig:meta_struct1_1' on page 6 undefined on input line
- 528.
+LaTeX Warning: Reference `fig:meta_struct1_1' on page 7 undefined on input line
+ 623.
 
 
-LaTeX Warning: Reference `fig:meta_struct1_1' on page 6 undefined on input line
- 528.
+LaTeX Warning: Reference `fig:meta_struct1_1' on page 7 undefined on input line
+ 623.
 
 
-LaTeX Warning: Reference `fig:meta_struct1_2' on page 6 undefined on input line
- 529.
+LaTeX Warning: Reference `fig:meta_struct1_2' on page 7 undefined on input line
+ 624.
 
 
-LaTeX Warning: Reference `fig:meta_struct1_3' on page 6 undefined on input line
- 529.
+LaTeX Warning: Reference `fig:meta_struct1_3' on page 7 undefined on input line
+ 624.
 
 
-LaTeX Warning: Reference `fig:meta_struct2_1' on page 6 undefined on input line
- 538.
+LaTeX Warning: Reference `fig:meta_struct2_1' on page 7 undefined on input line
+ 633.
 
 
-LaTeX Warning: Reference `fig:meta_struct2_2' on page 6 undefined on input line
- 539.
+LaTeX Warning: Reference `fig:meta_struct2_2' on page 7 undefined on input line
+ 634.
 
 
-LaTeX Warning: Reference `fig:meta_struct2_3' on page 6 undefined on input line
- 540.
+LaTeX Warning: Reference `fig:meta_struct2_3' on page 7 undefined on input line
+ 635.
 
 
-LaTeX Warning: Reference `fig:meta_struct2_4' on page 6 undefined on input line
- 541.
+LaTeX Warning: Reference `fig:meta_struct2_4' on page 7 undefined on input line
+ 636.
 
 
-LaTeX Warning: Reference `fig:meta_struct2_5' on page 6 undefined on input line
- 542.
+LaTeX Warning: Reference `fig:meta_struct2_5' on page 7 undefined on input line
+ 637.
 
-<pix/sensing-traj/meta_struct2a.pdf, id=233, 265.72394pt x 325.215pt>
+<pix/sensing-traj/meta_struct2a.pdf, id=297, 265.72394pt x 325.215pt>
 File: pix/sensing-traj/meta_struct2a.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2a.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2a.pdf used on input line 
-549.
+644.
 (pdftex.def)             Requested size: 54.81029pt x 67.08252pt.
 
-Underfull \hbox (badness 3039) in paragraph at lines 550--550
+Underfull \hbox (badness 3039) in paragraph at lines 645--645
 \T1/ptm/m/n/9 ex-pand-ed to the
  []
 
-<pix/sensing-traj/meta_struct2b.pdf, id=234, 256.98297pt x 208.06767pt>
+<pix/sensing-traj/meta_struct2b.pdf, id=298, 256.98297pt x 208.06767pt>
 File: pix/sensing-traj/meta_struct2b.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2b.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2b.pdf used on input line 
-556.
+651.
 (pdftex.def)             Requested size: 66.2807pt x 53.66621pt.
 
-<pix/sensing-traj/meta_struct2c.pdf, id=235, 368.86673pt x 211.5646pt>
+<pix/sensing-traj/meta_struct2c.pdf, id=299, 368.86673pt x 211.5646pt>
 File: pix/sensing-traj/meta_struct2c.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2c.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2c.pdf used on input line 
-563.
+658.
 (pdftex.def)             Requested size: 93.56728pt x 53.66621pt.
 
-Overfull \hbox (26.48476pt too wide) in paragraph at lines 563--564
+Overfull \hbox (26.48476pt too wide) in paragraph at lines 658--659
  [][] 
  []
 
-<pix/sensing-traj/meta_struct2d.pdf, id=236, 770.94905pt x 321.71805pt>
+<pix/sensing-traj/meta_struct2d.pdf, id=300, 770.94905pt x 321.71805pt>
 File: pix/sensing-traj/meta_struct2d.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2d.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2d.pdf used on input line 
-569.
+664.
 (pdftex.def)             Requested size: 123.64845pt x 51.59921pt.
 
-<pix/sensing-traj/meta_struct2e.pdf, id=237, 604.87161pt x 382.91441pt>
+<pix/sensing-traj/meta_struct2e.pdf, id=301, 604.87161pt x 382.91441pt>
 File: pix/sensing-traj/meta_struct2e.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2e.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2e.pdf used on input line 
-576.
+671.
 (pdftex.def)             Requested size: 81.50647pt x 51.59921pt.
 
-<pix/sensing-traj/meta_struct3.pdf, id=240, 209.78209pt x 208.06769pt>
+<pix/sensing-traj/meta_struct3.pdf, id=304, 209.78209pt x 208.06769pt>
 File: pix/sensing-traj/meta_struct3.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct3.pdf>
-Package pdftex.def Info: pix/sensing-traj/meta_struct3.pdf used on input line 5
-91.
+Package pdftex.def Info: pix/sensing-traj/meta_struct3.pdf used on input line 6
+86.
 (pdftex.def)             Requested size: 76.2225pt x 75.60077pt.
 
-<pix/sensing-traj/path_case_1.pdf, id=241, 519.21057pt x 106.65652pt>
+<pix/sensing-traj/path_case_1.pdf, id=305, 519.21057pt x 106.65652pt>
 File: pix/sensing-traj/path_case_1.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_1.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_1.pdf used on input line 60
-1.
+Package pdftex.def Info: pix/sensing-traj/path_case_1.pdf used on input line 69
+6.
 (pdftex.def)             Requested size: 173.44756pt x 35.62965pt.
 
 
-LaTeX Warning: Reference `fig:path_1' on page 6 undefined on input line 607.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-<pix/sensing-traj/path_case_2_1.pdf, id=243, 695.77708pt x 318.22113pt>
+
+LaTeX Warning: Reference `fig:path_1' on page 7 undefined on input line 702.
+
+[7 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct3.pdf>]
+<pix/sensing-traj/path_case_2_1.pdf, id=324, 695.77708pt x 318.22113pt>
 File: pix/sensing-traj/path_case_2_1.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_2_1.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_2_1.pdf used on input line 
-619.
+714.
 (pdftex.def)             Requested size: 232.19843pt x 106.19806pt.
 
-<pix/sensing-traj/path_case_2_2.pdf, id=244, 692.28069pt x 279.75482pt>
+<pix/sensing-traj/path_case_2_2.pdf, id=325, 692.28069pt x 279.75482pt>
 File: pix/sensing-traj/path_case_2_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_2_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_2_2.pdf used on input line 
-626.
+721.
 (pdftex.def)             Requested size: 232.19843pt x 93.83049pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 617--631
+Underfull \hbox (badness 10000) in paragraph at lines 712--726
 []$[]$
  []
 
 
-LaTeX Warning: Reference `fig:path2_1' on page 6 undefined on input line 635.
+LaTeX Warning: Reference `fig:path2_1' on page 8 undefined on input line 730.
 
 
-LaTeX Warning: Reference `fig:path2_2' on page 6 undefined on input line 637.
+LaTeX Warning: Reference `fig:path2_2' on page 8 undefined on input line 732.
 
-[6 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct3.pdf> 
-<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_1.pdf>]
-<pix/sensing-traj/path_case_3_1.pdf, id=269, 1166.03856pt x 344.44814pt>
-File: pix/sensing-traj/path_case_3_1.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_1.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_1.pdf used on input line 
-654.
-(pdftex.def)             Requested size: 165.12378pt x 48.77426pt.
-
-<pix/sensing-traj/path_case_3_2.pdf, id=270, 1372.32425pt x 410.88994pt>
-File: pix/sensing-traj/path_case_3_2.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_2.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_2.pdf used on input line 
-661.
-(pdftex.def)             Requested size: 165.12378pt x 49.43633pt.
-
-<pix/sensing-traj/path_case_3_3.pdf, id=271, 791.92726pt x 335.7058pt>
-File: pix/sensing-traj/path_case_3_3.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_3.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_3.pdf used on input line 
-668.
-(pdftex.def)             Requested size: 165.12378pt x 69.99316pt.
-
-
-LaTeX Warning: Reference `fig:path3_1' on page 7 undefined on input line 677.
-
-
-LaTeX Warning: Reference `fig:path3_2' on page 7 undefined on input line 677.
-
-
-LaTeX Warning: Reference `fig:path3_3' on page 7 undefined on input line 679.
-
-
-LaTeX Warning: Reference `fig:path3_2' on page 7 undefined on input line 679.
-
-[7 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1a.pdf>
+[8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1a.pdf>
  <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1b.pdf> <
 C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1c.pdf> <C:
 /Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2a.pdf> <C:/U
@@ -824,110 +899,147 @@ sers/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2b.pdf> <C:/Use
 rs/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2c.pdf> <C:/Users
 /zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2d.pdf> <C:/Users/z
 pysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2e.pdf> <C:/Users/zpy
-sky/Desktop/dominating-path/pix/sensing-traj/path_case_2_1.pdf> <C:/Users/zpysk
-y/Desktop/dominating-path/pix/sensing-traj/path_case_2_2.pdf>]
-Overfull \hbox (6.16171pt too wide) detected at line 705
+sky/Desktop/dominating-path/pix/sensing-traj/path_case_1.pdf> <C:/Users/zpysky/
+Desktop/dominating-path/pix/sensing-traj/path_case_2_1.pdf> <C:/Users/zpysky/De
+sktop/dominating-path/pix/sensing-traj/path_case_2_2.pdf>]
+<pix/sensing-traj/path_case_3_1.pdf, id=372, 1166.03856pt x 344.44814pt>
+File: pix/sensing-traj/path_case_3_1.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/path_case_3_1.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_1.pdf used on input line 
+749.
+(pdftex.def)             Requested size: 165.12378pt x 48.77426pt.
+
+<pix/sensing-traj/path_case_3_2.pdf, id=373, 1372.32425pt x 410.88994pt>
+File: pix/sensing-traj/path_case_3_2.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/path_case_3_2.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_2.pdf used on input line 
+756.
+(pdftex.def)             Requested size: 165.12378pt x 49.43633pt.
+
+<pix/sensing-traj/path_case_3_3.pdf, id=374, 791.92726pt x 335.7058pt>
+File: pix/sensing-traj/path_case_3_3.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/path_case_3_3.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_3.pdf used on input line 
+763.
+(pdftex.def)             Requested size: 165.12378pt x 69.99316pt.
+
+
+LaTeX Warning: Reference `fig:path3_1' on page 9 undefined on input line 772.
+
+
+LaTeX Warning: Reference `fig:path3_2' on page 9 undefined on input line 772.
+
+
+LaTeX Warning: Reference `fig:path3_3' on page 9 undefined on input line 774.
+
+
+LaTeX Warning: Reference `fig:path3_2' on page 9 undefined on input line 774.
+
+
+Overfull \hbox (6.16171pt too wide) detected at line 800
 [] []
  []
 
-<pix/sensing-traj/path_case_4.pdf, id=311, 1494.69708pt x 480.82863pt>
+<pix/sensing-traj/path_case_4.pdf, id=375, 1494.69708pt x 480.82863pt>
 File: pix/sensing-traj/path_case_4.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_4.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_4.pdf used on input line 71
-1.
+Package pdftex.def Info: pix/sensing-traj/path_case_4.pdf used on input line 80
+6.
 (pdftex.def)             Requested size: 232.19843pt x 74.68907pt.
 
 
-LaTeX Warning: Reference `fig:path4_1' on page 8 undefined on input line 718.
+LaTeX Warning: Reference `fig:path4_1' on page 9 undefined on input line 813.
 
 
-LaTeX Warning: Reference `fig:path4_1' on page 8 undefined on input line 718.
+LaTeX Warning: Reference `fig:path4_1' on page 9 undefined on input line 813.
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 733.
+put line 828.
 
-LaTeX Warning: Float too large for page by 7.04474pt on input line 892.
-
-
-LaTeX Warning: Reference `sec:dominating_path_construct' on page 8 undefined on
- input line 909.
+LaTeX Warning: Float too large for page by 7.04474pt on input line 987.
 
 
-LaTeX Warning: Reference `sec:dominating_path_construct' on page 8 undefined on
- input line 909.
+LaTeX Warning: Reference `sec:dominating_path_construct' on page 9 undefined on
+ input line 1004.
 
 
-LaTeX Warning: Reference `sec:dominating_path_construct' on page 8 undefined on
- input line 909.
+LaTeX Warning: Reference `sec:dominating_path_construct' on page 9 undefined on
+ input line 1004.
 
-[8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_1.pdf>
- <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_2.pdf> <
-C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_3.pdf> <C:
-/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_4.pdf>]
-<pix/sensing-traj/eva_time.pdf, id=340, 835.12pt x 525.965pt>
+
+LaTeX Warning: Reference `sec:dominating_path_construct' on page 9 undefined on
+ input line 1004.
+
+[9 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_4.pdf>]
+<pix/sensing-traj/eva_time.pdf, id=394, 835.12pt x 525.965pt>
 File: pix/sensing-traj/eva_time.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_time.pdf>
-Package pdftex.def Info: pix/sensing-traj/eva_time.pdf used on input line 1174.
+Package pdftex.def Info: pix/sensing-traj/eva_time.pdf used on input line 1269.
 
 (pdftex.def)             Requested size: 118.6778pt x 74.74211pt.
 
-<pix/sensing-traj/eva_coverage.pdf, id=341, 835.12pt x 525.965pt>
+<pix/sensing-traj/eva_coverage.pdf, id=395, 835.12pt x 525.965pt>
 File: pix/sensing-traj/eva_coverage.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_coverage.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_coverage.pdf used on input line 1
-181.
+276.
 (pdftex.def)             Requested size: 118.6778pt x 74.74211pt.
 
-<pix/sensing-traj/eva_time_load.pdf, id=342, 835.12pt x 525.965pt>
+<pix/sensing-traj/eva_time_load.pdf, id=396, 835.12pt x 525.965pt>
 File: pix/sensing-traj/eva_time_load.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_time_load.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_time_load.pdf used on input line 
-1188.
+1283.
 (pdftex.def)             Requested size: 118.6778pt x 74.74211pt.
 
-<pix/sensing-traj/eva_coverage_load.pdf, id=343, 835.12pt x 525.965pt>
+<pix/sensing-traj/eva_coverage_load.pdf, id=397, 835.12pt x 525.965pt>
 File: pix/sensing-traj/eva_coverage_load.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_coverage_load.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_coverage_load.pdf used on input l
-ine 1194.
+ine 1289.
 (pdftex.def)             Requested size: 118.6778pt x 74.74211pt.
 
-<pix/sensing-traj/eva_grid_time.pdf, id=344, 1084.05pt x 532.99126pt>
+<pix/sensing-traj/eva_grid_time.pdf, id=398, 1084.05pt x 532.99126pt>
 File: pix/sensing-traj/eva_grid_time.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_grid_time.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_grid_time.pdf used on input line 
-1205.
+1300.
 (pdftex.def)             Requested size: 201.60077pt x 99.1142pt.
 
 
-LaTeX Warning: Reference `XXX' on page 9 undefined on input line 1266.
+LaTeX Warning: Reference `XXX' on page 10 undefined on input line 1361.
+
+[10 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_1.pdf
+> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_2.pdf> 
+<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_3.pdf> <C
+:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_grid_time.pdf>]
+
+LaTeX Warning: Reference `fig:comp1' on page 11 undefined on input line 1388.
 
 
-LaTeX Warning: Reference `fig:comp1' on page 9 undefined on input line 1293.
+LaTeX Warning: Reference `fig:comp2' on page 11 undefined on input line 1390.
 
 
-LaTeX Warning: Reference `fig:comp2' on page 9 undefined on input line 1295.
+LaTeX Warning: Reference `fig:comp3' on page 11 undefined on input line 1393.
 
 
-LaTeX Warning: Reference `fig:comp3' on page 9 undefined on input line 1298.
+LaTeX Warning: Reference `fig:comp4' on page 11 undefined on input line 1393.
 
 
-LaTeX Warning: Reference `fig:comp4' on page 9 undefined on input line 1298.
-
-[9 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_grid_time.pdf>
-]
-
-LaTeX Warning: Reference `fig:timeconsume' on page 10 undefined on input line 1
-303.
+LaTeX Warning: Reference `fig:timeconsume' on page 11 undefined on input line 1
+398.
 
 
-LaTeX Warning: Reference `fig:battery' on page 10 undefined on input line 1305.
+LaTeX Warning: Reference `fig:battery' on page 11 undefined on input line 1400.
 
 
 (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.bbl)
@@ -942,19 +1054,19 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1322.
-[10 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time.pdf> <C:
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1417.
+[11 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time.pdf> <C:
 /Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_coverage.pdf> <C:/Us
 ers/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time_load.pdf> <C:/User
 s/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_coverage_load.pdf>]
-[11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1322.
+[12]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1417.
  (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1322.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1322.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1417.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1417.
 
 Package rerunfilecheck Info: File `Sensing-traj_v1.5.out' has not changed.
-(rerunfilecheck)             Checksum: 28863115B884D189B73FFB269DB4C131;7824.
+(rerunfilecheck)             Checksum: D4C5F8B4A74CBCC02F05702B6E1B8DF0;7824.
 
 
 LaTeX Warning: There were undefined references.
@@ -964,28 +1076,31 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9931 strings out of 495354
- 145203 string characters out of 3183858
- 260606 words of memory out of 3000000
- 12864 multiletter control sequences out of 15000+200000
+ 10016 strings out of 495354
+ 147799 string characters out of 3183858
+ 262905 words of memory out of 3000000
+ 12933 multiletter control sequences out of 15000+200000
  111861 words of font info for 125 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 42i,13n,40p,2226b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,13n,40p,2201b,521s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
-:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmsy5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/CTEX/M
-iKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/CTEX/MiKTeX/fonts/type
-1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CT
-EX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/time
-s/utmri8a.pfb>
-Output written on Sensing-traj_v1.5.pdf (11 pages, 1256001 bytes).
+X/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/CTEX/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmmi7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmr6.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmr7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/CTEX/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy5.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmsy9.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/M
+iKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/u
+tmr8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Sensing-traj_v1.5.pdf (12 pages, 1328148 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 388 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 541 PDF objects out of 1000 (max. 8388607)
+ 97 named destinations out of 1000 (max. 500000)
+ 443 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -333,7 +333,29 @@ In this section, we first extend the well-known concept of the dominating set to
 Then, we address Problem~\ref{prob:flight-time-only} by proposing an optimal algorithm to find the minimum dominating path in the 2D grid. We can concatenate the discovered paths (trajectories) in 2D grids to construct the one in the 3D grid.
 
 \subsection{From the dominating set to dominating path}
-
+\begin{figure*}[htbp]
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1a.pdf}
+\caption{The 9$\times$4 grid expanded to the 9$\times$7 grid;}
+\label{fig:meta_struct1_a}
+\end{subfigure}%
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1b.pdf}
+\caption{The 13$\times$1 grid expanded to the 13$\times$7 grid;}
+\label{fig:meta_struct1_b}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.32\textwidth}
+\centering
+\includegraphics[height=0.7\linewidth]{pix/sensing-traj/meta_struct1c.pdf}
+\caption{The 14$\times$1 grid expanded to the 14$\times$7 grid;}
+\label{fig:meta_struct1_c}
+\end{subfigure}
+\caption{Different cases of meta struct 1 by adding $m$ vertices to construct the minimum dominating path in the expanded grid. Red vertices are extra vertices in the minimum dominating path of $L_{m,n+3}$, blue vertices are vertices shifted from blue dashed-line vertices in the $n$-th column, black vertices are part of vertices in the minimum dominating path of $L_{m,n}$. The dashed line separates columns in~$C_{1,n}$ and columns in~$C_{n+1,n+3}$.}
+\end{figure*}
 
 % XXX add a figure to explain how to extend dominating path, and what are dominating path vertices
 
@@ -415,52 +437,54 @@ We give notations of variables.
 \subsection{The size of the minimum dominating path in the expanded grid $L_{m,{n+3}}$}
 
 \subsubsection{How many vertices are needed for constructing the minimum dominating path in $L_{m,n+3}$}
-The grid $L_{m,n+3}$ can be divided into two parts: (1) the left part grid from the 1st to the $n$-th columns, and (2) the right part from the $(n+1)$-th to the $n+3$-th columns. The left part is basically a smaller grid of $L_{m,n}$.
+The grid $L_{m,n+3}$ can be divided into two parts: (1) the left part grid from the 1st to the $n$-th columns, and (2) the right part from the $(n+1)$-th to the $(n+3)$-th columns. The left part is basically a smaller grid of $L_{m,n}$.
 
 Given the grid $L_{m,{n+3}}$, we will derive the minimum number of vertices needed to add into the minimum dominating path of left part grid (i.e., $L_{m,n}$), so as to construct the minimum dominating path in $L_{m,{n+3}}$.
 % Since vertices in $L$ consists of dominating vertices and connecting vertices, we split dominating path in $L_{m,n+3}$ into 5 parts: $L=D^c_{1,n}(L) \cup D^c_{n+1,n+3}(L) \cup C^c_{1,n}(L) \cup C^c_{n+1,n+3}(L) \cup C^{ccon}_{n}(L)$.
 
 \begin{lem}~\label{lem:ndominating}
-Let $P^*$ denote minimum dominating path of $L_{m,n}$, and $P$ denote a minimum dominating path of $L_{m,(n+3)}$. Then there exists at least one minimum dominating path $P$ in $L_{m,(n+3)}$, such that the number of dominating vertices of path $P$ is no less than the number of dominating vertices of path $P^*$. That is, $|D(L)| \geq |D(L^*)|$.
+Let $P^*$ denote minimum dominating path of $L_{m,n}$, and $P$ denote a minimum dominating path of $L_{m,(n+3)}$. Then there exists at least one minimum dominating path $P$ in $L_{m,(n+3)}$, such that the number of dominating vertices of path $P$ from the 1st to the $n$-th column is no less than the number of dominating vertices of path $P^*$. That is, $|D^c_{1,n}(P)| \geq |D(P^*)|$.
 % In other words, none of vertices in $G^c_{1,n}$ is covered by $D^c_{n+1,n+3}(L)$.
 \end{lem}
 
 \begin{proof}
-We have $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$ if all vertexes in $G^c_{1,n}$ is dominated by $D^c_{1,n}(L)$ since $G^c_{1,n}=G^*$. Therefore, if $|D^c_{1,n}(L)|<|D(L^*)|$, some vertexes in $G^c_n$ must be dominated by $D^c_{n+1}(L)$ and do not have neighbors in $D^c_{1,n}(L)$.
+We have $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$ if all vertexes in $C_{1,n}$ is dominated by $D^c_{1,n}(P)$ since $C_{1,n}=L_{m,n}$. Therefore, if $|D^c_{1,n}(P)|<|D(P^*)|$, some vertexes in $c_n$ must be dominated by $D^c_{n+1}(P)$ and do not have neighbors in $D^c_{1,n}(P)$.
 
-Consider there are $k$ continuous vertexes $v_k$ in $G^c_n$ dominated by $D^c_{n+1}(L)$.
+Consider there are $k$ continuous vertexes $v_k$ in $c_n$ dominated by $D^c_{n+1}(P)$.
 
-If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(L)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $G^c_{n-1}$ can not belong to $D^c_{1,n}(L)$. Therefore, k vertexes $v_{k''}$ in $G^c_{n-2}$ should belong to $D^c_{1,n}(L)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $L$ which makes $L$ irregular. So we could use the corresponding vertexes in $G^c_{n-2}$ to replace them so as to shorten $L$. Then, we could use $v_{k''}$ to construct, as shown in Figure~\ref{}.
+If $k \geq 2$, since these $k$ vertexes are not dominated by $D^c_{1,n}(P)$, the corresponding $k$ vertexes $v_{k'}$ which are in the same row with $v_k$ in $c_{n-1}$ can not belong to $D^c_{1,n}(P)$. Therefore, k vertexes $v_{k''}$ in $c_{n-2}$ should belong to $D^c_{1,n}(P)$ to dominate $v_{k'}$ because only two endpoints in $v_{k'}$ could be dominated by its top and bottom vertex instead, but their right neighbors could not belong to $P$ which makes $P$ irregular. So we could use the corresponding vertexes in $c_{n-2}$ to replace them so as to shorten $P$. Then, we could use $v_{k''}$ to construct, as shown in Figure~\ref{}.
 
-Since $L^c_{n+1,n+3}$ may have multiple connected components, $L$ may step into $G^c_{n+1,n+3}$ and finish trajectory or move out $G^c_{n+1,n+3}$.
+Since $C_{n+1,n+3}$ may have multiple connected components, $P$ may step into $C_{n+1,n+3}$ and finish trajectory or move out $C_{n+1,n+3}$.
 
-In the first case, we could construct as Figure~\ref{} and create $L'$ such that $|L|=|L'|$ and none of vertexes in $G^c_m$ is dominated by $D^c_{n+1}(L')$.
+In the first case, we could construct as Figure~\ref{} and construct $P'$ such that $|P'|=|P|$ and none of vertexes in $c_n$ is dominated by $D^c_{n+1}(P')$.
 
-In the second case, when $D^c_{n+1}$ come from $D^c_{n+2}$, we have the following three cases. When $|v_k|>3$, $L$ would need more vertexes in $G^c_{n+3}$ to dominate vertexes in $G^c_{n+2}$. When $|v_k|<3$, $L$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{}. When $|v_k|=3$, assume $L$ move back to $G^c{1,n}$ from row $r$. If $v_{r,n+3} \notin L$, we could use same structure in Fig. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $L$ could not be the minimum dominating path when $|v_k|=3$.
+In the second case, when $D^c_{n+1}(P)$ come from $D^c_{n+2}(P)$, we have the following three cases. When $|v_k|>3$, $P$ would need more vertexes in $c_{n+3}$ to dominate vertexes in $c_{n+2}$. When $|v_k|<3$, $P$ will need more connecting vertexes. For these two cases, we use same structure in Figure~\ref{} to construct $P'$. When $|v_k|=3$, assume $P$ move back to $C_{1,n}$ from row $r$. If $v_{r,n+3} \notin P$, we could use same structure in Figure~\ref{}. Otherwise, we consider the path extend from $r$ and vertexes forms a dominating path for $L_{6,k}$ partial but can not reach the minimum. Therefore, $P$ could not be the minimum dominating path when $|v_k|=3$.
 
-If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $G^r_{n+1}$ and $G^r_{n+2}$. Therefore, we assume $v_{1,n+1} \in L$. Then $v_{1,n}, v_{1,n-1} \notin L$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $L$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in L$, $L$ will turn to $G^r_{n-1}$ to dominate vertexes in $G^r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in L$, we will structure shown in Figure~\ref{fig:meta_struct1_b}. This case could only exist once. We transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(L)| \geq |D(L_{m,n})|$.
+If $k=1$, then the vertex must lay in boundary otherwise it will need extra connecting vertexes between $R_{n+1}$ and $R_{n+2}$. Therefore, we assume $v_{1,n+1} \in P$. Then $v_{1,n}, v_{1,n-1} \notin P$ and one of $v_{1,n-2}$ and $v_{2,n-1}$ must belong to $P$ to dominate $v_{1,n-1}$. If $v_{1,n-2} \in P$, $P$ will turn to $r_{n-1}$ to dominate vertexes in $r_n$ and it will bring more vertexes than the following condition. If $v_{2,n-1} \in P$, we have structure shown in Figure~\ref{fig:meta_struct1_b}. This case could only exist once. We could transform $L_{m,n+3}$ symmetrical. Then, $|D^c_{1,n}(P)| \geq |D(L_{m,n})|$.
 
 \end{proof}
 
 
 
-Given $P$ as the minimum dominating path of the grid $L_{m,n+3}$, let $D^c_{n+1,n+3}(P)$ denote the set of dominating vertices of path $L$ from the $n+1$-th column to the $n+3$-th column of grid $L_{m,n+3}$; and let $C^{con}_n(L)$ denote the set of connecting vertices of path $P$ between the $n$-th column and the $n+1$-th column. Then, we have the following lemma.
+Given $P$ as the minimum dominating path of the grid $L_{m,n+3}$, let $D^c_{n+1,n+3}(P)$ denote the set of dominating vertices of path $P$ from the $n+1$-th column to the $n+3$-th column of grid $L_{m,n+3}$; and let $C^{con}_n(L)$ denote the set of connecting vertices of path $P$ between $D^c_{1,i}(P)$ and $D^c_{i+1,n}(P)$. Then, we have the following lemma.
+
 \begin{lem}~\label{lem:3dominating}
-The number of dominating vertices of path $P$ from the $n+1$-th column to the $n+3$-th column of grid $L_{m,n+3}$, plus the number of connecting vertices of path $P$ between the $n$-th column and the $n+1$-th column is no less than $m$. That is $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m+1$.
+The number of dominating vertices of path $P$ from the $n+1$-th column to the $n+3$-th column of grid $L_{m,n+3}$, plus the number of connecting vertices of path $P$ between the dominating vertices from the 1st column to the $n$-th column and the dominating vertices from the $n+1$-th column to the $n+3$-th column is no less than $m$. That is $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m$. Further, if $3 \nmid m$, then $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m+1$.
 \end{lem}
 
+% todo: $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)|$ change to origin format?
 \begin{proof}
-Since $G^c_{n+1}$ might be dominated by $D^c_{1,n}(L)$, we consider the coverage problem of $G^c_{n+2,n+3}$ only.
+Since $c_{n+1}$ might be dominated by $D^c_{1,n}(P)$, we consider the coverage problem of $C_{n+2,n+3}$ only.
 
-Before formal proof, we will prove that expect for one single case, $G^c_{n+2,n+3}$ is dominated by rows. Specifically, every row in $G^c_{n+2,n+3}$ is dominated by one connected component in $L^c_{n+1,n+3}$.
+Before formal proof, we will prove that expect for one single case, $C_{n+2,n+3}$ is dominated by rows. Specifically, every row in $C_{n+2,n+3}$ is dominated by one connected component in $P^c_{n+1,n+3}$.
 
-If $G^r_i$ in $G^c_{n+2,n+3}$ is dominated by two connected components in $L^c_{n+2,n+3}$, then we assume $v_{i, n+2}$ is dominated by a component above and $v_{i, n+3}$ is dominated by the other component beneath.
+If $r_i$ in $C_{n+2,n+3}$ is dominated by two connected components in $P^c_{n+2,n+3}$, then we assume $v_{i,n+2}$ is dominated by a component above and $v_{i,n+3}$ is dominated by the other component beneath.
 
-Therefore, there are two different scenarios. Under the first scenery, $G^r_i$ is dominated by two end vertices which can be transformed by extending one vertex to dominate all vertices dominated by two components. Under the second scenery, $G^r_i$ is dominated by one end vertex and one intermediate vertex. This is the unique case that could not be replaced. But we could take them as one part since the union of two components follows the result.
+Therefore, there are two different scenarios. Under the first scenery, $r_i$ is dominated by two end vertices which can be transformed by extending one vertex to dominate all vertices dominated by two components. Under the second scenery, $r_i$ is dominated by one start point and one intermediate vertex. This is the unique case that could not be replaced. But we could merge them into one part since the union of two components follows the result.
 
-Then, we prove the lemma by induction. Obviously, when $m=1$, $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 2$, when $m=2$, $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 3$ and when $m=3, |D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq 3$.
+Then, we prove the result by induction. Obviously, when $m=1$, $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq 2$, when $m=2$, $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq 3$ and when $m=3$, $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq 3$.
 
-Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connecting component in $L^c_{n+1,n+3}$, $|\gamma_c(G^c_{n+2,n+3})| \geq m$. Adding 1 connecting vertex in $G^c_{n+1}$, $|D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)| \geq m+1$. If there are multiple connecting components in $L^c_{n+1,n+3}$, we assume $G^c_{n+2,n+3}$ is dominated by rows. If $a$ rows and $b$ rows are dominated by two connected components $L_a$ and $L_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $|(D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)) \cap (L_a \cup L_b)| \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $|(D^c_{n+1,n+3}(L) \cup C^{ccon}_n(L)) \cap (L_a \cup L_b)| \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
+Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connecting component in $P^c_{n+1,n+3}$, $|\gamma_c(C_{n+2,n+3})| \geq m$. Adding 1 connecting vertex in $c_{n+1}$, $|D^c_{n+1,n+3}(P)| + |C^{con}_n(P)| \geq m+1$. If there are multiple connecting components in $P^c_{n+1,n+3}$, we assume $C_{n+2,n+3}$ is dominated by rows. If $a$ rows and $b$ rows are dominated by two connected components $P_a$ and $P_b$ respectively. If $3 \mid m$, then at most two of $a$ and $b$ could be divided by 3 so that $|(D^c_{n+1,n+3}(P) \cup C^{con}_n(P)) \cap (P_a \cup P_b)| \geq a+b$. If $3 \nmid m$, then at most one of $a$ and $b$ could be divided by 3 so that $|(D^c_{n+1,n+3}(P) \cup C^{con}_n(P)) \cap (P_a \cup P_b)| \geq a+b+1$. Therefore, multiple connected components can finally reduce to one component which also holds the result.
 
 \end{proof}
 
@@ -469,23 +493,23 @@ Now assume the result holds for $m=k$. When $m=k+1$, if there is only one connec
 
 Since the left part of $L_{m,n+3}$ is a grid $L_{m,n}$, the following theorem tells the relationship between the minimum dominating paths of $L_{m,n+3}$ and $L_{m,n}$.
 \begin{thm}~\label{thm:3period}
-The minimum dominating path of $L_{m,n+3}$ contains at least $m$ more vertices than that of $L_{m,n}$. That is $\gamma_l(L_{m,n+3}) \geq \gamma_l(L_{m,n})+m$. Further, when $3 \nmid m$, $\gamma_l(G) \geq \gamma_l(G^*)+m+1$.
+The minimum dominating path of $L_{m,n+3}$ contains at least $m$ more vertices than that of $L_{m,n}$. That is $\gamma_p(L_{m,n+3}) \geq \gamma_p(L_{m,n})+m$. Further, when $3 \nmid m$, $\gamma_p(L_{m,n+3}) \geq \gamma_p(L_{m,n})+m+1$.
 \end{thm}
 
 \begin{proof}
-In Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we know that there exist at least one minimum dominating path $L$ in $G=L_{m,n+3}$, $|D^c_{n+1,n+3}(L)| \cup |C^{ccon}_{n}(L)| \cup |D^c_{1,n}(L)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ in $G$ must be less than $C(L^*)$ of a minimum dominating path $L^*$ in $G^*$.
+In Lemma~\ref{lem:ndominating} and Lemma~\ref{lem:3dominating}, we know that there exist at least one minimum dominating path $P$ in $G=L_{m,n+3}$ and $|D^c_{n+1,n+3}(P)| + |C^{con}_{n}(P)| + |D^c_{1,n}(P)|$ could fulfill additive part in result. Therefore, if the result is false, $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ in $G$ must be less than $C(P^*)$ which is the connecting vertices of a minimum dominating path $P^*$ in $L_{m,n}$.
 
 \textbf{Connectivity on the boundary}:
-Because connectivity depends on structure of $G^r_n$ and there are only two start vertices in $L$, we have structures in $G^r_n$ like figure~\ref{}. We will consider different structures of $L$ in $G^r_n$.
+Since connectivity depends on structure of $r_n$ and there are only two start vertices in $P$, we have structures in $r_n$ like figure~\ref{}. We will consider different structures of $P$ in $r_n$.
 
-If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in L$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^{ccon}_n$ which decreases $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$, but $|C^{ccon}_{n}(L) \cup D^c_{n+1,n+3}(L)|=5$ which still use 4 vertices addition to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in L$ where $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|=|C(G^*)|$.
+If there are only one connecting vertex $v_{i,n}$ in connected component, we have following two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i, n+2} \in P$. In this case, although $v_{i-1, n+1}, v_{i+1, n+1} \in C^{con}_n(P)$ which decreases $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$, but we still use 4 addition vertices to dominate 3 rows. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1, n+3}$, $v_{i+1, n+1}$, $v_{i+1, n+2}$, $v_{i+1, n+3}$, $v_{i, n+3} \in P$ which still hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$.
 
-If there are two connecting vertices in connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $L$ in $G^r_n$ must be 4. We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in L$, also $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|=|C(L^*)|$. In the second case, $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ decreases 2, $|C^{conn}_{n}|$ add 2 and $|D^c_{n+1,n+3}|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to reach that structure, $G^r_{i-2}$ and $G^r_{i+3}$ must be dominated by other components and this destroy the 3 periodic structure which will add more vertices in dominating path. Specifically, if there are two 2-period extends, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period extends, it could be replaced by similar structure which move two start points to $G^r_{n+3}$. Therefore, there are only two possibilities that the structure could exist. In the first possibility, when $m \equiv 2 \pmod 3$ and $m \geq 11$,  we have the structure shown in figure~\ref{fig:meta_struct1_c}. Consider the structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|L^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which makes contradictions. In the second possibility, $m' \equiv 1 \pmod 3$. However, we could simplify this case, since when $n' \equiv 0 \pmod 3$ or $n' \equiv 2 \pmod 3$, we could change $m'$ and $n'$. Therefore, we consider $m' \equiv 1 \pmod 3$ and $n' \equiv 1 \pmod 3$ only. Then, we could simplify to $L_{m',n'}$ to $L_{m',1}$ with the same approach like the first possibility which is also out of range.
+If there are two connecting vertices in one connected component, when we consider them separately, result is the same as one connecting vertex. If we consider them together, the size of $P$ of the component in $r_n$ must be 4. We assume two vertices are $v_{i,n}$ and $v_{i+1,n}$. Also, we have two cases. In the first case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i-1,n+3}$, $v_{i,n+3}$, $v_{i+1, n+3}$, $v_{i+2, n+1}$, $v_{i+2, n+2}$, $v_{i+2, n+3} \in P$, which hold $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|=|C(P^*)|$. In the second case, we have $v_{i-1, n+1}$, $v_{i-1, n+2}$, $v_{i,n+2}$, $v_{i+1,n+2}$, $v_{i+2, n+1}$, $v_{i+2, n+2} \in P$, and $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ decreases 2, $|C^{con}_{n}(P)|$ add 2 and $|D^c_{n+1,n+3}(P)|$ add 4 which use only 4 vertices addition to dominate 4 rows. It is less than additive part in result. However, this kind of structure could exist when $n$ is small since to construct that structure, $r_{i-2}$ and $r_{i+3}$ must be dominated by other components. This structure destroys the 3 periodic structure which will need more vertices in further extend. Specifically, it has the 2-period extend and 3-period extend as shown in figure~\ref{fig:meta_struct1_c}. If there are two 2-period extends, the dominated rows will decrease more than gain in the dominating vertices. And if there are two 3-period extends, it could be simple replaced by regular structure. Therefore, there are only two possibilities that the structure could exist. In the first possibility, when $m \equiv 2 \pmod 3$ and $m \geq 11$, we have the same structure in figure~\ref{fig:meta_struct1_c}. Consider this structure in $L_{m',n'}$. We assume the structure first appear when $n'=b$. Since $|P^c_{n'-2,n'}|=m'$, minimum dominating path $L'$ in $n'=b-3$ must hold the same structure which drop $m'+1$ vertices in origin $L'$. And this structure will hold till $n' \leq 3$. Except for $n'=1$ which is out of range, $n'=2$ or $n'=3$ do not have the same structure which could not obey the result. In the second possibility, $n' \equiv 1 \pmod 3$ which could be simplified till $n'=1$ which is also out of range.
 
 \textbf{Connectivity in the middle}:
-In this case, we split $L^{*c}_{1,n}$ on middle and connect two connected components in $L^c_{n+1,n+3}$ and generate $L$. We assume the origin endpoints in $L^*$ lay in $G^{*c}_n$, otherwise we need more connecting vertices between $L^c_{1,n}$ and $L^c_{n+1,n+3}$. If $C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)$ could be less than $|C(G^*)|$, we consider $L^c_{1,3}$. In Lemma~\ref{lem:3extend}, $|L^c_{1,3}| \geq m$ and if $3 \nmid m$, $|L^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in $G^{*r}_4$ and we could reduce the extend from minimum dominating path in $L_{m,n-3}$ to $L^*$. Then, we could construct a minimum dominating path $L^{**}$ from $L^c_{4,n+3}$ and $|L^{**}| < \gamma_l(G^*)$ and this makes contradiction.
+In this case, we split $P^{*c}_{1,n}$ on middle and connect two connected components in $P^c_{n+1,n+3}$ and generate $P$. We assume the origin endpoints in $P^*$ lay in the $n-th$ column of $L_{m,n}$, otherwise we need more connecting vertices between $P^c_{1,n}$ and $P^c_{n+1,n+3}$. If $C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)$ could be less than $|C(P^*)|$, we consider $P^c_{1,3}$. From Lemma~\ref{lem:ndominating}, we could infer that $|P^c_{1,3}| \geq m$ and if $3 \nmid m$, $|P^c_{1,3}| \geq m+1$. Therefore, we could move connecting vertices from $C^c_{1,3}$ to $C^c_{4,n}$ if necessary without add more vertices since there are no start point in the $4-th$ of $L_{m,n}$ and we could reduce the extend from minimum dominating path in $P_{m,n-3}$ to $P^*$. Then, we could construct a minimum dominating path $P^{**}$ from $P^c_{4,n+3}$ and $|P^{**}| < \gamma_p(L_{m,n})$ and this makes contradiction.
 
-Therefore, since $|C^c_{1,n}(L)| \cup |C^c_{n+1,n+3}(L)|$ is no less than $C(L^*)$, we could prove the result.
+Therefore, since $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ is no less than $C(P^*)$, we could prove the result.
 
 \end{proof}
 
