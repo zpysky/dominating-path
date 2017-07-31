@@ -290,10 +290,10 @@ the OLs forms a 3D grid in the space.
 \subsection{Time consumed}
 The time consumed by the 3D mobile sensing of drones consists of two parts: (1) the flight time, and (2) the measurement time.
 
-Let $V_C \subseteq V$ denotes the set of COLs, and $v_{C_i}$ is the $i$-th vertex in $V_C$. Let $V_P \subseteq V$ denote the set of vertices in the drone's trajectory which forms a path in $\mathcal{G}$. We have $V_C \subseteq V_P$ since the trajectory should contain the COLs, i.e., vertices in $V_C$.
+Let $V_C \subseteq V$ denotes the set of COLs, and $v_{C_i}$ is the $i$-th vertex in $V_C$. Let $V_P \subseteq V$ denotes the set of vertices in the drone's trajectory which forms a path in $\mathcal{G}$. We have $V_C \subseteq V_P$ since the trajectory should contain the COLs, i.e., vertices in $V_C$.
 
 
-\textbf{Flight time}: the flight time $T_F$ is time consumed by the drone's flight. In the formed 3D grid, we use Hamiltonian distance to characterize the distance between OLs. So teh flight time is proportion to the length of the trajectory, which is written as
+\textbf{Flight time}: the flight time $T_F$ is time consumed by the drone's flight. In the formed 3D grid, we use Hamiltonian distance to characterize the distance between OLs. So the flight time is proportion to the length of the trajectory, which is written as
 $
 T_F=t_F |V_P|,
 $
@@ -313,12 +313,13 @@ T=T_F + T_M.
 \subsection{Problem formulation}
 % Given a 3D space, we first establish a 3D OL network $G=(V;E)$ which forms a 3D grid. Each OL in grid has a coverage set. Due to drones' limited battery life, we want to complete flight in the shortest time. Hence, in order to minimize total time consuming, we select COLs from OLs to cover OL-network while find a OL-path(trajectory) covers COLs. We formulate this problem as a constraint set coverage problem in 3D grid.
 
-We formulate the following two problems based on two observations: (1) the flight mode consumes more battery per unit time than the hovering mode for a drone; (2) the flight time much more than the measurement time in the trajectory for most sensing applications.
+We formulate the following two problems based on two observations: (1) the flight mode consumes more battery per unit time than the hovering mode for a drone; (2) the flight time is much more than the measurement time in the trajectory for most sensing applications.
 
 \subsubsection{Case~1: Considering flight time only}
 In this case, we assume the flight time is dominant, and the measurement time at each OL can be negligible. Then, we formulate the problem as a minimum dominating path problem in multi-layer 2D grids.
 \begin{prob}[Trajectory planning by flight time only]\label{prob:flight-time-only}
-Given a 3D grid $\mathcal{G}$ divided into multi-layer 2D grids, for each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$, assume the time required for completing a drone's trajectory is only relevant to the drone's flight time, and let $C(v_i)$ be the coverage set of vertex $v_i$ in $V$.
+Given a 3D grid $\mathcal{G}$ divided into multi-layer 2D grids, for each 2D grid $G=L_{m,n}=(V;E)$ where $V=\{v_0, v_1, ..., v_{|V|-1} \}$, assume the time required for completing a drone's trajectory is only relevant to the drone's flight time, and let %xxx variable same
+$C(v_i)$ be the coverage set of vertex $v_i$ in $V$.
 
 
 Since $V_C=V_P$, we seek to find the minimum dominating path $V_P \subseteq V$ which contains COLs in $V$ and covers all OLs in the 3D grid.
@@ -334,6 +335,7 @@ Since $V_C=V_P$, we seek to find the minimum dominating path $V_P \subseteq V$ w
 
 
 \subsubsection{Case~2: Considering both flight time and measurement time}
+%xxx no col select
 In this case, we assume the measurement time at each OL is not negligible. As the flight mode consumes more power per unit time, we first search for the shortest path that has the maximum coverage, and then select the least number of OLs along the path as COLs for measurement. We formulate this problem as a combination of a minimum dominating path problem and a constrained minimum dominating set problem in multi-layer 2D grids.
 
 \begin{prob}[Trajectory planning by both flight time and measurement time]
@@ -391,7 +393,8 @@ Then, we address Problem~\ref{prob:flight-time-only} by proposing an optimal alg
 \textbf{Our definition of dominating path}: Recall that a dominating set for the graph $G=(V,E)$ is a subset $D \subset V$ such that every vertex not in $D$ has a neighbor on $D$. A connected dominating set $D$ for graph $G=(V,E)$ is a special dominating set such that any vertex in $D$ can reach any other node in $D$ by a path that stays entirely within $D$.
 Similarly, we have the following definition.
 \begin{defn}~\label{lem:3extend}
-A dominating path $P$ for graph $G=(V,E)$ is path $P \subset V$ such that every vertex not in $P$ has a neighbor on $P$ which is a special connected dominating set. In a dominating path $P$,
+A dominating path $P$ for graph $G=(V,E)$ is %xxx 
+path $P \subset V$ such that every vertex not in $P$ has a neighbor on $P$ which is a special connected dominating set. In a dominating path $P$,
 \begin{itemize}
   \item there exists a dominating set $D_P$ of $G$, and vertices in $D_P$ are called \emph{dominating vertices} of path $P$;
   \item and the other vertices in $P \setminus D_P$ are called \emph{connecting vertices} of path $P$.
@@ -498,6 +501,7 @@ Next, we show the correlation between the smaller grid $L_{m,n}$ and the expande
 \subsubsection{How many vertices are needed for constructing the minimum dominating path in $L_{m,n+3}$}
 The grid $L_{m,n+3}$ can be divided into two parts: (1) the left part grid from the 1st to the $n$-th columns, and (2) the right part from the $(n+1)$-th to the $(n+3)$-th columns. The left part is basically a smaller grid of $L_{m,n}$.
 
+%xxx 
 Given the grid $L_{m,{n+3}}$, we will derive the minimum number of vertices needed to add into the minimum dominating path of left part grid (i.e., $L_{m,n}$), so as to construct the minimum dominating path in $L_{m,{n+3}}$.
 
 Since vertices in a dominating path $P$ consists of dominating vertices ($D(P)$) and connecting vertices ($C(P)$), we could split $P$ of $L_{m,n+3}$ into 5 parts: dominating vertices from the 1st column to the $n$-th column ($D^c_{1,n}(P)$), dominating vertices from the $(n+1)$-th column to the $(n+3)$-th column ($D^c_{n+1,n+3}(P)$), connecting vertices that connect vertices in $D^c_{1,n}(P)$ ($C^c_{1,n}(P)$), connecting vertices that connect vertices in $D^c_{n+1,n+3}(P)$ ($C^c_{n+1,n+3}(P)$) and connecting vertices that connect vertices between $D^c_{1,n}(P)$ and $D^c_{n+1,n+3}(P)$ ($C^{con}_{n}(P)$).
