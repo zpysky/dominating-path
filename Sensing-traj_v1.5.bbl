@@ -50,10 +50,28 @@ K.~Savla, F.~Bullo, and E.~Frazzoli.
 \newblock In {\em Decision and Control, 2005 and 2005 European Control
   Conference. Cdc-Ecc '05. IEEE Conference on}, pages 4530--4535, 2005.
 
+\bibitem{schlag2012new}
+C.~Schlag.
+\newblock The new privacy battle: How the expanding use of drones continues to
+  erode our concept of privacy and privacy rights.
+\newblock {\em Pitt. J. Tech. L. \& Pol'y}, 13:i, 2012.
+
+\bibitem{Da-Jiang2017Phantom}
+D.-J.~I. Science and L.~D. Technology~Co.
+\newblock Phantom 3 professional.
+\newblock Website, 2017.
+\newblock \url{https://www.dji.com/cn/phantom-3-pro}.
+
 \bibitem{Tekdas2009Using}
 O.~Tekdas, V.~Isler, J.~H. Lim, and A.~Terzis.
 \newblock Using mobile robots to harvest data from sensor fields. wirel commun.
 \newblock {\em Wireless Communications IEEE}, 16(1):22--28, 2009.
+
+\bibitem{Yang2017ARMS}
+Y.~Yang, Z.~Zheng, K.~Bian, Y.~Jiang, L.~Song, and Z.~Han.
+\newblock Arms: a fine-grained 3d aqi realtime monitoring system by uav.
+\newblock In {\em Global Communications Conference (GLOBECOM), 2017 IEEE},
+  pages 1--6. IEEE, 2017.
 
 \bibitem{Yu2016Automating}
 E.~Yu, X.~Xiong, and X.~Zhou.
