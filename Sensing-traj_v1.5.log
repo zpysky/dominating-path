@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  31 JUL 2017 21:08
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.16)  1 AUG 2017 01:27
 entering extended mode
 **C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.5.tex
 (C:/Users/zpysky/Desktop/dominating-path/Sensing-traj_v1.5.tex
@@ -316,318 +316,180 @@ Package: balance 1999/02/23 4.3 (PWD)
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
-(C:\CTEX\MiKTeX\tex\latex\hyperref\hyperref.sty
-Package: hyperref 2012/02/06 v6.82o Hypertext links for LaTeX
-
-(C:\CTEX\MiKTeX\tex\generic\oberdiek\hobsub-hyperref.sty
-Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
-
-(C:\CTEX\MiKTeX\tex\generic\oberdiek\hobsub-generic.sty
-Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
-Package ifvtex Info: VTeX not detected.
-Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
-Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
-Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
-Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
-)
-Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
-Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
-Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
-)
-(C:\CTEX\MiKTeX\tex\generic\ifxetex\ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-(C:\CTEX\MiKTeX\tex\latex\oberdiek\kvoptions.sty
-Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
-)
-\@linkdim=\dimen138
-\Hy@linkcounter=\count116
-\Hy@pagecounter=\count117
-
-(C:\CTEX\MiKTeX\tex\latex\hyperref\pd1enc.def
-File: pd1enc.def 2012/02/06 v6.82o Hyperref: PDFDocEncoding definition (HO)
-)
-\Hy@SavedSpaceFactor=\count118
-
-(C:\CTEX\MiKTeX\tex\latex\00miktex\hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-Package hyperref Info: Option `unicode' set `true' on input line 3925.
-
-(C:\CTEX\MiKTeX\tex\latex\hyperref\puenc.def
-File: puenc.def 2012/02/06 v6.82o Hyperref: PDF Unicode definition (HO)
-)
-Package hyperref Info: Option `bookmarks' set `true' on input line 3925.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 3925
-.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 3925.
-Package hyperref Info: Option `breaklinks' set `false' on input line 3925.
-Package hyperref Info: Option `colorlinks' set `false' on input line 3925.
-Package hyperref Info: Hyper figures OFF on input line 4046.
-Package hyperref Info: Link nesting OFF on input line 4051.
-Package hyperref Info: Hyper index ON on input line 4054.
-Package hyperref Info: Plain pages OFF on input line 4061.
-Package hyperref Info: Backreferencing OFF on input line 4066.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4284.
-\c@Hy@tempcnt=\count119
-LaTeX Info: Redefining \url on input line 4637.
-\Fld@menulength=\count120
-\Field@Width=\dimen139
-\Fld@charsize=\dimen140
-Package hyperref Info: Hyper figures OFF on input line 5757.
-Package hyperref Info: Link nesting OFF on input line 5762.
-Package hyperref Info: Hyper index ON on input line 5765.
-Package hyperref Info: backreferencing OFF on input line 5772.
-Package hyperref Info: Link coloring OFF on input line 5777.
-Package hyperref Info: Link coloring with OCG OFF on input line 5782.
-Package hyperref Info: PDF/A mode OFF on input line 5787.
-LaTeX Info: Redefining \ref on input line 5827.
-LaTeX Info: Redefining \pageref on input line 5831.
-\Hy@abspage=\count121
-\c@Item=\count122
-\c@Hfootnote=\count123
-)
-
-Package hyperref Message: Driver (autodetected): hpdftex.
-
-(C:\CTEX\MiKTeX\tex\latex\hyperref\hpdftex.def
-File: hpdftex.def 2012/02/06 v6.82o Hyperref driver for pdfTeX
-\Fld@listcount=\count124
-\c@bookmark@seq@number=\count125
-
-(C:\CTEX\MiKTeX\tex\latex\oberdiek\rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
-)
-\Hy@SectionHShift=\skip53
-)
-Package hyperref Info: Option `pdfnewwindow' set `true' on input line 39.
-Package hyperref Info: Option `plainpages' set `false' on input line 39.
-\c@thm=\count126
-\c@proposition=\count127
-\c@prob=\count128
+\c@thm=\count116
+\c@proposition=\count117
+\c@prob=\count118
 
 (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.aux
 
 LaTeX Warning: Label `fig:lem2' multiply defined.
 
 )
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 129.
-LaTeX Font Info:    ... okay on input line 129.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
+LaTeX Font Info:    ... okay on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <5> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <7> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <8> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <9> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <11> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <11> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <17> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <20> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <20> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 130.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
-(Font)              Font shape `T1/ptm/b/it' tried instead on input line 129.
+(Font)              Font shape `T1/ptm/b/it' tried instead on input line 130.
  (C:\CTEX\MiKTeX\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
-\scratchdimen=\dimen141
+\scratchcounter=\count119
+\scratchdimen=\dimen138
 \scratchbox=\box31
-\nofMPsegments=\count130
-\nofMParguments=\count131
+\nofMPsegments=\count120
+\nofMParguments=\count121
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count132
-\MPscratchDim=\dimen142
-\MPnumerator=\count133
-\makeMPintoPDFobject=\count134
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen139
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
 \everyMPtoPDFconversion=\toks33
 )
 Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 129.
- (C:\CTEX\MiKTeX\tex\latex\hyperref\nameref.sty
-Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
-
-(C:\CTEX\MiKTeX\tex\generic\oberdiek\gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
-)
-\c@section@level=\count135
-)
-LaTeX Info: Redefining \ref on input line 129.
-LaTeX Info: Redefining \pageref on input line 129.
-LaTeX Info: Redefining \nameref on input line 129.
-
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.out)
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.out)
-\@outlinefile=\write3
-LaTeX Font Info:    Try loading font information for U+msa on input line 169.
-
-(C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 167.
+ (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 169.
+LaTeX Font Info:    Try loading font information for U+msb on input line 167.
 
 (C:\CTEX\MiKTeX\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-<pix/sensing-traj/eva_time_battery.pdf, id=131, 661.47125pt x 525.965pt>
+<pix/sensing-traj/eva_time_battery.pdf, id=1, 661.47125pt x 525.965pt>
 File: pix/sensing-traj/eva_time_battery.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_time_battery.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_time_battery.pdf used on input li
-ne 198.
+ne 195.
 (pdftex.def)             Requested size: 126.0pt x 100.18317pt.
  [1{C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}
 
 
  <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time_battery.pdf
 >]
-<pix/sensing-traj/cuboids.pdf, id=168, 850.74594pt x 385.50443pt>
+<pix/sensing-traj/cuboids.pdf, id=16, 850.74594pt x 385.50443pt>
 File: pix/sensing-traj/cuboids.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/cuboids.pdf>
-Package pdftex.def Info: pix/sensing-traj/cuboids.pdf used on input line 268.
+Package pdftex.def Info: pix/sensing-traj/cuboids.pdf used on input line 265.
 (pdftex.def)             Requested size: 238.49121pt x 108.0699pt.
  [2 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/cuboids.pdf>]
-<pix/sensing-traj/dominating_set.pdf, id=196, 269.22028pt x 297.23952pt>
+<pix/sensing-traj/dominating_set.pdf, id=33, 269.22028pt x 297.23952pt>
 File: pix/sensing-traj/dominating_set.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/dominating_set.pdf>
 Package pdftex.def Info: pix/sensing-traj/dominating_set.pdf used on input line
- 378.
+ 372.
 (pdftex.def)             Requested size: 52.9203pt x 58.42636pt.
 
-<pix/sensing-traj/con_dominating_set.pdf, id=197, 260.47937pt x 290.24567pt>
+<pix/sensing-traj/con_dominating_set.pdf, id=34, 260.47937pt x 290.24567pt>
 File: pix/sensing-traj/con_dominating_set.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/con_dominating_set.pdf>
 Package pdftex.def Info: pix/sensing-traj/con_dominating_set.pdf used on input 
-line 386.
+line 380.
 (pdftex.def)             Requested size: 52.9203pt x 58.96486pt.
 
-<pix/sensing-traj/dominating_path.pdf, id=198, 265.72394pt x 283.2518pt>
+<pix/sensing-traj/dominating_path.pdf, id=35, 265.72394pt x 283.2518pt>
 File: pix/sensing-traj/dominating_path.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/dominating_path.pdf>
 Package pdftex.def Info: pix/sensing-traj/dominating_path.pdf used on input lin
-e 393.
+e 387.
 (pdftex.def)             Requested size: 52.9203pt x 56.40732pt.
 
-<pix/sensing-traj/trivial_step_1.pdf, id=200, 117.12833pt x 106.65652pt>
+<pix/sensing-traj/trivial_step_1.pdf, id=36, 117.12833pt x 106.65652pt>
 File: pix/sensing-traj/trivial_step_1.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/trivial_step_1.pdf>
 Package pdftex.def Info: pix/sensing-traj/trivial_step_1.pdf used on input line
- 418.
+ 411.
 (pdftex.def)             Requested size: 23.18321pt x 21.10959pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 419--419
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
 \T1/ptm/m/n/9 dom-i-nat-ing
  []
 
-<pix/sensing-traj/trivial_step_2.pdf, id=201, 222.01929pt x 104.90805pt>
+<pix/sensing-traj/trivial_step_2.pdf, id=37, 222.01929pt x 104.90805pt>
 File: pix/sensing-traj/trivial_step_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/trivial_step_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/trivial_step_2.pdf used on input line
- 426.
+ 419.
 (pdftex.def)             Requested size: 46.36731pt x 21.90967pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 420--420
+\T1/ptm/m/n/9 dom-i-nat-ing
+ []
+
+<pix/sensing-traj/trivial_step_3.pdf, id=38, 108.38742pt x 223.8039pt>
+File: pix/sensing-traj/trivial_step_3.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/trivial_step_3.pdf>
+Package pdftex.def Info: pix/sensing-traj/trivial_step_3.pdf used on input line
+ 426.
+(pdftex.def)             Requested size: 23.18321pt x 47.8676pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 427--427
 \T1/ptm/m/n/9 dom-i-nat-ing
  []
 
-<pix/sensing-traj/trivial_step_3.pdf, id=202, 108.38742pt x 223.8039pt>
-File: pix/sensing-traj/trivial_step_3.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/trivial_step_3.pdf>
-Package pdftex.def Info: pix/sensing-traj/trivial_step_3.pdf used on input line
- 433.
-(pdftex.def)             Requested size: 23.18321pt x 47.8676pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
-\T1/ptm/m/n/9 dom-i-nat-ing
- []
-
-<pix/sensing-traj/trivial_step_further.pdf, id=203, 213.27843pt x 227.3008pt>
+<pix/sensing-traj/trivial_step_further.pdf, id=39, 213.27843pt x 227.3008pt>
 File: pix/sensing-traj/trivial_step_further.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/trivial_step_further.pdf>
 Package pdftex.def Info: pix/sensing-traj/trivial_step_further.pdf used on inpu
-t line 439.
+t line 432.
 (pdftex.def)             Requested size: 46.36731pt x 49.41324pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--440
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
 \T1/ptm/m/n/9 dom-i-nat-ing
  []
 
@@ -638,198 +500,191 @@ pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_1.p
 df> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_2.pd
 f> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_3.pdf
 > <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/trivial_step_furthe
-r.pdf>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 510.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 510.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 510.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 513.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 513.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 513.
-
-<pix/sensing-traj/lem2_prob.pdf, id=241, 255.2348pt x 241.28856pt>
+r.pdf>] <pix/sensing-traj/lem2_prob.pdf, id=71, 255.2348pt x 241.28856pt>
 File: pix/sensing-traj/lem2_prob.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/lem2_prob.pdf>
-Package pdftex.def Info: pix/sensing-traj/lem2_prob.pdf used on input line 528.
+Package pdftex.def Info: pix/sensing-traj/lem2_prob.pdf used on input line 521.
 
 (pdftex.def)             Requested size: 79.3791pt x 75.04167pt.
 
-<pix/sensing-traj/lem2_sol.pdf, id=242, 242.9975pt x 246.53395pt>
+<pix/sensing-traj/lem2_sol.pdf, id=72, 242.9975pt x 246.53395pt>
 File: pix/sensing-traj/lem2_sol.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/lem2_sol.pdf>
-Package pdftex.def Info: pix/sensing-traj/lem2_sol.pdf used on input line 536.
+Package pdftex.def Info: pix/sensing-traj/lem2_sol.pdf used on input line 529.
 (pdftex.def)             Requested size: 74.8439pt x 75.93193pt.
 
-** ATTENTION: \proof is deprecated (line 550). Use \IEEEproof instead.
-** ATTENTION: \proof is deprecated (line 576). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 543). Use \IEEEproof instead.
 [4 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/lem2_prob.pdf> <C:
 /Users/zpysky/Desktop/dominating-path/pix/sensing-traj/lem2_sol.pdf>]
-** ATTENTION: \proof is deprecated (line 621). Use \IEEEproof instead.
-<pix/sensing-traj/thm4_struct_boundary.pdf, id=270, 83.9128pt x 517.54646pt>
+** ATTENTION: \proof is deprecated (line 569). Use \IEEEproof instead.
+** ATTENTION: \proof is deprecated (line 614). Use \IEEEproof instead.
+[5]
+<pix/sensing-traj/thm4_struct_boundary.pdf, id=87, 83.9128pt x 517.54646pt>
 File: pix/sensing-traj/thm4_struct_boundary.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/thm4_struct_boundary.pdf>
 Package pdftex.def Info: pix/sensing-traj/thm4_struct_boundary.pdf used on inpu
-t line 642.
+t line 635.
 (pdftex.def)             Requested size: 12.19012pt x 75.18051pt.
 
-<pix/sensing-traj/thm4_period.pdf, id=271, 185.3074pt x 421.38074pt>
+<pix/sensing-traj/thm4_period.pdf, id=88, 185.3074pt x 421.38074pt>
 File: pix/sensing-traj/thm4_period.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/thm4_period.pdf>
-Package pdftex.def Info: pix/sensing-traj/thm4_period.pdf used on input line 65
-0.
+Package pdftex.def Info: pix/sensing-traj/thm4_period.pdf used on input line 64
+3.
 (pdftex.def)             Requested size: 28.44528pt x 64.68321pt.
 
-<pix/sensing-traj/meta_struct1a.pdf, id=272, 267.47208pt x 382.91441pt>
+<pix/sensing-traj/meta_struct1a.pdf, id=89, 267.47208pt x 382.91441pt>
 File: pix/sensing-traj/meta_struct1a.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1a.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1a.pdf used on input line 
-662.
+655.
 (pdftex.def)             Requested size: 55.72969pt x 79.78337pt.
 
-<pix/sensing-traj/meta_struct1b.pdf, id=273, 159.0847pt x 486.07402pt>
+<pix/sensing-traj/meta_struct1b.pdf, id=90, 159.0847pt x 486.07402pt>
 File: pix/sensing-traj/meta_struct1b.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1b.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1b.pdf used on input line 
-670.
+663.
 (pdftex.def)             Requested size: 24.14877pt x 73.78314pt.
 
-<pix/sensing-traj/meta_struct1c.pdf, id=274, 153.8402pt x 535.0311pt>
+<pix/sensing-traj/meta_struct1c.pdf, id=91, 153.8402pt x 535.0311pt>
 File: pix/sensing-traj/meta_struct1c.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct1c.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct1c.pdf used on input line 
-677.
+670.
 (pdftex.def)             Requested size: 20.43411pt x 71.0668pt.
 
-<pix/sensing-traj/meta_struct2a.pdf, id=275, 265.72394pt x 325.215pt>
+<pix/sensing-traj/meta_struct2a.pdf, id=92, 265.72394pt x 325.215pt>
 File: pix/sensing-traj/meta_struct2a.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2a.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2a.pdf used on input line 
-691.
+684.
 (pdftex.def)             Requested size: 50.31189pt x 61.57314pt.
 
-Underfull \hbox (badness 3039) in paragraph at lines 692--692
+Underfull \hbox (badness 3039) in paragraph at lines 685--685
 \T1/ptm/m/n/9 ex-pand-ed to the
  []
 
-<pix/sensing-traj/meta_struct2b.pdf, id=276, 256.98297pt x 208.06767pt>
+<pix/sensing-traj/meta_struct2b.pdf, id=93, 256.98297pt x 208.06767pt>
 File: pix/sensing-traj/meta_struct2b.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2b.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2b.pdf used on input line 
-699.
+692.
 (pdftex.def)             Requested size: 53.66621pt x 43.45103pt.
+
+Underfull \hbox (badness 3039) in paragraph at lines 693--693
+\T1/ptm/m/n/9 ex-pand-ed to the
+ []
+
+<pix/sensing-traj/meta_struct2c.pdf, id=94, 368.86673pt x 211.5646pt>
+File: pix/sensing-traj/meta_struct2c.pdf Graphic file (type pdf)
+
+<use pix/sensing-traj/meta_struct2c.pdf>
+Package pdftex.def Info: pix/sensing-traj/meta_struct2c.pdf used on input line 
+699.
+(pdftex.def)             Requested size: 67.08252pt x 38.47382pt.
 
 Underfull \hbox (badness 3039) in paragraph at lines 700--700
 \T1/ptm/m/n/9 ex-pand-ed to the
  []
 
-<pix/sensing-traj/meta_struct2c.pdf, id=277, 368.86673pt x 211.5646pt>
-File: pix/sensing-traj/meta_struct2c.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/meta_struct2c.pdf>
-Package pdftex.def Info: pix/sensing-traj/meta_struct2c.pdf used on input line 
-706.
-(pdftex.def)             Requested size: 67.08252pt x 38.47382pt.
-
-Underfull \hbox (badness 3039) in paragraph at lines 707--707
-\T1/ptm/m/n/9 ex-pand-ed to the
- []
-
-<pix/sensing-traj/meta_struct2d.pdf, id=278, 770.94905pt x 321.71805pt>
+<pix/sensing-traj/meta_struct2d.pdf, id=95, 770.94905pt x 321.71805pt>
 File: pix/sensing-traj/meta_struct2d.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2d.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2d.pdf used on input line 
-713.
+706.
 (pdftex.def)             Requested size: 129.0pt x 53.83226pt.
 
-<pix/sensing-traj/meta_struct2e.pdf, id=279, 604.87161pt x 382.91441pt>
+<pix/sensing-traj/meta_struct2e.pdf, id=96, 604.87161pt x 382.91441pt>
 File: pix/sensing-traj/meta_struct2e.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct2e.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct2e.pdf used on input line 
-720.
+713.
 (pdftex.def)             Requested size: 92.87794pt x 58.79605pt.
 
-<pix/sensing-traj/meta_struct3.pdf, id=280, 209.78209pt x 208.06769pt>
+<pix/sensing-traj/meta_struct3.pdf, id=97, 209.78209pt x 208.06769pt>
 File: pix/sensing-traj/meta_struct3.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/meta_struct3.pdf>
 Package pdftex.def Info: pix/sensing-traj/meta_struct3.pdf used on input line 7
-31.
+24.
 (pdftex.def)             Requested size: 47.47038pt x 47.0799pt.
 
-<pix/sensing-traj/path_case_1.pdf, id=281, 519.21057pt x 106.65652pt>
+<pix/sensing-traj/path_case_1.pdf, id=98, 519.21057pt x 106.65652pt>
 File: pix/sensing-traj/path_case_1.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_1.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_1.pdf used on input line 73
-8.
+1.
 (pdftex.def)             Requested size: 106.80928pt x 21.93958pt.
 
-<pix/sensing-traj/path_case_2_1.pdf, id=282, 695.77708pt x 318.22113pt>
+<pix/sensing-traj/path_case_2_1.pdf, id=99, 695.77708pt x 318.22113pt>
 File: pix/sensing-traj/path_case_2_1.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_2_1.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_2_1.pdf used on input line 
-745.
+738.
 (pdftex.def)             Requested size: 106.80928pt x 48.8479pt.
 
-Underfull \hbox (badness 2495) in paragraph at lines 746--746
+Underfull \hbox (badness 2495) in paragraph at lines 739--739
 \T1/ptm/m/n/10 ing path when $\OML/cmm/m/it/10 m \OMS/cmsy/m/n/10  \OT1/cmr/m/
 n/10 0$
  []
 
-<pix/sensing-traj/path_case_2_2.pdf, id=283, 692.28069pt x 279.75482pt>
+<pix/sensing-traj/path_case_2_2.pdf, id=100, 692.28069pt x 279.75482pt>
 File: pix/sensing-traj/path_case_2_2.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_2_2.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_2_2.pdf used on input line 
-752.
+745.
 (pdftex.def)             Requested size: 106.80928pt x 43.16092pt.
 
-Underfull \hbox (badness 2495) in paragraph at lines 753--753
+Underfull \hbox (badness 2495) in paragraph at lines 746--746
 \T1/ptm/m/n/10 ing path when $\OML/cmm/m/it/10 m \OMS/cmsy/m/n/10  \OT1/cmr/m/
 n/10 2$
  []
 
+<pix/sensing-traj/path_case_3_1.pdf, id=101, 1166.03856pt x 344.44814pt>
+File: pix/sensing-traj/path_case_3_1.pdf Graphic file (type pdf)
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 758.
+<use pix/sensing-traj/path_case_3_1.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_1.pdf used on input line 
+813.
+(pdftex.def)             Requested size: 165.12378pt x 48.77426pt.
 
+<pix/sensing-traj/path_case_3_2.pdf, id=102, 1372.32425pt x 410.88994pt>
+File: pix/sensing-traj/path_case_3_2.pdf Graphic file (type pdf)
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 758.
+<use pix/sensing-traj/path_case_3_2.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_2.pdf used on input line 
+820.
+(pdftex.def)             Requested size: 165.12378pt x 49.43633pt.
 
+<pix/sensing-traj/path_case_3_3.pdf, id=103, 791.92726pt x 335.7058pt>
+File: pix/sensing-traj/path_case_3_3.pdf Graphic file (type pdf)
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 758.
+<use pix/sensing-traj/path_case_3_3.pdf>
+Package pdftex.def Info: pix/sensing-traj/path_case_3_3.pdf used on input line 
+827.
+(pdftex.def)             Requested size: 115.58614pt x 48.99625pt.
 
-[5] [6 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/thm4_struct_bo
+Overfull \hbox (15.43196pt too wide) detected at line 858
+\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 ) = []
+
+ []
+
+[6] [7 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/thm4_struct_bo
 undary.pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/thm4_peri
 od.pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1a
 .pdf> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct1b.p
@@ -842,96 +697,72 @@ ers/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct2e.pdf> <C:/User
 s/zpysky/Desktop/dominating-path/pix/sensing-traj/meta_struct3.pdf> <C:/Users/z
 pysky/Desktop/dominating-path/pix/sensing-traj/path_case_1.pdf> <C:/Users/zpysk
 y/Desktop/dominating-path/pix/sensing-traj/path_case_2_1.pdf> <C:/Users/zpysky/
-Desktop/dominating-path/pix/sensing-traj/path_case_2_2.pdf>]
-<pix/sensing-traj/path_case_3_1.pdf, id=363, 1166.03856pt x 344.44814pt>
-File: pix/sensing-traj/path_case_3_1.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_1.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_1.pdf used on input line 
-822.
-(pdftex.def)             Requested size: 165.12378pt x 48.77426pt.
-
-<pix/sensing-traj/path_case_3_2.pdf, id=364, 1372.32425pt x 410.88994pt>
-File: pix/sensing-traj/path_case_3_2.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_2.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_2.pdf used on input line 
-829.
-(pdftex.def)             Requested size: 165.12378pt x 49.43633pt.
-
-<pix/sensing-traj/path_case_3_3.pdf, id=365, 791.92726pt x 335.7058pt>
-File: pix/sensing-traj/path_case_3_3.pdf Graphic file (type pdf)
-
-<use pix/sensing-traj/path_case_3_3.pdf>
-Package pdftex.def Info: pix/sensing-traj/path_case_3_3.pdf used on input line 
-836.
-(pdftex.def)             Requested size: 115.58614pt x 48.99625pt.
-
-Overfull \hbox (15.43196pt too wide) detected at line 867
-\OML/cmm/m/it/10 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 ) = []
-
- []
-
-<pix/sensing-traj/path_case_4.pdf, id=379, 1494.69708pt x 480.82863pt>
+Desktop/dominating-path/pix/sensing-traj/path_case_2_2.pdf> <C:/Users/zpysky/De
+sktop/dominating-path/pix/sensing-traj/path_case_3_1.pdf> <C:/Users/zpysky/Desk
+top/dominating-path/pix/sensing-traj/path_case_3_2.pdf> <C:/Users/zpysky/Deskto
+p/dominating-path/pix/sensing-traj/path_case_3_3.pdf>]
+<pix/sensing-traj/path_case_4.pdf, id=164, 1494.69708pt x 480.82863pt>
 File: pix/sensing-traj/path_case_4.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/path_case_4.pdf>
 Package pdftex.def Info: pix/sensing-traj/path_case_4.pdf used on input line 10
-88.
+79.
 (pdftex.def)             Requested size: 232.19843pt x 74.68907pt.
- [7 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_4.pdf>]
 
-<pix/sensing-traj/eva_uav.pdf, id=397, 905.4165pt x 203.13176pt>
+<pix/sensing-traj/eva_uav.pdf, id=165, 905.4165pt x 203.13176pt>
 File: pix/sensing-traj/eva_uav.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_uav.pdf>
-Package pdftex.def Info: pix/sensing-traj/eva_uav.pdf used on input line 1315.
+Package pdftex.def Info: pix/sensing-traj/eva_uav.pdf used on input line 1306.
 (pdftex.def)             Requested size: 201.60077pt x 45.22844pt.
 
-<pix/sensing-traj/eva_time.pdf, id=398, 771.88374pt x 525.965pt>
+<pix/sensing-traj/eva_time.pdf, id=166, 771.88374pt x 525.965pt>
 File: pix/sensing-traj/eva_time.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_time.pdf>
-Package pdftex.def Info: pix/sensing-traj/eva_time.pdf used on input line 1327.
+Package pdftex.def Info: pix/sensing-traj/eva_time.pdf used on input line 1318.
 
 (pdftex.def)             Requested size: 118.6778pt x 80.86563pt.
 
-<pix/sensing-traj/eva_coverage.pdf, id=399, 771.88374pt x 525.965pt>
+<pix/sensing-traj/eva_coverage.pdf, id=167, 771.88374pt x 525.965pt>
 File: pix/sensing-traj/eva_coverage.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_coverage.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_coverage.pdf used on input line 1
-334.
+325.
 (pdftex.def)             Requested size: 118.6778pt x 80.86563pt.
 
-<pix/sensing-traj/eva_time_load.pdf, id=400, 799.98875pt x 525.965pt>
+<pix/sensing-traj/eva_time_load.pdf, id=168, 799.98875pt x 525.965pt>
 File: pix/sensing-traj/eva_time_load.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_time_load.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_time_load.pdf used on input line 
-1341.
+1332.
 (pdftex.def)             Requested size: 118.6778pt x 78.02458pt.
 
-<pix/sensing-traj/eva_coverage_load.pdf, id=401, 799.98875pt x 525.965pt>
+<pix/sensing-traj/eva_coverage_load.pdf, id=169, 799.98875pt x 525.965pt>
 File: pix/sensing-traj/eva_coverage_load.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_coverage_load.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_coverage_load.pdf used on input l
-ine 1348.
+ine 1339.
 (pdftex.def)             Requested size: 118.6778pt x 78.02458pt.
- [8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_1.pdf
-> <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_2.pdf> 
-<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_3_3.pdf> <C
-:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_uav.pdf>]
-<pix/sensing-traj/eva_grid_time.pdf, id=437, 1084.05pt x 531.9875pt>
+ [8 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/path_case_4.pdf> 
+<C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_uav.pdf>]
+<pix/sensing-traj/eva_grid_time.pdf, id=182, 1084.05pt x 531.9875pt>
 File: pix/sensing-traj/eva_grid_time.pdf Graphic file (type pdf)
 
 <use pix/sensing-traj/eva_grid_time.pdf>
 Package pdftex.def Info: pix/sensing-traj/eva_grid_time.pdf used on input line 
-1455.
+1447.
 (pdftex.def)             Requested size: 176.39923pt x 86.56464pt.
 
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.bbl)
+(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.bbl [9 <C:/Users/zpy
+sky/Desktop/dominating-path/pix/sensing-traj/eva_time.pdf> <C:/Users/zpysky/Des
+ktop/dominating-path/pix/sensing-traj/eva_coverage.pdf> <C:/Users/zpysky/Deskto
+p/dominating-path/pix/sensing-traj/eva_time_load.pdf> <C:/Users/zpysky/Desktop/
+dominating-path/pix/sensing-traj/eva_coverage_load.pdf> <C:/Users/zpysky/Deskto
+p/dominating-path/pix/sensing-traj/eva_grid_time.pdf>])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -943,33 +774,21 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1467.
-[9 <C:/Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time.pdf> <C:/
-Users/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_coverage.pdf> <C:/Use
-rs/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_time_load.pdf> <C:/Users
-/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_coverage_load.pdf> <C:/Use
-rs/zpysky/Desktop/dominating-path/pix/sensing-traj/eva_grid_time.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1467.
+[10
 
-(C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1467.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1467.
-
-Package rerunfilecheck Info: File `Sensing-traj_v1.5.out' has not changed.
-(rerunfilecheck)             Checksum: 810412CB808E81A9F0DCB81659305374;6295.
-
+] (C:\Users\zpysky\Desktop\dominating-path\Sensing-traj_v1.5.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9971 strings out of 495354
- 147241 string characters out of 3183858
- 252153 words of memory out of 3000000
- 12890 multiletter control sequences out of 15000+200000
+ 5222 strings out of 495354
+ 79250 string characters out of 3183858
+ 149463 words of memory out of 3000000
+ 8273 multiletter control sequences out of 15000+200000
  113404 words of font info for 131 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 36i,10n,38p,2204b,483s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,10n,38p,2071b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/CTEX/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/CTEX/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmm
 i10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/CTEX/MiKTe
@@ -984,9 +803,9 @@ b><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/CTEX/MiKTe
 X/fonts/type1/urw/times/utmb8a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmbi8
 a.pfb><C:/CTEX/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/CTEX/MiKTeX/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on Sensing-traj_v1.5.pdf (9 pages, 1433326 bytes).
+Output written on Sensing-traj_v1.5.pdf (10 pages, 1395178 bytes).
 PDF statistics:
- 550 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
- 408 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 273 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 
