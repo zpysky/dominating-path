@@ -1037,7 +1037,7 @@ Therefore, when $m \equiv 1 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 %TODO: decrease one point when $m \equiv 2 \pmod 3$
 
 \subsection{Select critical OLs from the minimum dominating path}\label{dominating_set_construct}
-Since dominating vertices in the minimum dominating path is the minimum dominating set of path by definition. Therefore, we select dominating vertices in minimum dominating path as COLs which are shown in black vertices of figures in last subsection. We use the same cases in last subsection and get $|V_C|$.
+Since dominating vertices in the minimum dominating path of $L_{m,n}$ is the minimum dominating set of path by definition. Therefore, we select dominating vertices in minimum dominating path as COLs which are shown in black vertices of figures in last subsection. We use the same cases in last subsection and get $|V_C|$.
 
 \subsubsection{Case~1}: From Figure~\ref{fig:path_case_1}, we have
 \begin{enumerate}
@@ -1086,8 +1086,8 @@ From Figure~\ref{fig:path_case_3_3}, when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmo
 In a real-world 3D space that might be irregular, we give an approach to concatenate 2D trajectories to a 3D trajectory.
 \begin{itemize}
   \item First, we divide 3D space into cuboids and obtain a 3D irregular grid; and then we further divide the 3D grid into multiple layers of 2D irregular grids.
-  \item Then, for each irregular 2D grid, we could divide it into a number of regular 2D grids. In each regular 2D grid, we can use the proposed algorithm to construct the minimum dominating path for each of them.
-  \item Finally, we could simply concatenate the minimum dominating paths for those regular grids because their starting points always lie on the grid boundary, which produce a trajectory for the drone in the 3D space.
+  \item Then, for each irregular 2D grid, we could divide it into a number of regular 2D grids. In each regular 2D grid, we can use the proposed algorithm to construct the minimum dominating path for it.
+  \item Finally, we could simply concatenate the minimum dominating paths for those regular grids because their end points always lie on the grid boundary, which produce a trajectory for the drone in the 3D space.
 \end{itemize}
 
 %\begin{algorithm}[htb]
@@ -1399,7 +1399,7 @@ In a real-world 3D space that might be irregular, we give an approach to concate
 
 
 \textbf{Prototype}:
-The prototype consists of two parts: (1) a drone with an API that can configure its trajectory; and (2) a measurement sensor board or a smartphone is installed into a plastic box with vent-holes made by a laser engraving machine, which is attached at the bottom of the drone. The drone we use is a DJI Phantom 3 quadcopter, as shown in Figure~\ref{fig:eva_uav}. There is an intelligent flight mode that allows the customization of the trajectory by configuring a number of stop locations such that the drone will autonomously follow this trajectory to hover over each stop and complete the flight. The GPS sensor, ultrasonic sensor, and the motion sensors collectively determine the current observation location of the drone and guide the drone to the next stop in the trajectory. At each stop, the drone hover for a few seconds, $T_M$, to collect sufficient measurement data, before traversing to the next stop.
+The prototype consists of two parts: (1) a drone with an API that can configure its trajectory; and (2) a measurement sensor board or a smartphone is installed into a plastic box with vent-holes made by a laser engraving machine, which is attached at the bottom of the drone. The drone we use is a DJI Phantom 3 quadcopter, as shown in Figure~\ref{fig:eva_uav}. There is an intelligent flight mode that allows the customization of the trajectory by configuring a number of stop locations such that the drone will autonomously follow this trajectory to hover over each stop and complete the flight. The GPS sensor, ultrasonic sensor, and the motion sensors collectively determine the current observation location of the drone and guide the drone to the next stop in the trajectory. At each stop, the drone hover for a few seconds, $t_M$, to collect sufficient measurement data, before traversing to the next stop.
 
 
 % We use drones to verify our results. Since we divide 3D space into OL-network by cuboids which forms a 3D grid partitioned by height, we only consider algorithms in 2D grid.
@@ -1419,14 +1419,14 @@ The prototype consists of two parts: (1) a drone with an API that can configure 
 \end{itemize}
 
 \subsection{Experimental Results}
-We choose an open space in a university campus which has a size of 45~m in length, 35~m in width, and 10~m in height. It is divided into 3D grids formed by 5 by 5 by 5~m cuboids. Since the time consumed is the sum of flight time and measurement time, we consider the impact of different measurement times in experiments, which are set as 0, 1, 2, 5 seconds at each COL. Note that the case when the measurement time is 0 second is equivalent to the case when we consider the flight time only.
+We choose an open space in a university campus which has a size of 45~m in length, 35~m in width, and 10~m in height. It is divided into 3D grids formed by 5 by 5 by 5~m cuboids. Since the time consumed is the sum of flight time and measurement time, we consider the impact of different measurement times in experiments, which are set as 0, 1, 2, 5 seconds at each COL.
 
 \textbf{Time consumed}:
-Figure~\ref{fig:eva_time} show the time consumed under compared algorithms with different granularity of the measurement time. The sensing area is a 2D grid of size 9 by 7~m. We observe that our proposed algorithm consumes less time when the measurement time is small. The gap between our algorithm and the row-wise COL selection algorithm decreases as the measurement time increases. When the measurement time is 5 seconds at each COL, the total time consumed by the proposed and the row-wise COL selection algorithms are equal.
+Figure~\ref{fig:eva_time} show the time consumed under compared algorithms with different granularity of the measurement time. The sensing area is a 2D grid of size 45 by 35~m. We observe that our proposed algorithm consumes less time when the measurement time is small. The gap between our algorithm and the row-wise COL selection algorithm decreases as the measurement time increases. When the measurement time is 5 seconds at each COL, the total time consumed by the proposed and the row-wise COL selection algorithms are equal.
 
 \textbf{Coverage space}:
 Figure~\ref{fig:eva_coverage} show the coverage space in the 3D grid under compared algorithms with different granularity of the measurement time during the battery life.
-We fix the width of the grid as 6~m, we observe that our proposed algorithm could cover more space than other algorithms in all cases, during the whole battery life. As the measurement time increases, the coverage area by any of three algorithms decreases, since the measurement time consumes part of the battery. Meanwhile, the difference in the coverage space among three algorithms decreases when the measurement time is set greater.
+We fix the width of the grid as 30~m, we observe that our proposed algorithm could cover more space than other algorithms in all cases, during the whole battery life. As the measurement time increases, the coverage area by any of three algorithms decreases, since the measurement time consumes part of the battery. Meanwhile, the difference in the coverage space among three algorithms decreases when the measurement time is set greater.
 
 \textbf{Time consumed and the coverage space with different loads}:
 In a real-world application, drones might be used to delivery packages or other goods. Hence, we also evaluate the time consumed and the coverage space with different loads when we only consider the flight time. Results in Figure~\ref{fig:eva_time_load} and~\ref{fig:eva_coverage_load} show that as the load increases, the time consumed of three algorithms to complete the sensing task of a given grid increases; meanwhile, the coverage space of three algorithms during the battery life decreases. Note that the proposed algorithm performs the best in all scenarios under different loads on the drone.
@@ -1439,7 +1439,8 @@ In experiments, we only test the performance of compared algorithm in a give 3d 
 % XXX~We also observe that, when fixing the width, as length increases, the ratio between our algorithm and the row-wise COL selection algorithm could converge to a periodic result.
 
 \section{Conclusions}\label{sec:conclude}
-In this paper, we study the optimal trajectory planning problem for mobile sensing in 3D space, where a drone can cover the sensing scope of the space by using the minimum trajectory. We extend the concept of dominating set in graph theory to define the dominating path, and formulate the problem as the minimum dominating path coverage problem. By dividing the 3D space into a grid of observation locations, we propose an optimal algorithm that first finds the minimum dominating path (trajectory) for the drone, and then selects the least number critical OLs within the trajectory to perform measurement. Experimental results show that the proposed algorithm can save 32\% less time than existing approaches to complete sensing the given space; during the battery life, it can cover 19\% more sensing scope than existing solutions.
+In this paper, we study the optimal trajectory planning problem for mobile sensing in 3D space, where a drone can cover the sensing scope of the space by using the minimum trajectory. We extend the concept of dominating set in graph theory to define the dominating path, and formulate the problem as finding the minimum dominating path in the
+grid to cover the sensing scope in 3D space with the minimum trajectory. By dividing the 3D space into a grid of observation locations, we propose an optimal algorithm that first finds the minimum dominating path (trajectory) for the drone, and then selects the least number of critical OLs within the trajectory to perform measurement. Experimental results show that the proposed algorithm can save 32\% less time than existing approaches to complete sensing the given space; during the battery life, it can cover 19\% more sensing scope than existing solutions.
 
 \begin{figure}
 \centering
@@ -1452,7 +1453,7 @@ In this paper, we study the optimal trajectory planning problem for mobile sensi
 %This work was partially supported by National Natural Science Foundation
 %of China under grant number 61201245, Specialized Research Fund for the Doctoral Program of Higher Education (SRFDP) under grant 20120001120128, and by the National Science Foundation through grants CNS-1314598 and IIP-1265886.
 
-\bibliographystyle{abbrv}
+\bibliographystyle{ieeetr,abbrv}
 \small
 \bibliography{Sensing-traj}
 \end{document}

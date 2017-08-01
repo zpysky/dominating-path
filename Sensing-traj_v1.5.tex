@@ -729,7 +729,7 @@ Therefore, since $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ is no less than $C(P^*)$,
 \begin{minipage}[t]{0.23\linewidth}
  \centering
  \includegraphics[width=0.9\linewidth]{pix/sensing-traj/path_case_1.pdf}
- \caption{The minimum dominating path for $L_{1,n}$, $L_{2,n}$ and $L_{3,n}$ }
+ \caption{The minimum dominating path for $L_{1,4}$, $L_{2,4}$ and $L_{3,4}$ }
 \label{fig:path_case_1}
 \end{minipage}
 \hfill
@@ -1419,7 +1419,7 @@ The prototype consists of two parts: (1) a drone with an API that can configure 
 \end{itemize}
 
 \subsection{Experimental Results}
-We choose an open space in a university campus which has a size of 45~m in length, 35~m in width, and 10~m in height. It is divided into 3D grids formed by 5 by 5 by 5~m cuboids. Since the time consumed is the sum of flight time and measurement time, we consider the impact of different measurement times in experiments, which are set as 0, 1, 2, 5 seconds at each COL. 
+We choose an open space in a university campus which has a size of 45~m in length, 35~m in width, and 10~m in height. It is divided into 3D grids formed by 5 by 5 by 5~m cuboids. Since the time consumed is the sum of flight time and measurement time, we consider the impact of different measurement times in experiments, which are set as 0, 1, 2, 5 seconds at each COL.
 
 \textbf{Time consumed}:
 Figure~\ref{fig:eva_time} show the time consumed under compared algorithms with different granularity of the measurement time. The sensing area is a 2D grid of size 45 by 35~m. We observe that our proposed algorithm consumes less time when the measurement time is small. The gap between our algorithm and the row-wise COL selection algorithm decreases as the measurement time increases. When the measurement time is 5 seconds at each COL, the total time consumed by the proposed and the row-wise COL selection algorithms are equal.
@@ -1453,7 +1453,7 @@ grid to cover the sensing scope in 3D space with the minimum trajectory. By divi
 %This work was partially supported by National Natural Science Foundation
 %of China under grant number 61201245, Specialized Research Fund for the Doctoral Program of Higher Education (SRFDP) under grant 20120001120128, and by the National Science Foundation through grants CNS-1314598 and IIP-1265886.
 
-\bibliographystyle{abbrv}
+\bibliographystyle{ieeetr}
 \small
 \bibliography{Sensing-traj}
 \end{document}
