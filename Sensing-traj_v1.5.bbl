@@ -1,106 +1,63 @@
 \begin{thebibliography}{10}
 
 \bibitem{valavanis2014handbook}
-K.~P. Valavanis and G.~J. Vachtsevanos, {\em Handbook of unmanned aerial
-  vehicles}.
-\newblock Springer Publishing Company, Incorporated, 2014.
+K.~P. Valavanis and G.~J. Vachtsevanos, \emph{Handbook of unmanned aerial vehicles}, Springer Publishing Company, Incorporated, 2014.
 
 \bibitem{Newman2014Drone}
-D.~L. Newman, ``Drone for collecting images and system for categorizing image
-  data,'' 2014.
+D.~L. Newman, ``Drone for collecting images and system for categorizing image data,'' \emph{U.S. Patent App.} Dec. 2013.
 
 \bibitem{Yu2016Automating}
-E.~Yu, X.~Xiong, and X.~Zhou, ``Automating 3d wireless measurements with
-  drones,'' in {\em Tenth ACM International Workshop on Wireless Network
-  Testbeds, Experimental Evaluation, and Characterization}, pp.~65--72, 2016.
+E.~Yu, X.~Xiong, and X.~Zhou, ``Automating 3d wireless measurements with drones,'' \emph{Tenth ACM International Workshop on Wireless Network Testbeds, Experimental Evaluation, and Characterization}, New York, NY, Oct. 2016.
 
 \bibitem{Purohit2011SensorFly}
-A.~Purohit, Z.~Sun, F.~Mokaya, and P.~Zhang, ``Sensorfly: Controlled-mobile
-  sensing platform for indoor emergency response applications,'' in {\em
-  International Conference on Information Processing in Sensor Networks},
-  pp.~223--234, 2011.
+A.~Purohit, Z.~Sun, F.~Mokaya, and P.~Zhang, ``Sensorfly: Controlled-mobile sensing platform for indoor emergency response applications,'' \emph{International Conference on Information Processing in Sensor Networks~(IPSN)}, Chicago, IL, Apr. 2011.
 
 \bibitem{hu2016blueaer}
-Y.~Hu, G.~Dai, J.~Fan, Y.~Wu, and H.~Zhang, ``Blueaer: A fine-grained urban
-  pm2. 5 3d monitoring system using mobile sensing,'' in {\em Computer
-  Communications, IEEE INFOCOM 2016-The 35th Annual IEEE International
-  Conference on}, pp.~1--9, IEEE, 2016.
+Y.~Hu, G.~Dai, J.~Fan, Y.~Wu, and H.~Zhang, ``Blueaer: A fine-grained urban pm2.5 3d monitoring system using mobile sensing,'' \emph{IEEE Int. Conference on Comput. Commun.~(INFOCOM'16)}, San Francisco, CA, Jul. 2016.
 
 \bibitem{Yang2017ARMS}
-Y.~Yang, Z.~Zheng, K.~Bian, Y.~Jiang, L.~Song, and Z.~Han, ``Arms: a
-  fine-grained 3d aqi realtime monitoring system by uav,'' in {\em IEEE
-  GLOBECOM, 2017}, pp.~1--6, IEEE, 2017.
+Y.~Yang, Z.~Zheng, K.~Bian, Y.~Jiang, L.~Song, and Z.~Han, ``Arms: a fine-grained 3d aqi realtime monitoring system by uav,'' \emph{IEEE Global Commun. Conference~(GLOBECOM)}, Singapore, Dec. 2017.
 
 \bibitem{schlag2012new}
-C.~Schlag, ``The new privacy battle: How the expanding use of drones continues
-  to erode our concept of privacy and privacy rights,'' {\em Pitt. J. Tech. L.
-  \& Pol'y}, vol.~13, p.~i, 2012.
+C.~Schlag, ``The new privacy battle: How the expanding use of drones continues to erode our concept of privacy and privacy rights,'' \emph{Pitt. J. Tech. L. \& Pol'y}, vol.~13, no.~2, pp.~1-22, May 2013.
 
 \bibitem{Da-Jiang2017Phantom}
-D.-J.~I. Science and L.~D. Technology~Co., ``Phantom 3 professional.'' Website,
-  2017.
-\newblock \url{https://www.dji.com/cn/phantom-3-pro}.
+Da-Jiang Innovations Science and Technology Co., Ltd.~(DJI), Phantom 3 Professional. \emph{https://www.dji.com/cn/phantom-3-pro.}
 
 \bibitem{Savla2005On}
-K.~Savla, F.~Bullo, and E.~Frazzoli, ``On traveling salesperson problems for
-  dubins' vehicle: stochastic and dynamic environments,'' in {\em Decision and
-  Control, 2005 and 2005 European Control Conference. Cdc-Ecc '05. IEEE
-  Conference on}, pp.~4530--4535, 2005.
+K.~Savla, F.~Bullo, and E.~Frazzoli, ``On traveling salesperson problems for dubins' vehicle: stochastic and dynamic environments,'' \emph{IEEE Conference on Decision and Control and European Control Conference~(Cdc-Ecc '05)}, Seville, Spain, Dec. 2005.
 
 \bibitem{brooks1986robust}
-R.~Brooks, ``A robust layered control system for a mobile robot,'' {\em IEEE
-  journal on robotics and automation}, vol.~2, no.~1, pp.~14--23, 1986.
+R.~Brooks, ``A robust layered control system for a mobile robot,'' \emph{IEEE J. on Robotics and Automation}, vol.~2, no.~1, pp.~14--23, Mar. 1986.
 
 \bibitem{eisenman2009bikenet}
-S.~B. Eisenman, E.~Miluzzo, N.~D. Lane, R.~A. Peterson, G.-S. Ahn, and A.~T.
-  Campbell, ``Bikenet: A mobile sensing system for cyclist experience
-  mapping,'' {\em ACM Transactions on Sensor Networks (TOSN)}, vol.~6, no.~1,
-  p.~6, 2009.
+S.~B. Eisenman, E.~Miluzzo, N.~D. Lane, R.~A. Peterson, G.-S. Ahn, and A.~T. Campbell, ``Bikenet: A mobile sensing system for cyclist experience mapping,'' \emph{ACM Transactions on Sensor Networks (TOSN)}, vol.~6, no.~1, pp.~1--6, Dec. 2009.
 
 \bibitem{devarakonda2013real}
-S.~Devarakonda, P.~Sevusu, H.~Liu, R.~Liu, L.~Iftode, and B.~Nath, ``Real-time
-  air quality monitoring through mobile sensing in metropolitan areas,'' in
-  {\em Proceedings of the 2nd ACM SIGKDD international workshop on urban
-  computing}, p.~15, ACM, 2013.
+S.~Devarakonda, P.~Sevusu, H.~Liu, R.~Liu, L.~Iftode, and B.~Nath, ``Real-time air quality monitoring through mobile sensing in metropolitan areas,'' \emph{Proceedings of the 2nd ACM SIGKDD international workshop on urban computing}, Chicago, IL, Aug. 2013.
 
 \bibitem{Hu2006A}
-Y.~Hu and S.~X. Yang, ``A knowledge based genetic algorithm for path planning
-  of a mobile robot,'' {\em Acta Electronica Sinica}, vol.~34, no.~5,
-  pp.~4350--4355 Vol.5, 2006.
+Y.~Hu and S.~X. Yang, ``A knowledge based genetic algorithm for path planning of a mobile robot,'' \emph{Proceedings of the 2004 IEEE Int. Conference on Robotics and Automation,} New Orleans, LA, Apr. 2004.
 
 \bibitem{Yun2011Improved}
-S.~C. Yun, V.~Ganapathy, and L.~O. Chong, ``Improved genetic algorithms based
-  optimum path planning for mobile robot,'' in {\em International Conference on
-  Control Automation Robotics \& Vision}, pp.~1565--1570, 2011.
+S.~C. Yun, V.~Ganapathy, and L.~O. Chong, ``Improved genetic algorithms based optimum path planning for mobile robot,'' \emph{Int. Conference on Control Automation Robotics \& Vision~(ICARCV)}, Singapore, Dec. 2010.
 
 \bibitem{Fu2012Phase}
-Y.~Fu, M.~Ding, and C.~Zhou, ``Phase angle-encoded and quantum-behaved particle
-  swarm optimization applied to three-dimensional route planning for uav,''
-  {\em IEEE Transactions on Systems, Man, and Cybernetics - Part A: Systems and
-  Humans}, vol.~42, no.~2, pp.~511--526, 2012.
+Y.~Fu, M.~Ding, and C.~Zhou, ``Phase angle-encoded and quantum-behaved particle swarm optimization applied to three-dimensional route planning for uav,'' \emph{IEEE Transactions on Systems, Man, and Cybernetics}, vol.~42, no.~2, pp.~511--526, Mar. 2012.
 
 \bibitem{Tekdas2009Using}
-O.~Tekdas, V.~Isler, J.~H. Lim, and A.~Terzis, ``Using mobile robots to harvest
-  data from sensor fields. wirel commun,'' {\em Wireless Communications IEEE},
-  vol.~16, no.~1, pp.~22--28, 2009.
+O.~Tekdas, V.~Isler, J.~H. Lim, and A.~Terzis, ``Using mobile robots to harvest data from sensor fields,'' \emph{IEEE Wireless Communications}, vol.~16, no.~1, pp.~22--28, Mar. 2009.
 
 \bibitem{Hamburger2007Routing}
-P.~Hamburger, R.~Vandell, and M.~Walsh, ``Routing sets in the integer
-  lattice,'' {\em Discrete Applied Mathematics}, vol.~155, no.~11,
-  pp.~1384--1394, 2007.
+P.~Hamburger, R.~Vandell, and M.~Walsh, ``Routing sets in the integer lattice,'' \emph{Discrete Applied Mathematics}, vol.~155, no.~11, pp.~1384--1394, Jun. 2007.
 
 \bibitem{alanko2011computing}
-S.~Alanko, S.~Crevals, A.~Isopoussu, P.~{\"O}sterg{\aa}rd, and V.~Pettersson,
-  ``Computing the domination number of grid graphs,'' {\em the electronic
-  journal of combinatorics}, vol.~18, no.~1, p.~P141, 2011.
+S.~Alanko, S.~Crevals, A.~Isopoussu, P.~{\"O}sterg{\aa}rd, and V.~Pettersson, ``Computing the domination number of grid graphs,'' \emph{The Electronic J. of Combinatorics}, vol.~18, no.~1, pp.~141--159, Jul. 2011.
 
 \bibitem{gonccalves2011domination}
-D.~Gon{\c{c}}alves, A.~Pinlou, M.~Rao, and S.~Thomass{\'e}, ``The domination
-  number of grids,'' {\em SIAM Journal on Discrete Mathematics}, vol.~25,
-  no.~3, pp.~1443--1453, 2011.
+D.~Gon{\c{c}}alves, A.~Pinlou, M.~Rao, and S.~Thomass{\'e}, ``The domination number of grids,'' \emph{SIAM J. on Discrete Mathematics}, vol.~25, no.~3, pp.~1443--1453, Feb. 2011.
 
 \bibitem{chang1992domination}
-T.~Y. Chang, {\em Domination numbers of grid graphs}.
-\newblock PhD thesis, University of South Florida, 1992.
+T.~Y. Chang ``Domination numbers of grid graphs,'' \emph{PhD thesis}, University of South Florida, Aug. 1992.
 
 \end{thebibliography}

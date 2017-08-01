@@ -97,7 +97,7 @@
 
 
 % *** Page scaling Setup ***
-\renewcommand{\baselinestretch}{0.943}
+\renewcommand{\baselinestretch}{0.961}
 
 
 
@@ -152,14 +152,10 @@ Experimental results show that the proposed algorithm takes 32\% less time to co
 
 \section{Introduction}~\label{sec:intro}
 
-%1. 飞机应用很多，主要还是收集数据，飞到人类无法触及的区域或者角度。例如，拍照，采集wifi 信号，AQI 指数
 %XXX intro: mobile sensing in space is limited: refers to the use of the sensors of a mobile device to acquire data from the environment, which
 %XXX drone sensing in space starts to receive attention, AQI, wifi, etc.
 Unmanned aerial vehicle (UAV), commonly known as drone, is an aircraft without a human pilot aboard, which is commonly used in measurement and sampling in 3D space~\cite{valavanis2014handbook}. Compared to manned aircraft, drones are more suitable for data collections and mobile sensing applications that capture different dimensions of signals in the environment that are beyond the sensing capability and scope of human beings, such as aerial photography~\cite{Newman2014Drone}, 3D wireless signal survey~\cite{Yu2016Automating}, air quality index (AQI) measurement~\cite{Purohit2011SensorFly,hu2016blueaer,Yang2017ARMS}.
 
-%
-%2. 但是，飞机并未普及，很多公司还死掉了，为什么？
-% 如果你真正用过玩过飞机，你就知道了（1）电池很短（2）大部分都很吵（3）无法负重因为会摇晃且电池更短
 %XXX pain points: battery, noise, and hurt people
 However, civilian drones are still not widely used by customers in our daily life today, due to lack of killer applications (e.g., the social network applications), and the privacy/safety concerns (no-drone zones are defined to protect the residents' privacy, or the safety of civil aviation system)~\cite{schlag2012new}.
 Moreover, if one has actually tried flying a drone, he/she may feel that existing civilian drones are not ready for use in daily life for its limitation in hardware.
@@ -170,15 +166,12 @@ Moreover, if one has actually tried flying a drone, he/she may feel that existin
 \end{itemize}
 
 
-% 自然就衍生出了一个问题，如何在短时间的电池使用时间内，采集更多的点？并且在三维空间内？
 %XXX this paper studies the 1st by tracj optimization
 %XXX existing work emphasizes on points 1st, then routes
 %XXX this work only focus on cases that prefers routes first, then points.
 In this study, we are not interested in the battery technology, or noise cancellation.
 Instead, we focus on how to maximize the scope that a drone can sense by planning its trajectory. Since the drone can sense the signals in the cubic space around it, the sensing scope of a trajectory is the union of the cubic spaces that the drone has traversed along the trajectory. Therefore, the trajectory planning problem arises naturally: given the battery life and a 3D space, then \emph{how to plan the drone's optimal trajectory with a number of stops for maximizing its sensing scope?}
 
-% 这个和 传统传感器网络中的，移动 base station 等工作类似，因为都是移动的，采集数据
-% 但是，还是不同的，不同点包括：以前都是贪心的，我们这个问题不是
 % existing selects stops first which is suboptimal, then connect then
 % in drone, traj first, as traj is more important. this holds the promise of being optimized.
 
@@ -197,10 +190,6 @@ Moreover, the flight mode is usually dominant in a drone's trajectory, while the
 \label{fig:eva_time_battery}
 \end{figure}
 
-% 这篇文章的贡献？
-% problem formulation —— spanning tree/route problem?
-% 最优算法
-% 多个场景下的实验验证、仿真。
 In this paper, we study the optimal trajectory planning problem of a drone for 3D space mobile sensing applications. We extend the concept of dominating set in graph theory, define a new concept called the dominating path, %xxx
 and formulate the problem as finding the minimum dominating path in the grid to cover the sensing scope in 3D space with the minimum trajectory. By dividing the 3D space into a grid of observation locations (OLs), we propose a strategy that first determines the minimum dominating path of the drone that maximizes the sensing scope, and then selects an appropriate number of critical OLs within the path to perform measurement.
 
@@ -250,14 +239,11 @@ In this paper, we take a different approach by finding the optimal path first an
 
 
 \section{System Model and Problem Formulation}~\label{sec:problem}
-% 模仿 mobicom，这个section 就是把 你准备工作，定义、各种铺垫都写好，然后下一个 section 就可以写解法和证明了
-% 例如，3d 空间怎么分，怎么定义一些变量
-% 然后，problem formulation，得到一个problem，就是我们需要求解的目标
+
 In this section, we establish a multi-layer 3D network model that are formed by multiple 2D networks for mobile sensing in the 3D space. Then, we formulate the problem as a combination of the minimum dominating path problem and the constrained minimum dominating set problem.
 
 % We will make further discussion in next subsection. Finally, we define variables that would be used to mathematical proof next section.
 
-% 形成3D OL网络，并且定义OL的Level
 \subsection{3D network model}
 \begin{figure}[!t]
 \small
@@ -433,7 +419,7 @@ We show difference among dominating set, connected dominating set and dominating
 \caption{A minimum dominating path of $L_{6,6}$;}
 \label{fig:trivial_step_further}
 \end{subfigure}
-\caption{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$}
+\caption{A complete process from minimum dominating path in $L_{3,3}$ to minimum dominating path in $L_{6,6}$.}
 \label{fig:trivial_steps}
 \end{figure}
 
@@ -498,8 +484,6 @@ Next, we show the correlation between the smaller grid $L_{m,n}$ and the expande
 %  \item $\gamma_l(G)$: The size of minimum dominating path of $G$.
 %\end{itemize}
 
-
-% 证明现有结果
 \subsection{The size of the minimum dominating path in the expanded grid $L_{m,{n+3}}$}
 
 \subsubsection{How many vertices are needed for constructing the minimum dominating path in $L_{m,n+3}$}
@@ -531,7 +515,7 @@ To simplify proof, we also give some notations of variables. $c_i$ denotes leftm
 \label{fig:lem2_sol}
 \end{subfigure}
 \hfill
-\caption{(a) 3 continuous vertices in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$; (b) Partial of $P'$ that could replace $P$.}
+\caption{(a) 3 continuous vertices in $c_n$ dominated by $D^c_{n+1}(P)$. Circle vertices are vertices in $P$, star vertices are vertices in $v_{k'}$, triangle vertices are vertices in $v_k$; (b) Part of $P'$ that could replace $P$.}
 \label{fig:lem2}
 \end{figure}
 
@@ -726,7 +710,7 @@ Therefore, since $|C^c_{1,n}(P)| + |C^c_{n+1,n+3}(P)|$ is no less than $C(P^*)$,
 \label{fig:meta_struct3}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{0.23\linewidth}
+ \begin{minipage}[t]{0.23\linewidth}
  \centering
  \includegraphics[width=0.9\linewidth]{pix/sensing-traj/path_case_1.pdf}
  \caption{The minimum dominating path for $L_{1,4}$, $L_{2,4}$ and $L_{3,4}$ }
@@ -825,7 +809,7 @@ Therefore, when $m \equiv 2 \pmod 3$, $n \equiv 1 \pmod 3$, we have
 \begin{minipage}[t]{0.32\textwidth}
 \centering
 \includegraphics[width=0.7\linewidth]{pix/sensing-traj/path_case_3_3.pdf}
-\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$, middle one with structure (a) and right one with structure (b).}
+\caption{Minimum dominating path when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmod 3$.}
 \label{fig:path_case_3_3}
 \end{minipage}
 \end{figure*}
@@ -1082,6 +1066,8 @@ From Figure~\ref{fig:path_case_3_3}, when $m \equiv 0 \pmod 3$, $n \equiv 2 \pmo
 \end{minipage}%
 \end{figure}
 
+\vspace{-0.1in}
+
 \subsection{How to concatenate 2D trajectories to a 3D one}
 In a real-world 3D space that might be irregular, we give an approach to concatenate 2D trajectories to a 3D trajectory.
 \begin{itemize}
@@ -1245,7 +1231,6 @@ In a real-world 3D space that might be irregular, we give an approach to concate
 %\].
 %\end{prop}
 %
-%% TODO 化简 b 小于等于 2 的情况，增加 1、2、3的情况
 %\begin{prop}
 %Assume $m \geq 4$, $n \geq 4$. When $m \equiv 0 \pmod 3$, $n \equiv 0 \pmod 3$, we have
 %$|V_C|=3ab$.
@@ -1292,19 +1277,15 @@ In a real-world 3D space that might be irregular, we give an approach to concate
 %\].
 %\end{prop}
 
-% 相关算法
-
 
 
 \section{Evaluation}\label{sec:experiment}
 
-% 仿真
-% 实验准备，可以模仿 mobicom 那篇的写法，把一些硬件也写进去，AQI 只是个负重的例子，目的是我们这个是 general 3D sensing 都可以用，不一定只是测量 AQI。
-% 真实的放飞实验，看看电池能飞多久。
 \begin{figure}
 \centering
 \includegraphics[width=0.8\linewidth]{pix/sensing-traj/eva_uav.pdf}
 \caption{DJI Phantom 3 quadcopter.}
+\vspace{-0.15in}
 \label{fig:eva_uav}
 \end{figure}
 
@@ -1446,6 +1427,7 @@ grid to cover the sensing scope in 3D space with the minimum trajectory. By divi
 \centering
 \includegraphics[width=0.7\linewidth]{pix/sensing-traj/eva_grid_time.pdf}
 \caption{Comparison of the proposed, row-wise, and greedy algorithms on time consumed in different-size grids.}
+\vspace{-0.15in}
 \label{fig:eva_grid_time}
 \end{figure}
 %\section{Acknowledgements}
@@ -1453,7 +1435,7 @@ grid to cover the sensing scope in 3D space with the minimum trajectory. By divi
 %This work was partially supported by National Natural Science Foundation
 %of China under grant number 61201245, Specialized Research Fund for the Doctoral Program of Higher Education (SRFDP) under grant 20120001120128, and by the National Science Foundation through grants CNS-1314598 and IIP-1265886.
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEbib}
 \small
 \bibliography{Sensing-traj}
 \end{document}
